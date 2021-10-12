@@ -1,14 +1,14 @@
 -- Создать базу данных
 CREATE DATABASE todolist;
 
--- Scheme of folder
+-- Schema of folder
 CREATE TABLE folder(
     id SERIAL PRIMATY KEY,
     name TEXT NOT NULL,
     color BYTEA,
-)
+);
 
--- Scheme of tasklist
+-- Schema of tasklist
 CREATE TABLE task(
     id SERIAL PRIMARY KEY,
     description VARCHAR(255),
