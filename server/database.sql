@@ -8,6 +8,9 @@ CREATE TABLE folder(
     color BYTEA
 );
 
+-- Add new folder
+INSERT INTO folder (name) VALUES ('Work');
+
 -- Schema of tasklist
 CREATE TABLE task(
     id SERIAL PRIMARY KEY,
@@ -17,7 +20,7 @@ CREATE TABLE task(
     time_of_last_update TIMESTAMP DEFAULT NOW() NOT NULL,
     date DATE,
     time TIME CHECK (date != NULL),
-    folder_id SERIAL REFERENCES folder (id)
+    folder_id INTEGER REFERENCES folder (id)
 );
 
 -- Adding new task with description only
