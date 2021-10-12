@@ -3,9 +3,9 @@ CREATE DATABASE todolist;
 
 -- Schema of folder
 CREATE TABLE folder(
-    id SERIAL PRIMATY KEY,
+    id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
-    color BYTEA,
+    color BYTEA
 );
 
 -- Schema of tasklist
