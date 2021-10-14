@@ -12,18 +12,13 @@ app.use(express.json()); // parse req.body as json
 
 // ROUTES //
 
-// Create a todo
-app.post("/todos", async (req, res) => {
+// Get all tasks
+app.get("/tasks", async (req, res) => {
     try {
-        // Get data from the client
-        const description = req.body.description;
+        
         // Sending data to database
-        const newTodo = await pool.query(
-            "INSERT INTO todo (description) VALUES($1)", 
-            [description]
-            );
         // Feedback to client
-        res.json("All good!");
+        res.json();
     } catch (error) {
         console.error(error.message);
     }
