@@ -1,7 +1,17 @@
 -- Создать базу данных
 CREATE DATABASE todolist;
 
--- Scheme of tasklist
+-- Schema of folder
+CREATE TABLE folder(
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    color BYTEA
+);
+
+-- Add new folder
+INSERT INTO folder (name) VALUES ('Work');
+
+-- Schema of tasklist
 CREATE TABLE task(
     id SERIAL PRIMARY KEY,
     description VARCHAR(255),
@@ -9,7 +19,8 @@ CREATE TABLE task(
     time_of_creation TIMESTAMP DEFAULT NOW() NOT NULL,
     time_of_last_update TIMESTAMP DEFAULT NOW() NOT NULL,
     date DATE,
-    time TIME CHECK (date != NULL)
+    time TIME CHECK (date != NULL),
+    folder_id INTEGER REFERENCES folder (id)
 );
 
 -- Adding new task with description only
@@ -23,9 +34,3 @@ INSERT INTO task (description, date) VALUES ('This is my task description', '202
 INSERT INTO task (description, date, time) VALUES ('This is description', '2021-10-28', '16:05');
 
 
--- Scheme of folder
-CREATE TABLE folder(
-    id
-    name TEXT NOT NULL,
-    task_id SERIAL REFERENCES task (id)
-)
