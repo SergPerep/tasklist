@@ -15,10 +15,9 @@ app.use(express.json()); // parse req.body as json
 // Get all tasks
 app.get("/tasks", async (req, res) => {
     try {
-        
-        // Sending data to database
+        const allTasks = await pool.query("SELECT task.id as id, description, status_of_completion, time_of_creation, time_of_last_update, date, time, folder.name as folder FROM task LEFT JOIN folder ON folder.id = task.folder_id;");
         // Feedback to client
-        res.json();
+        res.json(allTasks.rows);
     } catch (error) {
         console.error(error.message);
     }

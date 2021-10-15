@@ -1,29 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TaskItem from "./TaskItem";
 
-const data = [
-    {   
-        id: 1,
-        description: "This is my new task",
-        status_of_completion: false
-    },
-    {
-        id: 2,
-        description: "Search for a good physeotherapist in Houten and Utrecht. And add new meeting to calendar.",
-        status_of_completion: false
-    },
-    {
-        id: 3,
-        description: "This is my new task",
-        status_of_completion: false
-    }
-];
-
-
 const TaskList = () => {
+
+    useEffect(() => {
+        getTasks();
+    }, []);
+
+    const [taskList, setTaskList] = useState([]);
+
+    // Function makes get-request to server
+    const getTasks = async () => {
+        try {
+            const response = await fetch("http://localhost:5000/tasks");
+            const data = await response.json();
+            console.log(data);
+            setTaskList(data);
+        } catch (error) {
+            console.error(error.message);
+
+        }
+    }
+
     return (
         <div className="tasklist">
-            {data.map( x =>  <TaskItem data={x} key={x.id} />)}
+            {taskList.map(x => <TaskItem data={x} key={x.id}></TaskItem>)}
         </div>
     )
 }
