@@ -1,10 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
 body {
   font-family: 'Space Mono', monospace;
-  
 }
-:root{
+
+:root {
   --c-light-gray: #f0f0f0;
+  --c-black-60: rgba(0, 0, 0, 0.6);
+  --c-black-30: rgba(0, 0, 0, 0.3);
+  --c-black-12: rgba(0, 0, 0, 0.12);
 }
 
 #root {
@@ -34,6 +37,29 @@ div {
   border-radius: 50%;
 }
 
+.checkbox.checked .circle {
+  background-color: black;
+}
+
+.checkbox.checked .circle::before {
+  content: "";
+  display: block;
+  width: 9px;
+  height: 2px;
+  background-color:white;
+  transform: translate(4px, 6px) rotate(-45deg);
+}
+
+
+.checkbox.checked .circle::after {
+  content: "";
+  display: block;
+  width: 4px;
+  height: 2px;
+  background-color:white;
+  transform: translate(2px, 5px) rotate(45deg);
+}
+
 .checkbox {
   padding: 4px;
 }
@@ -42,20 +68,101 @@ div {
 
 .taskitem {
   display: flex;
-  background-color:white;
+  background-color: white;
   padding: 12px 16px;
 }
 
 .taskitem .taskitem-content-wrapper {
   padding-left: 8px;
-  
 }
 
 /* TaskList */
 
-.tasklist{
+.tasklist {
   background-color: white;
   padding: 8px 0;
   min-width: 610px;
   max-width: calc(100vw - 96px);
+}
+
+.taskitem .taskitem-folder {
+  background-color: var(--c-black-12);
+  font-size: 12px;
+  line-height: 14px;
+  padding: 4px 5px;
+  border-radius: 2px;
+}
+
+.taskitem .taskitem-date, .taskitem .taskitem-time {
+  color: var(--c-black-60);
+  font-size: 14px;
+}
+
+.taskitem-details {
+  padding-top: 4px;
+  display: flex;
+}
+
+.taskitem-details span:not(:first-child) {
+  margin-left: 8px;
+}
+
+.icon-angle {
+  width: 16px;
+  height: 16px;
+  /* background-color: violet; */
+}
+
+.icon-angle::before {
+  content: "";
+  display: block;
+  background-color: black;
+  width: 9px;
+  height: 1px;
+  transform: translate(0px, 7px) rotate(45deg);
+}
+
+.icon-angle::after{
+  content: "";
+  display: block;
+  background-color: black;
+  width: 9px;
+  height: 1px;
+  transform: translate(7px, 6px) rotate(-45deg);
+}
+
+.dropdown {
+  display: flex;
+  border: 1px solid var(--c-black-30);
+  padding: 4px 6px;
+  border-radius: 2px;
+}
+
+.dropdown .dropdown-name {
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.taskinput-options{
+  display: flex;
+  padding-left: 16px;
+  padding-bottom: 12px;
+}
+
+.taskinput-options .dropdown:not(:last-child){
+  margin-right: 8px;
+}
+
+.taskinput {
+  border-bottom: 2px solid black;
+  background-color: white;
+}
+.taskinput input {
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  border: none;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 12px 16px 8px;
 }
