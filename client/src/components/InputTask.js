@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import ChooseProject from "./ChoosePoject";
+import { TasklistContext } from "./TasklistContext";
 
 
 const InputTask = () => {
+    // Grab function out of «value» of context
+    const {getTasks} = useContext(TasklistContext);
     const [value, setValue] = useState("");
 
     const handleSubmit = async (e) => {
@@ -16,6 +19,8 @@ const InputTask = () => {
             });
             const message = await newTask.json();
             console.log(message);
+            getTasks();
+            setValue("");
         } catch (error) {
             console.error(error.message);
         }

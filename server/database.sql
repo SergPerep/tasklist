@@ -94,3 +94,9 @@ SET
     status_of_completion = TRUE
 WHERE
     id = 1;
+
+-- Delete task
+DELETE FROM
+    task
+WHERE
+    id = 6;

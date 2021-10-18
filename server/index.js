@@ -35,7 +35,7 @@ app.put("/tasks/:id", async (req, res) => {
                 status_of_completion = $2
             WHERE
                 id = $1;
-            `, 
+            `,
             [id, status_of_completion]
         );
         res.json("Task was successfully updated!");
@@ -51,18 +51,33 @@ app.post("/tasks", async (req, res) => {
     try {
         const { description, date_and_time, read_time, folder_id } = req.body;
         const newTodo = await pool.query(`
-        INSERT INTO
-            task (description, date_and_time, read_time, folder_id)
-        VALUES
-            ($1, $2, $3, $4);
-        `, [description, date_and_time, read_time, folder_id]);
+            INSERT INTO
+                task (description, date_and_time, read_time, folder_id)
+            VALUES
+                ($1, $2, $3, $4);
+            `, [description, date_and_time, read_time, folder_id]);
         res.json("New task was created");
     } catch (error) {
         console.error(error.message);
     }
 });
 
+// Delete task
 
+app.delete("/tasks/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+        const delTask = await pool.query(`
+        DELETE FROM
+            task
+        WHERE
+            id = $1;
+        `, [id]);
+        res.json("Task was successfully deleted!");
+    } catch (error) {
+        console.error(error.message);
+    }
+});
 
 
 
