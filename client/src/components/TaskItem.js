@@ -1,17 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import Checkbox from "./Checkbox";
 import date from "date-and-time";
-import clsx from "clsx";
+import { TasklistContext } from "./TasklistContext";
 
 const TaskItem = (props) => {
     const { id, description, status_of_completion, date_and_time, read_time, folder } = props.data;
-    const [menuHidden, setMenuHidden] = useState(true);
-    const contexMenuCls = clsx({
-        "context-menu": true,
-        "pos-right": true,
-        "hidden": menuHidden
-    });
-    const updateStatus = async() => {
+    const {getTasks} = useContext(TasklistContext);
+
+    // HIDE OR OPEN «MORE» MENU //
+    const more = useRef();
+    const [menuIsOpen, setMenuIsOpen] = useState(false);
+    // Detect click outside
+    useEffect(() => {
+        // Mount EventListener
+        document.addEventListener("click", handleClickOutside);
+        // Demontage EventListener before rerender
+        return () => {
+            document.removeEventListener("click", handleClickOutside);
+        }
+    }, []);
+
+    // Handles click on document
+    const handleClickOutside = e => {
+        const isClickInside = more.current.contains(e.target);
+        // If click outside and menu is open then hide it
+        if (!isClickInside) {
+            setMenuIsOpen(false);
+        }
+    }
+
+    // Handles click on «more»
+    const handleClickMore = () => {
+        setMenuIsOpen(!menuIsOpen);
+    }
+
+    const updateStatus = async () => {
         try {
             const body = { status_of_completion: !status_of_completion };
             const updateCheckStatus = await fetch(`http://localhost:5000/tasks/${id}`, {
@@ -26,29 +49,28 @@ const TaskItem = (props) => {
         }
     }
 
-    const handleClickMore = () => {
-        setMenuHidden(!menuHidden);
-    }
+    
 
-    const deleteTask = async() => {
+    const deleteTask = async () => {
         try {
-            const delTask = await fetch(`http://localhost:5000/tasks/${id}`,{
+            const delTask = await fetch(`http://localhost:5000/tasks/${id}`, {
                 method: "DELETE"
             });
             const message = await delTask.json();
             console.log(message);
+            getTasks();
         } catch (error) {
             console.error(error.message);
         }
     }
-
+    
     const handleDeleteClick = () => {
         deleteTask();
     }
 
     return (
         <div className="taskitem">
-            <Checkbox status={status_of_completion} updateStatus={updateStatus}/>
+            <Checkbox status={status_of_completion} updateStatus={updateStatus} />
             <div className="taskitem-content-wrapper">
                 <div className="taskitem-desc">{description}</div>
                 <div className="taskitem-details">
@@ -61,14 +83,15 @@ const TaskItem = (props) => {
                     {folder && <span className="taskitem-folder">{folder}</span>}
                 </div>
             </div>
-            <div className="more" onClick={handleClickMore}>
+            <div className="more" onClick={handleClickMore} ref={more}>
                 <div className="icon-more">
                     <div className="circle"></div>
                 </div>
-                <ul className={contexMenuCls}>
+                {menuIsOpen && <ul className="context-menu pos-right">
                     <li>Edit</li>
                     <li onClick={handleDeleteClick}>Delete</li>
-                </ul>
+                </ul>}
+
             </div>
 
         </div>

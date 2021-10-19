@@ -28,6 +28,13 @@ div {
   box-sizing: border-box;
 }
 
+.taskboard{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: white;
+}
+
 /* Checkbox */
 
 .checkbox .circle {
@@ -202,16 +209,24 @@ div {
   visibility: hidden;
 }
 
-
-
 .dropdown {
+  position: relative;
+}
+
+.dropdown .dropdown-menu{
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
+.dropdown-button {
   display: flex;
   border: 1px solid var(--c-black-30);
   padding: 4px 6px;
   border-radius: 2px;
 }
 
-.dropdown .dropdown-name {
+.dropdown-button .dropdown-name {
   font-size: 12px;
   line-height: 14px;
 }
@@ -239,3 +254,98 @@ div {
   line-height: 24px;
   padding: 12px 16px 8px;
 }
+
+/* TASKNAV */
+
+.tasknav{
+  background-color: white;
+  padding: 24px 8px;
+}
+
+.tasknav-item {
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.tasknav-item.selected{
+  font-size: bold;
+}
+
+.calendar{
+  border: 1px solid black;
+  border-radius: 2px;
+  padding: 16px;
+  background-color: white;
+  min-width: 280px;
+}
+
+.calendar-weekdays{
+  display: flex;
+}
+
+.calendar-days{
+  display: flex;
+  flex-wrap: wrap;
+}
+.calendar-cell, .calendar-weekdays div{
+  width: calc(100% / 7);
+  text-align: center;
+  
+}
+
+.calendar-weekdays div{
+  color: var(--c-black-12);
+}
+
+.calendar-cell{
+  color: var(--c-black-30);
+}
+
+.calendar-cell.today {
+  color: black;
+  font-weight: bold;
+}
+
+.calendar-cell.this-month{
+  color: black;
+}
+
+.calendar-cell.selected{
+  background-color: black;
+  color: white;
+}
+
+.calendar-controls{
+  display: flex;
+}
+
+.calendar-controls .month-display{
+  text-align: center;
+  width: 100%;
+}
+
+.calendar-controls .month-back, .calendar-controls .month-further {
+  cursor: pointer;
+}
+
+.button {
+  background-color: black;
+  display: inline-block;
+  padding: 8px;
+  min-width: 80px;
+  color: white;
+  font-weight: bold;
+  border-radius: 2px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.calendar .button-containter{
+  padding: 8px;
+  display: flex;
+}
+
+.calendar .button-containter .button{
+  width: 100%;
+}
+

@@ -42,7 +42,7 @@ VALUES
 INSERT INTO
     task (description, date_and_time, read_time, folder_id)
 VALUES
-    ('This is description', '2021-10-28', true, 1);
+    ('This is tomorrow task', '2021-10-20', true, 1);
 
 -- Get all tasks
 SELECT
