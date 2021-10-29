@@ -4,8 +4,10 @@ import TaskList from "./components/TaskList";
 import InputTask from "./components/InputTask";
 import { TasklistProvider } from "./components/TasklistContext";
 import TaskNavList from "./components/TaskNavList";
-import Calendar from "./components/Calendar/Calendar";
-import { CalendarProvider } from "./components/Calendar/CalendarContext";
+import Calendar from "./components/Pickers/Calendar";
+import { DateAndTimePickerProvider } from "./components/Pickers/DateAndTimePickerContext";
+import EditTask from "./components/EditTask";
+import Header from "./components/Header";
 
 function App() {
   return (
@@ -13,10 +15,11 @@ function App() {
       <div className="taskboard">
         <TaskNavList />
         <div className="tasksdiplay">
-          <CalendarProvider>
-            <InputTask />
+          <DateAndTimePickerProvider>
+            <Header title="Inbox"></Header>
+            <EditTask />
             <TaskList />
-          </CalendarProvider>
+          </DateAndTimePickerProvider>
         </div>
       </div>
     </TasklistProvider>

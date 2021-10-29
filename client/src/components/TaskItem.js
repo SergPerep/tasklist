@@ -1,33 +1,18 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useContext } from "react";
 import Checkbox from "./Checkbox";
 import date from "date-and-time";
 import { TasklistContext } from "./TasklistContext";
+import { useClickOutside } from "./CustomHooks";
 
-const TaskItem = (props) => {
+const TaskItem = props => {
     const { id, description, status_of_completion, date_and_time, read_time, folder } = props.data;
-    const {getTasks} = useContext(TasklistContext);
-
-    // HIDE OR OPEN «MORE» MENU //
-    const more = useRef();
+    const { getTasks } = useContext(TasklistContext);
     const [menuIsOpen, setMenuIsOpen] = useState(false);
-    // Detect click outside
-    useEffect(() => {
-        // Mount EventListener
-        document.addEventListener("click", handleClickOutside);
-        // Demontage EventListener before rerender
-        return () => {
-            document.removeEventListener("click", handleClickOutside);
-        }
-    }, []);
-
-    // Handles click on document
-    const handleClickOutside = e => {
-        const isClickInside = more.current.contains(e.target);
-        // If click outside and menu is open then hide it
-        if (!isClickInside) {
-            setMenuIsOpen(false);
-        }
-    }
+    
+    // Handles click outside of «more»
+    const more = useClickOutside(()=>{
+        setMenuIsOpen(false);
+    });
 
     // Handles click on «more»
     const handleClickMore = () => {
@@ -49,7 +34,7 @@ const TaskItem = (props) => {
         }
     }
 
-    
+
 
     const deleteTask = async () => {
         try {
@@ -63,7 +48,7 @@ const TaskItem = (props) => {
             console.error(error.message);
         }
     }
-    
+
     const handleDeleteClick = () => {
         deleteTask();
     }
@@ -78,7 +63,8 @@ const TaskItem = (props) => {
                         {date.format(date_and_time, "MMM DD")}
                     </span>}
                     {read_time && <span className="taskitem-time">
-                        {date.format(date_and_time, "hh:mm")}
+                        {/*date.format(date_and_time, "hh:mm [GMT]Z")*/}
+                        {date_and_time.toISOString()}
                     </span>}
                     {folder && <span className="taskitem-folder">{folder}</span>}
                 </div>

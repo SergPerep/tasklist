@@ -1,13 +1,13 @@
 import date from "date-and-time";
 import clsx from "clsx";
-import { useState, useContext  } from "react";
-import Button from "../Button";
-import { CalendarContext } from "./CalendarContext";
+import { useState, useContext } from "react";
+import { DateAndTimePickerContext } from "./DateAndTimePickerContext";
+import Icon from "../Icon";
 
 const Calendar = props => {
-    const contextValue = useContext(CalendarContext);
+    const contextValue = useContext(DateAndTimePickerContext);
     // const today = new Date();
-    const {ancorDate, setAncorDate, selectedDate, setSelectedDate, today, chosenDate, setChosenDate} = contextValue;
+    const { ancorDate, setAncorDate, selectedDate, setSelectedDate, today } = contextValue;
 
     // Makes an array that will be used to render calendar grid
     const rollOutDates = (ancorDate, selectedDate) => {
@@ -79,9 +79,9 @@ const Calendar = props => {
     return (
         <div className="calendar">
             <div className="calendar-controls">
-                <div className="month-back" onClick={handleClickBack}>&lt;</div>
+                <div className="month-back" onClick={handleClickBack}><Icon name="AngleLeft" size="md" /></div>
                 <div className="month-display">{date.format(ancorDate, "MMMM YYYY")}</div>
-                <div className="month-further" onClick={handleClickFurther}>&gt;</div>
+                <div className="month-further" onClick={handleClickFurther}><Icon name="AngleRight" size="md" /></div>
             </div>
             <div className="calendar-weekdays">
                 {weekDays.map((weekDay, index) => <div key={index}>{weekDay}</div>)}
@@ -94,10 +94,14 @@ const Calendar = props => {
                         "this-month": day.isThisMonth,
                         "selected": day.isSelected
                     });
-                    return <div className={dayCls} key={index} onClick={() => { handleClickDay(day.aDate) }}>{day.aDate.getDate()}</div>
+                    return <div className={dayCls} key={index} onClick={() => { handleClickDay(day.aDate) }}>
+                        <div className="select-area">
+                            {day.aDate.getDate()}
+                        </div>
+                    </div>
                 })}
             </div>
-            
+
         </div>
     )
 }

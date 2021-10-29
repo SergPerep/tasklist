@@ -6,11 +6,11 @@ const TaskNavList = () => {
     };
     return (
         <div className="tasknav">
-            <TaskNavItem onClick={handleClickInbox}>Inbox</TaskNavItem>
-            <TaskNavItem>Today</TaskNavItem>
-            <TaskNavItem>Tomorrow</TaskNavItem>
-            <TaskNavItem>Calendar</TaskNavItem>
-            <TaskNavItem>Projects</TaskNavItem>
+            <TaskNavItem leftIcon="Inbox" onClick={handleClickInbox}>Inbox</TaskNavItem>
+            <TaskNavItem leftIcon="Today">Today</TaskNavItem>
+            <TaskNavItem leftIcon="Tomorrow">Tomorrow</TaskNavItem>
+            <TaskNavItem leftIcon="Calendar">Calendar</TaskNavItem>
+            <TaskNavItem leftIcon="Folder" rightIcon="Plus">Projects</TaskNavItem>
         </div>
     )
 }

@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
-import Calendar from "./Calendar/Calendar";
+import Calendar from "./Pickers/Calendar";
 import Dropdown from "./Dropdown";
 import { TasklistContext } from "./TasklistContext";
-import { CalendarContext } from "./Calendar/CalendarContext";
+import { DateAndTimePickerContext } from "./Pickers/DateAndTimePickerContext";
 import date from "date-and-time";
 import Button from "./Button";
 
@@ -13,7 +13,7 @@ const InputTask = () => {
     const [value, setValue] = useState("");
     const [calOpen, setCalOpen] = useState(false);
     const dropdownDate = useRef();
-    const contextValue = useContext(CalendarContext);
+    const contextValue = useContext(DateAndTimePickerContext);
     const { ancorDate, setAncorDate, selectedDate, setSelectedDate, today, chosenDate, setChosenDate } = contextValue;
 
     // const calDropdownName = selectedDate ? date.format(selectedDate, "DD MMM") : "Date";

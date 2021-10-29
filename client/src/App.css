@@ -1,6 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
-body {
+@import "LineIcons.css";
+body, input {
   font-family: 'Space Mono', monospace;
+}
+
+.line-icon {
+  display: block;
+  position: relative;
+}
+
+.line-icon.icon-md {
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 24px;
+}
+
+.line-icon.icon-sm {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  line-height: 16px;
 }
 
 :root {
@@ -28,7 +48,7 @@ div {
   box-sizing: border-box;
 }
 
-.taskboard{
+.taskboard {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -53,17 +73,16 @@ div {
   display: block;
   width: 9px;
   height: 2px;
-  background-color:white;
+  background-color: white;
   transform: translate(4px, 6px) rotate(-45deg);
 }
-
 
 .checkbox.checked .circle::after {
   content: "";
   display: block;
   width: 4px;
   height: 2px;
-  background-color:white;
+  background-color: white;
   transform: translate(2px, 5px) rotate(45deg);
 }
 
@@ -131,7 +150,7 @@ div {
   transform: translate(0px, 7px) rotate(45deg);
 }
 
-.icon-angle::after{
+.icon-angle::after {
   content: "";
   display: block;
   background-color: black;
@@ -139,7 +158,6 @@ div {
   height: 1px;
   transform: translate(7px, 6px) rotate(-45deg);
 }
-
 
 .icon-more {
   width: 16px;
@@ -162,11 +180,11 @@ div {
 }
 
 .icon-more::after {
-  transform: translate(12px,0px);
+  transform: translate(12px, 0px);
 }
 
 .icon-more .circle {
-  transform: translate(6px,3px);
+  transform: translate(6px, 3px);
 }
 
 .more {
@@ -180,7 +198,7 @@ div {
   list-style: none;
   background-color: white;
   position: absolute;
-  top:0;
+  top: 0;
   border: 1px solid black;
   border-radius: 2px;
   z-index: 1;
@@ -196,14 +214,13 @@ div {
   background-color: var(--c-black-12);
 }
 
-.context-menu.pos-left{
+.context-menu.pos-left {
   left: 0;
 }
 
-.context-menu.pos-right{
+.context-menu.pos-right {
   right: 0;
 }
-
 
 .context-menu.hidden {
   visibility: hidden;
@@ -213,7 +230,7 @@ div {
   position: relative;
 }
 
-.dropdown .dropdown-menu{
+.dropdown .dropdown-menu {
   position: absolute;
   top: 0;
   z-index: 1;
@@ -231,20 +248,20 @@ div {
   line-height: 14px;
 }
 
-.taskinput-options{
+.taskinput-options {
   display: flex;
   padding-left: 16px;
   padding-bottom: 12px;
 }
 
-.taskinput-options .dropdown:not(:last-child){
+.taskinput-options .dropdown:not(:last-child) {
   margin-right: 8px;
 }
 
 .taskinput {
-  border-bottom: 2px solid black;
   background-color: white;
 }
+
 .taskinput input {
   width: 100%;
   display: block;
@@ -257,48 +274,93 @@ div {
 
 /* TASKNAV */
 
-.tasknav{
+.tasknav {
   background-color: white;
   padding: 24px 8px;
+  min-width: 248px;
+  border-right: 1px solid var(--c-black-12);
 }
 
 .tasknav-item {
-  padding: 8px 16px;
+  padding: 8px 12px;
   cursor: pointer;
+  display: flex;
+  margin-bottom: 8px;
 }
 
-.tasknav-item.selected{
+.tasknav-item .tasknav-desc {
+  width: 100%;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.tasknav-item .tasknav-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.tasknav-item .tasknav-icon:first-child {
+  margin-right: 8px;
+}
+
+.tasknav-item .tasknav-icon:last-child {
+  margin-left: 8px;
+}
+
+.tasknav-item.selected {
   font-size: bold;
 }
 
-.calendar{
-  border: 1px solid black;
+.icon-today {
+  font-size: 10px;
+  text-align: center;
+  font-family: "Space Mono", monospace !important;
+  position: absolute;
+  top: 9px;
+  left: 0;
+  width: 100%;
+}
+
+.calendar {
   border-radius: 2px;
   padding: 16px;
   background-color: white;
   min-width: 280px;
 }
 
-.calendar-weekdays{
+.calendar-weekdays {
   display: flex;
 }
 
-.calendar-days{
+.calendar-days {
   display: flex;
   flex-wrap: wrap;
 }
-.calendar-cell, .calendar-weekdays div{
+
+.calendar-cell, .calendar-weekdays div {
   width: calc(100% / 7);
   text-align: center;
-  
 }
 
-.calendar-weekdays div{
+.calendar-weekdays div {
   color: var(--c-black-12);
 }
 
-.calendar-cell{
+.calendar-cell {
   color: var(--c-black-30);
+  cursor: pointer;
+}
+
+.calendar-cell, .calendar-cell .select-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar-cell .select-area {
+  border-radius: 50%;
+  height: 28px;
+  width: 28px;
 }
 
 .calendar-cell.today {
@@ -306,20 +368,24 @@ div {
   font-weight: bold;
 }
 
-.calendar-cell.this-month{
+.calendar-cell.this-month {
   color: black;
 }
 
-.calendar-cell.selected{
+.calendar-cell:hover .select-area {
+  background-color: var(--c-black-12);
+}
+
+.calendar-cell.selected .select-area {
   background-color: black;
   color: white;
 }
 
-.calendar-controls{
+.calendar-controls {
   display: flex;
 }
 
-.calendar-controls .month-display{
+.calendar-controls .month-display {
   text-align: center;
   width: 100%;
 }
@@ -331,21 +397,198 @@ div {
 .button {
   background-color: black;
   display: inline-block;
-  padding: 8px;
+  padding: 8px 16px;
   min-width: 80px;
   color: white;
-  font-weight: bold;
+  /* font-weight: bold; */
   border-radius: 2px;
   font-size: 16px;
   text-align: center;
 }
 
-.calendar .button-containter{
+.button.outlined {
+  background-color: transparent;
+  border: 1px solid var(--c-black-30);
+  color: black;
+}
+
+.calendar .button-containter {
   padding: 8px;
   display: flex;
 }
 
-.calendar .button-containter .button{
+.calendar .button-containter .button {
   width: 100%;
 }
 
+/* PICKERS */
+
+.dt-picker .date-desc, .dt-picker .time-display, .project-picker .project-desc {
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.dt-picker .date-display, .dt-picker .time-display, .project-picker .project-display {
+  padding: 2px 8px;
+  cursor: pointer;
+}
+
+.dt-picker .date-display:hover, .dt-picker .time-display:hover, .project-picker .project-display:hover {
+  background-color: var(--c-black-12);
+}
+
+.dt-picker, .project-picker .project-display {
+  border: 1px var(--c-black-30) solid;
+  border-radius: 2px;
+}
+
+
+
+.dt-picker .date-display .line-icon, .project-picker .project-display .line-icon {
+  margin-right: 4px;
+}
+
+.dt-picker .date-display, .project-picker .project-display {
+  display: flex;
+  align-items: center;
+}
+
+.dt-picker {
+  display: flex;
+}
+
+.edittask .picker-container {
+  display: flex;
+  padding: 0 20px 16px;
+}
+
+.edittask .picker-container .dt-picker {
+  margin-right: 8px;
+}
+
+.edittask .edit-fields {
+  border: 1px solid var(--c-black-30);
+  border-radius: 2px;
+}
+
+.edit-fields .taskinput {
+  font-size: 16px;
+  height: 24px;
+  border: none;
+  height: auto;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px 20px 24px;
+}
+
+.edittask .button-container {
+  padding-top: 16px;
+}
+
+.edittask .button-container .button:not(:first-child) {
+  margin-left: 12px;
+}
+
+.edittask {
+  padding: 0 20px 24px;
+  border-bottom: 1px solid var(--c-black-12);
+}
+
+.dt-picker .date-menu .button-container {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--c-black-30);
+}
+
+.date-menu {
+  border: 1px solid var(--c-black-30);
+  border-radius: 2px;
+}
+
+/* HEADER */
+
+.header {
+  padding: 20px 20px 8px;
+}
+
+.header h1 {
+  font-size: 24px;
+  line-height: 36px;
+  margin: 0;
+}
+
+.menu-item {
+  display: flex;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  background-color: var(--c-black-12);
+}
+
+.menu-item-title {
+  width: 100%;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.menu-item .line-icon {
+  margin-right: 8px;
+}
+
+.refer{
+  height: 100%;
+}
+
+.timepicker, .timepicker .input-container {
+  display: flex;
+  align-items: center;
+}
+
+.timepicker .input-container input {
+  border:none;
+  padding: 4px 8px;
+  width: 100px;
+}
+
+.timepicker .time-display-button{
+  padding: 2px 8px;
+  color: var(--c-black-60);
+  cursor: pointer;
+}
+.timepicker .time-display-button:hover{
+  background-color: var(--c-black-12);
+  color:black;
+}
+
+.timepicker .close-btn {
+  cursor: pointer;
+  padding: 6px;
+  border-left: 1px solid var(--c-black-30);
+  color: var(--c-black-60);
+}
+
+.timepicker .close-btn:hover {
+  background-color: var(--c-black-12);
+  color: black;
+}
+
+.timepicker {
+  border-left: 1px var(--c-black-30) solid;
+}
+
+.dt-picker .placeholder {
+  color: var(--c-black-60);
+}
+
+.date-container {
+  position: relative;
+}
+
+.date-container .date-menu {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  background-color: white;
+  z-index: 1;
+}
