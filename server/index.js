@@ -23,21 +23,40 @@ app.get("/tasks", async (req, res) => {
     }
 });
 
-//Check or uncheck task
+// Update task:
+// Check or uncheck
+// Edit descroption, dates and etc.
 app.put("/tasks/:id", async (req, res) => {
     try {
         const id = req.params.id;
-        const { status_of_completion } = req.body;
-        const changeTaskStatus = await pool.query(`
+        const { status_of_completion, description, date_and_time, read_time, folder_id } = req.body;
+        if (status_of_completion !== undefined) {
+            const changeTaskStatus = await pool.query(`
             UPDATE
                 task
             SET
-                status_of_completion = $2
+                status_of_completion = $2,
+                time_of_last_update = NOW()
             WHERE
                 id = $1;
             `,
-            [id, status_of_completion]
-        );
+                [id, status_of_completion]
+            );
+        } else {
+            const editTask = await pool.query(`
+            UPDATE
+                task
+            SET
+                description = $2,
+                time_of_last_update = NOW(),
+                date_and_time = $3,
+                read_time = $4,
+                folder_id = $5
+            WHERE
+                id = $1;
+            `,
+                [id, description, date_and_time, read_time, folder_id]);
+        }
         res.json("Task was successfully updated!");
     } catch (error) {
         console.error(error.message);
@@ -79,10 +98,22 @@ app.delete("/tasks/:id", async (req, res) => {
     }
 });
 
-
-
-
-
+// Get all folders
+app.get("/folders", async (req, res) => {
+    try {
+        const allFolders = await pool.query(`
+        SELECT
+            id,
+            name
+        FROM
+            folder;
+        `);
+        // Feedback to client
+        res.json(allFolders.rows);
+    } catch (error) {
+        console.error(error.message);
+    }
+})
 
 app.listen(5000, () => {
     console.log("server started on port 5000")

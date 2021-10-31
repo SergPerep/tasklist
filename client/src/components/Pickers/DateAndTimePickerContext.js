@@ -9,6 +9,7 @@ export const DateAndTimePickerProvider = props => {
     // State of celected date
     const [selectedDate, setSelectedDate] = useState(undefined); // Date object when defined
     const [considerTime, setConsiderTime] = useState(false);
+    const [timeDisplay, setTimeDisplay] = useState(); // Text String for ex. 12:30
     const data = {
         ancorDate,
         setAncorDate,
@@ -16,7 +17,9 @@ export const DateAndTimePickerProvider = props => {
         setSelectedDate,
         today,
         considerTime,
-        setConsiderTime
+        setConsiderTime,
+        timeDisplay,
+        setTimeDisplay
     }
 
     // console.log(data);

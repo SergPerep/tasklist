@@ -8,20 +8,27 @@ import Calendar from "./components/Pickers/Calendar";
 import { DateAndTimePickerProvider } from "./components/Pickers/DateAndTimePickerContext";
 import EditTask from "./components/EditTask";
 import Header from "./components/Header";
+import { ProjectPickerProvider } from "./components/Pickers/ProjectPickerContext";
+import AddTaskInput from "./components/AddTaskInput";
+import { ProjectsProvider } from "./components/Pickers/ProjectsContext";
 
 function App() {
   return (
     <TasklistProvider>
-      <div className="taskboard">
-        <TaskNavList />
-        <div className="tasksdiplay">
-          <DateAndTimePickerProvider>
-            <Header title="Inbox"></Header>
-            <EditTask />
-            <TaskList />
-          </DateAndTimePickerProvider>
+      <ProjectsProvider >
+        <div className="taskboard">
+          <TaskNavList />
+          <div className="tasksdiplay">
+            <DateAndTimePickerProvider>
+              <ProjectPickerProvider>
+                <Header title="Inbox"></Header>
+                <AddTaskInput />
+                <TaskList />
+              </ProjectPickerProvider>
+            </DateAndTimePickerProvider>
+          </div>
         </div>
-      </div>
+      </ProjectsProvider>
     </TasklistProvider>
   );
 }

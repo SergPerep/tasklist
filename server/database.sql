@@ -8,6 +8,13 @@ CREATE TABLE folder(
     color BYTEA
 );
 
+-- Get all folders
+SELECT
+    id,
+    name
+FROM
+    folder;
+
 -- Add new folder
 INSERT INTO
     folder (name)
@@ -91,7 +98,8 @@ VALUES
 UPDATE
     task
 SET
-    status_of_completion = TRUE
+    status_of_completion = TRUE,
+    time_of_last_update = NOW()
 WHERE
     id = 1;
 
@@ -100,3 +108,15 @@ DELETE FROM
     task
 WHERE
     id = 6;
+
+--Edit task
+UPDATE
+    task
+SET
+    description = 'New description',
+    time_of_last_update = NOW(),
+    date_and_time = '2021-10-19 16:05',
+    read_time = TRUE,
+    folder_id = 1
+WHERE
+    id = 30;

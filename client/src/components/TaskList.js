@@ -27,8 +27,8 @@ const TaskList = () => {
 
     return (
         <div className="tasklist">
+            {/* .filter(task => taskListFilter(task, "inbox")) */}
             {taskList
-                .filter(task => taskListFilter(task, "inbox"))
                 .map(task => <TaskItem data={task} key={task.id}></TaskItem>)}
         </div>
     )

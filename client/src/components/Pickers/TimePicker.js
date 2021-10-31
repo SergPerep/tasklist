@@ -5,8 +5,7 @@ import date from "date-and-time";
 import { useClickOutside } from "../CustomHooks";
 
 const TimePicker = () => {
-    const { selectedDate, setSelectedDate, considerTime, setConsiderTime } = useContext(DateAndTimePickerContext);
-    const [timeDisplay, setTimeDisplay] = useState(); // Text String for ex. 12:30
+    const { selectedDate, setSelectedDate, considerTime, setConsiderTime, timeDisplay, setTimeDisplay } = useContext(DateAndTimePickerContext);
     const [openTimeInput, setOpenTimeInput] = useState(false);
     const [timeInput, setTimeInput] = useState("");
     const [showSave, setShowSave] = useState(false);

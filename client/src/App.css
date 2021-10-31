@@ -1,7 +1,58 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
 @import "LineIcons.css";
-body, input {
+
+/* Default browser styles reset*/
+
+* {
+  margin: 0;
+}
+
+h1, h2, h3, h4, h6, h6 {
+  font-size: inherit;
+  font-weight: normal;
+}
+
+/* Box-sizing reset method*/
+
+html, body, input, button, div {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* Lists reset*/
+
+ul {
+  padding-left: 0;
+}
+
+ul>li {
+  list-style: none;
+}
+
+/* Links style reset */
+
+a {
+  text-decoration: none;
+}
+
+/* Font family */
+
+* {
   font-family: 'Space Mono', monospace;
+}
+
+/* COLORS */
+
+:root {
+  --c-light-gray: #f0f0f0;
+  --c-black-60: rgba(0, 0, 0, 0.6);
+  --c-black-30: rgba(0, 0, 0, 0.3);
+  --c-black-12: rgba(0, 0, 0, 0.12);
+  --c-black-08: rgba(0, 0, 0, 0.08);
+  --c-black-04: rgba(0, 0, 0, 0.04);
 }
 
 .line-icon {
@@ -23,12 +74,7 @@ body, input {
   line-height: 16px;
 }
 
-:root {
-  --c-light-gray: #f0f0f0;
-  --c-black-60: rgba(0, 0, 0, 0.6);
-  --c-black-30: rgba(0, 0, 0, 0.3);
-  --c-black-12: rgba(0, 0, 0, 0.12);
-}
+
 
 #root {
   display: flex;
@@ -90,9 +136,9 @@ div {
   padding: 4px;
 }
 
-/* TaskItem */
+/* TASK ITEM */
 
-.taskitem {
+.taskitem .taskitem-container {
   display: flex;
   align-items: flex-start;
   background-color: white;
@@ -400,10 +446,19 @@ div {
   padding: 8px 16px;
   min-width: 80px;
   color: white;
-  /* font-weight: bold; */
   border-radius: 2px;
   font-size: 16px;
   text-align: center;
+  border: 1px solid black;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.button[disabled] {
+  background-color: var(--c-black-04);
+  color: var(--c-black-30);
+  cursor: default;
+  border: 1px solid var(--c-black-12);
 }
 
 .button.outlined {
@@ -441,8 +496,6 @@ div {
   border: 1px var(--c-black-30) solid;
   border-radius: 2px;
 }
-
-
 
 .dt-picker .date-display .line-icon, .project-picker .project-display .line-icon {
   margin-right: 4px;
@@ -536,7 +589,7 @@ div {
   margin-right: 8px;
 }
 
-.refer{
+.refer {
   height: 100%;
 }
 
@@ -546,19 +599,20 @@ div {
 }
 
 .timepicker .input-container input {
-  border:none;
+  border: none;
   padding: 4px 8px;
   width: 100px;
 }
 
-.timepicker .time-display-button{
+.timepicker .time-display-button {
   padding: 2px 8px;
   color: var(--c-black-60);
   cursor: pointer;
 }
-.timepicker .time-display-button:hover{
+
+.timepicker .time-display-button:hover {
   background-color: var(--c-black-12);
-  color:black;
+  color: black;
 }
 
 .timepicker .close-btn {
@@ -591,4 +645,41 @@ div {
   left: -1px;
   background-color: white;
   z-index: 1;
+}
+
+/* Project picker */
+
+.project-picker {
+  position: relative;
+}
+
+.project-menu {
+  border: 1px solid var(--c-black-30);
+  border-radius: 2px;
+  padding: 4px 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: white;
+  min-width: 180px;
+}
+
+/* ADD TASK INPUT */
+
+.addtaskinput .addtask-container {
+  padding: 8px 20px;
+}
+
+.addtaskinput .addtask-display{
+  border: 1px solid var(--c-black-30);
+  border-radius: 2px;
+  padding: 12px 20px;
+  color: var(--c-black-30);
+  line-height: 24px;
+  font-size: 16px;
+  cursor: text;
+}
+
+.addtaskinput .edittask {
+  padding-top: 8px;
 }
