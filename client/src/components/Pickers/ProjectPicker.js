@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useClickOutside } from "../CustomHooks";
 import Icon from "../Icon";
 import MenuItem from "../MenuItem";
@@ -6,7 +6,7 @@ import { ProjectPickerContext } from "./ProjectPickerContext";
 import { ProjectsContext } from "./ProjectsContext";
 
 const ProjectPicker = () => {
-    const {projects, setProjects} = useContext(ProjectsContext);
+    const { projects } = useContext(ProjectsContext);
     const { selectedProject, setSelectedProject } = useContext(ProjectPickerContext);
     const [openProjectMenu, setOpenProjectMenu] = useState(false);
 
@@ -25,7 +25,7 @@ const ProjectPicker = () => {
         setOpenProjectMenu(true);
     }
 
-    const domNode = useClickOutside(()=>{
+    const domNode = useClickOutside(() => {
         setOpenProjectMenu(false);
     });
 

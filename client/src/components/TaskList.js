@@ -3,10 +3,10 @@ import TaskItem from "./TaskItem";
 import { TasklistContext } from "./TasklistContext";
 import date from "date-and-time";
 
+
 const TaskList = () => {
     // Grab state out of «value» of context
     const { taskList } = useContext(TasklistContext);
-
     // Options for the filter
     const taskListFilter = (task, filter) => {
         if (filter === "today") {
@@ -20,7 +20,7 @@ const TaskList = () => {
             const isTomorrow = task.date_and_time.toDateString() === tomorrow.toDateString();
             return isTomorrow;
         }
-        if (filter === "inbox" ||  filter === undefined) {
+        if (filter === "inbox" || filter === undefined) {
             return !task.folder;
         }
     }

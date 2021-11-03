@@ -8,14 +8,15 @@ export const TasklistProvider = props => {
     // States to share
     const [taskList, setTaskList] = useState([]);
 
-    useEffect(()=>{
+    // Get tasks from server when page has been loaded
+    useEffect(() => {
         getTasks();
-      }, []);
+    }, []);
 
     // Converts data so that JS can work with it
     const convertData = (oldArr) => {
         return oldArr.map(obj => {
-            obj.date_and_time = new Date(obj.date_and_time);
+            obj.date_and_time = obj.date_and_time ? new Date(obj.date_and_time) : undefined;
             obj.time_of_creation = new Date(obj.time_of_creation);
             obj.time_of_last_update = new Date(obj.time_of_last_update);
             return obj
@@ -29,13 +30,20 @@ export const TasklistProvider = props => {
             const rawData = await response.json();
             const data = convertData(rawData);
             setTaskList(data);
+
         } catch (error) {
             console.error(error.message);
         }
     }
+
+    const contextValue = {
+        taskList,
+        getTasks
+    };
+
     // Creates context
     return (
-        <TasklistContext.Provider value={{taskList, getTasks}}>
+        <TasklistContext.Provider value={contextValue}>
             {props.children}
         </TasklistContext.Provider>
     )

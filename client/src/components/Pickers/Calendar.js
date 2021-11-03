@@ -1,6 +1,6 @@
 import date from "date-and-time";
 import clsx from "clsx";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { DateAndTimePickerContext } from "./DateAndTimePickerContext";
 import Icon from "../Icon";
 

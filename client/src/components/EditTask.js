@@ -7,16 +7,21 @@ import { TasklistContext } from "./TasklistContext";
 import { ProjectPickerContext } from "./Pickers/ProjectPickerContext";
 import { ProjectsContext } from "./Pickers/ProjectsContext";
 import date from "date-and-time";
+import { OpenAndCloseEditContext } from "./OpenAndCloseEditContext";
 
 
 const EditTask = props => {
     const { projects } = useContext(ProjectsContext);
     const { id, description, date_and_time, read_time, folder } = props.data || {};
-    const { setOpenEdit, btnName = "Save" } = props;
+    const taskInputId = props.taskInputId || {};
+    const { btnName = "Save" } = props;
     const { considerTime, setConsiderTime, selectedDate, setSelectedDate, setTimeDisplay } = useContext(DateAndTimePickerContext);
     const { selectedProject, setSelectedProject } = useContext(ProjectPickerContext);
     const { getTasks } = useContext(TasklistContext);
+    const { closeOneEdit } = useContext(OpenAndCloseEditContext);
     const [taskInputValue, setTaskInputValue] = useState("");
+
+    console.log(taskInputId);
 
     useEffect(() => {
         loadDataToEditFields();
@@ -44,6 +49,7 @@ const EditTask = props => {
             console.log(message);
             getTasks();
             resetEditFields();
+            closeOneEdit(id);
         } else {
             // Add new task with POST method
             try {
@@ -64,6 +70,7 @@ const EditTask = props => {
                 console.log(message);
                 getTasks();
                 resetEditFields();
+                closeOneEdit(taskInputId);
             } catch (error) {
                 console.error(error.message);
             }
@@ -77,6 +84,8 @@ const EditTask = props => {
         setSelectedProject(undefined); // Reset project
         setTimeDisplay(undefined); // Clear time display
     }
+
+
 
     const loadDataToEditFields = () => {
         if (props.data) {
@@ -92,7 +101,7 @@ const EditTask = props => {
             }
             if (folder) {
                 setSelectedProject({
-                    id: projects.filter(x => x.name == folder)[0].id,
+                    id: projects.filter(x => x.name === folder)[0].id,
                     name: folder
                 });
                 console.log(selectedProject);
@@ -101,8 +110,14 @@ const EditTask = props => {
     }
 
     const handleClickClose = () => {
+        console.log(taskInputId);
+        // console.log(id);
+        if (id) {
+            closeOneEdit(id);
+        } else if (taskInputId) {
+            closeOneEdit(taskInputId);
+        }
         resetEditFields();
-        setOpenEdit(false);
     }
 
     return (
@@ -115,7 +130,7 @@ const EditTask = props => {
                 </div>
             </div>
             <div className="button-container">
-                <Button tag="button" type="submit" value="Submit" disabled={!taskInputValue}>{btnName}</Button>
+                <Button tag="button" type="submit" value="Submit" disabled={!taskInputValue} >{btnName}</Button>
                 <Button design="outlined" onClick={handleClickClose}>Close</Button>
             </div>
         </form>

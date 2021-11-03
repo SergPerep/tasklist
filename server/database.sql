@@ -63,7 +63,9 @@ SELECT
     folder.name as folder
 FROM
     task
-    LEFT JOIN folder ON folder.id = task.folder_id;
+    LEFT JOIN folder ON folder.id = task.folder_id
+ORDER BY
+    time_of_creation DESC;
 
 INSERT INTO
     task (description, date_and_time, read_time, folder_id)

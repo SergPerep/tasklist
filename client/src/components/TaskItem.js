@@ -4,13 +4,14 @@ import date from "date-and-time";
 import { TasklistContext } from "./TasklistContext";
 import { useClickOutside } from "./CustomHooks";
 import EditTask from "./EditTask";
+import { OpenAndCloseEditContext } from "./OpenAndCloseEditContext";
 
 const TaskItem = props => {
-    const data = props.data;
-    const { id, description, status_of_completion, date_and_time, read_time, folder } = data;
+    const { id, description, status_of_completion, date_and_time, read_time, folder } = props.data;
     const { getTasks } = useContext(TasklistContext);
+    const { openEditArr, openOneEditCloseAllOther } = useContext(OpenAndCloseEditContext);
+    const openThisEdit = openEditArr.find(x => x.id === id) ? openEditArr.find(x => x.id === id).openEdit : false;
     const [menuIsOpen, setMenuIsOpen] = useState(false);
-    const [openEdit, setOpenEdit] = useState(false);
 
     // Handles click outside of «more»
     const more = useClickOutside(() => {
@@ -38,6 +39,10 @@ const TaskItem = props => {
     }
 
 
+    const handleClickEdit = () => {
+        openOneEditCloseAllOther(id);
+    }
+
 
     const deleteTask = async () => {
         try {
@@ -56,37 +61,55 @@ const TaskItem = props => {
         deleteTask();
     }
 
+    const displayDate = dateObj => {
+        if (dateObj) {
+            const today = new Date();
+            const tomorrow = date.addDays(today, 1);
+            const format = "DD MMM";
+            const todayString = date.format(today, format);
+            const tomorrowString = date.format(tomorrow, format);
+            const dateObjString = date.format(dateObj, format);
+            if (todayString === dateObjString) {
+                return "Today";
+            } else if (tomorrowString === dateObjString) {
+                return "Tomorrow";
+            } else if (today.getFullYear() !== dateObj.getFullYear()) {
+                return dateObjString + " " + dateObj.getFullYear();
+            } else {
+                return dateObjString;
+            }
+        }
+    }
+
     return (
         <div className="taskitem">
-            <div className="taskitem-container">
-                <Checkbox status={status_of_completion} updateStatus={updateStatus} />
-                <div className="taskitem-content-wrapper">
-                    <div className="taskitem-desc">{description}</div>
-                    <div className="taskitem-details">
-                        {date_and_time && <span className="taskitem-date">
-                            {date.format(date_and_time, "DD MMM")}
-                        </span>}
-                        {read_time && <span className="taskitem-time">
-                            {date.format(date_and_time, "hh:mm")}
-                        </span>}
-                        {folder && <span className="taskitem-folder">{folder}</span>}
+            {!openThisEdit &&
+                <div className="taskitem-container">
+                    <Checkbox status={status_of_completion} updateStatus={updateStatus} />
+                    <div className="taskitem-content-wrapper">
+                        <div className="taskitem-desc">{description}</div>
+                        <div className="taskitem-details">
+                            {date_and_time && <span className="taskitem-date">
+                                {displayDate(date_and_time)}
+                            </span>}
+                            {read_time && <span className="taskitem-time">
+                                {date.format(date_and_time, "hh:mm")}
+                            </span>}
+                            {folder && <span className="taskitem-folder">{folder}</span>}
+                        </div>
+                    </div>
+                    <div className="more" onClick={handleClickMore} ref={more}>
+                        <div className="icon-more">
+                            <div className="circle"></div>
+                        </div>
+                        {menuIsOpen && <ul className="context-menu pos-right">
+                            <li className="edit-button" onClick={handleClickEdit}>Edit</li>
+                            <li onClick={handleDeleteClick}>Delete</li>
+                        </ul>}
                     </div>
                 </div>
-                <div className="more" onClick={handleClickMore} ref={more}>
-                    <div className="icon-more">
-                        <div className="circle"></div>
-                    </div>
-                    {menuIsOpen && <ul className="context-menu pos-right">
-                        <li onClick={() => setOpenEdit(true)}>Edit</li>
-                        <li onClick={handleDeleteClick}>Delete</li>
-                    </ul>}
-
-                </div>
-            </div>
-            {openEdit &&
-                <EditTask data={data} setOpenEdit={setOpenEdit}/>
             }
-
+            {openThisEdit && <EditTask data={props.data} />}
         </div>
     )
 }

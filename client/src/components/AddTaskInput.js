@@ -1,19 +1,21 @@
-import { useState } from "react";
+import { useContext } from "react";
 import EditTask from "./EditTask";
+import { OpenAndCloseEditContext } from "./OpenAndCloseEditContext";
 
 const AddTaskInput = () => {
-    const [openEdit, setOpenEdit] = useState(false);
+    const { openEditArr, openOneEditCloseAllOther, taskInputId } = useContext(OpenAndCloseEditContext);
+    const openThisEdit = openEditArr && openEditArr.find(x => x.id === taskInputId) ? openEditArr.find(x => x.id === taskInputId).openEdit : false;
     return (
         <div className="addtaskinput">
-            {!openEdit &&
-                <div className="addtask-container" onClick={()=> setOpenEdit(true)}>
+            {!openThisEdit &&
+                <div className="addtask-container" onClick={() => { openOneEditCloseAllOther(taskInputId) }}>
                     <div className="addtask-display">
                         +Add task
                     </div>
                 </div>
             }
-            {openEdit && 
-                <EditTask openEdit={openEdit} setOpenEdit={setOpenEdit} btnName="Add Task" />
+            {openThisEdit &&
+                <EditTask btnName="Add Task" taskInputId={taskInputId} />
             }
         </div>
     )

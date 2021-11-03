@@ -15,7 +15,19 @@ app.use(express.json()); // parse req.body as json
 // Get all tasks
 app.get("/tasks", async (req, res) => {
     try {
-        const allTasks = await pool.query("SELECT task.id as id, description, status_of_completion, time_of_creation, time_of_last_update, date_and_time, read_time, folder.name as folder FROM task LEFT JOIN folder ON folder.id = task.folder_id;");
+        const allTasks = await pool.query(`
+            SELECT 
+                task.id as id, 
+                description, 
+                status_of_completion, 
+                time_of_creation, 
+                time_of_last_update, 
+                date_and_time, 
+                read_time, 
+                folder.name as folder FROM task 
+            LEFT JOIN folder ON folder.id = task.folder_id
+            ORDER BY time_of_creation DESC;
+            `);
         // Feedback to client
         res.json(allTasks.rows);
     } catch (error) {
