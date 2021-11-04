@@ -6,14 +6,16 @@
 
 import { createContext, useState, useEffect, useContext } from "react";
 import { TasklistContext } from "./TasklistContext";
+import { v4 as uuidv4 } from 'uuid';
 
 export const OpenAndCloseEditContext = createContext();
 
+const taskInputId = uuidv4(); // id of the input of «Add new task» is needed to find it in openEditArr
+
 export const OpenAndCloseEditProvider = props => {
     const [openEditArr, setOpenEditArr] = useState(); // Will be array of objects when defined
-    const taskInputId = 83075245965962; // id of the input of «Add new task» is needed to find it in openEditArr
     const { taskList } = useContext(TasklistContext); // taskList is requred to build openEditArr
-    
+
     // Makes an array that stores open-edit-statuses with correlated ids
     const buildOpenEditArr = () => {
         // 1. Makes array of open-edit-statuses for each task-item
