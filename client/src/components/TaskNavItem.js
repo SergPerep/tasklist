@@ -1,9 +1,9 @@
 import Icon from "./Icon";
 
 const TaskNavItem = props => {
-    const { leftIcon, rightIcon } = props;
+    const { leftIcon, rightIcon, onClick, selected, count } = props;
     return (
-        <div className="tasknav-item">
+        <div className={`tasknav-item ${selected ? "selected" : ""}`} onClick={onClick}>
             {leftIcon &&
                 <div className="tasknav-icon">
                     <Icon name={leftIcon} size={"md"} />
@@ -15,6 +15,11 @@ const TaskNavItem = props => {
             {rightIcon &&
                 <div className="tasknav-icon">
                     <Icon name={rightIcon} size={"md"} />
+                </div>
+            }
+            {count > 0 &&
+                <div className="tasknav-count">
+                    {count}
                 </div>
             }
         </div>

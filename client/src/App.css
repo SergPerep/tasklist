@@ -332,6 +332,11 @@ div {
   cursor: pointer;
   display: flex;
   margin-bottom: 8px;
+  align-items: center;
+}
+
+.tasknav-item:hover, .tasknav-item.selected {
+  background-color: var(--c-black-08);
 }
 
 .tasknav-item .tasknav-desc {
@@ -355,6 +360,13 @@ div {
 
 .tasknav-item.selected {
   font-size: bold;
+}
+
+.tasknav-count {
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--c-black-60);
+  padding-right: 8px;
 }
 
 .icon-today {
@@ -567,6 +579,15 @@ div {
   font-size: 24px;
   line-height: 36px;
   margin: 0;
+  font-weight: bold;
+  display: inline;
+}
+
+.header span {
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--c-black-60);
+  margin-left: 8px;
 }
 
 .menu-item {

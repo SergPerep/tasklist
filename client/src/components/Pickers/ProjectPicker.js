@@ -3,7 +3,7 @@ import { useClickOutside } from "../CustomHooks";
 import Icon from "../Icon";
 import MenuItem from "../MenuItem";
 import { ProjectPickerContext } from "./ProjectPickerContext";
-import { ProjectsContext } from "./ProjectsContext";
+import { ProjectsContext } from "../ProjectsContext";
 
 const ProjectPicker = () => {
     const { projects } = useContext(ProjectsContext);

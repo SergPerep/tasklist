@@ -4,10 +4,7 @@ export const ProjectsContext = createContext();
 
 export const ProjectsProvider = props => {
     const [projects, setProjects] = useState([]);
-    const data = {
-        projects,
-        setProjects
-    }
+
     const getFolders = async () => {
         try {
             const response = await fetch("http://localhost:5000/folders");
@@ -20,8 +17,14 @@ export const ProjectsProvider = props => {
     useEffect(() => {
         getFolders();
     }, [])
+
+    const contextValue = {
+        projects,
+        setProjects
+    }
+
     return (
-        <ProjectsContext.Provider value={data}>
+        <ProjectsContext.Provider value={contextValue}>
             {props.children}
         </ProjectsContext.Provider>
     )

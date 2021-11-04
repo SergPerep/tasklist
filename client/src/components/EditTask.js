@@ -5,7 +5,7 @@ import { DateAndTimePickerContext } from "./Pickers/DateAndTimePickerContext";
 import { useContext, useEffect, useState } from "react";
 import { TasklistContext } from "./TasklistContext";
 import { ProjectPickerContext } from "./Pickers/ProjectPickerContext";
-import { ProjectsContext } from "./Pickers/ProjectsContext";
+import { ProjectsContext } from "./ProjectsContext";
 import date from "date-and-time";
 import { OpenAndCloseEditContext } from "./OpenAndCloseEditContext";
 
