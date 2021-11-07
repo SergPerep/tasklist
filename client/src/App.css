@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
 @import "LineIcons.css";
-
 /* Default browser styles reset*/
 
 * {
@@ -53,6 +52,7 @@ a {
   --c-black-12: rgba(0, 0, 0, 0.12);
   --c-black-08: rgba(0, 0, 0, 0.08);
   --c-black-04: rgba(0, 0, 0, 0.04);
+  --c-error: #D21111;
 }
 
 .line-icon {
@@ -73,8 +73,6 @@ a {
   font-size: 16px;
   line-height: 16px;
 }
-
-
 
 #root {
   display: flex;
@@ -101,7 +99,7 @@ div {
   background: white;
 }
 
-/* Checkbox */
+/* CHECKBOX */
 
 .checkbox .circle {
   width: 16px;
@@ -150,13 +148,15 @@ div {
   width: 100%;
 }
 
-/* TaskList */
+.taskitem.overdue .taskitem-date, .taskitem.overdue .taskitem-time {
+  color: var(--c-error);
+}
 
-.tasklist {
-  background-color: white;
-  padding: 8px 0;
-  min-width: 610px;
-  max-width: calc(100vw - 96px);
+.taskitem.completed .taskitem-date, 
+.taskitem.completed .taskitem-time,
+.taskitem.overdue.completed .taskitem-date,
+.taskitem.overdue.completed .taskitem-time {
+  color: var(--c-black-30);
 }
 
 .taskitem .taskitem-folder {
@@ -167,9 +167,18 @@ div {
   border-radius: 2px;
 }
 
+.taskitem.completed .taskitem-folder {
+  background-color: var(--c-black-04);
+  color: var(--c-black-30);
+}
+
 .taskitem .taskitem-date, .taskitem .taskitem-time {
   color: var(--c-black-60);
   font-size: 14px;
+}
+
+.taskitem.completed .taskitem-desc {
+  color: var(--c-black-30);
 }
 
 .taskitem-details {
@@ -179,6 +188,23 @@ div {
 
 .taskitem-details span:not(:first-child) {
   margin-left: 8px;
+}
+
+.taskitem.completed .checkbox.checked .circle {
+  background-color: var(--c-black-12);
+  border-color: transparent;
+} 
+
+.taskitem.completed .more .line-icon {
+  color: var(--c-black-30);
+}
+/* TaskList */
+
+.tasklist {
+  background-color: white;
+  padding: 8px 0;
+  min-width: 610px;
+  max-width: calc(100vw - 96px);
 }
 
 .icon-angle {
@@ -691,7 +717,7 @@ div {
   padding: 8px 20px;
 }
 
-.addtaskinput .addtask-display{
+.addtaskinput .addtask-display {
   border: 1px solid var(--c-black-30);
   border-radius: 2px;
   padding: 12px 20px;
@@ -703,4 +729,34 @@ div {
 
 .addtaskinput .edittask {
   padding-top: 8px;
+}
+
+/* ACCORDION */
+
+.accordion .accordion-header {
+  padding: 12px 16px;
+  display: flex;
+}
+
+.accordion-icon-container {
+  cursor: pointer;
+  padding: 4px;
+}
+
+.accordion-title, .accordion-count {
+  cursor: default;
+}
+
+.accordion-title {
+  font-size: 16px;
+  line-height: 24px;
+  padding-left: 8px;
+  font-weight: bold;
+}
+
+.accordion-count {
+  font-size: 12px;
+  line-height: 20px;
+  padding-left: 8px;
+  color: var(--c-black-60);
 }

@@ -35,7 +35,6 @@ const TimePicker = () => {
     const checkTimeFormat = (timeString) => {
         const regEx = /\d{1,2}:\d{1,2}(\s+)?([pP][mM]|[aA][mM])?/g;
         const isTimeString = regEx.test(timeString);
-        console.log(isTimeString);
         return isTimeString;
     }
 

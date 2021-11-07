@@ -5,42 +5,42 @@ import { useContext } from "react";
 import { ProjectsContext } from "./ProjectsContext";
 
 const SectionContent = props => {
-    const { selectedSection } = props.data;
+    const { selectedNavItem } = props.data;
     const { projects } = useContext(ProjectsContext);
     const buildContent = () => {
-        if (typeof selectedSection === "string") {
-            if (selectedSection.toLocaleLowerCase() === "inbox") {
+        if (typeof selectedNavItem === "string") {
+            if (selectedNavItem.toLocaleLowerCase() === "inbox") {
                 return (
                     <>
                         <Header title="Inbox"></Header>
                         <AddTaskInput />
-                        <TaskList filter="Inbox"/>
+                        <TaskList currSection="Inbox"/>
                     </>
                 )
-            } else if (selectedSection.toLocaleLowerCase() === "today") {
+            } else if (selectedNavItem.toLocaleLowerCase() === "today") {
                 return (
                     <>
                         <Header title="Today"></Header>
                         <AddTaskInput />
-                        <TaskList filter="Today" />
+                        <TaskList currSection="Today" />
                     </>
                 )
-            } else if (selectedSection.toLocaleLowerCase() === "tomorrow") {
+            } else if (selectedNavItem.toLocaleLowerCase() === "tomorrow") {
                 return (
                     <>
                         <Header title="Tomorrow"></Header>
                         <AddTaskInput />
-                        <TaskList filter="Tomorrow"/>
+                        <TaskList currSection="Tomorrow"/>
                     </>
                 )
             }
-        } else if (typeof selectedSection === "number") {
-            const project = projects.find(x => x.id === selectedSection);
+        } else if (typeof selectedNavItem === "number") {
+            const project = projects.find(x => x.id === selectedNavItem);
             return (
                 <>
                     <Header title={project.name}></Header>
                     <AddTaskInput />
-                    <TaskList filter={project.name}/>
+                    <TaskList currSection={project.id}/>
                 </>
             )
         }

@@ -5,6 +5,7 @@ import { TasklistContext } from "./TasklistContext";
 import { DateAndTimePickerContext } from "./Pickers/DateAndTimePickerContext";
 import date from "date-and-time";
 import Button from "./Button";
+import { today, tomorrow } from "./TodayTomorrowVars";
 
 
 const InputTask = () => {
@@ -14,12 +15,11 @@ const InputTask = () => {
     const [calOpen, setCalOpen] = useState(false);
     const dropdownDate = useRef();
     const contextValue = useContext(DateAndTimePickerContext);
-    const { ancorDate, setAncorDate, selectedDate, setSelectedDate, today, chosenDate, setChosenDate } = contextValue;
+    const { ancorDate, setAncorDate, selectedDate, setSelectedDate, chosenDate, setChosenDate } = contextValue;
 
     // const calDropdownName = selectedDate ? date.format(selectedDate, "DD MMM") : "Date";
 
     const calDropdownName = (chosenDate) => {
-        const tomorrow = date.addDays(today, 1);
         if (chosenDate === undefined) {
             return "Date";
         } else if (date.isSameDay(chosenDate, today)) {

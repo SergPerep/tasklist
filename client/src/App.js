@@ -9,21 +9,21 @@ import { OpenAndCloseEditProvider } from "./components/OpenAndCloseEditContext";
 import SectionContent from "./components/SectionContent";
 
 function App() {
-  const [selectedSection, setSelectedSection] = useState("Inbox");
+  const [selectedNavItem, setSelectedNavItem] = useState("Inbox");
   return (
     <TasklistProvider>
       <ProjectsProvider >
         <div className="taskboard">
-          <TaskNavList data={{ selectedSection, setSelectedSection }} />
-          <div className="tasksdiplay">
-            <DateAndTimePickerProvider>
-              <ProjectPickerProvider>
-                <OpenAndCloseEditProvider>
-                  <SectionContent data={{ selectedSection }} />
-                </OpenAndCloseEditProvider>
-              </ProjectPickerProvider>
-            </DateAndTimePickerProvider>
-          </div>
+          <OpenAndCloseEditProvider>
+            <TaskNavList data={{ selectedNavItem, setSelectedNavItem }} />
+            <div className="tasksdiplay">
+              <DateAndTimePickerProvider>
+                <ProjectPickerProvider>
+                  <SectionContent data={{ selectedNavItem }} />
+                </ProjectPickerProvider>
+              </DateAndTimePickerProvider>
+            </div>
+          </OpenAndCloseEditProvider>
         </div>
       </ProjectsProvider>
     </TasklistProvider>

@@ -10,5 +10,3 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-
-// Some

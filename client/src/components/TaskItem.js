@@ -5,6 +5,8 @@ import { TasklistContext } from "./TasklistContext";
 import { useClickOutside } from "./CustomHooks";
 import EditTask from "./EditTask";
 import { OpenAndCloseEditContext } from "./OpenAndCloseEditContext";
+import { today, tomorrow } from "./TodayTomorrowVars";
+import Icon from "./Icon";
 
 const TaskItem = props => {
     const { id, description, status_of_completion, date_and_time, read_time, folder } = props.data;
@@ -12,6 +14,7 @@ const TaskItem = props => {
     const { openEditArr, openOneEditCloseAllOther } = useContext(OpenAndCloseEditContext);
     const openThisEdit = openEditArr.find(x => x.id === id) ? openEditArr.find(x => x.id === id).openEdit : false;
     const [menuIsOpen, setMenuIsOpen] = useState(false);
+    const isOverdue = date_and_time ? date_and_time.getTime() < today.getTime() && !date.isSameDay(date_and_time, today) : false;
 
     // Handles click outside of «more»
     const more = useClickOutside(() => {
@@ -33,6 +36,7 @@ const TaskItem = props => {
             });
             const response = await updateCheckStatus.json();
             console.log(response);
+            getTasks();
         } catch (error) {
             console.error(error.message);
         }
@@ -63,8 +67,6 @@ const TaskItem = props => {
 
     const displayDate = dateObj => {
         if (dateObj) {
-            const today = new Date();
-            const tomorrow = date.addDays(today, 1);
             const format = "DD MMM";
             const todayString = date.format(today, format);
             const tomorrowString = date.format(tomorrow, format);
@@ -82,7 +84,7 @@ const TaskItem = props => {
     }
 
     return (
-        <div className="taskitem">
+        <div className={"taskitem " + (isOverdue ? "overdue " : "") + (status_of_completion ? "completed" : "")}>
             {!openThisEdit &&
                 <div className="taskitem-container">
                     <Checkbox status={status_of_completion} updateStatus={updateStatus} />
@@ -93,15 +95,13 @@ const TaskItem = props => {
                                 {displayDate(date_and_time)}
                             </span>}
                             {read_time && <span className="taskitem-time">
-                                {date.format(date_and_time, "hh:mm")}
+                                {date.format(date_and_time, "HH:mm")}
                             </span>}
-                            {folder && <span className="taskitem-folder">{folder}</span>}
+                            {folder.id && <span className="taskitem-folder">{folder.name}</span>}
                         </div>
                     </div>
                     <div className="more" onClick={handleClickMore} ref={more}>
-                        <div className="icon-more">
-                            <div className="circle"></div>
-                        </div>
+                        <Icon name="More" size="md" />
                         {menuIsOpen && <ul className="context-menu pos-right">
                             <li className="edit-button" onClick={handleClickEdit}>Edit</li>
                             <li onClick={handleDeleteClick}>Delete</li>

@@ -46,7 +46,6 @@ const DateAndTimePicker = () => {
     // When selectedDate is updated
     useEffect(() => {
         setOpenDateMenu(false); // close menu when selectedDate is updated
-        console.log("-> selectedDate: " + selectedDate);
     }, [selectedDate]);
 
     useEffect(()=>{

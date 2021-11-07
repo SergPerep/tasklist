@@ -1,9 +1,8 @@
 import { createContext, useState } from "react";
-
+import { today } from "../TodayTomorrowVars";
 export const DateAndTimePickerContext = createContext();
 
 export const DateAndTimePickerProvider = props => {
-    const today = new Date();
     // Date that is used to describe bundle of current dates in Calendar
     const [ancorDate, setAncorDate] = useState(new Date(today.getFullYear(), today.getMonth()));
     // State of celected date
@@ -22,7 +21,6 @@ export const DateAndTimePickerProvider = props => {
         setTimeDisplay
     }
 
-    // console.log(data);
     return (
         <DateAndTimePickerContext.Provider value={data}>
             {props.children}

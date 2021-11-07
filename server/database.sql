@@ -60,7 +60,8 @@ SELECT
     time_of_last_update,
     date_and_time,
     read_time,
-    folder.name as folder
+    folder.name as folder_name,
+    folder.id as folder_id
 FROM
     task
     LEFT JOIN folder ON folder.id = task.folder_id

@@ -3,11 +3,11 @@ import clsx from "clsx";
 import { useContext } from "react";
 import { DateAndTimePickerContext } from "./DateAndTimePickerContext";
 import Icon from "../Icon";
+import { today } from "../TodayTomorrowVars";
 
-const Calendar = props => {
+const Calendar = () => {
     const contextValue = useContext(DateAndTimePickerContext);
-    // const today = new Date();
-    const { ancorDate, setAncorDate, selectedDate, setSelectedDate, today } = contextValue;
+    const { ancorDate, setAncorDate, selectedDate, setSelectedDate } = contextValue;
 
     // Makes an array that will be used to render calendar grid
     const rollOutDates = (ancorDate, selectedDate) => {
@@ -70,7 +70,6 @@ const Calendar = props => {
     // Handles click on a date to select
     const handleClickDay = (aDate) => {
         setSelectedDate(aDate);
-        console.log("Clicked " + aDate);
     }
 
     // Just names of days of the week for render

@@ -21,7 +21,6 @@ const EditTask = props => {
     const { closeOneEdit } = useContext(OpenAndCloseEditContext);
     const [taskInputValue, setTaskInputValue] = useState("");
 
-    console.log(taskInputId);
 
     useEffect(() => {
         loadDataToEditFields();
@@ -37,7 +36,7 @@ const EditTask = props => {
                 read_time: considerTime,
                 folder_id: selectedProject ? selectedProject.id : undefined
             }
-            console.log(body);
+            
             const editTask = await fetch(`http://localhost:5000/tasks/${id}`, {
                 method: "PUT",
                 headers: {
@@ -99,19 +98,16 @@ const EditTask = props => {
                 setConsiderTime(true);
                 setTimeDisplay(date.format(date_and_time, "H:mm"));
             }
-            if (folder) {
+            if (folder.id) {
                 setSelectedProject({
-                    id: projects.filter(x => x.name === folder)[0].id,
-                    name: folder
+                    id: projects.filter(x => x.id === folder.id)[0].id,
+                    name: folder.name
                 });
-                console.log(selectedProject);
             }
         }
     }
 
     const handleClickClose = () => {
-        console.log(taskInputId);
-        // console.log(id);
         if (id) {
             closeOneEdit(id);
         } else if (taskInputId) {

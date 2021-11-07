@@ -75,11 +75,22 @@ export const OpenAndCloseEditProvider = props => {
         setOpenEditArr(data);
     }
 
+    const closeAllEdits = () => {
+        const data = openEditArr.map(x => { 
+            return {
+                id: x.id, 
+                openEdit: false
+            }
+        });
+        setOpenEditArr(data);
+    }
+
     const contextValue = {
         openEditArr,
         setOpenEditArr,
         openOneEditCloseAllOther,
         closeOneEdit,
+        closeAllEdits,
         taskInputId
     }
 
