@@ -20,7 +20,8 @@ export const ProjectsProvider = props => {
 
     const contextValue = {
         projects,
-        setProjects
+        setProjects,
+        getFolders
     }
 
     return (

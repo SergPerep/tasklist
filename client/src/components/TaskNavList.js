@@ -1,21 +1,76 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { ProjectsContext } from "./ProjectsContext";
 import { TasklistContext } from "./TasklistContext";
 import TaskNavItem from "./TaskNavItem";
 import date from "date-and-time";
 import { today, tomorrow } from "./TodayTomorrowVars";
 import { OpenAndCloseEditContext } from "./OpenAndCloseEditContext";
+import { useSpring, animated } from "react-spring";
+import { useHeight } from "./CustomHooks";
+import Modal from "./Modal";
+import Input from "./Input";
 
 const TaskNavList = props => {
-    const { projects } = useContext(ProjectsContext);
-    const [openProjects, setOpenProjects] = useState(false);
+    const { projects} = useContext(ProjectsContext);
+    const [openProjects, setOpenProjects] = useState(localStorage.getItem("openProjects") === "true" ? true : false);
     const { selectedNavItem, setSelectedNavItem } = props.data;
     const { taskList } = useContext(TasklistContext);
     const { closeAllEdits } = useContext(OpenAndCloseEditContext);
+    const [openModalAddProject, setOpenModalAddProject] = useState(false);
+    const [inputAddProjectValue, setInputAddProjectValue] = useState("");
+
+    const [ref, height] = useHeight();
+    const animRoll = useSpring({
+        from: {
+            height: height,
+            opacity: 1
+        },
+        to: {
+            height: openProjects ? height : 0,
+            opacity: openProjects ? 1 : 0
+        }
+    });
+
+    useEffect(()=>{
+        localStorage.setItem("openProjects", openProjects);
+    },[openProjects]);
+
     const handleClickProjects = () => {
         setOpenProjects(!openProjects);
     };
 
+    const handleAddNewProject = e => {
+        e.stopPropagation();
+        setOpenModalAddProject(true);
+    }
+
+    const addProject = async (folderName) => {
+        try {
+            const body = { folderName };
+            console.log(JSON.stringify(body));
+            const response = await fetch("http://localhost:5000/folders", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(body)
+            });
+            // Feddback to client
+            const message = await response.json();
+            console.log(message);
+        } catch (error) {
+            console.error(error.message)
+        }
+    }
+
+    const areThereTomorrowTasks = true && taskList
+        .find(task => {
+            if (!task.status_of_completion) {
+                if (task.date_and_time) {
+                    return date.isSameDay(task.date_and_time, tomorrow);
+                } else return false;
+            } else return false;
+        });
     return (
         <div className="tasknav">
             <TaskNavItem
@@ -38,31 +93,67 @@ const TaskNavList = props => {
                 selected={typeof selectedNavItem === "string" && selectedNavItem.toLowerCase() === "today"}>
                 Today
             </TaskNavItem>
-            <TaskNavItem
-                leftIcon="Tomorrow"
-                count={taskList.filter(task => !task.status_of_completion && task.date_and_time && date.isSameDay(task.date_and_time, tomorrow)).length}
-                onClick={() => {
-                    setSelectedNavItem("Tomorrow");
-                    closeAllEdits();
-                }}
-                selected={typeof selectedNavItem === "string" && selectedNavItem.toLowerCase() === "tomorrow"}>
-                Tomorrow
-            </TaskNavItem>
-            <TaskNavItem leftIcon="Calendar">Calendar</TaskNavItem>
-            <TaskNavItem leftIcon={openProjects ? "AngleDown" : "AngleRight"} rightIcon="Plus" onClick={handleClickProjects}>Projects</TaskNavItem>
-            {openProjects &&
-                projects.map(project => <TaskNavItem
-                    leftIcon="Folder"
-                    key={project.id}
-                    count={taskList.filter(task => !task.status_of_completion && task.folder.id && task.folder.name === project.name).length}
+            {areThereTomorrowTasks &&
+                <TaskNavItem
+                    leftIcon="Tomorrow"
+                    count={taskList.filter(task => !task.status_of_completion && task.date_and_time && date.isSameDay(task.date_and_time, tomorrow)).length}
                     onClick={() => {
-                        setSelectedNavItem(project.id);
+                        setSelectedNavItem("Tomorrow");
                         closeAllEdits();
                     }}
-                    selected={typeof selectedNavItem === "number" && selectedNavItem === project.id}>
-                    {project.name}
-                </TaskNavItem>)
+                    selected={typeof selectedNavItem === "string" && selectedNavItem.toLowerCase() === "tomorrow"}>
+                    Tomorrow
+                </TaskNavItem>
             }
+            {/*<TaskNavItem leftIcon="Calendar">Calendar</TaskNavItem>*/}
+            <div className="projects-header">
+                <TaskNavItem
+                    leftIcon={openProjects ? "AngleDown" : "AngleRight"}
+                    rightIcon="Plus"
+                    onClick={handleClickProjects}
+                    onRightIconClick={handleAddNewProject}>
+                    Projects
+                </TaskNavItem>
+                {openModalAddProject &&
+                    <Modal buttonList={[{
+                        title: "Close",
+                        design: "outlined",
+                        onClick: () => {
+                            setOpenModalAddProject(false);
+                            setInputAddProjectValue("");
+                        }
+                    }, {
+                        title: "Add",
+                        disabled: inputAddProjectValue ? false : true,
+                        onClick: () => { 
+                            addProject(inputAddProjectValue);
+                            setInputAddProjectValue("");
+                            setOpenModalAddProject(false);
+                        }
+                    }]}>
+                        <h2>Add project</h2>
+                        <Input
+                            label="Name"
+                            value={inputAddProjectValue}
+                            onChange={e => { setInputAddProjectValue(e.target.value) }} />
+                    </Modal>
+                }
+            </div>
+            <animated.div className="projects-container" style={animRoll}>
+                <div className="projects-content" ref={ref}>
+                    {projects.map(project => <TaskNavItem
+                        leftIcon="Folder"
+                        key={project.id}
+                        count={taskList.filter(task => !task.status_of_completion && task.folder.id && task.folder.name === project.name).length}
+                        onClick={() => {
+                            setSelectedNavItem(project.id);
+                            closeAllEdits();
+                        }}
+                        selected={typeof selectedNavItem === "number" && selectedNavItem === project.id}>
+                        {project.name}
+                    </TaskNavItem>)}
+                </div>
+            </animated.div>
         </div>
     )
 }

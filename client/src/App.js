@@ -7,6 +7,7 @@ import { ProjectPickerProvider } from "./components/Pickers/ProjectPickerContext
 import { ProjectsProvider } from "./components/ProjectsContext";
 import { OpenAndCloseEditProvider } from "./components/OpenAndCloseEditContext";
 import SectionContent from "./components/SectionContent";
+import TopNav from "./components/TopNav";
 
 function App() {
   const [selectedNavItem, setSelectedNavItem] = useState("Inbox");
@@ -14,16 +15,25 @@ function App() {
     <TasklistProvider>
       <ProjectsProvider >
         <div className="taskboard">
-          <OpenAndCloseEditProvider>
-            <TaskNavList data={{ selectedNavItem, setSelectedNavItem }} />
-            <div className="tasksdiplay">
-              <DateAndTimePickerProvider>
-                <ProjectPickerProvider>
-                  <SectionContent data={{ selectedNavItem }} />
-                </ProjectPickerProvider>
-              </DateAndTimePickerProvider>
-            </div>
-          </OpenAndCloseEditProvider>
+          <div className="taskboard-header">
+            <TopNav />
+          </div>
+          <div className="taskboard-container">
+            <OpenAndCloseEditProvider>
+              <div className="taskboard-sidenav">
+                <TaskNavList data={{ selectedNavItem, setSelectedNavItem }} />
+              </div>
+              <div className="taskboard-display">
+                <div className="taskboard-display-container">
+                  <DateAndTimePickerProvider>
+                    <ProjectPickerProvider>
+                      <SectionContent data={{ selectedNavItem }} />
+                    </ProjectPickerProvider>
+                  </DateAndTimePickerProvider>
+                </div>
+              </div>
+            </OpenAndCloseEditProvider>
+          </div>
         </div>
       </ProjectsProvider>
     </TasklistProvider>

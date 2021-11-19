@@ -7,6 +7,7 @@ import EditTask from "./EditTask";
 import { OpenAndCloseEditContext } from "./OpenAndCloseEditContext";
 import { today, tomorrow } from "./TodayTomorrowVars";
 import Icon from "./Icon";
+import Modal from "./Modal";
 
 const TaskItem = props => {
     const { id, description, status_of_completion, date_and_time, read_time, folder } = props.data;
@@ -15,6 +16,7 @@ const TaskItem = props => {
     const openThisEdit = openEditArr.find(x => x.id === id) ? openEditArr.find(x => x.id === id).openEdit : false;
     const [menuIsOpen, setMenuIsOpen] = useState(false);
     const isOverdue = date_and_time ? date_and_time.getTime() < today.getTime() && !date.isSameDay(date_and_time, today) : false;
+    const [openModal, setOpenModal] = useState(false);
 
     // Handles click outside of «more»
     const more = useClickOutside(() => {
@@ -62,7 +64,8 @@ const TaskItem = props => {
     }
 
     const handleDeleteClick = () => {
-        deleteTask();
+        setOpenModal(true);
+        /* deleteTask(); */
     }
 
     const displayDate = dateObj => {
@@ -110,6 +113,22 @@ const TaskItem = props => {
                 </div>
             }
             {openThisEdit && <EditTask data={props.data} />}
+            {openModal &&
+                <Modal buttonList={[{
+                    title: "Delete",
+                    onClick: () => {
+                        deleteTask();
+                        setOpenModal(false);
+                    }
+                },
+                {
+                    title: "Close",
+                    design: "outlined",
+                    onClick: () => setOpenModal(false)
+                }]}>
+                    Delete task <b>{description}</b>?
+                </Modal>
+            }
         </div>
     )
 }

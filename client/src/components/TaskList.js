@@ -6,40 +6,22 @@ import Accordion from "./Accordion";
 import { today, tomorrow } from "./TodayTomorrowVars";
 
 
-const TaskList = ({ currSection }) => {
+const TaskList = ({ currSection, showCompleted }) => {
     // Grab state out of «value» of context
     const { taskList } = useContext(TasklistContext);
-    const [showCompleted, setShowCompleted] = useState(true);
+
+    // Takes array and makes a list of elements out of it
+    const mapList = list => list.map(task => <TaskItem data={task} key={task.id}></TaskItem>);
+
+    /* INBOX */
 
     const inboxTaskList = taskList
-        .filter(task => !task.status_of_completion ? !task.folder.id : false)
-        .map(task => <TaskItem data={task} key={task.id}></TaskItem>);
+        .filter(task => !task.status_of_completion ? !task.folder.id : false);
 
     const completedInboxTaskList = taskList
-        .filter(task => task.status_of_completion ? !task.folder.id : false)
-        .map(task => <TaskItem data={task} key={task.id}></TaskItem>);
+        .filter(task => task.status_of_completion ? !task.folder.id : false);
 
-    const areThereCompletedInboxTasks = true && taskList
-        .find(task => task.status_of_completion ? !task.folder.id : false);
-
-    const overdueTaskList = taskList
-        .filter(task => {
-            if (!task.status_of_completion) {
-                if (task.date_and_time) {
-                    return task.date_and_time.getTime() <= today.getTime() && !date.isSameDay(task.date_and_time, today);
-                } else return false;
-            } else return false;
-        })
-        .map(task => <TaskItem data={task} key={task.id}></TaskItem>);
-
-    const areThereOverdueTasks = true && taskList
-        .find(task => {
-            if (!task.status_of_completion) {
-                if (task.date_and_time) {
-                    return task.date_and_time.getTime() <= today.getTime();
-                } else return false;
-            } else return false;
-        });
+    /* TODAY */
 
     const todayTaskList = taskList
         .filter(task => {
@@ -48,18 +30,7 @@ const TaskList = ({ currSection }) => {
                     return date.isSameDay(task.date_and_time, today);
                 } else return false;
             } else return false;
-        })
-        .map(task => <TaskItem data={task} key={task.id}></TaskItem>);
-
-    const tomorrowTaskList = taskList
-        .filter(task => {
-            if (!task.status_of_completion) {
-                if (task.date_and_time) {
-                    return date.isSameDay(task.date_and_time, tomorrow);
-                } else return false;
-            } else return false;
-        })
-        .map(task => <TaskItem data={task} key={task.id}></TaskItem>);
+        });
 
     const completedTodayTaskList = taskList
         .filter(task => {
@@ -68,14 +39,24 @@ const TaskList = ({ currSection }) => {
                     return date.isSameDay(task.time_of_last_update, today);
                 } else return false;
             } else return false;
-        })
-        .map(task => <TaskItem data={task} key={task.id}></TaskItem>);
+        });
 
-    const areThereCompletedTodayTasks = true && taskList
-        .find(task => {
-            if (task.status_of_completion) {
+    const overdueTaskList = taskList
+        .filter(task => {
+            if (!task.status_of_completion) {
                 if (task.date_and_time) {
-                    return date.isSameDay(task.time_of_last_update, today);
+                    return task.date_and_time.getTime() <= today.getTime() && !date.isSameDay(task.date_and_time, today);
+                } else return false;
+            } else return false;
+        });
+    
+    /* TOMORROW */
+
+    const tomorrowTaskList = taskList
+        .filter(task => {
+            if (!task.status_of_completion) {
+                if (task.date_and_time) {
+                    return date.isSameDay(task.date_and_time, tomorrow);
                 } else return false;
             } else return false;
         });
@@ -87,18 +68,10 @@ const TaskList = ({ currSection }) => {
                     return date.isSameDay(task.date_and_time, tomorrow);
                 } else return false;
             } else return false;
-        })
-        .map(task => <TaskItem data={task} key={task.id}></TaskItem>);
-
-    const areThereCompletedTomorrowTasks = true && taskList
-        .find(task => {
-            if (task.status_of_completion) {
-                if (task.date_and_time) {
-                    return date.isSameDay(task.date_and_time, tomorrow);
-                } else return false;
-            } else return false;
         });
 
+    /* PROJECTS */
+    
     const makeProjectTaskList = currSection => {
         return taskList
             .filter(task => {
@@ -106,7 +79,6 @@ const TaskList = ({ currSection }) => {
                     return task.folder.id ? task.folder.id === currSection : false;
                 } else return false;
             })
-            .map(task => <TaskItem data={task} key={task.id}></TaskItem>)
     }
     const makeCompletedProjectTaskList = currSection => {
         return taskList
@@ -115,71 +87,68 @@ const TaskList = ({ currSection }) => {
                     return task.folder.id ? task.folder.id === currSection : false;
                 } else return false;
             })
-            .map(task => <TaskItem data={task} key={task.id}></TaskItem>)
     }
-    const areThereCompletedProjectTasks = currSection => {
-        return true && taskList
-            .find(task => {
-                if (task.status_of_completion) {
-                    return task.folder.id ? task.folder.id === currSection : false;
-                } else return false;
-            })
-    }
+
     return (
         <div className="tasklist">
+            {/* INBOX */}
             {typeof currSection === "string" && currSection.toLowerCase() === "inbox" &&
                 <>
-                    {inboxTaskList}
-                    {showCompleted && areThereCompletedInboxTasks &&
-                        <Accordion title="Completed" count={completedTodayTaskList.length}>
-                            {completedInboxTaskList}
+                    {inboxTaskList.length > 0 && mapList(inboxTaskList)}
+                    {showCompleted && completedInboxTaskList.length > 0 &&
+                        <Accordion title="Completed" count={completedInboxTaskList.length}>
+                            {mapList(completedInboxTaskList)}
                         </Accordion>
                     }
                 </>
             }
+            {/* TODAY */}
             {typeof currSection === "string" && currSection.toLocaleLowerCase() === "today" &&
                 <>
-                    {areThereOverdueTasks &&
+                    {overdueTaskList.length > 0 &&
                         <>
                             <Accordion title="Overdue" count={overdueTaskList.length}>
-                                {overdueTaskList}
+                                {mapList(overdueTaskList)}
                             </Accordion>
-                            <Accordion title="Today" count={todayTaskList.length}>
-                                {todayTaskList}
-                            </Accordion>
+                            {todayTaskList && todayTaskList.length !== 0 &&
+                                <Accordion title="Today" count={todayTaskList.length}>
+                                    {mapList(todayTaskList)}
+                                </Accordion>
+                            }
                         </>
                     }
-                    {!areThereOverdueTasks &&
-                        todayTaskList
+                    {overdueTaskList.length === 0 &&
+                        mapList(todayTaskList)
                     }
-                    {showCompleted && areThereCompletedTodayTasks &&
+                    {showCompleted && completedTodayTaskList.length > 0 &&
                         <Accordion title="Completed" count={completedTodayTaskList.length}>
-                            {completedTodayTaskList}
+                            {mapList(completedTodayTaskList)}
                         </Accordion>
                     }
                 </>
             }
+            {/* TOMORROW */}
             {typeof currSection === "string" && currSection.toLocaleLowerCase() === "tomorrow" &&
                 <>
-                    {tomorrowTaskList}
-                    {showCompleted && areThereCompletedTomorrowTasks &&
+                    {mapList(tomorrowTaskList)}
+                    {showCompleted && completedTomorrowTaskList.length > 0 &&
                         <Accordion title="Completed" count={completedTomorrowTaskList.length}>
-                            {completedTomorrowTaskList}
+                            {mapList(completedTomorrowTaskList)}
                         </Accordion>
                     }
                 </>
             }
+            {/* PROJECT */}
             {typeof currSection === "number" &&
                 <>
-                    {makeProjectTaskList(currSection)}
-                    {showCompleted && areThereCompletedProjectTasks(currSection) &&
+                    {mapList(makeProjectTaskList(currSection))}
+                    {showCompleted && makeCompletedProjectTaskList(currSection).length > 0 &&
                         <Accordion title="Completed" count={makeCompletedProjectTaskList(currSection).length}>
-                            {makeCompletedProjectTaskList(currSection)}
+                            {mapList(makeCompletedProjectTaskList(currSection))}
                         </Accordion>
                     }
                 </>
             }
-
         </div>
     )
 }

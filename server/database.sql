@@ -19,7 +19,11 @@ FROM
 INSERT INTO
     folder (name)
 VALUES
-    ('Work');
+    ('Music');
+
+-- Delete folder
+DELETE FROM task WHERE folder_id = 5; 
+DELETE FROM folder WHERE id = 5;
 
 -- Schema of tasklist
 CREATE TABLE task(

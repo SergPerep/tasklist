@@ -3,7 +3,7 @@ import date from "date-and-time";
 import Icon from "../Icon";
 import Calendar from "./Calendar";
 import { DateAndTimePickerContext } from "./DateAndTimePickerContext";
-import MenuItem from "../MenuItem";
+import MenuItem from "../Menus/MenuItem";
 import TimePicker from "./TimePicker";
 import { useClickOutside } from "../CustomHooks";
 

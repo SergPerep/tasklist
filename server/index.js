@@ -130,6 +130,36 @@ app.get("/folders", async (req, res) => {
     }
 })
 
+// Delete folder
+app.delete("/folders/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+        const deleteTasks = await pool.query(`DELETE FROM task WHERE folder_id = $1;`, [id]);
+        const deleteFolder = await pool.query(`DELETE FROM folder WHERE id = $1;`, [id]);
+        // Feedback to client
+        res.json("Folder has been deleted")
+    } catch (error) {
+        console.error(error.message);
+    }
+})
+
+// Add new folder
+app.post("/folders", async (req, res) => {
+    try {
+        const { folderName } = req.body;
+        const addFolder = pool.query(`
+        INSERT INTO
+            folder (name)
+        VALUES
+            ($1);
+        `,
+        [folderName]);
+        res.json(`Project «${folderName}» has been created`);
+    } catch (error) {
+        console.error(error.message);
+    }
+});
+
 app.listen(5000, () => {
     console.log("server started on port 5000")
 });

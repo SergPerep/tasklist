@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // DETECT CLICK OUTSIDE //
 // Returns «domNode» and tracks click outside of it
@@ -25,3 +25,31 @@ export const useClickOutside = (handler = () => { }, condition = true) => {
 
     return domNode;
 }
+
+// TRACKS HEIGHT OF THE ELEMENT
+// add ref-variable to content that doesn't change the height
+// use height-variable for useSpring()
+export const useHeight = () => {
+    const ref = useRef();
+    const [height, setHeight] = useState(10);
+  
+    useEffect(() => {
+      // Create observer
+      const spyHeight = new ResizeObserver((entry) => {
+        if (ref.current) {
+          // console.log(".. set height: " + ref.current.offsetHeight);
+          setHeight(ref.current.offsetHeight);
+        }
+      });
+      // Mount the observer
+      if (ref.current) {
+        spyHeight.observe(ref.current);
+        setHeight(ref.current.offsetHeight);
+      }
+      // Demount the observer
+      return () => spyHeight.disconnect();
+    }, []);
+  
+    return [ref, height];
+  };
+  

@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useClickOutside } from "../CustomHooks";
 import Icon from "../Icon";
-import MenuItem from "../MenuItem";
+import MenuItem from "../Menus/MenuItem";
 import { ProjectPickerContext } from "./ProjectPickerContext";
 import { ProjectsContext } from "../ProjectsContext";
 
