@@ -21,9 +21,24 @@ INSERT INTO
 VALUES
     ('Music');
 
+-- Change name of the folder
+UPDATE
+    folder
+SET
+    name = 'AMON RA'
+WHERE
+    id = 200;
+
 -- Delete folder
-DELETE FROM task WHERE folder_id = 5; 
-DELETE FROM folder WHERE id = 5;
+DELETE FROM
+    task
+WHERE
+    folder_id = 5;
+
+DELETE FROM
+    folder
+WHERE
+    id = 5;
 
 -- Schema of tasklist
 CREATE TABLE task(

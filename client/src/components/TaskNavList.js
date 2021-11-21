@@ -9,10 +9,12 @@ import { useSpring, animated } from "react-spring";
 import { useHeight } from "./CustomHooks";
 import Modal from "./Modal";
 import Input from "./Input";
+import TaskList from "./TaskList";
 
 const TaskNavList = props => {
-    const { projects} = useContext(ProjectsContext);
+    const { projects, addProject } = useContext(ProjectsContext);
     const [openProjects, setOpenProjects] = useState(localStorage.getItem("openProjects") === "true" ? true : false);
+    // const [openProjects, setOpenProjects] = useState(false);
     const { selectedNavItem, setSelectedNavItem } = props.data;
     const { taskList } = useContext(TasklistContext);
     const { closeAllEdits } = useContext(OpenAndCloseEditContext);
@@ -30,11 +32,12 @@ const TaskNavList = props => {
             opacity: openProjects ? 1 : 0
         }
     });
-
-    useEffect(()=>{
+    
+    useEffect(() => {
         localStorage.setItem("openProjects", openProjects);
-    },[openProjects]);
+    }, [openProjects]);
 
+    
     const handleClickProjects = () => {
         setOpenProjects(!openProjects);
     };
@@ -44,24 +47,7 @@ const TaskNavList = props => {
         setOpenModalAddProject(true);
     }
 
-    const addProject = async (folderName) => {
-        try {
-            const body = { folderName };
-            console.log(JSON.stringify(body));
-            const response = await fetch("http://localhost:5000/folders", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(body)
-            });
-            // Feddback to client
-            const message = await response.json();
-            console.log(message);
-        } catch (error) {
-            console.error(error.message)
-        }
-    }
+    
 
     const areThereTomorrowTasks = true && taskList
         .find(task => {
@@ -125,7 +111,9 @@ const TaskNavList = props => {
                     }, {
                         title: "Add",
                         disabled: inputAddProjectValue ? false : true,
-                        onClick: () => { 
+                        onClick: () => {
+                            // const id = addProject(inputAddProjectValue);
+                            // setSelectedNavItem(id);
                             addProject(inputAddProjectValue);
                             setInputAddProjectValue("");
                             setOpenModalAddProject(false);

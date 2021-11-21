@@ -27,7 +27,7 @@ function App() {
                 <div className="taskboard-display-container">
                   <DateAndTimePickerProvider>
                     <ProjectPickerProvider>
-                      <SectionContent data={{ selectedNavItem }} />
+                      <SectionContent data={{ selectedNavItem, setSelectedNavItem }} />
                     </ProjectPickerProvider>
                   </DateAndTimePickerProvider>
                 </div>

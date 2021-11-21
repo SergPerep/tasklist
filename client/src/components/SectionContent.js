@@ -4,23 +4,16 @@ import AddTaskInput from "./AddTaskInput";
 import { useContext, useState } from "react";
 import { ProjectsContext } from "./ProjectsContext";
 import Modal from "./Modal";
+import Input from "./Input";
 
 const SectionContent = props => {
-    const { selectedNavItem } = props.data;
-    const { projects } = useContext(ProjectsContext);
+    const { selectedNavItem, setSelectedNavItem } = props.data;
+    const { projects, deleteProject, updateProject } = useContext(ProjectsContext);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
+    const [openEditModal, setOpenEditModal] = useState(false);
     const [showCompleted, setShowCompleted] = useState(true);
-    const deleteProject = async (id) => {
-        try {
-            const delProject = await fetch(`http://localhost:5000/folders/${id}`, {
-                method: "DELETE"
-            });
-            const message = await delProject.json();
-            console.log(message);
-        } catch (error) {
-            console.error(error.message);
-        }
-    }
+    const [inputProjectNameValue, setInputProjectNameValue] = useState("");
+
     const buildContent = () => {
         if (typeof selectedNavItem === "string") {
             if (selectedNavItem.toLocaleLowerCase() === "inbox") {
@@ -71,6 +64,13 @@ const SectionContent = props => {
             return (
                 <>
                     <Header menuList={[{
+                        title: "Edit",
+                        iconName: "No",
+                        onClick: () => {
+                            setOpenEditModal(true);
+                            setInputProjectNameValue(project.name);
+                        }
+                    }, {
                         title: "Delete",
                         iconName: "No",
                         onClick: () => {
@@ -91,14 +91,37 @@ const SectionContent = props => {
                             onClick: () => {
                                 setOpenDeleteModal(false);
                             }
-                        },{
+                        }, {
                             title: "Delete",
                             onClick: () => {
+                                setOpenDeleteModal(false);
+                                setSelectedNavItem("Inbox");
                                 deleteProject(project.id);
-                                window.location = "/";
                             }
                         }]}>
                             Delete project <b>{project.name}</b>?
+                        </Modal>
+                    }
+                    {openEditModal &&
+                        <Modal buttonList={[{
+                            title: "Close",
+                            design: "outlined",
+                            onClick: () => {
+                                setOpenEditModal(false);
+                            }
+                        }, {
+                            title: "Save",
+                            disabled: inputProjectNameValue ? false : true,
+                            onClick: () => {
+                                updateProject(project.id, inputProjectNameValue);
+                                setOpenEditModal(false);
+                            }
+                        }]}>
+                            <h2>{`Edit project «${project.name}»`}</h2>
+                            <Input
+                                label="Name"
+                                value={inputProjectNameValue}
+                                onChange={e => {setInputProjectNameValue(e.target.value)}} />
                         </Modal>
                     }
                     <AddTaskInput />

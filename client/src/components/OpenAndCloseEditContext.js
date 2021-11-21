@@ -13,7 +13,7 @@ export const OpenAndCloseEditContext = createContext();
 const taskInputId = uuidv4(); // id of the input of «Add new task» is needed to find it in openEditArr
 
 export const OpenAndCloseEditProvider = props => {
-    const [openEditArr, setOpenEditArr] = useState(); // Will be array of objects when defined
+    const [openEditArr, setOpenEditArr] = useState([]); // Will be array of objects when defined
     const { taskList } = useContext(TasklistContext); // taskList is requred to build openEditArr
 
     // Makes an array that stores open-edit-statuses with correlated ids

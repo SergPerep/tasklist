@@ -36,7 +36,7 @@ export const TasklistProvider = props => {
             const rawData = await response.json();
             const data = convertData(rawData);
             setTaskList(data);
-            console.log(data);
+            
         } catch (error) {
             console.error(error.message);
         }
