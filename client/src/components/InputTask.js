@@ -15,9 +15,7 @@ const InputTask = () => {
     const [calOpen, setCalOpen] = useState(false);
     const dropdownDate = useRef();
     const contextValue = useContext(DateAndTimePickerContext);
-    const { ancorDate, setAncorDate, selectedDate, setSelectedDate, chosenDate, setChosenDate } = contextValue;
-
-    // const calDropdownName = selectedDate ? date.format(selectedDate, "DD MMM") : "Date";
+    const { selectedDate, chosenDate, setChosenDate } = contextValue;
 
     const calDropdownName = (chosenDate) => {
         if (chosenDate === undefined) {

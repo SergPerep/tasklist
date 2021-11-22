@@ -6,10 +6,10 @@ import { DateAndTimePickerContext } from "./DateAndTimePickerContext";
 import MenuItem from "../Menus/MenuItem";
 import TimePicker from "./TimePicker";
 import { useClickOutside } from "../CustomHooks";
+import {today, tomorrow} from "../TodayTomorrowVars";
 
 const DateAndTimePicker = () => {
-    const { selectedDate, setSelectedDate, today, considerTime, setConsiderTime, setAncorDate } = useContext(DateAndTimePickerContext);
-    const tomorrow = date.addDays(today, 1);
+    const { selectedDate, setSelectedDate, considerTime, setConsiderTime, setAncorDate } = useContext(DateAndTimePickerContext);
     const [openDateMenu, setOpenDateMenu] = useState(false);
 
     // Defines title for date display 

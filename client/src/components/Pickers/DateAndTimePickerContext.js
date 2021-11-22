@@ -14,7 +14,6 @@ export const DateAndTimePickerProvider = props => {
         setAncorDate,
         selectedDate,
         setSelectedDate,
-        today,
         considerTime,
         setConsiderTime,
         timeDisplay,
