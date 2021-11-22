@@ -1,15 +1,19 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useCallback } from "react";
 
 export const ProjectsContext = createContext();
 
 export const ProjectsProvider = props => {
     const [projects, setProjects] = useState([]);
 
+    // GET FOLDERS //
+
     const getFolders = async () => {
         try {
             const response = await fetch("http://localhost:5000/folders");
             const data = await response.json();
             setProjects(data);
+            // Return array
+            return data; // expect: [{name: "Work", id: 3}, ...]
         } catch (error) {
             console.error(error.message);
         }
@@ -18,6 +22,8 @@ export const ProjectsProvider = props => {
     useEffect(() => {
         getFolders();
     }, [])
+
+    // ADD PROJECT //
 
     const addProject = async (folderName) => {
         try {
@@ -31,11 +37,17 @@ export const ProjectsProvider = props => {
             });
             // Feddback to client
             const message = await response.json();
-            getFolders();
+            console.log(message);
+            // Return current folder
+            const folders = await getFolders();
+            const currFolder = folders.find(folder => folder.name === folderName);
+            return currFolder; // expect: {name: "Music", id: 283}
         } catch (error) {
             console.error(error.message)
         }
     }
+
+    // DELETE PROJECT //
 
     const deleteProject = async (id) => {
         try {
@@ -49,6 +61,8 @@ export const ProjectsProvider = props => {
             console.error(error.message);
         }
     }
+
+    // UPDATE NAME OF THE PROJECT //
 
     const updateProject = async (id, folderName) => {
         try {

@@ -112,11 +112,13 @@ const TaskNavList = props => {
                         title: "Add",
                         disabled: inputAddProjectValue ? false : true,
                         onClick: () => {
-                            // const id = addProject(inputAddProjectValue);
-                            // setSelectedNavItem(id);
-                            addProject(inputAddProjectValue);
-                            setInputAddProjectValue("");
-                            setOpenModalAddProject(false);
+                            const folderPromise = addProject(inputAddProjectValue);
+                            folderPromise.then((folder)=>{
+                               const id = folder.id;
+                               setSelectedNavItem(id);
+                               setOpenModalAddProject(false);
+                               setInputAddProjectValue("");
+                            });
                         }
                     }]}>
                         <h2>Add project</h2>
