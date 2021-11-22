@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { ProjectsContext } from "./ProjectsContext";
 import Modal from "./Modal";
 import Input from "./Input";
+import { today, tomorrow } from "./TodayTomorrowVars";
 
 const SectionContent = props => {
     const { selectedNavItem, setSelectedNavItem } = props.data;
@@ -40,7 +41,7 @@ const SectionContent = props => {
                                 setShowCompleted(!showCompleted);
                             }
                         }]}>Today</Header>
-                        <AddTaskInput />
+                        <AddTaskInput currDate={today} />
                         <TaskList currSection="Today" showCompleted={showCompleted} />
                     </>
                 )
@@ -54,7 +55,7 @@ const SectionContent = props => {
                                 setShowCompleted(!showCompleted);
                             }
                         }]}>Tomorrow</Header>
-                        <AddTaskInput />
+                        <AddTaskInput currDate={tomorrow}/>
                         <TaskList currSection="Tomorrow" showCompleted={showCompleted} />
                     </>
                 )
@@ -121,10 +122,10 @@ const SectionContent = props => {
                             <Input
                                 label="Name"
                                 value={inputProjectNameValue}
-                                onChange={e => {setInputProjectNameValue(e.target.value)}} />
+                                onChange={e => { setInputProjectNameValue(e.target.value) }} />
                         </Modal>
                     }
-                    <AddTaskInput />
+                    <AddTaskInput currProject={project}/>
                     <TaskList currSection={project.id} showCompleted={showCompleted} />
                 </>
             )
