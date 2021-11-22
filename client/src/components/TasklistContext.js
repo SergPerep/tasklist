@@ -8,10 +8,7 @@ export const TasklistProvider = props => {
     // States to share
     const [taskList, setTaskList] = useState([]);
 
-    // Get tasks from server when page has been loaded
-    useEffect(() => {
-        getTasks();
-    }, []);
+    
 
     // Converts data so that JS can work with it
     const convertData = (oldArr) => {
@@ -41,6 +38,11 @@ export const TasklistProvider = props => {
             console.error(error.message);
         }
     }
+
+    // Get tasks from server when page has been loaded
+    useEffect(() => {
+        getTasks();
+    }, []);
 
     const contextValue = {
         taskList,

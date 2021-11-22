@@ -9,7 +9,6 @@ import { useSpring, animated } from "react-spring";
 import { useHeight } from "./CustomHooks";
 import Modal from "./Modal";
 import Input from "./Input";
-import TaskList from "./TaskList";
 
 const TaskNavList = props => {
     const { projects, addProject } = useContext(ProjectsContext);

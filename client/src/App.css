@@ -873,7 +873,7 @@ div {
 .modal-button-group{
   padding-top: 24px;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .modal-button-group .button:not(:first-child){
