@@ -130,6 +130,7 @@ div {
 .taskboard-sidenav {
   width: 300px;
   background-color: var(--c-primary);
+  overflow-y: scroll;
 }
 
 .taskboard-sidenav-container{
