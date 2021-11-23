@@ -55,7 +55,7 @@ const SectionContent = props => {
                                 setShowCompleted(!showCompleted);
                             }
                         }]}>Tomorrow</Header>
-                        <AddTaskInput currDate={tomorrow}/>
+                        <AddTaskInput currDate={tomorrow} />
                         <TaskList currSection="Tomorrow" showCompleted={showCompleted} />
                     </>
                 )
@@ -65,23 +65,23 @@ const SectionContent = props => {
             return (
                 <>
                     <Header menuList={[{
+                        title: showCompleted ? "Hide completed" : "Show completed",
+                        iconName: "Checkbox",
+                        onClick: () => {
+                            setShowCompleted(!showCompleted);
+                        }
+                    }, {
                         title: "Edit",
-                        iconName: "No",
+                        iconName: "Edit",
                         onClick: () => {
                             setOpenEditModal(true);
                             setInputProjectNameValue(project.name);
                         }
                     }, {
                         title: "Delete",
-                        iconName: "No",
+                        iconName: "Delete",
                         onClick: () => {
                             setOpenDeleteModal(true);
-                        }
-                    }, {
-                        title: showCompleted ? "Hide completed" : "Show completed",
-                        iconName: "Checkbox",
-                        onClick: () => {
-                            setShowCompleted(!showCompleted);
                         }
                     }]}>{project.name}
                     </Header>
@@ -125,7 +125,7 @@ const SectionContent = props => {
                                 onChange={e => { setInputProjectNameValue(e.target.value) }} />
                         </Modal>
                     }
-                    <AddTaskInput currProject={project}/>
+                    <AddTaskInput currProject={project} />
                     <TaskList currSection={project.id} showCompleted={showCompleted} />
                 </>
             )

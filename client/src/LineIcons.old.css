@@ -1,10 +1,10 @@
 @font-face {
-  font-family: 'LineIcons';
-  src:  url('fonts/lineicons.eot?j3vlqo');
-  src:  url('fonts/lineicons.eot?j3vlqo#iefix') format('embedded-opentype'),
-    url('fonts/lineicons.ttf?j3vlqo') format('truetype'),
-    url('fonts/lineicons.woff?j3vlqo') format('woff'),
-    url('fonts/lineicons.svg?j3vlqo#lineicons') format('svg');
+  font-family: 'lineicons';
+  src:  url('fonts/lineicons.eot?93rp2f');
+  src:  url('fonts/lineicons.eot?93rp2f#iefix') format('embedded-opentype'),
+    url('fonts/lineicons.ttf?93rp2f') format('truetype'),
+    url('fonts/lineicons.woff?93rp2f') format('woff'),
+    url('fonts/lineicons.svg?93rp2f#lineicons') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -24,6 +24,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-Close-md:before {
+  content: "\e917";
+}
 .icon-AngleDown-md:before {
   content: "\e900";
 }
@@ -63,6 +66,9 @@
 .icon-Tomorrow-md:before {
   content: "\e915";
 }
+.icon-Close-sm:before {
+  content: "\e918";
+}
 .icon-AngleDown-sm:before {
   content: "\e901";
 }
@@ -75,7 +81,7 @@
 .icon-AngleUp-sm:before {
   content: "\e907";
 }
-.icon-Calendar-sm:before, .icon-Today-sm:before {
+.icon-Calendar-sm:before, .icon-Today-sm::before {
   content: "\e909";
 }
 .icon-Checkbox-sm:before {
