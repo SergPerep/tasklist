@@ -8,6 +8,7 @@ import { OpenAndCloseEditContext } from "./OpenAndCloseEditContext";
 import { today, tomorrow } from "./TodayTomorrowVars";
 import Icon from "./Icon";
 import Modal from "./Modal";
+import Menu from "./Menus/Menu";
 
 const TaskItem = props => {
     const { id, description, status_of_completion, date_and_time, read_time, folder } = props.data;
@@ -105,11 +106,25 @@ const TaskItem = props => {
                     </div>
                     <div className="more" onClick={handleClickMore} ref={more}>
                         <Icon name="More" size="md" />
-                        {menuIsOpen && <ul className="context-menu pos-right">
+                        { /* menuIsOpen && <ul className="context-menu pos-right">
                             <li className="edit-button" onClick={handleClickEdit}>Edit</li>
                             <li onClick={handleDeleteClick}>Delete</li>
-                        </ul>}
+            </ul> */}
+                        {menuIsOpen &&
+                            <div className="more-content">
+                                <Menu menuList={[{
+                                    iconName: "Edit",
+                                    title: "Edit",
+                                    onClick: handleClickEdit
+                                }, {
+                                    iconName: "Delete",
+                                    title: "Delete",
+                                    onClick: handleDeleteClick
+                                }]} />
+                            </div>
+                        }
                     </div>
+
                 </div>
             }
             {openThisEdit && <EditTask data={props.data} />}

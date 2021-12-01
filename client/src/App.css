@@ -233,9 +233,18 @@ div {
   border-color: transparent;
 } 
 
-.taskitem.completed .more .line-icon {
+.taskitem.completed .more > .line-icon {
   color: var(--c-black-30);
 }
+
+.taskitem .more-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+
+
 /* TaskList */
 
 .tasklist {
@@ -300,40 +309,6 @@ div {
 .more {
   padding: 4px;
   position: relative;
-}
-
-.context-menu {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  background-color: white;
-  position: absolute;
-  top: 0;
-  border: 1px solid black;
-  border-radius: 2px;
-  z-index: 1;
-}
-
-.context-menu li {
-  padding: 12px;
-  display: block;
-  min-width: 100px;
-}
-
-.context-menu li:hover {
-  background-color: var(--c-black-12);
-}
-
-.context-menu.pos-left {
-  left: 0;
-}
-
-.context-menu.pos-right {
-  right: 0;
-}
-
-.context-menu.hidden {
-  visibility: hidden;
 }
 
 .dropdown {
