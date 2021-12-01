@@ -119,7 +119,7 @@ const EditTask = props => {
     return (
         <form className="edittask" onSubmit={handleSubmitTask} id="edittask">
             <div className="edit-fields">
-                <input className="taskinput" type="text" placeholder="Task discription" onChange={e => setTaskInputValue(e.target.value)} value={taskInputValue} />
+                <input autoFocus className="taskinput" type="text" placeholder="Task discription" onChange={e => setTaskInputValue(e.target.value)} value={taskInputValue} />
                 <div className="picker-container">
                     <DateAndTimePicker />
                     <ProjectPicker />
