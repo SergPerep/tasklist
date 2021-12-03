@@ -8,35 +8,40 @@ import { ProjectsProvider } from "./components/ProjectsContext";
 import { OpenAndCloseEditProvider } from "./components/OpenAndCloseEditContext";
 import SectionContent from "./components/SectionContent";
 import TopNav from "./components/TopNav";
+import Snackbar from "./components/Snackbar";
+import { SnackbarProvider } from "./components/SnackbarContext";
 
 function App() {
   const [selectedNavItem, setSelectedNavItem] = useState("Inbox");
   return (
-    <TasklistProvider>
-      <ProjectsProvider >
-        <div className="taskboard">
-          <div className="taskboard-header">
-            <TopNav />
-          </div>
-          <div className="taskboard-container">
-            <OpenAndCloseEditProvider>
-              <div className="taskboard-sidenav">
-                <TaskNavList data={{ selectedNavItem, setSelectedNavItem }} />
-              </div>
-              <div className="taskboard-display">
-                <div className="taskboard-display-container">
-                  <DateAndTimePickerProvider>
-                    <ProjectPickerProvider>
-                      <SectionContent data={{ selectedNavItem, setSelectedNavItem }} />
-                    </ProjectPickerProvider>
-                  </DateAndTimePickerProvider>
+    <SnackbarProvider>
+      <TasklistProvider>
+        <ProjectsProvider >
+          <div className="taskboard">
+            <div className="taskboard-header">
+              <TopNav />
+            </div>
+            <div className="taskboard-container">
+              <OpenAndCloseEditProvider>
+                <div className="taskboard-sidenav">
+                  <TaskNavList data={{ selectedNavItem, setSelectedNavItem }} />
                 </div>
-              </div>
-            </OpenAndCloseEditProvider>
+                <div className="taskboard-display">
+                  <div className="taskboard-display-container">
+                    <DateAndTimePickerProvider>
+                      <ProjectPickerProvider>
+                        <SectionContent data={{ selectedNavItem, setSelectedNavItem }} />
+                      </ProjectPickerProvider>
+                    </DateAndTimePickerProvider>
+                  </div>
+                </div>
+              </OpenAndCloseEditProvider>
+            </div>
           </div>
-        </div>
-      </ProjectsProvider>
-    </TasklistProvider>
+        </ProjectsProvider>
+      </TasklistProvider>
+      <Snackbar />
+    </SnackbarProvider>
   );
 }
 

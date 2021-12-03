@@ -875,3 +875,15 @@ div {
   font-size: 16px;
   line-height: 18px;
 }
+
+/* SNACKBAR */
+.snackbar {
+  background-color: #262626;
+  padding: 16px;
+  color: white;
+  text-align: left;
+  border-radius: 4px;
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+}

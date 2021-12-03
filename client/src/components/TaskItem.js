@@ -9,6 +9,7 @@ import { today, tomorrow } from "./TodayTomorrowVars";
 import Icon from "./Icon";
 import Modal from "./Modal";
 import Menu from "./Menus/Menu";
+import { SnackbarContext } from "./SnackbarContext";
 
 const TaskItem = props => {
     const { id, description, status_of_completion, date_and_time, read_time, folder } = props.data;
@@ -18,6 +19,7 @@ const TaskItem = props => {
     const [menuIsOpen, setMenuIsOpen] = useState(false);
     const isOverdue = date_and_time ? date_and_time.getTime() < today.getTime() && !date.isSameDay(date_and_time, today) : false;
     const [openModal, setOpenModal] = useState(false);
+    const {runSnackbar} = useContext(SnackbarContext);
 
     // Handles click outside of «more»
     const more = useClickOutside(() => {
@@ -39,6 +41,7 @@ const TaskItem = props => {
             });
             const response = await updateCheckStatus.json();
             console.log(response);
+            runSnackbar(response);
             getTasks();
         } catch (error) {
             console.error(error.message);
@@ -57,7 +60,7 @@ const TaskItem = props => {
                 method: "DELETE"
             });
             const message = await delTask.json();
-            console.log(message);
+            runSnackbar(message);
             getTasks();
         } catch (error) {
             console.error(error.message);
