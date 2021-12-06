@@ -197,7 +197,7 @@ div {
   color: var(--c-black-30);
 }
 
-.taskitem .taskitem-folder {
+.taskitem .taskitem-project {
   background-color: var(--c-black-12);
   font-size: 12px;
   line-height: 14px;
@@ -205,7 +205,7 @@ div {
   border-radius: 2px;
 }
 
-.taskitem.completed .taskitem-folder {
+.taskitem.completed .taskitem-project {
   background-color: var(--c-black-04);
   color: var(--c-black-30);
 }

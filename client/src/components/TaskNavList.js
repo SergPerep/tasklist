@@ -1,6 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import { ProjectsContext } from "./ProjectsContext";
-import { TasklistContext } from "./TasklistContext";
+import { DatabaseContext } from "./DatabaseContext";
 import TaskNavItem from "./TaskNavItem";
 import date from "date-and-time";
 import { today, tomorrow } from "./TodayTomorrowVars";
@@ -14,10 +13,9 @@ import ColorDisplay from "./ColorDisplay";
 import Icon from "./Icon";
 
 const TaskNavList = props => {
-    const { projects, addProject, colors, selectedColor, setSelectedColor } = useContext(ProjectsContext);
     const [openProjects, setOpenProjects] = useState(localStorage.getItem("openProjects") === "true" ? true : false);
     const { selectedNavItem, setSelectedNavItem } = props.data;
-    const { taskList } = useContext(TasklistContext);
+    const { taskList, projects, addProject, colors, selectedColor, setSelectedColor } = useContext(DatabaseContext);
     const { closeAllEdits } = useContext(OpenAndCloseEditContext);
     const [openModalAddProject, setOpenModalAddProject] = useState(false);
     const [inputAddProjectValue, setInputAddProjectValue] = useState("");

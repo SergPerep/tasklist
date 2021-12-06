@@ -2,7 +2,7 @@ import TaskList from "./TaskList";
 import Header from "./Header";
 import AddTaskInput from "./AddTaskInput";
 import { useContext, useState } from "react";
-import { ProjectsContext } from "./ProjectsContext";
+import { DatabaseContext } from "./DatabaseContext";
 import Modal from "./Modal";
 import Input from "./Input";
 import { today, tomorrow } from "./TodayTomorrowVars";
@@ -12,7 +12,7 @@ import Icon from "./Icon";
 
 const SectionContent = props => {
     const { selectedNavItem, setSelectedNavItem } = props.data;
-    const { projects, deleteProject, updateProject, colors, selectedColor, setSelectedColor } = useContext(ProjectsContext);
+    const { projects, deleteProject, updateProject, colors, selectedColor, setSelectedColor } = useContext(DatabaseContext);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [openEditModal, setOpenEditModal] = useState(false);
     const [showCompleted, setShowCompleted] = useState(true);

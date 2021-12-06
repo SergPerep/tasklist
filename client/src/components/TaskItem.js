@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import Checkbox from "./Checkbox";
 import date from "date-and-time";
-import { TasklistContext } from "./TasklistContext";
+import { DatabaseContext } from "./DatabaseContext";
 import { useClickOutside } from "./CustomHooks";
 import EditTask from "./EditTask";
 import { OpenAndCloseEditContext } from "./OpenAndCloseEditContext";
@@ -12,8 +12,8 @@ import Menu from "./Menus/Menu";
 import { SnackbarContext } from "./SnackbarContext";
 
 const TaskItem = props => {
-    const { id, description, status_of_completion, date_and_time, read_time, folder } = props.data;
-    const { getTasks } = useContext(TasklistContext);
+    const { id, description, status_of_completion, date_and_time, read_time, folder} = props.data;
+    const { getTasks } = useContext(DatabaseContext);
     const { openEditArr, openOneEditCloseAllOther } = useContext(OpenAndCloseEditContext);
     const openThisEdit = openEditArr.find(x => x.id === id) ? openEditArr.find(x => x.id === id).openEdit : false;
     const [menuIsOpen, setMenuIsOpen] = useState(false);
@@ -104,15 +104,12 @@ const TaskItem = props => {
                             {read_time && <span className="taskitem-time">
                                 {date.format(date_and_time, "HH:mm")}
                             </span>}
-                            {folder.id && <span className="taskitem-folder">{folder.name}</span>}
+                            {folder.id && <span className="taskitem-project" >{folder.name}</span>}
                         </div>
                     </div>
                     <div className="more" onClick={handleClickMore} ref={more}>
                         <Icon name="More" size="md" />
-                        { /* menuIsOpen && <ul className="context-menu pos-right">
-                            <li className="edit-button" onClick={handleClickEdit}>Edit</li>
-                            <li onClick={handleDeleteClick}>Delete</li>
-            </ul> */}
+                        
                         {menuIsOpen &&
                             <div className="more-content">
                                 <Menu menuList={[{

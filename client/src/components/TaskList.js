@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import TaskItem from "./TaskItem";
-import { TasklistContext } from "./TasklistContext";
+import { DatabaseContext } from "./DatabaseContext";
 import date from "date-and-time";
 import Accordion from "./Accordion";
 import { today, tomorrow } from "./TodayTomorrowVars";
@@ -8,10 +8,10 @@ import { today, tomorrow } from "./TodayTomorrowVars";
 
 const TaskList = ({ currSection, showCompleted }) => {
     // Grab state out of «value» of context
-    const { taskList } = useContext(TasklistContext);
-
+    const { taskList } = useContext(DatabaseContext);
+    
     // Takes array and makes a list of elements out of it
-    const mapList = list => list.map(task => <TaskItem data={task} key={task.id}></TaskItem>);
+    const mapList = list => list.map(task => <TaskItem data={task} key={task.id} />);
 
     /* INBOX */
 
