@@ -24,8 +24,8 @@ const TaskItem = props => {
     // Define colors for project-tag
     const colorId = projects.find(project => project.id === folder.id) ? projects.find(project => project.id === folder.id).color_id : null;
     const folderColor = colors.find(color => color.id === colorId);
-    const colorBG = folderColor.fill;
-    const colorFont = folderColor.font;
+    const colorBG = folderColor ? folderColor.fill : null;
+    const colorFont = folderColor ? folderColor.font : null;
 
     // Handles click outside of «more»
     const more = useClickOutside(() => {

@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'lineicons';
-  src:  url('fonts/lineicons.eot?93rp2f');
-  src:  url('fonts/lineicons.eot?93rp2f#iefix') format('embedded-opentype'),
-    url('fonts/lineicons.ttf?93rp2f') format('truetype'),
-    url('fonts/lineicons.woff?93rp2f') format('woff'),
-    url('fonts/lineicons.svg?93rp2f#lineicons') format('svg');
+  src:  url('fonts/lineicons.eot?n52pxs');
+  src:  url('fonts/lineicons.eot?n52pxs#iefix') format('embedded-opentype'),
+    url('fonts/lineicons.ttf?n52pxs') format('truetype'),
+    url('fonts/lineicons.woff?n52pxs') format('woff'),
+    url('fonts/lineicons.svg?n52pxs#lineicons') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -24,6 +24,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-Delete-md:before {
+  content: "\e919";
+}
+.icon-Edit-md:before {
+  content: "\e91a";
+}
+.icon-Nav-md:before {
+  content: "\e91b";
+}
 .icon-Close-md:before {
   content: "\e917";
 }
@@ -81,9 +90,6 @@
 .icon-AngleUp-sm:before {
   content: "\e907";
 }
-.icon-Calendar-sm:before, .icon-Today-sm::before {
-  content: "\e909";
-}
 .icon-Checkbox-sm:before {
   content: "\e90b";
 }
@@ -98,4 +104,7 @@
 }
 .icon-No-sm:before {
   content: "\e912";
+}
+.icon-Today-sm:before {
+  content: "\e909";
 }
