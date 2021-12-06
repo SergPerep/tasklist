@@ -222,6 +222,7 @@ div {
 .taskitem-details {
   padding-top: 4px;
   display: flex;
+  align-items: center;
 }
 
 .taskitem-details span:not(:first-child) {

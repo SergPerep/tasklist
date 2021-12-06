@@ -3,10 +3,10 @@ import { useClickOutside } from "../CustomHooks";
 import Icon from "../Icon";
 import MenuItem from "../Menus/MenuItem";
 import { ProjectPickerContext } from "./ProjectPickerContext";
-import { ProjectsContext } from "../ProjectsContext";
+import { DatabaseContext } from "../DatabaseContext";
 
 const ProjectPicker = () => {
-    const { projects } = useContext(ProjectsContext);
+    const { projects } = useContext(DatabaseContext);
     const { selectedProject, setSelectedProject } = useContext(ProjectPickerContext);
     const [openProjectMenu, setOpenProjectMenu] = useState(false);
 

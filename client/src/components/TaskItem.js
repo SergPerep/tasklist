@@ -13,13 +13,19 @@ import { SnackbarContext } from "./SnackbarContext";
 
 const TaskItem = props => {
     const { id, description, status_of_completion, date_and_time, read_time, folder} = props.data;
-    const { getTasks } = useContext(DatabaseContext);
+    const { getTasks, projects, colors } = useContext(DatabaseContext);
     const { openEditArr, openOneEditCloseAllOther } = useContext(OpenAndCloseEditContext);
     const openThisEdit = openEditArr.find(x => x.id === id) ? openEditArr.find(x => x.id === id).openEdit : false;
     const [menuIsOpen, setMenuIsOpen] = useState(false);
     const isOverdue = date_and_time ? date_and_time.getTime() < today.getTime() && !date.isSameDay(date_and_time, today) : false;
     const [openModal, setOpenModal] = useState(false);
     const {runSnackbar} = useContext(SnackbarContext);
+
+    // Define colors for project-tag
+    const colorId = projects.find(project => project.id === folder.id) ? projects.find(project => project.id === folder.id).color_id : null;
+    const folderColor = colors.find(color => color.id === colorId);
+    const colorBG = folderColor.fill;
+    const colorFont = folderColor.font;
 
     // Handles click outside of «more»
     const more = useClickOutside(() => {
@@ -104,7 +110,10 @@ const TaskItem = props => {
                             {read_time && <span className="taskitem-time">
                                 {date.format(date_and_time, "HH:mm")}
                             </span>}
-                            {folder.id && <span className="taskitem-project" >{folder.name}</span>}
+                            {folder.id && <span className="taskitem-project"
+                            style={{backgroundColor: colorBG, color: colorFont}}>
+                                {folder.name}
+                                </span>}
                         </div>
                     </div>
                     <div className="more" onClick={handleClickMore} ref={more}>
