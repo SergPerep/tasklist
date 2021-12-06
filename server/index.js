@@ -119,7 +119,8 @@ app.get("/folders", async (req, res) => {
         const allFolders = await pool.query(`
         SELECT
             id,
-            name
+            name,
+            color_id
         FROM
             folder;
         `);
@@ -146,14 +147,14 @@ app.delete("/folders/:id", async (req, res) => {
 // Add new folder
 app.post("/folders", async (req, res) => {
     try {
-        const { folderName } = req.body;
+        const { folderName, colorId } = req.body;
         const addFolder = await pool.query(`
         INSERT INTO
-            folder (name)
+            folder (name, color_id)
         VALUES
-            ($1);
+            ($1, $2);
         `,
-            [folderName]);
+            [folderName, colorId]);
         res.json(`Project «${folderName}» has been created`);
     } catch (error) {
         console.error(error.message);
@@ -165,22 +166,39 @@ app.post("/folders", async (req, res) => {
 app.put("/folders/:id", async (req, res) => {
     try {
         const id = req.params.id;
-        const { folderName } = req.body;
+        const { folderName, colorId } = req.body;
         console.log(req.body);
         const updateFolder = await pool.query(`
             UPDATE
                 folder
             SET
-                name = $2
+                name = $2,
+                color_id = $3
             WHERE
                 id = $1;`
-            , [id, folderName]);
+            , [id, folderName, colorId]);
         // Feedback to client
         res.json("Project has been updated");
     } catch (error) {
         console.error(error.message);
     }
 })
+
+// Get colors
+
+app.get("/colors", async (req, res) => {
+    const colors = await pool.query(`
+    SELECT
+        id,
+        name,
+        label,
+        font,
+        fill
+    FROM 
+        color`);
+    // Feedback to client
+    res.json(colors.rows);
+});
 
 
 app.listen(5000, () => {

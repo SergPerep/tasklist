@@ -6,14 +6,18 @@ import { ProjectsContext } from "./ProjectsContext";
 import Modal from "./Modal";
 import Input from "./Input";
 import { today, tomorrow } from "./TodayTomorrowVars";
+import Select from "./Select";
+import ColorDisplay from "./ColorDisplay";
+import Icon from "./Icon";
 
 const SectionContent = props => {
     const { selectedNavItem, setSelectedNavItem } = props.data;
-    const { projects, deleteProject, updateProject } = useContext(ProjectsContext);
+    const { projects, deleteProject, updateProject, colors, selectedColor, setSelectedColor } = useContext(ProjectsContext);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [openEditModal, setOpenEditModal] = useState(false);
     const [showCompleted, setShowCompleted] = useState(true);
     const [inputProjectNameValue, setInputProjectNameValue] = useState("");
+
 
     const buildContent = () => {
         if (typeof selectedNavItem === "string") {
@@ -76,6 +80,7 @@ const SectionContent = props => {
                         onClick: () => {
                             setOpenEditModal(true);
                             setInputProjectNameValue(project.name);
+                            setSelectedColor(colors.find(color => color.id === project.color_id).id);
                         }
                     }, {
                         title: "Delete",
@@ -114,7 +119,7 @@ const SectionContent = props => {
                             title: "Save",
                             disabled: inputProjectNameValue ? false : true,
                             onClick: () => {
-                                updateProject(project.id, inputProjectNameValue);
+                                updateProject(project.id, inputProjectNameValue, selectedColor);
                                 setOpenEditModal(false);
                             }
                         }]}>
@@ -123,6 +128,25 @@ const SectionContent = props => {
                                 label="Name"
                                 value={inputProjectNameValue}
                                 onChange={e => { setInputProjectNameValue(e.target.value) }} />
+                            <Select
+                                placeholder="New select"
+                                label="Color"
+                                selectList={colors.map(color => {
+                                    return {
+                                        title: color.name,
+                                        color: color.label,
+                                        selected: selectedColor === color.id,
+                                        onClick: () => {
+                                            setSelectedColor(color.id);
+                                        }
+                                    }
+                                })}>
+                                <div className="select-display-color">
+                                    <ColorDisplay color={colors.find(color => color.id === selectedColor).label} />
+                                    <div className="select-display-color-name">{colors.find(color => color.id === selectedColor).name}</div>
+                                    <Icon name="AngleDown" size="sm" />
+                                </div>
+                            </Select>
                         </Modal>
                     }
                     <AddTaskInput currProject={project} />

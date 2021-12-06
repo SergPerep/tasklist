@@ -5,29 +5,31 @@ CREATE DATABASE todolist;
 CREATE TABLE folder(
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
-    color BYTEA
+    color_id INTEGER REFERENCES color (id)
 );
 
 -- Get all folders
 SELECT
     id,
-    name
+    name,
+    color_id
 FROM
     folder;
 
 -- Add new folder
 INSERT INTO
-    folder (name)
+    folder (name, color_id)
 VALUES
-    ('Music');
+    ('Music', 2);
 
--- Change name of the folder
+-- Update folder
 UPDATE
     folder
 SET
-    name = 'AMON RA'
+    name = 'Piano',
+    color_id = 3
 WHERE
-    id = 200;
+    id = 8;
 
 -- Delete folder
 DELETE FROM
@@ -142,3 +144,23 @@ SET
     folder_id = 1
 WHERE
     id = 30;
+
+--Schema for color
+CREATE TABLE color(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    label VARCHAR(255) NOT NULL,
+    font VARCHAR(255) NOT NULL,
+    fill VARCHAR(255) NOT NULL
+);
+
+-- Add color
+INSERT INTO
+    color (name, label, font, fill)
+VALUES
+    (
+        'Orange',
+        '#FF9749',
+        '#DA7B35',
+        'rgba(255, 151, 73, 0.14)'
+    );

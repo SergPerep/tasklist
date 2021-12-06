@@ -9,11 +9,13 @@ import { useSpring, animated } from "react-spring";
 import { useHeight } from "./CustomHooks";
 import Modal from "./Modal";
 import Input from "./Input";
+import Select from "./Select";
+import ColorDisplay from "./ColorDisplay";
+import Icon from "./Icon";
 
 const TaskNavList = props => {
-    const { projects, addProject } = useContext(ProjectsContext);
+    const { projects, addProject, colors, selectedColor, setSelectedColor } = useContext(ProjectsContext);
     const [openProjects, setOpenProjects] = useState(localStorage.getItem("openProjects") === "true" ? true : false);
-    // const [openProjects, setOpenProjects] = useState(false);
     const { selectedNavItem, setSelectedNavItem } = props.data;
     const { taskList } = useContext(TasklistContext);
     const { closeAllEdits } = useContext(OpenAndCloseEditContext);
@@ -44,9 +46,8 @@ const TaskNavList = props => {
     const handleAddNewProject = e => {
         e.stopPropagation();
         setOpenModalAddProject(true);
+        setSelectedColor(null);
     }
-
-    
 
     const areThereTomorrowTasks = true && taskList
         .find(task => {
@@ -111,7 +112,7 @@ const TaskNavList = props => {
                         title: "Add",
                         disabled: inputAddProjectValue ? false : true,
                         onClick: () => {
-                            const folderPromise = addProject(inputAddProjectValue);
+                            const folderPromise = addProject(inputAddProjectValue, selectedColor);
                             folderPromise.then((folder)=>{
                                const id = folder.id;
                                setSelectedNavItem(id);
@@ -125,13 +126,33 @@ const TaskNavList = props => {
                             label="Name"
                             value={inputAddProjectValue}
                             onChange={e => { setInputAddProjectValue(e.target.value) }} />
+                            <Select
+                                placeholder="New select"
+                                label="Color"
+                                selectList={colors.map(color => {
+                                    return {
+                                        title: color.name,
+                                        color: color.label,
+                                        selected: selectedColor === color.id,
+                                        onClick: () => {
+                                            setSelectedColor(color.id);
+                                        }
+                                    }
+                                })}>
+                                <div className="select-display-color">
+                                    <ColorDisplay color={colors.find(color => color.id === selectedColor).label} />
+                                    <div className="select-display-color-name">{colors.find(color => color.id === selectedColor).name}</div>
+                                    <Icon name="AngleDown" size="sm" />
+                                </div>
+                            </Select>
+                            
                     </Modal>
                 }
             </div>
             <animated.div className="projects-container" style={animRoll}>
                 <div className="projects-content" ref={ref}>
                     {projects.map(project => <TaskNavItem
-                        leftIcon="Folder"
+                        color={colors.find(color => color.id === project.color_id) ? colors.find(color => color.id === project.color_id).label : null}
                         key={project.id}
                         count={taskList.filter(task => !task.status_of_completion && task.folder.id && task.folder.name === project.name).length}
                         onClick={() => {

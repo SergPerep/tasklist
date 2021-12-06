@@ -680,7 +680,7 @@ div {
   cursor: pointer;
 }
 
-.menu-item:hover {
+.menu-item:hover, .menu-item.selected {
   background-color: var(--c-black-12);
 }
 
@@ -690,7 +690,10 @@ div {
   line-height: 24px;
 }
 
-.menu-item .line-icon {
+.menu-icon-left {
+  margin-right: 8px;
+}
+.menu-icon-right {
   margin-right: 8px;
 }
 
@@ -856,14 +859,14 @@ div {
   margin-left: 12px;
 }
 
-/* INPUT */
+/* INPUT */ /* SELECT */
 
-.input-field label {
+.input-field label, .select-label {
   display: block;
   color: var(--c-black-60);
   margin-bottom: 12px;
 }
-.input-field input {
+.input-field input, .select-display {
   display: block;
   width: 100%;
   padding: 12px 12px;
@@ -871,11 +874,34 @@ div {
   border-radius: 4px;
 }
 
-.input-field label, .input-field input {
+.input-field label, .input-field input, .select-label, .select-display {
   font-size: 16px;
   line-height: 18px;
 }
 
+.select-display{
+ display: flex;
+ cursor: pointer;
+}
+.select {
+  margin-top: 24px;
+  color: black;
+}
+.select-field {
+  position: relative;
+}
+.select-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.select-display-color .color-display {
+  width: 24px;
+  height: 18px;
+}
 /* SNACKBAR */
 .snackbar {
   background-color: #262626;
@@ -886,4 +912,32 @@ div {
   position: fixed;
   bottom: 16px;
   right: 16px;
+}
+
+/* COLOR DISPLAY */
+
+.color-display {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 4px;
+  flex-shrink: 0;
+}
+
+.color-display .color-spot{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--c-black-12);
+}
+.select-display-color {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.select-display-color-name{
+  width:100%;
 }

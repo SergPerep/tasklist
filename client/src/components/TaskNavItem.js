@@ -1,7 +1,8 @@
+import ColorDisplay from "./ColorDisplay";
 import Icon from "./Icon";
 
 const TaskNavItem = props => {
-    const { leftIcon, rightIcon, onClick, selected, count, onRightIconClick } = props;
+    const { leftIcon, rightIcon, onClick, selected, count, onRightIconClick, color } = props;
     return (
         <div className={`tasknav-item ${selected ? "selected" : ""}`} onClick={onClick}>
             <div className="taskboard-sidenav-container">
@@ -10,6 +11,7 @@ const TaskNavItem = props => {
                         <Icon name={leftIcon} size={"md"} />
                     </div>
                 }
+                {color && <ColorDisplay color={color} />}
                 <div className="tasknav-desc">
                     {props.children}
                 </div>

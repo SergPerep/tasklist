@@ -1,9 +1,13 @@
-import { createContext, useState, useEffect} from "react";
+import { createContext, useState, useEffect, useContext } from "react";
+import { TasklistContext } from "./TasklistContext";
 
 export const ProjectsContext = createContext();
 
 export const ProjectsProvider = props => {
     const [projects, setProjects] = useState([]);
+    const [colors, setColors] = useState([]);
+    const { getTasks } = useContext(TasklistContext);
+    const [selectedColor, setSelectedColor] = useState(null);
 
     // GET FOLDERS //
 
@@ -13,7 +17,30 @@ export const ProjectsProvider = props => {
             const data = await response.json();
             setProjects(data);
             // Return array
-            return data; // expect: [{name: "Work", id: 3}, ...]
+            return data; // ex: [{id: 3, name: "Work", color_id: 1}, ...]
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+
+    
+
+    // COLORS //
+
+    const getColors = async () => {
+        try {
+            const response = await fetch("http://localhost:5000/colors");
+            const rawColors = await response.json(); // colors from DB
+            // Add Charcoal to colors from DB
+            const refinedColors = [{
+                id: null,
+                name: "Charcoal",
+                label: "#808080",
+                font: "#000000",
+                fill: "rgba(0, 0, 0, 0.12)"
+            }, ...rawColors];
+            setColors(refinedColors);
+            console.log(refinedColors);
         } catch (error) {
             console.error(error.message);
         }
@@ -21,13 +48,14 @@ export const ProjectsProvider = props => {
 
     useEffect(() => {
         getFolders();
+        getColors();
     }, [])
 
     // ADD PROJECT //
 
-    const addProject = async (folderName) => {
+    const addProject = async (folderName, colorId) => {
         try {
-            const body = { folderName };
+            const body = { folderName, colorId };
             const response = await fetch("http://localhost:5000/folders", {
                 method: "POST",
                 headers: {
@@ -57,6 +85,7 @@ export const ProjectsProvider = props => {
             const message = await delProject.json();
             console.log(message);
             getFolders();
+            getTasks();
         } catch (error) {
             console.error(error.message);
         }
@@ -64,9 +93,9 @@ export const ProjectsProvider = props => {
 
     // UPDATE NAME OF THE PROJECT //
 
-    const updateProject = async (id, folderName) => {
+    const updateProject = async (id, folderName, colorId) => {
         try {
-            const body = { folderName };
+            const body = { folderName, colorId };
             console.log(JSON.stringify(body));
             const response = await fetch(`http://localhost:5000/folders/${id}`, {
                 method: "PUT",
@@ -78,10 +107,13 @@ export const ProjectsProvider = props => {
             const message = await response.json();
             console.log(message);
             getFolders();
+            getTasks();
         } catch (error) {
             console.error(error.message);
         }
     }
+
+    
 
     const contextValue = {
         projects,
@@ -89,7 +121,10 @@ export const ProjectsProvider = props => {
         getFolders,
         addProject,
         deleteProject,
-        updateProject
+        updateProject,
+        colors,
+        selectedColor,
+        setSelectedColor
     }
 
     return (
