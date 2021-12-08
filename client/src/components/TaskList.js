@@ -4,12 +4,19 @@ import { DatabaseContext } from "./DatabaseContext";
 import date from "date-and-time";
 import Accordion from "./Accordion";
 import { today, tomorrow } from "./TodayTomorrowVars";
+import EmptyState from "./EmptyState";
+import { ReactComponent as BallIllust } from "../img/Ball.svg";
+import { ReactComponent as FlameIllust } from "../img/Flame.svg";
+import { ReactComponent as ChestIllust } from "../img/Chest.svg";
+import { ReactComponent as HandIllust } from "../img/Hand.svg";
+import { OpenAndCloseEditContext } from "./OpenAndCloseEditContext";
 
 
 const TaskList = ({ currSection, showCompleted }) => {
     // Grab state out of «value» of context
     const { taskList } = useContext(DatabaseContext);
-    
+    const { openAnyEdit } = useContext(OpenAndCloseEditContext);
+
     // Takes array and makes a list of elements out of it
     const mapList = list => list.map(task => <TaskItem data={task} key={task.id} />);
 
@@ -49,7 +56,7 @@ const TaskList = ({ currSection, showCompleted }) => {
                 } else return false;
             } else return false;
         });
-    
+
     /* TOMORROW */
 
     const tomorrowTaskList = taskList
@@ -71,7 +78,7 @@ const TaskList = ({ currSection, showCompleted }) => {
         });
 
     /* PROJECTS */
-    
+
     const makeProjectTaskList = currSection => {
         return taskList
             .filter(task => {
@@ -100,6 +107,11 @@ const TaskList = ({ currSection, showCompleted }) => {
                             {mapList(completedInboxTaskList)}
                         </Accordion>
                     }
+                    {inboxTaskList.length === 0 && (!showCompleted || showCompleted && completedInboxTaskList.length === 0) && !openAnyEdit &&
+                        <EmptyState title="Nothing here" desc="Nothing to do, that is">
+                            <FlameIllust />
+                        </EmptyState>
+                    }
                 </>
             }
             {/* TODAY */}
@@ -125,6 +137,11 @@ const TaskList = ({ currSection, showCompleted }) => {
                             {mapList(completedTodayTaskList)}
                         </Accordion>
                     }
+                    {overdueTaskList.length === 0 && (!showCompleted || showCompleted && completedTodayTaskList.length === 0) && !openAnyEdit &&
+                        <EmptyState title="Today is done" desc="Time to rest">
+                            <ChestIllust />
+                        </EmptyState>
+                    }
                 </>
             }
             {/* TOMORROW */}
@@ -136,6 +153,11 @@ const TaskList = ({ currSection, showCompleted }) => {
                             {mapList(completedTomorrowTaskList)}
                         </Accordion>
                     }
+                    {tomorrowTaskList.length === 0 && (!showCompleted || showCompleted && completedTomorrowTaskList.length === 0) && !openAnyEdit &&
+                        <EmptyState title="Tomorrow is undefined..." desc="Or is it?">
+                            <BallIllust />
+                        </EmptyState>
+                    }
                 </>
             }
             {/* PROJECT */}
@@ -146,6 +168,11 @@ const TaskList = ({ currSection, showCompleted }) => {
                         <Accordion title="Completed" count={makeCompletedProjectTaskList(currSection).length}>
                             {mapList(makeCompletedProjectTaskList(currSection))}
                         </Accordion>
+                    }
+                    {mapList(makeProjectTaskList(currSection)).length === 0 && (!showCompleted || showCompleted && makeCompletedProjectTaskList(currSection).length === 0) && !openAnyEdit &&
+                        <EmptyState title="A fresh start" desc="Building something new?">
+                            <HandIllust />
+                        </EmptyState>
                     }
                 </>
             }

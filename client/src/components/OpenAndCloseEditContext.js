@@ -33,6 +33,9 @@ export const OpenAndCloseEditProvider = props => {
         setOpenEditArr(data);
     }
 
+    /* Indicates if any edit is open */
+    const openAnyEdit = openEditArr.find(item => item.openEdit) ? true : false;
+
     /**
      * Builds openEditArr when page has been loaded and
      * updates it every time taskList has been updated
@@ -91,7 +94,8 @@ export const OpenAndCloseEditProvider = props => {
         openOneEditCloseAllOther,
         closeOneEdit,
         closeAllEdits,
-        taskInputId
+        taskInputId,
+        openAnyEdit
     }
 
     return (

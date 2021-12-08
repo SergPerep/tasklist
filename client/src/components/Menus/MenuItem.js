@@ -14,7 +14,7 @@ const MenuItem = props => {
             {color && <ColorDisplay color={color} />}
             <div className="menu-item-title">{props.children}</div>
             {selected && <div className="menu-icon-right">
-                <Icon name="Checkbox" size="md" />
+                <Icon name="Check" size="md" />
             </div>}
         </div>
     )
