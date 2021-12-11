@@ -1,7 +1,7 @@
 import TaskList from "./TaskList";
 import Header from "./Header";
 import AddTaskInput from "./AddTaskInput";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DatabaseContext } from "./DatabaseContext";
 import Modal from "./Modal";
 import Input from "./Input";
@@ -15,8 +15,12 @@ const SectionContent = props => {
     const { projects, deleteProject, updateProject, colors, selectedColor, setSelectedColor } = useContext(DatabaseContext);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [openEditModal, setOpenEditModal] = useState(false);
-    const [showCompleted, setShowCompleted] = useState(true);
+    const [showCompleted, setShowCompleted] = useState(()=>localStorage.getItem("showCompleted") === "true" ? true : false);
     const [inputProjectNameValue, setInputProjectNameValue] = useState("");
+
+    useEffect(()=>{
+        localStorage.setItem("showCompleted", JSON.stringify(showCompleted));
+    }, [showCompleted]);
 
 
     const buildContent = () => {

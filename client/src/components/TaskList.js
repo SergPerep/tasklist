@@ -12,7 +12,8 @@ import { ReactComponent as HandIllust } from "../img/Hand.svg";
 import { OpenAndCloseEditContext } from "./OpenAndCloseEditContext";
 
 
-const TaskList = ({ currSection, showCompleted }) => {
+const TaskList = props => {
+    const { currSection, showCompleted } = props;
     // Grab state out of «value» of context
     const { taskList } = useContext(DatabaseContext);
     const { openAnyEdit } = useContext(OpenAndCloseEditContext);
