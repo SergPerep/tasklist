@@ -129,7 +129,7 @@ div {
 
 .taskboard-sidenav {
   width: 300px;
-  background-color: var(--c-primary);
+  background-color: var(--c-light-gray);
   overflow-y: scroll;
 }
 
@@ -365,7 +365,7 @@ div {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: white;
+  padding: 16px;
 }
 .tasknav-item .taskboard-sidenav-container {
   display: flex;
@@ -377,15 +377,15 @@ div {
   cursor: pointer;
   display: flex;
   justify-content: center;
+  border-radius: 4px;
 }
 
 .tasknav-item:hover {
-  background-color: var(--c-white-20);
+  background-color: var(--c-black-12);
 }
 
 .tasknav-item.selected {
-  background-color: white;
-  color: black;
+  background-color: var(--c-black-12);
 }
 
 .tasknav-item .tasknav-desc {
