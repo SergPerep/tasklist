@@ -39,7 +39,7 @@ const ProjectPicker = () => {
                 </>}
                 {selectedProject && <>
                     <ColorDisplay
-                        color={colors.find(color => color.id === selectedProject.color_id).label}
+                        color={colors.find(color => color.id === selectedProject.color_id) ? colors.find(color => color.id === selectedProject.color_id).label : undefined}
                         size="sm"
                     />
                     <div className="project-desc">{selectedProject.name}</div>
@@ -49,7 +49,7 @@ const ProjectPicker = () => {
                 <div className="project-menu" ref={domNode}>
                     <MenuItem iconName="Inbox" onClick={handleClickInbox}>Inbox</MenuItem>
                     {projects.map(project => <MenuItem
-                        color={colors.find(color => color.id === project.color_id).label}
+                        color={colors.find(color => color.id === project.color_id) ? colors.find(color => color.id === project.color_id).label : undefined}
                         key={project.id}
                         onClick={() => handleClickMenuItem(project.id)}>
                         {project.name}

@@ -19,10 +19,14 @@ const EditTask = props => {
     const { closeOneEdit } = useContext(OpenAndCloseEditContext);
     const [taskInputValue, setTaskInputValue] = useState("");
 
-
     useEffect(() => {
         loadDataToEditFields();
     }, []);
+
+    // console.log(projects);
+    // console.log(folder);
+    //console.log(projects.find(project => project.id === folder.id).color_id);
+    
 
     const handleSubmitTask = async (e) => {
         e.preventDefault();
@@ -98,8 +102,9 @@ const EditTask = props => {
             }
             if (folder.id) {
                 setSelectedProject({
-                    id: projects.filter(x => x.id === folder.id)[0].id,
-                    name: folder.name
+                    id: projects.find(x => x.id === folder.id) ? projects.find(x => x.id === folder.id).id : undefined,
+                    name: folder.name,
+                    color_id: projects.find(project => project.id === folder.id) ? projects.find(project => project.id === folder.id).color_id : undefined
                 });
             }
         }
