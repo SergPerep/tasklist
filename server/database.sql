@@ -164,3 +164,12 @@ VALUES
         '#DA7B35',
         'rgba(255, 151, 73, 0.14)'
     );
+
+-- Change color
+UPDATE
+    color
+SET
+    font = '#681735',
+    fill = 'rgba(151, 17, 67, 0.16)'
+WHERE
+    id = 4;
