@@ -1,6 +1,6 @@
 const ColorDisplay = props => {
-    const { color } = props;
-    return <div className="color-display">
+    const { color, size } = props;
+    return <div className={`color-display ${size}`}>
         <div className="color-spot" style={{backgroundColor: color}}></div>
     </div>
 }

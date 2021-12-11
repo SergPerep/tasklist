@@ -927,12 +927,23 @@ div {
   flex-shrink: 0;
 }
 
+.color-display.sm {
+  width:16px;
+  height: 16px;
+}
+
 .color-display .color-spot{
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background-color: var(--c-black-12);
 }
+
+.color-display.sm .color-spot {
+  width: 8px;
+  height: 8px;
+}
+
 .select-display-color {
   display: flex;
   align-items: center;

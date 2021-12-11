@@ -4,9 +4,10 @@ import Icon from "../Icon";
 import MenuItem from "../Menus/MenuItem";
 import { ProjectPickerContext } from "./ProjectPickerContext";
 import { DatabaseContext } from "../DatabaseContext";
+import ColorDisplay from "../ColorDisplay";
 
 const ProjectPicker = () => {
-    const { projects } = useContext(DatabaseContext);
+    const { projects, colors } = useContext(DatabaseContext);
     const { selectedProject, setSelectedProject } = useContext(ProjectPickerContext);
     const [openProjectMenu, setOpenProjectMenu] = useState(false);
 
@@ -37,7 +38,10 @@ const ProjectPicker = () => {
                     <div className="project-desc">Inbox</div>
                 </>}
                 {selectedProject && <>
-                    <Icon name="Folder" size="sm" />
+                    <ColorDisplay
+                        color={colors.find(color => color.id === selectedProject.color_id).label}
+                        size="sm"
+                    />
                     <div className="project-desc">{selectedProject.name}</div>
                 </>}
             </div>
@@ -45,7 +49,7 @@ const ProjectPicker = () => {
                 <div className="project-menu" ref={domNode}>
                     <MenuItem iconName="Inbox" onClick={handleClickInbox}>Inbox</MenuItem>
                     {projects.map(project => <MenuItem
-                        iconName="Folder"
+                        color={colors.find(color => color.id === project.color_id).label}
                         key={project.id}
                         onClick={() => handleClickMenuItem(project.id)}>
                         {project.name}

@@ -137,7 +137,7 @@ const TaskList = ({ currSection, showCompleted }) => {
                             {mapList(completedTodayTaskList)}
                         </Accordion>
                     }
-                    {overdueTaskList.length === 0 && (!showCompleted || showCompleted && completedTodayTaskList.length === 0) && !openAnyEdit &&
+                    {todayTaskList.length === 0 && (!showCompleted || showCompleted && completedTodayTaskList.length === 0) && !openAnyEdit &&
                         <EmptyState title="Today is done" desc="Time to rest">
                             <ChestIllust />
                         </EmptyState>
