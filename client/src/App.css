@@ -404,6 +404,7 @@ div {
   font-size: 12px;
   line-height: 24px;
   padding-right: 8px;
+  color: var(--c-black-60);
 }
 
 .projects-container {
