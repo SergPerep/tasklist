@@ -133,10 +133,6 @@ div {
   overflow-y: scroll;
 }
 
-.taskboard-sidenav-container{
-  width: 90%;
-}
-
 /* CHECKBOX */
 
 .checkbox .circle {
@@ -367,10 +363,6 @@ div {
   align-items: center;
   padding: 16px;
 }
-.tasknav-item .taskboard-sidenav-container {
-  display: flex;
-  padding: 12px;
-}
 
 .tasknav-item {
   width: 100%;
@@ -378,6 +370,7 @@ div {
   display: flex;
   justify-content: center;
   border-radius: 4px;
+  padding: 12px;
 }
 
 .tasknav-item:hover {

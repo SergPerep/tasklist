@@ -5,7 +5,6 @@ const TaskNavItem = props => {
     const { leftIcon, rightIcon, onClick, selected, count, onRightIconClick, color } = props;
     return (
         <div className={`tasknav-item ${selected ? "selected" : ""}`} onClick={onClick}>
-            <div className="taskboard-sidenav-container">
                 {leftIcon &&
                     <div className="tasknav-icon left-icon">
                         <Icon name={leftIcon} size={"md"} />
@@ -26,7 +25,6 @@ const TaskNavItem = props => {
                     </div>
                 }
             </div>
-        </div>
     )
 }
 
