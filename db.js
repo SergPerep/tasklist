@@ -4,6 +4,7 @@ const Pool = require("pg").Pool;
 // Access to .env variables
 require("dotenv").config();
 
+// Configuration for development build
 const devConfig = {
     user: process.env.PG_USER,
     host: process.env.PG_HOST,
@@ -11,6 +12,7 @@ const devConfig = {
     database: process.env.PG_DATABASE
 };
 
+// Configuration for production build
 const proConfig = {
     connectionString: process.env.DATABASE_URL, // from heroku addons
     ssl: {
