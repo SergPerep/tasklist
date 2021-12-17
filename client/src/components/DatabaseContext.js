@@ -31,7 +31,7 @@ export const DatabaseProvider = props => {
     // Function makes get-request to server
     const getTasks = async () => {
         try {
-            const response = await fetch("http://localhost:5000/tasks");
+            const response = await fetch("/tasks");
             const rawData = await response.json();
             const data = convertData(rawData);
             setTaskList(data);
@@ -45,7 +45,7 @@ export const DatabaseProvider = props => {
 
     const getFolders = async () => {
         try {
-            const response = await fetch("http://localhost:5000/folders");
+            const response = await fetch("/folders");
             const data = await response.json();
             setProjects(data);
             // Return array
@@ -61,7 +61,7 @@ export const DatabaseProvider = props => {
 
     const getColors = async () => {
         try {
-            const response = await fetch("http://localhost:5000/colors");
+            const response = await fetch("/colors");
             const rawColors = await response.json(); // colors from DB
             // Add Charcoal to colors from DB
             const refinedColors = [{
@@ -83,7 +83,7 @@ export const DatabaseProvider = props => {
     const addProject = async (folderName, colorId) => {
         try {
             const body = { folderName, colorId };
-            const response = await fetch("http://localhost:5000/folders", {
+            const response = await fetch("/folders", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -106,7 +106,7 @@ export const DatabaseProvider = props => {
 
     const deleteProject = async (id) => {
         try {
-            const delProject = await fetch(`http://localhost:5000/folders/${id}`, {
+            const delProject = await fetch(`/folders/${id}`, {
                 method: "DELETE"
             });
             const message = await delProject.json();
@@ -124,7 +124,7 @@ export const DatabaseProvider = props => {
         try {
             const body = { folderName, colorId };
             console.log(JSON.stringify(body));
-            const response = await fetch(`http://localhost:5000/folders/${id}`, {
+            const response = await fetch(`/folders/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"

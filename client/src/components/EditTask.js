@@ -39,7 +39,7 @@ const EditTask = props => {
                 folder_id: selectedProject ? selectedProject.id : undefined
             }
             
-            const editTask = await fetch(`http://localhost:5000/tasks/${id}`, {
+            const editTask = await fetch(`/tasks/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
@@ -60,7 +60,7 @@ const EditTask = props => {
                     read_time: considerTime,
                     folder_id: selectedProject ? selectedProject.id : undefined
                 }
-                const addTask = await fetch("http://localhost:5000/tasks", {
+                const addTask = await fetch("/tasks", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"

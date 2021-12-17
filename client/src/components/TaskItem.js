@@ -40,7 +40,7 @@ const TaskItem = props => {
     const updateStatus = async () => {
         try {
             const body = { status_of_completion: !status_of_completion };
-            const updateCheckStatus = await fetch(`http://localhost:5000/tasks/${id}`, {
+            const updateCheckStatus = await fetch(`/tasks/${id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)
@@ -62,7 +62,7 @@ const TaskItem = props => {
 
     const deleteTask = async () => {
         try {
-            const delTask = await fetch(`http://localhost:5000/tasks/${id}`, {
+            const delTask = await fetch(`/tasks/${id}`, {
                 method: "DELETE"
             });
             const message = await delTask.json();
