@@ -35,7 +35,7 @@ app.get("/tasks", async (req, res) => {
             FROM task
                 LEFT JOIN folder ON folder.id = task.folder_id
             ORDER BY 
-            time_of_creation DESC;
+                time_of_creation DESC;
             `);
         // Feedback to client
         res.json(allTasks.rows);
