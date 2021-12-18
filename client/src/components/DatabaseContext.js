@@ -20,8 +20,6 @@ export const DatabaseProvider = props => {
     const [projects, setProjects] = useState([]);
     const [colors, setColors] = useState([]);
     const [selectedColor, setSelectedColor] = useState(null);
-
-    console.log(selectedNavItem);
     
     // Place state of selected nav-item in localStorage
     useEffect(()=>{
@@ -88,7 +86,6 @@ export const DatabaseProvider = props => {
                 fill: "rgba(0, 0, 0, 0.12)"
             }, ...rawColors];
             setColors(refinedColors);
-            console.log(refinedColors);
         } catch (error) {
             console.error(error.message);
         }

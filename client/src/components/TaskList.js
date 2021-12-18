@@ -108,7 +108,7 @@ const TaskList = props => {
                             {mapList(completedInboxTaskList)}
                         </Accordion>
                     }
-                    {inboxTaskList.length === 0 && (!showCompleted || showCompleted && completedInboxTaskList.length === 0) && !openAnyEdit &&
+                    {inboxTaskList.length === 0 && (!showCompleted || (showCompleted && completedInboxTaskList.length === 0)) && !openAnyEdit &&
                         <EmptyState title="Nothing here" desc="Nothing to do, that is">
                             <FlameIllust />
                         </EmptyState>
@@ -138,7 +138,7 @@ const TaskList = props => {
                             {mapList(completedTodayTaskList)}
                         </Accordion>
                     }
-                    {todayTaskList.length === 0 && (!showCompleted || showCompleted && completedTodayTaskList.length === 0) && !openAnyEdit &&
+                    {todayTaskList.length === 0 && (!showCompleted || (showCompleted && completedTodayTaskList.length === 0)) && !openAnyEdit &&
                         <EmptyState title="Today is done" desc="Time to rest">
                             <ChestIllust />
                         </EmptyState>
@@ -154,7 +154,7 @@ const TaskList = props => {
                             {mapList(completedTomorrowTaskList)}
                         </Accordion>
                     }
-                    {tomorrowTaskList.length === 0 && (!showCompleted || showCompleted && completedTomorrowTaskList.length === 0) && !openAnyEdit &&
+                    {tomorrowTaskList.length === 0 && (!showCompleted || (showCompleted && completedTomorrowTaskList.length === 0)) && !openAnyEdit &&
                         <EmptyState title="Tomorrow is undefined..." desc="Or is it?">
                             <BallIllust />
                         </EmptyState>
@@ -170,7 +170,7 @@ const TaskList = props => {
                             {mapList(makeCompletedProjectTaskList(currSection))}
                         </Accordion>
                     }
-                    {mapList(makeProjectTaskList(currSection)).length === 0 && (!showCompleted || showCompleted && makeCompletedProjectTaskList(currSection).length === 0) && !openAnyEdit &&
+                    {mapList(makeProjectTaskList(currSection)).length === 0 && (!showCompleted || (showCompleted && makeCompletedProjectTaskList(currSection).length === 0)) && !openAnyEdit &&
                         <EmptyState title="A fresh start" desc="Building something new?">
                             <HandIllust />
                         </EmptyState>
