@@ -129,6 +129,7 @@ const TaskNavList = props => {
                         <Input
                             label="Name"
                             value={inputAddProjectValue}
+                            autoFocus
                             onChange={e => { setInputAddProjectValue(e.target.value) }} />
                             <Select
                                 placeholder="New select"
