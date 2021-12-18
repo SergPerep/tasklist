@@ -11,7 +11,6 @@ import Snackbar from "./components/Snackbar";
 import { SnackbarProvider } from "./components/SnackbarContext";
 
 function App() {
-  const [selectedNavItem, setSelectedNavItem] = useState("Inbox");
   return (
     <SnackbarProvider>
       <DatabaseProvider>
@@ -22,13 +21,13 @@ function App() {
             <div className="taskboard-container">
               <OpenAndCloseEditProvider>
                 <div className="taskboard-sidenav">
-                  <TaskNavList data={{ selectedNavItem, setSelectedNavItem }} />
+                  <TaskNavList/>
                 </div>
                 <div className="taskboard-display">
                   <div className="taskboard-display-container">
                     <DateAndTimePickerProvider>
                       <ProjectPickerProvider>
-                        <SectionContent data={{ selectedNavItem, setSelectedNavItem }} />
+                        <SectionContent />
                       </ProjectPickerProvider>
                     </DateAndTimePickerProvider>
                   </div>

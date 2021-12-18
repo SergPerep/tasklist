@@ -12,16 +12,14 @@ import Select from "./Select";
 import ColorDisplay from "./ColorDisplay";
 import Icon from "./Icon";
 
-const TaskNavList = props => {
-    const [openProjects, setOpenProjects] = useState(()=>{
-        if(localStorage.getItem("openProjects") === null) {
+const TaskNavList = () => {
+    const [openProjects, setOpenProjects] = useState(() => {
+        if (localStorage.getItem("openProjects") === null) {
             return true
         }
         return localStorage.getItem("openProjects") === "true" ? true : false
     });
-    console.log(localStorage.getItem("openProjects"))
-    const { selectedNavItem, setSelectedNavItem } = props.data;
-    const { taskList, projects, addProject, colors, selectedColor, setSelectedColor } = useContext(DatabaseContext);
+    const { taskList, projects, addProject, colors, selectedColor, setSelectedColor, selectedNavItem, setSelectedNavItem } = useContext(DatabaseContext);
     const { closeAllEdits } = useContext(OpenAndCloseEditContext);
     const [openModalAddProject, setOpenModalAddProject] = useState(false);
     const [inputAddProjectValue, setInputAddProjectValue] = useState("");
@@ -37,12 +35,12 @@ const TaskNavList = props => {
             opacity: openProjects ? 1 : 0
         }
     });
-    
+
     useEffect(() => {
         localStorage.setItem("openProjects", openProjects);
     }, [openProjects]);
 
-    
+
     const handleClickProjects = () => {
         setOpenProjects(!openProjects);
     };
@@ -117,11 +115,11 @@ const TaskNavList = props => {
                         disabled: inputAddProjectValue ? false : true,
                         onClick: () => {
                             const folderPromise = addProject(inputAddProjectValue, selectedColor);
-                            folderPromise.then((folder)=>{
-                               const id = folder.id;
-                               setSelectedNavItem(id);
-                               setOpenModalAddProject(false);
-                               setInputAddProjectValue("");
+                            folderPromise.then((folder) => {
+                                const id = folder.id;
+                                setSelectedNavItem(id);
+                                setOpenModalAddProject(false);
+                                setInputAddProjectValue("");
                             });
                         }
                     }]}>
@@ -131,26 +129,26 @@ const TaskNavList = props => {
                             value={inputAddProjectValue}
                             autoFocus
                             onChange={e => { setInputAddProjectValue(e.target.value) }} />
-                            <Select
-                                placeholder="New select"
-                                label="Color"
-                                selectList={colors.map(color => {
-                                    return {
-                                        title: color.name,
-                                        color: color.label,
-                                        selected: selectedColor === color.id,
-                                        onClick: () => {
-                                            setSelectedColor(color.id);
-                                        }
+                        <Select
+                            placeholder="New select"
+                            label="Color"
+                            selectList={colors.map(color => {
+                                return {
+                                    title: color.name,
+                                    color: color.label,
+                                    selected: selectedColor === color.id,
+                                    onClick: () => {
+                                        setSelectedColor(color.id);
                                     }
-                                })}>
-                                <div className="select-display-color">
-                                    <ColorDisplay color={colors.find(color => color.id === selectedColor).label} />
-                                    <div className="select-display-color-name">{colors.find(color => color.id === selectedColor).name}</div>
-                                    <Icon name="AngleDown" size="sm" />
-                                </div>
-                            </Select>
-                            
+                                }
+                            })}>
+                            <div className="select-display-color">
+                                <ColorDisplay color={colors.find(color => color.id === selectedColor).label} />
+                                <div className="select-display-color-name">{colors.find(color => color.id === selectedColor).name}</div>
+                                <Icon name="AngleDown" size="sm" />
+                            </div>
+                        </Select>
+
                     </Modal>
                 }
             </div>

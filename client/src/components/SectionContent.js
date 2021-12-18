@@ -10,9 +10,8 @@ import Select from "./Select";
 import ColorDisplay from "./ColorDisplay";
 import Icon from "./Icon";
 
-const SectionContent = props => {
-    const { selectedNavItem, setSelectedNavItem } = props.data;
-    const { projects, deleteProject, updateProject, colors, selectedColor, setSelectedColor } = useContext(DatabaseContext);
+const SectionContent = () => {
+    const { projects, deleteProject, updateProject, colors, selectedColor, setSelectedColor,selectedNavItem, setSelectedNavItem } = useContext(DatabaseContext);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [openEditModal, setOpenEditModal] = useState(false);
     const [showCompleted, setShowCompleted] = useState(()=>localStorage.getItem("showCompleted") === "true" ? true : false);

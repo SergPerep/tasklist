@@ -6,6 +6,7 @@ export const DatabaseContext = createContext();
 // Will be imported inside parent component
 export const DatabaseProvider = props => {
     // States to share
+    const [selectedNavItem, setSelectedNavItem] = useState("Inbox");
     const [taskList, setTaskList] = useState([]);
     const [projects, setProjects] = useState([]);
     const [colors, setColors] = useState([]);
@@ -160,7 +161,9 @@ export const DatabaseProvider = props => {
         updateProject,
         colors,
         selectedColor,
-        setSelectedColor
+        setSelectedColor,
+        selectedNavItem, 
+        setSelectedNavItem
     };
 
     // Creates context
