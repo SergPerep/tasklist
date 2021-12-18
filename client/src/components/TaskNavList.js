@@ -13,7 +13,13 @@ import ColorDisplay from "./ColorDisplay";
 import Icon from "./Icon";
 
 const TaskNavList = props => {
-    const [openProjects, setOpenProjects] = useState(localStorage.getItem("openProjects") === "true" ? true : false);
+    const [openProjects, setOpenProjects] = useState(()=>{
+        if(localStorage.getItem("openProjects") === null) {
+            return true
+        }
+        return localStorage.getItem("openProjects") === "true" ? true : false
+    });
+    console.log(localStorage.getItem("openProjects"))
     const { selectedNavItem, setSelectedNavItem } = props.data;
     const { taskList, projects, addProject, colors, selectedColor, setSelectedColor } = useContext(DatabaseContext);
     const { closeAllEdits } = useContext(OpenAndCloseEditContext);
