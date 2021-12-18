@@ -6,12 +6,27 @@ export const DatabaseContext = createContext();
 // Will be imported inside parent component
 export const DatabaseProvider = props => {
     // States to share
-    const [selectedNavItem, setSelectedNavItem] = useState("Inbox");
+    const [selectedNavItem, setSelectedNavItem] = useState(()=>{
+        const lStorage = localStorage.getItem("selectedNavItem");
+        // If locaStorage not empty
+        if (lStorage) {
+            // If localStorage-string contains number then return number
+            return +lStorage ? +lStorage : lStorage
+        }
+        // If localStorage empty return "Inbox"
+        return "Inbox"
+    });
     const [taskList, setTaskList] = useState([]);
     const [projects, setProjects] = useState([]);
     const [colors, setColors] = useState([]);
     const [selectedColor, setSelectedColor] = useState(null);
+
+    console.log(selectedNavItem);
     
+    // Place state of selected nav-item in localStorage
+    useEffect(()=>{
+        localStorage.setItem("selectedNavItem", selectedNavItem);
+    },[selectedNavItem])
 
     // Converts data so that JS can work with it
     const convertData = (oldArr) => {

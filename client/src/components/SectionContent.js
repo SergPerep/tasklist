@@ -67,8 +67,8 @@ const SectionContent = () => {
                     </>
                 )
             }
-        } else if (typeof selectedNavItem === "number") {
-            const project = projects.find(x => x.id === selectedNavItem);
+        } else if (typeof selectedNavItem === "number" && projects.length > 0) {
+            const project = projects.some(x => x.id === selectedNavItem) ? projects.find(x => x.id === selectedNavItem) : undefined;
             return (
                 <>
                     <Header menuList={[{
