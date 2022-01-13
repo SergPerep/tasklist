@@ -11,7 +11,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "nodemon": "nodemon index.js",
     "heroku-postbuild": "cd client && npm install && npm run build",
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "NODE_ENV=development nodemon index"
   },
   "author": "Sergei Perepelkin",
   "license": "MIT",
