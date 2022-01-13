@@ -6,7 +6,8 @@ const path = require("path");
 // const PORT = process.env.PORT || 5000;
 
 const {
-    PORT = 5000
+    PORT = 5000,
+    NODE_ENV = "development"
 } = process.env;
 // Useless comment
 
@@ -15,7 +16,7 @@ app.use(cors())
 app.use(express.json()); // parse req.body as json
 
 // Static content when production
-if(process.env.NODE_ENV === "production") {
+if(NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "client/build")));
 }
 
