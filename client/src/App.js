@@ -9,9 +9,20 @@ import SectionContent from "./components/SectionContent";
 import TopNav from "./components/TopNav";
 import Snackbar from "./components/Snackbar";
 import { SnackbarProvider } from "./components/SnackbarContext";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import MainPage from "./components/Pages/MainPage";
+import LoginPage from "./components/Pages/LoginPage";
+import SignupPage from "./components/Pages/SignupPage";
 
 function App() {
   return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+      </Routes>
+      {/* 
     <SnackbarProvider>
       <DatabaseProvider>
           <div className="taskboard">
@@ -38,6 +49,8 @@ function App() {
       </DatabaseProvider>
       <Snackbar />
     </SnackbarProvider>
+    */}
+    </Router>
   );
 }
 
