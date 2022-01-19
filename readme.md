@@ -10,5 +10,8 @@
 - [nodemon](https://github.com/remy/nodemon) to automatically restart server when saving edits
 - [uuid](https://github.com/uuidjs/uuid) to generate uuid
 - [date-and-time](https://www.npmjs.com/package/date-and-time) to manage javascript dateObject
+## Authentication
+
+## Icons
 
 ## Data

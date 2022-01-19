@@ -10,9 +10,9 @@ import TopNav from "./components/TopNav";
 import Snackbar from "./components/Snackbar";
 import { SnackbarProvider } from "./components/SnackbarContext";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import MainPage from "./components/Pages/MainPage";
-import LoginPage from "./components/Pages/LoginPage";
-import SignupPage from "./components/Pages/SignupPage";
+import MainPage from "./components/pages/MainPage";
+import LoginPage from "./components/pages/LoginPage";
+import SignupPage from "./components/pages/SignupPage";
 
 function App() {
   return (

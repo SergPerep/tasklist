@@ -3,6 +3,13 @@ const app = express();
 const cors = require("cors");
 const pool = require("./db");
 const path = require("path");
+const session = require("express-session");
+const genHash = require("./utils/genHash");
+const bcrypt = require("bcryptjs");
+const checkWhetherUserAlreadyExists = require("./utils/checkWhetherUserAlreadyExists");
+const validateUsername = require("./utils/validateUsername");
+const validatePassword = require("./utils/validatePassword");
+
 // const PORT = process.env.PORT || 5000;
 
 const {
@@ -16,11 +23,65 @@ app.use(cors())
 app.use(express.json()); // parse req.body as json
 
 // Static content when production
-if(NODE_ENV === "production") {
+if (NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "client/build")));
 }
 
 // ROUTES //
+
+app.post("/auth/register", async (req, res) => {
+    try {
+        const { username, password } = req.body;
+
+        if (username.length === 0 || password.length === 0) return res.status(400).json("Missing credentials");
+
+        const isUserAlreadyExists = await checkWhetherUserAlreadyExists(username);
+        if (isUserAlreadyExists) return res.status(400).json("User already exists. Try login")
+
+        const hash = genHash(password);
+        const dbData = await pool.query(`INSERT INTO users (username, password) VALUES ($1, $2)`, [username, hash]);
+        res.status(201).json("You have succesfully signed up");
+    } catch (error) {
+        console.error(error.message);
+    }
+});
+
+app.post("/auth/login", async (req, res) => {
+    try {
+        const { username, password } = req.body;
+
+
+        if (username.length === 0 || password.length === 0) return res.status(400).json("Missing credentials");
+
+        const isUsernameValid = validateUsername(username);
+        if (!isUsernameValid) return res.status(400).json("Username is not valid");
+
+        const isPasswordValid = validatePassword(password);
+        if (!isPasswordValid) return res.status(400).json("Password is not valid");
+
+        const isUserExists = await checkWhetherUserAlreadyExists(username);
+        if (!isUserExists) return res.status(400).json("Username and password do not match");
+
+        const dbData = await pool.query("SELECT password FROM users WHERE username=$1;", [username]);
+        const hash = dbData.rows[0].password;
+
+        const isPasswordVerified = bcrypt.compareSync(password, hash);
+        if (!isPasswordVerified) return res.status(400).json("Username and password do not match");
+
+        res.status(200).json("You have succesfully loged in");
+
+    } catch (error) {
+        console.error(error.message);
+    }
+})
+
+
+
+
+
+
+
+
 
 // Get all tasks
 app.get("/tasks", async (req, res) => {

@@ -1,0 +1,32 @@
+# Sign up
+POST http://localhost:5000/auth/register
+Content-Type: application/json
+
+{
+    "username": "Bob",
+    "password": "BobTheBuilder1084"
+}
+
+###
+
+# Sign up with wrong credentials
+
+POST http://localhost:5000/auth/register
+Content-Type: application/json
+
+{
+    "username": "",
+    "password": "BobTheBuilder1084"
+}
+
+###
+
+# Login
+
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+    "username": "Bob",
+    "password": "BobTheBuilder1084"
+}
