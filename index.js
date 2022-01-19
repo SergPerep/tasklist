@@ -1,3 +1,4 @@
+// Modules
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -12,8 +13,6 @@ const genHash = require("./utils/genHash");
 const checkWhetherUserAlreadyExists = require("./utils/checkWhetherUserAlreadyExists");
 const validateUsername = require("./utils/validateUsername");
 const validatePassword = require("./utils/validatePassword");
-
-// const PORT = process.env.PORT || 5000;
 
 const {
     PORT = 5000,
@@ -53,7 +52,7 @@ if (NODE_ENV === "production") {
 
 // ROUTES //
 
-app.get("/", (req, res) => {
+app.get("/session", (req, res) => {
     res.json(req.session);
 })
 
@@ -78,7 +77,6 @@ app.post("/auth/login", async (req, res) => {
     try {
         const { username, password } = req.body;
 
-
         if (username.length === 0 || password.length === 0) return res.status(400).json("Missing credentials");
 
         const isUsernameValid = validateUsername(username);
@@ -87,16 +85,18 @@ app.post("/auth/login", async (req, res) => {
         const isPasswordValid = validatePassword(password);
         if (!isPasswordValid) return res.status(400).json("Password is not valid");
 
-        const isUserExists = await checkWhetherUserAlreadyExists(username);
-        if (!isUserExists) return res.status(400).json("Username and password do not match");
+        const dbData = await pool.query("SELECT id, password FROM users WHERE username=$1", [username]);
+        if (!dbData.rows[0]) return res.status(400).json("Username and password do not match");
 
-        const dbData = await pool.query("SELECT password FROM users WHERE username=$1;", [username]);
+        const userId = dbData.rows[0].id;
         const hash = dbData.rows[0].password;
 
         const isPasswordVerified = bcrypt.compareSync(password, hash);
         if (!isPasswordVerified) return res.status(400).json("Username and password do not match");
 
-        res.status(200).json("You have succesfully loged in");
+        req.session.user = { userId };
+
+        res.status(200).json("You have successfully loged in");
 
     } catch (error) {
         console.error(error.message);
