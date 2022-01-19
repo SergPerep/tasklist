@@ -7,9 +7,12 @@ const genHash = require("../utils/genHash");
 const checkWhetherUserAlreadyExists = require("../utils/checkWhetherUserAlreadyExists");
 const validateUsername = require("../utils/validateUsername");
 const validatePassword = require("../utils/validatePassword");
+const { route } = require("express/lib/application");
 
 router.post("/register", async (req, res) => {
     try {
+        if (req.session?.user?.userId) return res.json("You are already authenticated");
+        
         const { username, password } = req.body;
 
         if (username.length === 0 || password.length === 0) return res.status(400).json("Missing credentials");
@@ -27,6 +30,8 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
     try {
+        if (req.session?.user?.userId) return res.json("You are already authenticated");
+
         const { username, password } = req.body;
 
         if (username.length === 0 || password.length === 0) return res.status(400).json("Missing credentials");
@@ -48,11 +53,21 @@ router.post("/login", async (req, res) => {
 
         req.session.user = { userId };
 
-        res.status(200).json("You have successfully loged in");
+        res.status(200).json("You have successfully logged in");
 
     } catch (error) {
         console.error(error.message);
     }
 })
+
+router.get("/logout", (req, res) => {
+
+    if (!req.session?.user?.userId) return res.json("You are not authenticated");
+
+    req.session.destroy(err => { if (err) throw err });
+    res.clearCookie('sid');
+    res.status(200).json("You have been logged out");
+
+});
 
 module.exports = router;

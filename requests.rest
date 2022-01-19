@@ -36,3 +36,9 @@ Content-Type: application/json
     "username": "Bob",
     "password": "BobTheBuilder1084"
 }
+
+###
+
+#Logout
+
+GET http://localhost:5000/auth/logout
