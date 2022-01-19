@@ -4,8 +4,11 @@ const cors = require("cors");
 const pool = require("./db");
 const path = require("path");
 const session = require("express-session");
-const genHash = require("./utils/genHash");
+const MongoDBStorage = require("connect-mongodb-session")(session);
 const bcrypt = require("bcryptjs");
+
+// Utils
+const genHash = require("./utils/genHash");
 const checkWhetherUserAlreadyExists = require("./utils/checkWhetherUserAlreadyExists");
 const validateUsername = require("./utils/validateUsername");
 const validatePassword = require("./utils/validatePassword");
@@ -14,12 +17,33 @@ const validatePassword = require("./utils/validatePassword");
 
 const {
     PORT = 5000,
-    NODE_ENV = "development"
+    NODE_ENV = "development",
+    SESS_SECRET = "session secret",
+    MONGODB_USER_PASSWORD = "u17FC7tjhKjtpM96"
 } = process.env;
-// Useless comment
+
+app.use(session({
+    resave: false,
+    saveUninitialized: true,
+    secret: SESS_SECRET,
+    secure: NODE_ENV === "production",
+    store: new MongoDBStorage({
+        uri: `mongodb+srv://worm:${MONGODB_USER_PASSWORD}@cluster0.s0yec.mongodb.net/tasklist?retryWrites=true&w=majority`,
+        databaseName: "tasklist",
+        collection: "session"
+    }, (error) => { if (error) { console.log(error) } }),
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 2, // 2 hours
+    }
+}));
 
 // Middleware
-app.use(cors())
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+    methods: ['GET', 'PUT'],
+    allowedHeaders: ['Content-Type', '*']
+}));
 app.use(express.json()); // parse req.body as json
 
 // Static content when production
@@ -28,6 +52,10 @@ if (NODE_ENV === "production") {
 }
 
 // ROUTES //
+
+app.get("/", (req, res) => {
+    res.json(req.session);
+})
 
 app.post("/auth/register", async (req, res) => {
     try {
