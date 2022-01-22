@@ -29,7 +29,6 @@ export const AuthenticationProvider = props => {
     const loginUser = async (username, password) => {
         try {
             const body = { username, password };
-            // console.log(body);
             const response = await fetch("http://localhost:5000/auth/login", {
                 method: "POST",
                 credentials: "include",
@@ -37,12 +36,31 @@ export const AuthenticationProvider = props => {
                 body: JSON.stringify(body)
             });
 
+            if (response.status < 200 || response.status > 299) return console.log(await response.json());
+
+            const { isAuthenticated } = await response.json();
+            console.log({ isAuthenticated });
+            if (isAuthenticated === true) setIsUserAuthenticated(isAuthenticated === true);
+
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+
+    const signupUser = async (username, password) => {
+        try {
+            const body = { username, password };
+            const response = await fetch("http://localhost:5000/auth/register", {
+                credentials: "include",
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body)
+            });
 
             if (response.status < 200 || response.status > 299) return console.log(await response.json());
 
             const { isAuthenticated } = await response.json();
-            if (isAuthenticated !== true) setIsUserAuthenticated(isAuthenticated === true);
-            await checkWhetherUserIsAuthenticated();
+            if (isAuthenticated === true) setIsUserAuthenticated(isAuthenticated === true);
 
         } catch (error) {
             console.error(error.message);
@@ -52,7 +70,8 @@ export const AuthenticationProvider = props => {
     const valuesToShare = {
         isUserAuthenticated,
         setIsUserAuthenticated,
-        loginUser
+        loginUser,
+        signupUser
     };
 
     return <AuthenticationContext.Provider value={valuesToShare}>

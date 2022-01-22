@@ -11,7 +11,7 @@ const { route } = require("express/lib/application");
 
 router.post("/register", async (req, res) => {
     try {
-        if (req.session?.user?.userId) return res.json("You are already authenticated");
+        if (req.session?.user?.userId) return res.status(403).json("You are already authenticated");
 
         const { username, password } = req.body;
 
@@ -21,8 +21,13 @@ router.post("/register", async (req, res) => {
         if (isUserAlreadyExists) return res.status(400).json("User already exists. Try login")
 
         const hash = genHash(password);
-        const dbData = await pool.query(`INSERT INTO users (username, password) VALUES ($1, $2)`, [username, hash]);
-        res.status(201).json("You have succesfully signed up");
+        const dbData = await pool.query(`INSERT INTO users (username, password) VALUES ($1, $2) RETURNING id`, [username, hash]);
+        const userId = dbData.rows[0].id;
+        
+        req.session.user = { userId };
+
+        res.status(200).json({ isAuthenticated: true });
+
     } catch (error) {
         console.error(error.message);
     }
@@ -72,7 +77,6 @@ router.get("/logout", (req, res) => {
 
 router.get("/check-auth", (req, res) => {
     const isAuthenticated = !!req.session?.user?.userId;
-    console.log(req.session);
     return res.status(200).json({ isAuthenticated });
 })
 
