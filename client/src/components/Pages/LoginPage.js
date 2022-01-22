@@ -1,20 +1,23 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Button from "../atoms/Button";
 import Input from "../atoms/Input";
 import { useNavigate } from "react-router-dom";
 import HreflessLink from "../atoms/HreflessLink";
+import { AuthenticationContext } from "../contexts/AuthenticationContext";
 
 const LoginPage = () => {
-    const [inputs, setInputs] = useState({ username: "goodBoy55", password: "pa$$55" })
+    const [inputs, setInputs] = useState({ username: "goodBoy55", password: "pa$$55" });
+    const { loginUser } = useContext(AuthenticationContext);
 
     const navigate = useNavigate();
 
-    const handleChangeInput = () => {
-
+    const handleChangeInput = e => {
+        setInputs({ ...inputs, [e.target.name]: e.target.value })
     }
 
-    const handleSumbitForm = () => {
-
+    const handleSumbitForm = (e) => {
+        e.preventDefault();
+        loginUser(inputs.username, inputs.password);
     }
     return (
         <div className="canvas">
@@ -23,12 +26,14 @@ const LoginPage = () => {
                 <form onSubmit={handleSumbitForm}>
                     <Input
                         label="Username"
+                        name="username"
                         value={inputs.username}
                         placeholder="some-name"
                         onChange={handleChangeInput}
                     />
                     <Input
                         label="Password"
+                        name="password"
                         type="password"
                         value={inputs.password}
                         placeholder="*****"
@@ -36,7 +41,7 @@ const LoginPage = () => {
                     />
                     <HreflessLink onClick={() => navigate("/signup")}>Create an account</HreflessLink>
                     <div className="button-container">
-                    <Button>Login</Button>
+                        <Button type="submit" name="submit" tag="button">Login</Button>
                     </div>
                 </form>
             </div>

@@ -42,3 +42,9 @@ Content-Type: application/json
 #Logout
 
 GET http://localhost:5000/auth/logout
+
+###
+
+# Check auth
+
+GET http://localhost:5000/auth/check-auth

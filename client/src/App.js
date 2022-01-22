@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext, useState } from "react"
 import './App.css';
 /*
 import { DatabaseProvider } from "./components/DatabaseContext";
@@ -11,18 +11,20 @@ import TopNav from "./components/TopNav";
 import Snackbar from "./components/Snackbar";
 import { SnackbarProvider } from "./components/SnackbarContext";
 */
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 import MainPage from "./components/pages/MainPage";
 import LoginPage from "./components/pages/LoginPage";
 import SignupPage from "./components/pages/SignupPage";
+import { AuthenticationContext } from "./components/contexts/AuthenticationContext";
 
 function App() {
+  const { isUserAuthenticated } = useContext(AuthenticationContext);
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/" element={isUserAuthenticated ? <MainPage /> : <Navigate to="/login"/>} />
+        <Route path="/login" element={isUserAuthenticated ? <Navigate to="/"/> : <LoginPage />} />
+        <Route path="/signup" element={isUserAuthenticated ? <Navigate to="/"/> : <SignupPage />} />
       </Routes>
       {/* 
     <SnackbarProvider>

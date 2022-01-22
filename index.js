@@ -34,7 +34,7 @@ app.use(session({
 app.use(cors({
     origin: "http://localhost:3000",
     credentials: true,
-    methods: ['GET', 'PUT'],
+    methods: ['GET', 'PUT', 'POST', 'DELETE'],
     allowedHeaders: ['Content-Type', '*']
 }));
 app.use(express.json()); // parse req.body as json

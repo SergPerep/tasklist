@@ -12,7 +12,7 @@ const { route } = require("express/lib/application");
 router.post("/register", async (req, res) => {
     try {
         if (req.session?.user?.userId) return res.json("You are already authenticated");
-        
+
         const { username, password } = req.body;
 
         if (username.length === 0 || password.length === 0) return res.status(400).json("Missing credentials");
@@ -30,7 +30,7 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
     try {
-        if (req.session?.user?.userId) return res.json("You are already authenticated");
+        if (req.session?.user?.userId) return res.status(403).json("You are already authenticated");
 
         const { username, password } = req.body;
 
@@ -53,7 +53,7 @@ router.post("/login", async (req, res) => {
 
         req.session.user = { userId };
 
-        res.status(200).json("You have successfully logged in");
+        res.status(200).json({ isAuthenticated: true });
 
     } catch (error) {
         console.error(error.message);
@@ -69,5 +69,11 @@ router.get("/logout", (req, res) => {
     res.status(200).json("You have been logged out");
 
 });
+
+router.get("/check-auth", (req, res) => {
+    const isAuthenticated = !!req.session?.user?.userId;
+    console.log(req.session);
+    return res.status(200).json({ isAuthenticated });
+})
 
 module.exports = router;
