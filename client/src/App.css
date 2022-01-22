@@ -11,6 +11,7 @@ h1, h2, h3, h4, h6, h6 {
   font-weight: bold;
   color: black;
 }
+
 h2 {
   font-size: 18px;
   line-height: 28px;
@@ -85,8 +86,15 @@ a {
 }
 
 #root {
-  height: 100vh;
+  /* height: 100vh; */
   background-color: var(--c-light-gray);
+}
+
+.canvas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 p {
@@ -97,6 +105,7 @@ p {
 div {
   box-sizing: border-box;
 }
+
 /* BASIC LAYOUT */
 
 .topnav {
@@ -186,7 +195,7 @@ div {
   color: var(--c-error);
 }
 
-.taskitem.completed .taskitem-date, 
+.taskitem.completed .taskitem-date,
 .taskitem.completed .taskitem-time,
 .taskitem.overdue.completed .taskitem-date,
 .taskitem.overdue.completed .taskitem-time {
@@ -228,9 +237,9 @@ div {
 .taskitem.completed .checkbox.checked .circle {
   background-color: var(--c-black-12);
   border-color: transparent;
-} 
+}
 
-.taskitem.completed .more > .line-icon {
+.taskitem.completed .more>.line-icon {
   color: var(--c-black-30);
 }
 
@@ -417,10 +426,12 @@ div {
 .projects-content, .projects-header {
   width: 100%;
 }
-.projects-header .tasknav-item .right-icon{
+
+.projects-header .tasknav-item .right-icon {
   border-radius: 2px;
 }
-.projects-header .tasknav-item .right-icon:hover{
+
+.projects-header .tasknav-item .right-icon:hover {
   background-color: var(--c-white-20);
 }
 
@@ -650,7 +661,7 @@ div {
   margin-left: 8px;
 }
 
-.header .more{
+.header .more {
   position: relative;
 }
 
@@ -688,6 +699,7 @@ div {
 .menu-icon-left {
   margin-right: 8px;
 }
+
 .menu-icon-right {
   margin-right: 8px;
 }
@@ -828,7 +840,7 @@ div {
   height: 100vh;
   background-color: var(--c-black-30);
   position: fixed;
-  top:0;
+  top: 0;
   left: 0;
   display: flex;
   justify-content: center;
@@ -844,23 +856,25 @@ div {
   max-width: 420px;
 }
 
-.modal-button-group{
+.modal-button-group {
   padding-top: 24px;
   display: flex;
   justify-content: flex-end;
 }
 
-.modal-button-group .button:not(:first-child){
+.modal-button-group .button:not(:first-child) {
   margin-left: 12px;
 }
 
-/* INPUT */ /* SELECT */
+/* INPUT */
+/* SELECT */
 
 .input-field label, .select-label {
   display: block;
   color: var(--c-black-60);
   margin-bottom: 12px;
 }
+
 .input-field input, .select-display {
   display: block;
   width: 100%;
@@ -874,17 +888,20 @@ div {
   line-height: 18px;
 }
 
-.select-display{
- display: flex;
- cursor: pointer;
+.select-display {
+  display: flex;
+  cursor: pointer;
 }
+
 .select {
   margin-top: 24px;
   color: black;
 }
+
 .select-field {
   position: relative;
 }
+
 .select-content {
   position: absolute;
   top: 0;
@@ -897,6 +914,7 @@ div {
   width: 24px;
   height: 18px;
 }
+
 /* SNACKBAR */
 .snackbar {
   background-color: #262626;
@@ -922,11 +940,11 @@ div {
 }
 
 .color-display.sm {
-  width:16px;
+  width: 16px;
   height: 16px;
 }
 
-.color-display .color-spot{
+.color-display .color-spot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -944,8 +962,8 @@ div {
   width: 100%;
 }
 
-.select-display-color-name{
-  width:100%;
+.select-display-color-name {
+  width: 100%;
 }
 
 /* EMPTY STATE */
@@ -971,4 +989,36 @@ div {
 
 .empty-state-title, .empty-state-desc {
   text-align: center;
+}
+
+/* AUTHENTICATION */
+
+.authentication {
+  width: 360px;
+  padding: 24px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.input-field {
+  margin-bottom: 16px;
+}
+
+.authentication .button-container {
+  margin-top: 16px;
+  display: flex;
+  justify-content: right;
+}
+
+/* Hrefless link */
+
+button.hrefless-link, button.hrefless-link:active {
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+  font-size: 16px;
+  /*input has OS specific font-family*/
+  cursor: pointer;
+  color: var(--c-black-60);
+  text-align: left;
 }

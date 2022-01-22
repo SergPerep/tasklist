@@ -1,5 +1,6 @@
 import React from "react"
 import './App.css';
+/*
 import { DatabaseProvider } from "./components/DatabaseContext";
 import TaskNavList from "./components/TaskNavList";
 import { DateAndTimePickerProvider } from "./components/Pickers/DateAndTimePickerContext";
@@ -9,6 +10,7 @@ import SectionContent from "./components/SectionContent";
 import TopNav from "./components/TopNav";
 import Snackbar from "./components/Snackbar";
 import { SnackbarProvider } from "./components/SnackbarContext";
+*/
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import MainPage from "./components/pages/MainPage";
 import LoginPage from "./components/pages/LoginPage";
@@ -18,7 +20,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<MainPage />} />
+        <Route path="/" element={<LoginPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
       </Routes>
