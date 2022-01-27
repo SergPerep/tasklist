@@ -23,7 +23,7 @@ router.post("/register", async (req, res) => {
         const hash = genHash(password);
         const dbData = await pool.query(`INSERT INTO users (username, password) VALUES ($1, $2) RETURNING id`, [username, hash]);
         const userId = dbData.rows[0].id;
-        
+
         req.session.user = { userId };
 
         res.status(200).json({ isAuthenticated: true });
@@ -71,7 +71,7 @@ router.get("/logout", (req, res) => {
 
     req.session.destroy(err => { if (err) throw err });
     res.clearCookie('sid');
-    res.status(200).json("You have been logged out");
+    res.status(200).json({ isAuthenticated: false });
 
 });
 

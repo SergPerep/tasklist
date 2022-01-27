@@ -67,11 +67,27 @@ export const AuthenticationProvider = props => {
         }
     }
 
+    const logoutUser = async () => {
+        try {
+            const response = await fetch("http://localhost:5000/auth/logout", {
+                method: "GET",
+                credentials: "include"
+            });
+
+            const { isAuthenticated } = await response.json();
+            console.log({ isAuthenticated });
+            if (isAuthenticated === false) setIsUserAuthenticated(false);
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+
     const valuesToShare = {
         isUserAuthenticated,
         setIsUserAuthenticated,
         loginUser,
-        signupUser
+        signupUser,
+        logoutUser
     };
 
     return <AuthenticationContext.Provider value={valuesToShare}>
