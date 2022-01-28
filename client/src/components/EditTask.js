@@ -1,12 +1,12 @@
-import Button from "./Button";
+import Button from "./atoms/Button";
 import DateAndTimePicker from "./Pickers/DateAndTimePicker";
 import ProjectPicker from "./Pickers/ProjectPicker";
 import { DateAndTimePickerContext } from "./Pickers/DateAndTimePickerContext";
 import { useContext, useEffect, useState } from "react";
-import { DatabaseContext } from "./DatabaseContext";
+import { DatabaseContext } from "./contexts/DatabaseContext";
 import { ProjectPickerContext } from "./Pickers/ProjectPickerContext";
 import date from "date-and-time";
-import { OpenAndCloseEditContext } from "./OpenAndCloseEditContext";
+import { OpenAndCloseEditContext } from "./contexts/OpenAndCloseEditContext";
 
 
 const EditTask = props => {

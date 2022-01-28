@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useTransition, animated } from "react-spring";
-import { SnackbarContext } from "./SnackbarContext";
+import { SnackbarContext } from "./contexts/SnackbarContext";
 
 const Snackbar = () => {
     const {snacks} = useContext(SnackbarContext);

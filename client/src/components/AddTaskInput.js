@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import EditTask from "./EditTask";
-import { OpenAndCloseEditContext } from "./OpenAndCloseEditContext";
+import { OpenAndCloseEditContext } from "./contexts/OpenAndCloseEditContext";
 import { DateAndTimePickerContext } from "./Pickers/DateAndTimePickerContext";
 import { ProjectPickerContext } from "./Pickers/ProjectPickerContext";
 

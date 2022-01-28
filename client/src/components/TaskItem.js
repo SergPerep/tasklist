@@ -1,15 +1,15 @@
 import React, { useState, useContext } from "react";
 import Checkbox from "./Checkbox";
 import date from "date-and-time";
-import { DatabaseContext } from "./DatabaseContext";
+import { DatabaseContext } from "./contexts/DatabaseContext";
 import { useClickOutside } from "./CustomHooks";
 import EditTask from "./EditTask";
-import { OpenAndCloseEditContext } from "./OpenAndCloseEditContext";
+import { OpenAndCloseEditContext } from "./contexts/OpenAndCloseEditContext";
 import { today, tomorrow } from "./TodayTomorrowVars";
 import Icon from "./Icon";
 import Modal from "./Modal";
 import Menu from "./Menus/Menu";
-import { SnackbarContext } from "./SnackbarContext";
+import { SnackbarContext } from "./contexts/SnackbarContext";
 
 const TaskItem = props => {
     const { id, description, status_of_completion, date_and_time, read_time, folder} = props.data;

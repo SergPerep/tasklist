@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import TaskItem from "./TaskItem";
-import { DatabaseContext } from "./DatabaseContext";
+import { DatabaseContext } from "./contexts/DatabaseContext";
 import date from "date-and-time";
 import Accordion from "./Accordion";
 import { today, tomorrow } from "./TodayTomorrowVars";
@@ -9,7 +9,7 @@ import { ReactComponent as BallIllust } from "../img/Ball.svg";
 import { ReactComponent as FlameIllust } from "../img/Flame.svg";
 import { ReactComponent as ChestIllust } from "../img/Chest.svg";
 import { ReactComponent as HandIllust } from "../img/Hand.svg";
-import { OpenAndCloseEditContext } from "./OpenAndCloseEditContext";
+import { OpenAndCloseEditContext } from "./contexts/OpenAndCloseEditContext";
 
 
 const TaskList = props => {

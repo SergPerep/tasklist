@@ -3,7 +3,7 @@ import { useClickOutside } from "../CustomHooks";
 import Icon from "../Icon";
 import MenuItem from "../Menus/MenuItem";
 import { ProjectPickerContext } from "./ProjectPickerContext";
-import { DatabaseContext } from "../DatabaseContext";
+import { DatabaseContext } from "../contexts/DatabaseContext";
 import ColorDisplay from "../ColorDisplay";
 
 const ProjectPicker = () => {

@@ -1,13 +1,13 @@
 import { useContext, useState, useEffect } from "react";
-import { DatabaseContext } from "./DatabaseContext";
+import { DatabaseContext } from "./contexts/DatabaseContext";
 import TaskNavItem from "./TaskNavItem";
 import date from "date-and-time";
 import { today, tomorrow } from "./TodayTomorrowVars";
-import { OpenAndCloseEditContext } from "./OpenAndCloseEditContext";
+import { OpenAndCloseEditContext } from "./contexts/OpenAndCloseEditContext";
 import { useSpring, animated } from "react-spring";
 import { useHeight } from "./CustomHooks";
 import Modal from "./Modal";
-import Input from "./Input";
+import Input from "./atoms/Input";
 import Select from "./Select";
 import ColorDisplay from "./ColorDisplay";
 import Icon from "./Icon";
