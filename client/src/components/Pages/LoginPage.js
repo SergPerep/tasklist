@@ -6,7 +6,7 @@ import HreflessLink from "../atoms/HreflessLink";
 import { AuthenticationContext } from "../contexts/AuthenticationContext";
 
 const LoginPage = () => {
-    const [inputs, setInputs] = useState({ username: "goodBoy55", password: "pa$$55" });
+    const [inputs, setInputs] = useState({ username: "Bob", password: "BobTheBuilder1084" });
     const { loginUser } = useContext(AuthenticationContext);
 
     const navigate = useNavigate();

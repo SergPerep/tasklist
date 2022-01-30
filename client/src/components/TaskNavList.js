@@ -6,13 +6,20 @@ import { today, tomorrow } from "./TodayTomorrowVars";
 import { OpenAndCloseEditContext } from "./contexts/OpenAndCloseEditContext";
 import { useSpring, animated } from "react-spring";
 import { useHeight } from "./CustomHooks";
-import Modal from "./Modal";
-import Input from "./atoms/Input";
-import Select from "./Select";
-import ColorDisplay from "./ColorDisplay";
-import Icon from "./Icon";
+//import Modal from "./Modal";
+//import Input from "./atoms/Input";
+//import Select from "./Select";
+//import ColorDisplay from "./ColorDisplay";
+//import Icon from "./Icon";
+import useSectionsStore from "./store/useSectionsStore";
+import useProjectsStore from "./store/useProjectsStore";
+import getFolders from "./fetch/getFolders";
+
 
 const TaskNavList = () => {
+    const sections = useSectionsStore(state => state.sections);
+    const selectSection = useSectionsStore(state => state.select);
+    const projs = useProjectsStore(state => state.projects);
     const [openProjects, setOpenProjects] = useState(() => {
         if (localStorage.getItem("openProjects") === null) {
             return true
@@ -35,6 +42,10 @@ const TaskNavList = () => {
             opacity: openProjects ? 1 : 0
         }
     });
+
+    useEffect(() => {
+        getFolders();
+    }, [])
 
     useEffect(() => {
         localStorage.setItem("openProjects", openProjects);
@@ -61,6 +72,38 @@ const TaskNavList = () => {
         });
     return (
         <div className="tasknav">
+            {sections
+                .filter(section => section.isAProject === false)
+                .map(section => <TaskNavItem
+                    leftIcon={section.leftIcon}
+                    count={section.tasksNum}
+                    onClick={() => {
+                        selectSection(section.id);
+                        // console.log({ projs });
+                        console.log({ sections });
+                    }}
+                    selected={section.selected}
+                    key={section.id}
+                >
+                    {section.name}
+                </TaskNavItem>
+                )
+            }
+            {sections
+                .filter(section => section.isAProject === true)
+                .map(section => <TaskNavItem
+                    count={section.tasksNum}
+                    onClick={() => {
+                        selectSection(section.id);
+                        // console.log({ projs });
+                        console.log({ sections });
+                    }}
+                    selected={section.selected}
+                    key={section.id}
+                >
+                    {section.name}
+                </TaskNavItem>)}
+            {/*
             <TaskNavItem
                 leftIcon="Inbox"
                 count={taskList.filter(task => !task.status_of_completion && !task.folder.id).length}
@@ -93,7 +136,6 @@ const TaskNavList = () => {
                     Tomorrow
                 </TaskNavItem>
             }
-            {/*<TaskNavItem leftIcon="Calendar">Calendar</TaskNavItem>*/}
             <div className="projects-header">
                 <TaskNavItem
                     leftIcon={openProjects ? "AngleDown" : "AngleRight"}
@@ -167,6 +209,7 @@ const TaskNavList = () => {
                     </TaskNavItem>)}
                 </div>
             </animated.div>
+            */}
         </div>
     )
 }

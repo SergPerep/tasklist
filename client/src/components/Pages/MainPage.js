@@ -17,8 +17,8 @@ const MainPage = () => {
         logoutUser();
     }
     return <>
-        <h1>Main page</h1>
-        <Button design="outlined" onClick={handleClickLogout}>Logout</Button>
+        {/*<h1>Main page</h1>
+        <Button design="outlined" onClick={handleClickLogout}>Logout</Button> */}
 
         <SnackbarProvider>
             <DatabaseProvider>
