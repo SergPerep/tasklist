@@ -7,7 +7,7 @@ import EditTask from "./EditTask";
 import { OpenAndCloseEditContext } from "./contexts/OpenAndCloseEditContext";
 import { today, tomorrow } from "./TodayTomorrowVars";
 import Icon from "./Icon";
-import Modal from "./Modal";
+import Modal from "./molecules/Modal";
 import Menu from "./Menus/Menu";
 import { SnackbarContext } from "./contexts/SnackbarContext";
 

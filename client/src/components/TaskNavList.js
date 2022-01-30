@@ -6,32 +6,24 @@ import { today, tomorrow } from "./TodayTomorrowVars";
 import { OpenAndCloseEditContext } from "./contexts/OpenAndCloseEditContext";
 import { useSpring, animated } from "react-spring";
 import { useHeight } from "./CustomHooks";
-
-//import Modal from "./Modal";
-//import Input from "./atoms/Input";
-//import Select from "./Select";
-//import ColorDisplay from "./ColorDisplay";
-//import Icon from "./Icon";
 import useSectionsStore from "./store/useSectionsStore";
-import useProjectsStore from "./store/useProjectsStore";
 import getFolders from "./fetch/getFolders";
 import getTasks from "./fetch/getTasks";
+import ModalAddNewProject from "./molecules/ModalAddNewProject";
 
 
 const TaskNavList = () => {
     const sections = useSectionsStore(state => state.sections);
     const selectSection = useSectionsStore(state => state.select);
-    const projs = useProjectsStore(state => state.projects);
     const [openProjects, setOpenProjects] = useState(() => {
         if (localStorage.getItem("openProjects") === null) {
             return true
         }
         return localStorage.getItem("openProjects") === "true" ? true : false
     });
-    const { taskList, projects, addProject, colors, selectedColor, setSelectedColor, selectedNavItem, setSelectedNavItem } = useContext(DatabaseContext);
+    const { taskList } = useContext(DatabaseContext);
     const { closeAllEdits } = useContext(OpenAndCloseEditContext);
-    const [openModalAddProject, setOpenModalAddProject] = useState(false);
-    const [inputAddProjectValue, setInputAddProjectValue] = useState("");
+    const [isModalAddProjectOpen, setIsModalAddProjectOpen] = useState(false);
 
     /*
     const [ref, height] = useHeight();
@@ -63,8 +55,7 @@ const TaskNavList = () => {
 
     const handleAddNewProject = e => {
         e.stopPropagation();
-        setOpenModalAddProject(true);
-        setSelectedColor(null);
+        setIsModalAddProjectOpen(true);
     }
 
     const areThereTomorrowTasks = true && taskList
@@ -93,7 +84,8 @@ const TaskNavList = () => {
                 </TaskNavItem>
                 )
             }
-            <button>New project</button>
+            <button onClick={handleAddNewProject}>New project</button>
+            <ModalAddNewProject isModalOpen={isModalAddProjectOpen} setIsModalOpen={setIsModalAddProjectOpen} />
             {sections
                 .filter(section => section.isAProject === true)
                 .map(section => <TaskNavItem
@@ -106,38 +98,7 @@ const TaskNavList = () => {
                     {section.name}
                 </TaskNavItem>)}
             {/*
-            <TaskNavItem
-                leftIcon="Inbox"
-                count={taskList.filter(task => !task.status_of_completion && !task.folder.id).length}
-                onClick={() => {
-                    setSelectedNavItem("Inbox");
-                    closeAllEdits();
-                }}
-                selected={typeof selectedNavItem === "string" && selectedNavItem.toLowerCase() === "inbox"}>
-                Inbox
-            </TaskNavItem>
-            <TaskNavItem
-                leftIcon="Today"
-                count={taskList.filter(task => !task.status_of_completion && task.date_and_time && (today.getTime() > task.date_and_time.getTime() || date.isSameDay(task.date_and_time, today))).length}
-                onClick={() => {
-                    setSelectedNavItem("Today");
-                    closeAllEdits();
-                }}
-                selected={typeof selectedNavItem === "string" && selectedNavItem.toLowerCase() === "today"}>
-                Today
-            </TaskNavItem>
-            {areThereTomorrowTasks &&
-                <TaskNavItem
-                    leftIcon="Tomorrow"
-                    count={taskList.filter(task => !task.status_of_completion && task.date_and_time && date.isSameDay(task.date_and_time, tomorrow)).length}
-                    onClick={() => {
-                        setSelectedNavItem("Tomorrow");
-                        closeAllEdits();
-                    }}
-                    selected={typeof selectedNavItem === "string" && selectedNavItem.toLowerCase() === "tomorrow"}>
-                    Tomorrow
-                </TaskNavItem>
-            }
+            
             <div className="projects-header">
                 <TaskNavItem
                     leftIcon={openProjects ? "AngleDown" : "AngleRight"}

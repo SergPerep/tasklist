@@ -3,7 +3,7 @@ import Header from "./Header";
 import AddTaskInput from "./AddTaskInput";
 import { useContext, useEffect, useState } from "react";
 import { DatabaseContext } from "./contexts/DatabaseContext";
-import Modal from "./Modal";
+import Modal from "./molecules/Modal";
 import Input from "./atoms/Input";
 import { today, tomorrow } from "./TodayTomorrowVars";
 import Select from "./Select";
