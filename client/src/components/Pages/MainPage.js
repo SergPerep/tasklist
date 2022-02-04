@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthenticationContext } from "../contexts/AuthenticationContext";
 import { DatabaseProvider } from "../contexts/DatabaseContext";
 import SideNav from "../SideNav/SideNav";
@@ -9,9 +9,31 @@ import SectionContent from "../SectionContent";
 import TopNav from "../TopNav";
 import Snackbar from "../Snackbar";
 import { SnackbarProvider } from "../contexts/SnackbarContext";
+import getFolders from "../../fetch/getFolders";
+import getTasks from "../../fetch/getTasks";
+import getColors from "../../fetch/getColors";
+import useTasksStore from "../../stores/useTasksStore";
+import useProjectsStore from "../../stores/useProjectsStore";
+import useColorsStore from "../../stores/useColorsStore";
 
 const MainPage = () => {
     const { logoutUser } = useContext(AuthenticationContext);
+    const tasks = useTasksStore(state => state.tasks);
+    const setTasks = useTasksStore(state => state.setTasks);
+    const setProjects = useProjectsStore(state => state.setProjects);
+    const setColors = useColorsStore(state => state.setColors);
+
+    useEffect(() => {
+        Promise.all([getColors(), getFolders(), getTasks()])
+            .then(values => {
+                const [rawColors, rawFolders, rawTasks] = values;
+                setTasks(rawTasks);
+                setColors(rawColors);
+                setProjects(rawFolders);
+                console.log({ tasks });
+            });
+    }, [])
+
     const handleClickLogout = () => {
         logoutUser();
     }

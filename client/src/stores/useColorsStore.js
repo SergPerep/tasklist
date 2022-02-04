@@ -1,5 +1,7 @@
 import create from "zustand";
 
+console.log("--> useColorStore");
+
 const charchoal = {
     id: null,
     name: "Charcoal",
@@ -25,7 +27,9 @@ export default create(set => ({
         }
     },
     setColors: (rawColors) => set(state => {
+        console.log("--> setColors")
         const newColors = state.colors;
+        console.log(newColors);
         newColors.list = [charchoal, ...rawColors];
         return { colors: newColors }
     }),

@@ -5,12 +5,10 @@ import date from "date-and-time";
 import { today, tomorrow } from "../TodayTomorrowVars";
 import { OpenAndCloseEditContext } from "../contexts/OpenAndCloseEditContext";
 import useSectionsStore from "../../stores/useSectionsStore";
-import getFolders from "../../fetch/getFolders";
-import getTasks from "../../fetch/getTasks";
 import ModalAddNewProject from "../Modals/ModalAddNewProject";
 import useTasksStore from "../../stores/useTasksStore";
 
-export default () => {
+const SideNav = () => {
     const sections = useSectionsStore(state => state.sections);
     const selectSection = useSectionsStore(state => state.select);
     const [openProjects, setOpenProjects] = useState(() => {
@@ -24,11 +22,6 @@ export default () => {
     const [isModalAddProjectOpen, setIsModalAddProjectOpen] = useState(false);
 
     const tasks = useTasksStore(state => state.tasks);
-
-    useEffect(() => {
-        getTasks();
-        getFolders();
-    }, [])
 
     useEffect(() => {
         localStorage.setItem("openProjects", openProjects);
@@ -89,3 +82,5 @@ export default () => {
         </div>
     )
 }
+
+export default SideNav;

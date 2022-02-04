@@ -1,7 +1,7 @@
 import ColorDisplay from "../BasicUI/ColorDisplay";
 import Icon from "../BasicUI/Icon";
 
-export default props => {
+const SideNavItem = props => {
     const { leftIcon, rightIcon, onClick, selected, count, onRightIconClick, color } = props;
     return (
         <div className={`tasknav-item ${selected ? "selected" : ""}`} onClick={onClick}>
@@ -27,3 +27,5 @@ export default props => {
             </div>
     )
 }
+
+export default SideNavItem;

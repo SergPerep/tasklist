@@ -24,7 +24,8 @@ const getTasks = async () => {
         const rawData = await response.json();
         const data = convertData(rawData);
         console.log("---> getTasks");
-        setTasks(data);
+        // setTasks(data);
+        return data;
     } catch (error) {
         console.error(error.message);
     }

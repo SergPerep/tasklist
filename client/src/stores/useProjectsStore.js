@@ -22,6 +22,7 @@ export default create(set => ({
             newProjects.list = folders;
             return { projects: newProjects }
         })
+        console.log("--> setProjects")
         setSections(folders);
     }
 }));

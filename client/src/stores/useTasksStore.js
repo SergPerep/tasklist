@@ -1,8 +1,11 @@
 import create from "zustand";
+import { devtools } from "zustand/middleware";
 import date from "date-and-time";
 import { today, tomorrow } from "../components/TodayTomorrowVars";
 
-export default create(set => ({
+console.log("--> useTaskStore");
+
+const store = set => ({
     tasks: {
         list: [/*
             {
@@ -17,14 +20,14 @@ export default create(set => ({
                     id: null,
                     name: null
                 }
-            }, ...
+            },...
         */],
         getInboxTasks(areCompleted = false) {
-            return this.list
+            return this?.list
                 .filter(task => task.status_of_completion === areCompleted ? !task.folder.id : false);
         },
         getTodayTasks(areCompleted = false) {
-            return this.list
+            return this?.list
                 .filter(task => {
                     if (task.status_of_completion === areCompleted) {
                         if (task.date_and_time) {
@@ -34,7 +37,7 @@ export default create(set => ({
                 });
         },
         getOverdueTasks() {
-            return this.list
+            return this?.list
                 .filter(task => {
                     if (!task.status_of_completion) {
                         if (task.date_and_time) {
@@ -64,12 +67,14 @@ export default create(set => ({
     },
     isShowCompleted: localStorage.getItem("isShowCompletedTasks") || false,
     setShowCompleted: (isShowCompleted) => set({ isShowCompleted }),
-    setTasks: taskList => set(state => {
-        console.log("--> setTasks");
-        const newTasks = { ...state.tasks };
+    setTasks: (taskList) => set(state => {
+        const newTasks = state.tasks;
         newTasks.list = taskList;
+        console.log("--> setTasks");
         console.log({ newTasks });
         return { tasks: newTasks }
     }),
-}))
+})
 
+
+export default create(devtools(store))

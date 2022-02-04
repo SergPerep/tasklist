@@ -1,36 +1,41 @@
 import create from "zustand";
 import useTasksStore from "./useTasksStore";
 import useColorsStore from "./useColorsStore";
+import { devtools } from "zustand/middleware"
+
+console.log("--> useSectionStore");
 
 const tasks = useTasksStore.getState().tasks;
 const colors = useColorsStore.getState().colors;
 
-export default create(set => ({
+const defaultSections = [{
+    id: "inb",
+    name: "Inbox",
+    leftIcon: "Inbox",
+    tasksNum: null,
+    selected: true,
+    isAProject: false
+},
+{
+    id: "td",
+    name: "Today",
+    tasksNum: null,
+    leftIcon: "Today",
+    selected: false,
+    isAProject: false
+},
+{
+    id: "tmr",
+    name: "Tomorrow",
+    tasksNum: null,
+    leftIcon: "Tomorrow",
+    selected: false,
+    isAProject: false
+}]
+
+const store = set => ({
     sections: {
-        list: [{
-            id: "inb",
-            name: "Inbox",
-            leftIcon: "Inbox",
-            tasksNum: 0,
-            selected: true,
-            isAProject: false
-        },
-        {
-            id: "td",
-            name: "Today",
-            tasksNum: 0,
-            leftIcon: "Today",
-            selected: false,
-            isAProject: false
-        },
-        {
-            id: "tmr",
-            name: "Tomorrow",
-            tasksNum: 0,
-            leftIcon: "Tomorrow",
-            selected: false,
-            isAProject: false
-        },
+        list: [...defaultSections
             /**
                id: "3",
                name: "Work",
@@ -54,6 +59,7 @@ export default create(set => ({
     select: (id) => set(state => {
         const newSections = { ...state.sections };
         console.log(newSections);
+
         newSections.list.map(section => {
             section.selected = section.id === id;
             return { section }
@@ -61,8 +67,8 @@ export default create(set => ({
         return { sections: newSections };
     }),
     setSections: (projects) => set(state => {
-        // console.log(tasks);
-        const newSections = { ...state.sections };
+        console.log("--> setSections");
+        const newSections = {...state.sections};
         const newProjects = projects.map(project => {
             return {
                 id: project.id,
@@ -73,8 +79,18 @@ export default create(set => ({
                 color: colors.getColor(project.color_id)
             };
         });
-        const notProjects = newSections.list.filter(section => !section.isAProject);
-        newSections.list = [...notProjects, ...newProjects];
+        // const notProjects = newSections.list.filter(section => !section.isAProject);
+        newSections.list = [...defaultSections, ...newProjects];
+        newSections.list
+            .map(section => {
+                if (section.id === "inb") section.tasksNum = tasks.getInboxTasks().length;
+                if (section.id === "td") section.tasksNum = tasks.getTodayTasks().length;
+                if (section.id === "tmr") section.tasksNum = tasks.getTomorrowTasks().length;
+                return section;
+            })
+        console.log({ newSections });
         return { sections: newSections }
     })
-}));
+});
+
+export default create(store);
