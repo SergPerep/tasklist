@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import { useClickOutside } from "../CustomHooks";
-import Icon from "../Icon";
+import Icon from "../BasicUI/Icon";
 import MenuItem from "../Menus/MenuItem";
 import { ProjectPickerContext } from "./ProjectPickerContext";
 import { DatabaseContext } from "../contexts/DatabaseContext";
-import ColorDisplay from "../ColorDisplay";
+import ColorDisplay from "../BasicUI/ColorDisplay";
 
 const ProjectPicker = () => {
     const { projects, colors } = useContext(DatabaseContext);

@@ -1,4 +1,4 @@
-import Button from "../atoms/Button"
+import Button from "../BasicUI/Button";
 const Modal = props => {
     const buttonList = props.buttonList;
     return (

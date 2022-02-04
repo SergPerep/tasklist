@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
-import Button from "../atoms/Button";
-import Input from "../atoms/Input";
+import Button from "../BasicUI/Button";
+import Input from "../BasicUI/Input";
 import { useNavigate } from "react-router-dom";
-import HreflessLink from "../atoms/HreflessLink";
+import HreflessLink from "../BasicUI/HreflessLink";
 import { AuthenticationContext } from "../contexts/AuthenticationContext";
 
 const LoginPage = () => {

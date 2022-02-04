@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { DateAndTimePickerContext } from "./DateAndTimePickerContext";
-import Icon from "../Icon";
+import Icon from "../BasicUI/Icon";
 import date from "date-and-time";
 import { useClickOutside } from "../CustomHooks";
 

@@ -1,4 +1,4 @@
-import useTasksStore from "../store/useTasksStore";
+import useTasksStore from "../stores/useTasksStore";
 
 const setTasks = useTasksStore.getState().setTasks;
 
@@ -23,6 +23,7 @@ const getTasks = async () => {
         const response = await fetch("/tasks");
         const rawData = await response.json();
         const data = convertData(rawData);
+        console.log("---> getTasks");
         setTasks(data);
     } catch (error) {
         console.error(error.message);

@@ -1,21 +1,20 @@
-import Input from "../atoms/Input";
-import Select from "../Select";
+import Input from "../BasicUI/Input";
+import Select from "../BasicUI/Select";
 import Modal from "./Modal";
-import ColorDisplay from "../ColorDisplay";
-import Icon from "../Icon";
+import ColorDisplay from "../BasicUI/ColorDisplay";
+import Icon from "../BasicUI/Icon";
 import { useState } from "react";
-import useSectionsStore from "../store/useSectionsStore";
-import useColorsStore from "../store/useColorsStore";
-import addProject from "../fetch/addProject"
+import useSectionsStore from "../../stores/useSectionsStore";
+import useColorsStore from "../../stores/useColorsStore";
+import addProject from "../../fetch/addProject";
 
-const ModalAddNewProject = props => {
-    const { isModalOpen, setIsModalOpen } = props;
+const ModalAddNewProject = ({ setIsModalOpen }) => {
     const [inputAddProjectValue, setInputAddProjectValue] = useState("");
     const selectSection = useSectionsStore(state => state.select);
     const colors = useColorsStore(state => state.colors);
     const [selectedColor, setSelectedColor] = useState(null);
-    return <>
-        {isModalOpen && <Modal buttonList={[{
+    return (
+        <Modal buttonList={[{
             title: "Close",
             design: "outlined",
             onClick: () => {
@@ -62,9 +61,8 @@ const ModalAddNewProject = props => {
                     <Icon name="AngleDown" size="sm" />
                 </div>
             </Select>
-
-        </Modal>}
-    </>
+        </Modal>
+    )
 }
 
 export default ModalAddNewProject;

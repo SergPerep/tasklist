@@ -1,4 +1,4 @@
-import useProjectsStore from "../store/useProjectsStore";
+import useProjectsStore from "../stores/useProjectsStore";
 
 // const setSections = useSectionsStore.getState().setSections;
 const setProjects = useProjectsStore.getState().setProjects;

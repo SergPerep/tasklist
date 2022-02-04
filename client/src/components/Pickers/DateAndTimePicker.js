@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import date from "date-and-time";
-import Icon from "../Icon";
+import Icon from "../BasicUI/Icon";
 import Calendar from "./Calendar";
 import { DateAndTimePickerContext } from "./DateAndTimePickerContext";
 import MenuItem from "../Menus/MenuItem";

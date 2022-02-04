@@ -1,4 +1,4 @@
-import Icon from "./Icon";
+import Icon from "./BasicUI/Icon";
 import { useState } from "react";
 import { useSpring, animated } from "react-spring";
 import { useHeight } from "./CustomHooks";

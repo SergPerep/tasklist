@@ -1,8 +1,7 @@
 import { useContext } from "react";
-import Button from "../atoms/Button";
 import { AuthenticationContext } from "../contexts/AuthenticationContext";
 import { DatabaseProvider } from "../contexts/DatabaseContext";
-import TaskNavList from "../TaskNavList";
+import SideNav from "../SideNav/SideNav";
 import { DateAndTimePickerProvider } from "../Pickers/DateAndTimePickerContext";
 import { ProjectPickerProvider } from "../Pickers/ProjectPickerContext";
 import { OpenAndCloseEditProvider } from "../contexts/OpenAndCloseEditContext";
@@ -29,7 +28,7 @@ const MainPage = () => {
                     <div className="taskboard-container">
                         <OpenAndCloseEditProvider>
                             <div className="taskboard-sidenav">
-                                <TaskNavList />
+                                <SideNav />
                             </div>
                             <div className="taskboard-display">
                                 <div className="taskboard-display-container">

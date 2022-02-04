@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Menu from "./Menus/Menu";
+import Menu from "../Menus/Menu";
 
 const Select = props => {
     const { placeholder, selectList, label } = props;

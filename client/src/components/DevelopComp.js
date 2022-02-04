@@ -8,7 +8,6 @@ import getColors from "./fetch/getColors";
 
 const DevelopComp = () => {
     const tasks = useTasksStore(state => state.tasks);
-    const tasksForInbox = useTasksStore(state => state.forInbox);
     const sections = useSectionsStore(state => state.sections);
     const colors = useColorsStore(state => state.colors);
 
@@ -19,6 +18,7 @@ const DevelopComp = () => {
     }, [])
 
     const handleButtonClick = () => {
+        console.log({tasks});
         console.log({ colors });
         console.log({ sections });
         console.log({

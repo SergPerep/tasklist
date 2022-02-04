@@ -1,4 +1,4 @@
-import useColorsStore from "../store/useColorsStore";
+import useColorsStore from "../stores/useColorsStore";
 
 const setColors = useColorsStore.getState().setColors;
 

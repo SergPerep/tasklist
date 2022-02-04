@@ -1,11 +1,10 @@
 import React, { useContext, useState } from "react"
 import './App.css';
 import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
-import MainPage from "./components/pages/MainPage";
-import LoginPage from "./components/pages/LoginPage";
-import SignupPage from "./components/pages/SignupPage";
+import MainPage from "./components/Pages/MainPage";
+import LoginPage from "./components/Pages/LoginPage";
+import SignupPage from "./components/Pages/SignupPage";
 import { AuthenticationContext } from "./components/contexts/AuthenticationContext";
-import DevelopComp from "./components/DevelopComp";
 
 
 function App() {
@@ -13,7 +12,6 @@ function App() {
 
   return (
     <>
-    <DevelopComp/>
     
     <Router>
       <Routes>

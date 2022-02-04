@@ -1,6 +1,6 @@
 import create from "zustand";
 import date from "date-and-time";
-import { today, tomorrow } from "../TodayTomorrowVars";
+import { today, tomorrow } from "../components/TodayTomorrowVars";
 
 export default create(set => ({
     tasks: {
@@ -55,16 +55,20 @@ export default create(set => ({
         },
         getProjectTasks(projectId, areCompleted = false) {
             return this.list
-            .filter(task => {
-                if (task.status_of_completion === areCompleted) {
-                    return task.folder.id ? task.folder.id === projectId : false;
-                } else return false;
-            })
+                .filter(task => {
+                    if (task.status_of_completion === areCompleted) {
+                        return task.folder.id ? task.folder.id === projectId : false;
+                    } else return false;
+                })
         }
     },
+    isShowCompleted: localStorage.getItem("isShowCompletedTasks") || false,
+    setShowCompleted: (isShowCompleted) => set({ isShowCompleted }),
     setTasks: taskList => set(state => {
+        console.log("--> setTasks");
         const newTasks = { ...state.tasks };
         newTasks.list = taskList;
+        console.log({ newTasks });
         return { tasks: newTasks }
     }),
 }))
