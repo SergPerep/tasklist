@@ -17,7 +17,7 @@ const TaskList = () => {
     const getProjectTasks = useStore(state => state.getProjectTasks);
 
     // Takes array and makes a list of elements out of it
-    const mapList = list => list.map(task => <TaskItem data={task} key={task.id} />);
+    const buldList = list => list.map(task => <TaskItem data={task} key={task.id} />);
 
     /* INBOX */
     const inboxTaskList = getInboxTasks(false);
@@ -42,10 +42,10 @@ const TaskList = () => {
             {/* INBOX */}
             {selectedSectionId === "inb" &&
                 <>
-                    {inboxTaskList.length > 0 && mapList(inboxTaskList)}
+                    {inboxTaskList.length > 0 && buldList(inboxTaskList)}
                     {isShowCompletedTasks && completedInboxTaskList.length > 0 &&
                         <Accordion title="Completed" count={completedInboxTaskList.length}>
-                            {mapList(completedInboxTaskList)}
+                            {buldList(completedInboxTaskList)}
                         </Accordion>
                     }
                 </>
@@ -56,21 +56,21 @@ const TaskList = () => {
                     {overdueTaskList.length > 0 &&
                         <>
                             <Accordion title="Overdue" count={overdueTaskList.length}>
-                                {mapList(overdueTaskList)}
+                                {buldList(overdueTaskList)}
                             </Accordion>
                             {todayTaskList && todayTaskList.length !== 0 &&
                                 <Accordion title="Today" count={todayTaskList.length}>
-                                    {mapList(todayTaskList)}
+                                    {buldList(todayTaskList)}
                                 </Accordion>
                             }
                         </>
                     }
                     {overdueTaskList.length === 0 &&
-                        mapList(todayTaskList)
+                        buldList(todayTaskList)
                     }
                     {isShowCompletedTasks && completedTodayTaskList.length > 0 &&
                         <Accordion title="Completed" count={completedTodayTaskList.length}>
-                            {mapList(completedTodayTaskList)}
+                            {buldList(completedTodayTaskList)}
                         </Accordion>
                     }
 
@@ -79,10 +79,10 @@ const TaskList = () => {
             {/* TOMORROW */}
             {selectedSectionId === "tmr" &&
                 <>
-                    {mapList(tomorrowTaskList)}
+                    {buldList(tomorrowTaskList)}
                     {isShowCompletedTasks && completedTomorrowTaskList.length > 0 &&
                         <Accordion title="Completed" count={completedTomorrowTaskList.length}>
-                            {mapList(completedTomorrowTaskList)}
+                            {buldList(completedTomorrowTaskList)}
                         </Accordion>
                     }
                 </>
@@ -90,10 +90,10 @@ const TaskList = () => {
             {/* PROJECT */}
             {isSelectedSectionAProject &&
                 <>
-                    {projectTaskList?.length > 0 && mapList(projectTaskList)}
+                    {projectTaskList?.length > 0 && buldList(projectTaskList)}
                     {isShowCompletedTasks && completedProjectTaskList?.length > 0 &&
                         <Accordion title="Completed" count={completedProjectTaskList?.length}>
-                            {mapList(completedProjectTaskList)}
+                            {buldList(completedProjectTaskList)}
                         </Accordion>
                     }
                 </>
