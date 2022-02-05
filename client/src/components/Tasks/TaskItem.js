@@ -8,7 +8,6 @@ import { today, tomorrow } from "../TodayTomorrowVars";
 import Icon from "../BasicUI/Icon";
 import Modal from "../Modals/Modal";
 import Menu from "../Menus/Menu";
-import { SnackbarContext } from "../contexts/SnackbarContext";
 import getTasks from "../../fetch/getTasks";
 import useStore from "../../store/useStore";
 
@@ -22,7 +21,6 @@ const TaskItem = props => {
     const [menuIsOpen, setMenuIsOpen] = useState(false);
     const isOverdue = date_and_time ? date_and_time.getTime() < today.getTime() && !date.isSameDay(date_and_time, today) : false;
     const [openModal, setOpenModal] = useState(false);
-    const {runSnackbar} = useContext(SnackbarContext);
 
     // Define colors for project-tag
     const colorId = projects.find(project => project.id === folder.id) ? projects.find(project => project.id === folder.id).color_id : null;
@@ -50,7 +48,6 @@ const TaskItem = props => {
             });
             const response = await updateCheckStatus.json();
             console.log(response);
-            runSnackbar(response);
 
             getTasks().then(data => setTasks(data));
         } catch (error) {
@@ -70,7 +67,6 @@ const TaskItem = props => {
                 method: "DELETE"
             });
             const message = await delTask.json();
-            runSnackbar(message);
             getTasks();
         } catch (error) {
             console.error(error.message);
