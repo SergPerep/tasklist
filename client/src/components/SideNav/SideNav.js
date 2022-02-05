@@ -8,7 +8,7 @@ import ModalAddNewProject from "../Modals/ModalAddNewProject";
 
 const SideNav = () => {
     const sections = useStore(state => state.sections);
-    const selectSection = useStore(state => state.select);
+    const selectSection = useStore(state => state.selectSection);
     const [openProjects, setOpenProjects] = useState(() => {
         if (localStorage.getItem("openProjects") === null) {
             return true
@@ -35,7 +35,7 @@ const SideNav = () => {
     }
 
     const areThereTomorrowTasks = true && tasks
-        .find(task => {
+        ?.find(task => {
             if (!task.status_of_completion) {
                 if (task.date_and_time) {
                     return date.isSameDay(task.date_and_time, tomorrow);
@@ -59,7 +59,7 @@ const SideNav = () => {
                 )
             }
             <button onClick={handleAddNewProject}>New project</button>
-            {isModalAddProjectOpen && 
+            {isModalAddProjectOpen &&
                 <ModalAddNewProject setIsModalOpen={setIsModalAddProjectOpen} />
             }
             {sections

@@ -9,7 +9,8 @@ import addProject from "../../fetch/addProject";
 
 const ModalAddNewProject = ({ setIsModalOpen }) => {
     const [inputAddProjectValue, setInputAddProjectValue] = useState("");
-    const selectSection = useStore(state => state.select);
+    const sections = useStore(state => state.sections);
+    const selectSection = sections.find(section => section.selected);
     const colors = useStore(state => state.colors);
     const getColor = useStore(state => state.getColor);
     const [selectedColor, setSelectedColor] = useState(null);

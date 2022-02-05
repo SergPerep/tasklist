@@ -53,7 +53,9 @@ const MainPage = () => {
                             </DateAndTimePickerProvider>
                         </div>
                     </div>
+                    
                 </OpenAndCloseEditProvider>
+
             </div>
         </div>
     </>

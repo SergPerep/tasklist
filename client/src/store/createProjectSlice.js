@@ -1,7 +1,3 @@
-import create from "zustand";
-import useSectionsStore from "./createSectionSlice";
-
-// const setSections = useSectionsStore.getState().setSections;
 
 const createProjectSlice = (set, get) => ({
     projects: [/*{
@@ -14,11 +10,7 @@ const createProjectSlice = (set, get) => ({
         return get().projects
             .find(project => project.id === id)
     },
-    setProjects: (folders) => {
-        set({ projects: folders })
-        // console.log("--> setProjects")
-        get().setSections(folders)
-    }
+    setProjects: (folders) => set({ projects: folders })
 });
 
 export default createProjectSlice;

@@ -1,40 +1,37 @@
-import React from "react";
 import TaskItem from "./TaskItem";
 import Accordion from "../Accordion";
 import useStore from "../../store/useStore";
+import { filterInboxTasks, filterOverdueTasks, filterTodayTasks, filterTomorrowTasks, filterProjectTasks } from "../../utils/filterTasks";
 
 
 const TaskList = () => {
     const isShowCompletedTasks = useStore(state => state.isShowCompletedTasks);
-    const selectedSection = useStore(state => state.getSelectedSection());
-    const selectedSectionId = selectedSection.id;
+    const sections = useStore(state => state.sections);
+    const selectedSection = sections.find(section => section.selected);
+    const selectedSectionId = useStore(state => state.selectedSectionId);
     const isSelectedSectionAProject = selectedSection.isAProject;
-
-    const getInboxTasks = useStore(state => state.getInboxTasks);
-    const getTodayTasks = useStore(state => state.getTodayTasks);
-    const getOverdueTasks = useStore(state => state.getOverdueTasks);
-    const getTomorrowTasks = useStore(state => state.getTomorrowTasks);
-    const getProjectTasks = useStore(state => state.getProjectTasks);
+    const tasks = useStore(state => state.tasks);
 
     // Takes array and makes a list of elements out of it
     const buldList = list => list.map(task => <TaskItem data={task} key={task.id} />);
 
     /* INBOX */
-    const inboxTaskList = getInboxTasks(false);
-    const completedInboxTaskList = getInboxTasks(true);
+    const inboxTaskList = filterInboxTasks(tasks, false);
+    const completedInboxTaskList = filterInboxTasks(tasks, true);
 
     /* TODAY */
-    const todayTaskList = getTodayTasks(false);
-    const completedTodayTaskList = getTodayTasks(true);
-    const overdueTaskList = getOverdueTasks();
+    const todayTaskList = filterTodayTasks(tasks, false);
+    const completedTodayTaskList = filterTodayTasks(tasks, true);
+    const overdueTaskList = filterOverdueTasks(tasks);
+    
 
     /* TOMORROW */
-    const tomorrowTaskList = getTomorrowTasks(false);
-    const completedTomorrowTaskList = getTomorrowTasks(true)
+    const tomorrowTaskList = filterTomorrowTasks(tasks, false);
+    const completedTomorrowTaskList = filterTomorrowTasks(tasks, true);
 
     /* PROJECTS */
-    const projectTaskList = getProjectTasks(selectedSectionId, false);
-    const completedProjectTaskList = getProjectTasks(selectedSectionId, true);
+    const projectTaskList = filterProjectTasks(tasks, selectedSectionId, false);
+    const completedProjectTaskList = filterProjectTasks(tasks, selectedSectionId, true);
 
     return (
         <div className="tasklist">

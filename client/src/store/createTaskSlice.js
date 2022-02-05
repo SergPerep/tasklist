@@ -19,51 +19,12 @@ const createTaskSlice = (set, get) => ({
                 }
             },...
         */],
-    getInboxTasks: (areCompleted = false) => {
-        return get().tasks
-            .filter(task => task.status_of_completion === areCompleted ? !task.folder.id : false);
-    },
-    getTodayTasks: (areCompleted = false) => {
-        return get().tasks
-            .filter(task => {
-                if (task.status_of_completion === areCompleted) {
-                    if (task.date_and_time) {
-                        return date.isSameDay(task.date_and_time, today);
-                    } else return false;
-                } else return false;
-            });
-    },
-    getOverdueTasks: () => {
-        return get().tasks
-            .filter(task => {
-                if (!task.status_of_completion) {
-                    if (task.date_and_time) {
-                        return task.date_and_time.getTime() <= today.getTime() && !date.isSameDay(task.date_and_time, today);
-                    } else return false;
-                } else return false;
-            });
-    },
-    getTomorrowTasks: (areCompleted = false) => {
-        return get().tasks
-            .filter(task => {
-                if (task.status_of_completion === areCompleted) {
-                    if (task.date_and_time) {
-                        return date.isSameDay(task.date_and_time, tomorrow);
-                    } else return false;
-                } else return false;
-            });
-    },
-    getProjectTasks: (projectId, areCompleted = false) => {
-        return get().tasks
-            .filter(task => {
-                if (task.status_of_completion === areCompleted) {
-                    return task.folder.id ? task.folder.id === projectId : false;
-                } else return false;
-            })
-    },
     isShowCompletedTasks: localStorage.getItem("isShowCompletedTasks") === "true",
     setIsShowCompletedTasks: (isShowCompletedTasks) => set({ isShowCompletedTasks }),
-    setTasks: (taskList) => set({ tasks: taskList })
+    setTasks: (taskList) => {
+        console.log("--> setTasks");
+        set({ tasks: taskList })
+    }
 })
 
 export default createTaskSlice;
