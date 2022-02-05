@@ -7,7 +7,7 @@ import ModalDeleteProject from "./Modals/ModalDeleteProject";
 import ModalEditProject from "./Modals/ModalEditProject";
 
 const SectionContent = () => {
-    const selectedSection = useStore(state => state.sections.getSelectedSection());
+    const selectedSection = useStore(state => state.getSelectedSection());
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const isShowCompletedTasks = useStore(state => state.isShowCompleted);

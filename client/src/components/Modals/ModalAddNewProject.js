@@ -11,6 +11,7 @@ const ModalAddNewProject = ({ setIsModalOpen }) => {
     const [inputAddProjectValue, setInputAddProjectValue] = useState("");
     const selectSection = useStore(state => state.select);
     const colors = useStore(state => state.colors);
+    const getColor = useStore(state => state.getColor);
     const [selectedColor, setSelectedColor] = useState(null);
     return (
         <Modal buttonList={[{
@@ -44,7 +45,7 @@ const ModalAddNewProject = ({ setIsModalOpen }) => {
             <Select
                 placeholder="New select"
                 label="Color"
-                selectList={colors.list.map(color => {
+                selectList={colors.map(color => {
                     return {
                         title: color.name,
                         color: color.label,
@@ -55,8 +56,8 @@ const ModalAddNewProject = ({ setIsModalOpen }) => {
                     }
                 })}>
                 <div className="select-display-color">
-                    <ColorDisplay color={colors.getColor(selectedColor).label} />
-                    <div className="select-display-color-name">{colors.getColor(selectedColor).name}</div>
+                    <ColorDisplay color={getColor(selectedColor).label} />
+                    <div className="select-display-color-name">{getColor(selectedColor).name}</div>
                     <Icon name="AngleDown" size="sm" />
                 </div>
             </Select>

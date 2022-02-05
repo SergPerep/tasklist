@@ -5,32 +5,36 @@ import useStore from "../../store/useStore";
 
 
 const TaskList = () => {
-    const sections = useStore(state => state.sections);
-    const tasks = useStore(state => state.tasks);
     const isShowCompletedTasks = useStore(state => state.isShowCompleted);
-    const selectedSection = sections?.getSelectedSection();
+    const selectedSection = useStore(state => state.getSelectedSection());
     const selectedSectionId = selectedSection.id;
     const isSelectedSectionAProject = selectedSection.isAProject;
+
+    const getInboxTasks = useStore(state => state.getInboxTasks);
+    const getTodayTasks = useStore(state => state.getTodayTasks);
+    const getOverdueTasks = useStore(state => state.getOverdueTasks);
+    const getTomorrowTasks = useStore(state => state.getTomorrowTasks);
+    const getProjectTasks = useStore(state => state.getProjectTasks);
 
     // Takes array and makes a list of elements out of it
     const mapList = list => list.map(task => <TaskItem data={task} key={task.id} />);
 
     /* INBOX */
-    const inboxTaskList = tasks.getInboxTasks(false);
-    const completedInboxTaskList = tasks.getInboxTasks(true);
+    const inboxTaskList = getInboxTasks(false);
+    const completedInboxTaskList = getInboxTasks(true);
 
     /* TODAY */
-    const todayTaskList = tasks.getTodayTasks(false);
-    const completedTodayTaskList = tasks.getTodayTasks(true);
-    const overdueTaskList = tasks.getOverdueTasks();
+    const todayTaskList = getTodayTasks(false);
+    const completedTodayTaskList = getTodayTasks(true);
+    const overdueTaskList = getOverdueTasks();
 
     /* TOMORROW */
-    const tomorrowTaskList = tasks.getTomorrowTasks(false);
-    const completedTomorrowTaskList = tasks.getTomorrowTasks(true)
+    const tomorrowTaskList = getTomorrowTasks(false);
+    const completedTomorrowTaskList = getTomorrowTasks(true)
 
     /* PROJECTS */
-    const projectTaskList = tasks.getProjectTasks(selectedSectionId, false);
-    const completedProjectTaskList = tasks.getProjectTasks(selectedSectionId, true);
+    const projectTaskList = getProjectTasks(selectedSectionId, false);
+    const completedProjectTaskList = getProjectTasks(selectedSectionId, true);
 
     return (
         <div className="tasklist">

@@ -1,5 +1,5 @@
 import create from "zustand";
-import {devtools} from "zustand/middleware"
+import { devtools } from "zustand/middleware"
 import createTaskSlice from "./createTaskSlice";
 import createColorSlice from "./createColorSlice";
 import createProjectSlice from "./createProjectSlice";
@@ -12,4 +12,4 @@ const store = (set, get) => ({
     ...createSectionSlice(set, get)
 })
 
-export default create(devtools(store))
+export default create(devtools(store));

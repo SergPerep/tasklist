@@ -11,7 +11,7 @@ const AddTaskInput = props => {
     const openThisEdit = openEditArr && openEditArr.find(x => x.id === taskInputId) ? openEditArr.find(x => x.id === taskInputId).openEdit : false;
     const { setSelectedProject } = useContext(ProjectPickerContext);
     const { setSelectedDate } = useContext(DateAndTimePickerContext);
-    const selectedSection = useStore(state => state.sections.getSelectedSection());
+    const selectedSection = useStore(state => state.getSelectedSection());
     const selectedSectionId = selectedSection.id;
     return (
         <div className="addtaskinput">

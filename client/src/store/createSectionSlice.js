@@ -29,33 +29,29 @@ const defaultSections = [{
 }]
 
 export default (set, get) => ({
-    sections: {
-        list: [...defaultSections
-            /**
-               id: "3",
-               name: "Work",
-               taskNum: 8,
-               selected: false,
-               isAProject: true,
-               color: {
-                   id: 4,
-                   name: "Berry Red",
-                   fill: "rgba(151, 17, 67, 0.16)",
-                   font: "#681735",
-                   label: "#BC245D"
-               }
-           */
-        ],
-        getSelectedSection() {
-            return this.list
-                .find(section => section.selected === true);
-        }
+    sections: [...defaultSections
+        /**
+           id: "3",
+           name: "Work",
+           taskNum: 8,
+           selected: false,
+           isAProject: true,
+           color: {
+               id: 4,
+               name: "Berry Red",
+               fill: "rgba(151, 17, 67, 0.16)",
+               font: "#681735",
+               label: "#BC245D"
+           }
+       */
+    ],
+    getSelectedSection() {
+        return get().sections
+            .find(section => section.selected === true);
     },
     select: (id) => set(state => {
-        const newSections = { ...state.sections };
-        console.log(newSections);
-
-        newSections.list.map(section => {
+        let newSections = [ ...state.sections ];
+        newSections.map(section => {
             section.selected = section.id === id;
             return { section }
         });
@@ -63,23 +59,22 @@ export default (set, get) => ({
     }),
     setSections: (projects) => set(state => {
         console.log("--> setSections");
-        const tasks = get().tasks;
-        const colors = get().colors;
-        const newSections = { ...state.sections };
+        const tasks = get().getInboxTasks;
+        const getProjectTasks = state.getProjectTasks;
+        const getColor = state.getColor;
         const newProjects = projects.map(project => {
             return {
                 id: project.id,
                 name: project.name,
-                tasksNum: tasks.getProjectTasks(project.id)?.length,
+                tasksNum: getProjectTasks(project.id)?.length,
                 selected: false,
                 isAProject: true,
-                color: colors.getColor(project.color_id)
+                color: getColor(project.color_id)
             };
         });
-        // const notProjects = newSections.list.filter(section => !section.isAProject);
-        newSections.list = [...defaultSections, ...newProjects];
+        const newSections = [...defaultSections, ...newProjects];
         /*
-        newSections.list
+        newSections
             .map(section => {
                 if (section.id === "inb") section.tasksNum = tasks.getInboxTasks().length;
                 if (section.id === "td") section.tasksNum = tasks.getTodayTasks().length + tasks.getOverdueTasks().length;

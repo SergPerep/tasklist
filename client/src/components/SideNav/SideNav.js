@@ -47,10 +47,7 @@ const SideNav = () => {
 
     return (
         <div className="tasknav">
-            <button onClick={() => {
-                console.log(tasks.getInboxTasks());
-            }}>Console log</button>
-            {sections.list
+            {sections
                 .filter(section => section.isAProject === false)
                 .map(section => <SideNavItem
                     leftIcon={section.leftIcon}
@@ -67,7 +64,7 @@ const SideNav = () => {
             {isModalAddProjectOpen && 
                 <ModalAddNewProject setIsModalOpen={setIsModalAddProjectOpen} />
             }
-            {sections.list
+            {sections
                 .filter(section => section.isAProject === true)
                 .map(section => <SideNavItem
                     count={section.tasksNum}

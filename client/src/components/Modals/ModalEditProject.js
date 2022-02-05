@@ -38,7 +38,7 @@ const ModalEditProject = ({ setIsModalOpen }) => {
         <Select
             placeholder="New select"
             label="Color"
-            selectList={colors.list.map(color => {
+            selectList={colors.map(color => {
                 return {
                     title: color.name,
                     color: color.label,
