@@ -3,7 +3,7 @@ import EditTask from "./EditTask";
 import { OpenAndCloseEditContext } from "./contexts/OpenAndCloseEditContext";
 import { DateAndTimePickerContext } from "./Pickers/DateAndTimePickerContext";
 import { ProjectPickerContext } from "./Pickers/ProjectPickerContext";
-import useSectionsStore from "../stores/useSectionsStore";
+import useStore from "../store/useStore";
 import { today, tomorrow } from "./TodayTomorrowVars";
 
 const AddTaskInput = props => {
@@ -11,7 +11,7 @@ const AddTaskInput = props => {
     const openThisEdit = openEditArr && openEditArr.find(x => x.id === taskInputId) ? openEditArr.find(x => x.id === taskInputId).openEdit : false;
     const { setSelectedProject } = useContext(ProjectPickerContext);
     const { setSelectedDate } = useContext(DateAndTimePickerContext);
-    const selectedSection = useSectionsStore(state => state.sections.getSelectedSection());
+    const selectedSection = useStore(state => state.sections.getSelectedSection());
     const selectedSectionId = selectedSection.id;
     return (
         <div className="addtaskinput">

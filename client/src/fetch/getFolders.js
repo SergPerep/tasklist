@@ -1,7 +1,7 @@
-import useProjectsStore from "../stores/useProjectsStore";
+import useStore from "../store/useStore";
 
 // const setSections = useSectionsStore.getState().setSections;
-const setProjects = useProjectsStore.getState().setProjects;
+const setProjects = useStore.getState().setProjects;
 
 const getFolders = async () => {
     try {

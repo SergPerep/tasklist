@@ -12,16 +12,14 @@ import { SnackbarProvider } from "../contexts/SnackbarContext";
 import getFolders from "../../fetch/getFolders";
 import getTasks from "../../fetch/getTasks";
 import getColors from "../../fetch/getColors";
-import useTasksStore from "../../stores/useTasksStore";
-import useProjectsStore from "../../stores/useProjectsStore";
-import useColorsStore from "../../stores/useColorsStore";
+import useStore from "../../store/useStore";
 
 const MainPage = () => {
     const { logoutUser } = useContext(AuthenticationContext);
-    const tasks = useTasksStore(state => state.tasks);
-    const setTasks = useTasksStore(state => state.setTasks);
-    const setProjects = useProjectsStore(state => state.setProjects);
-    const setColors = useColorsStore(state => state.setColors);
+    const tasks = useStore(state => state.tasks);
+    const setTasks = useStore(state => state.setTasks);
+    const setProjects = useStore(state => state.setProjects);
+    const setColors = useStore(state => state.setColors);
 
     useEffect(() => {
         Promise.all([getColors(), getFolders(), getTasks()])
@@ -30,7 +28,6 @@ const MainPage = () => {
                 setTasks(rawTasks);
                 setColors(rawColors);
                 setProjects(rawFolders);
-                console.log({ tasks });
             });
     }, [])
 

@@ -1,6 +1,6 @@
-import useTasksStore from "../stores/useTasksStore";
+import useStore from "../store/useStore";
 
-const setTasks = useTasksStore.getState().setTasks;
+const setTasks = useStore.getState().setTasks;
 
 // Converts data so that JS can work with it
 const convertData = (oldArr) => {

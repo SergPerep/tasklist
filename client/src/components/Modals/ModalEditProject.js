@@ -5,12 +5,11 @@ import ColorDisplay from "../BasicUI/ColorDisplay";
 import Icon from "../BasicUI/Icon";
 import { useState } from "react";
 import updateProject from "../../fetch/updateProject";
-import useSectionsStore from "../../stores/useSectionsStore";
-import useColorsStore from "../../stores/useColorsStore";
+import useStore from "../../store/useStore";
 
 const ModalEditProject = ({ setIsModalOpen }) => {
-    const colors = useColorsStore(state => state.colors);
-    const selectedSection = useSectionsStore(state => state.sections.getSelectedSection());
+    const colors = useStore(state => state.colors);
+    const selectedSection = useStore(state => state.sections.getSelectedSection());
     const project = selectedSection.isAProject ? selectedSection : null;
     const [selectedColor, setSelectedColor] = useState(selectedSection?.color);
     const [inputProjectNameValue, setInputProjectNameValue] = useState(selectedSection?.name);

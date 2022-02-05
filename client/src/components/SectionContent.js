@@ -2,17 +2,16 @@ import TaskList from "./Tasks/TaskList";
 import Header from "./Header";
 import AddTaskInput from "./AddTaskInput";
 import { useEffect, useState } from "react";
-import useSectionsStore from "../stores/useSectionsStore";
-import useTasksStore from "../stores/useTasksStore";
+import useStore from "../store/useStore";
 import ModalDeleteProject from "./Modals/ModalDeleteProject";
 import ModalEditProject from "./Modals/ModalEditProject";
 
 const SectionContent = () => {
-    const selectedSection = useSectionsStore(state => state.sections.getSelectedSection());
+    const selectedSection = useStore(state => state.sections.getSelectedSection());
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-    const isShowCompletedTasks = useTasksStore(state => state.isShowCompleted);
-    const setIsShowCompletedTasks = useTasksStore(state => state.setShowCompleted);
+    const isShowCompletedTasks = useStore(state => state.isShowCompleted);
+    const setIsShowCompletedTasks = useStore(state => state.setShowCompleted);
 
     useEffect(() => {
         localStorage.setItem("isShowCompletedTasks", isShowCompletedTasks);

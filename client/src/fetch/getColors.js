@@ -1,6 +1,6 @@
-import useColorsStore from "../stores/useColorsStore";
+import useStore from "../store/useStore";
 
-const setColors = useColorsStore.getState().setColors;
+const setColors = useStore.getState().setColors;
 
 const getColors = async () => {
     try {

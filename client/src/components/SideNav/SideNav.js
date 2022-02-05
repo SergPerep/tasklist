@@ -4,13 +4,12 @@ import SideNavItem from "./SideNavItem";
 import date from "date-and-time";
 import { today, tomorrow } from "../TodayTomorrowVars";
 import { OpenAndCloseEditContext } from "../contexts/OpenAndCloseEditContext";
-import useSectionsStore from "../../stores/useSectionsStore";
+import useStore from "../../store/useStore";
 import ModalAddNewProject from "../Modals/ModalAddNewProject";
-import useTasksStore from "../../stores/useTasksStore";
 
 const SideNav = () => {
-    const sections = useSectionsStore(state => state.sections);
-    const selectSection = useSectionsStore(state => state.select);
+    const sections = useStore(state => state.sections);
+    const selectSection = useStore(state => state.select);
     const [openProjects, setOpenProjects] = useState(() => {
         if (localStorage.getItem("openProjects") === null) {
             return true
@@ -21,7 +20,7 @@ const SideNav = () => {
     const { closeAllEdits } = useContext(OpenAndCloseEditContext);
     const [isModalAddProjectOpen, setIsModalAddProjectOpen] = useState(false);
 
-    const tasks = useTasksStore(state => state.tasks);
+    const tasks = useStore(state => state.tasks);
 
     useEffect(() => {
         localStorage.setItem("openProjects", openProjects);

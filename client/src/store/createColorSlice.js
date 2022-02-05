@@ -1,5 +1,3 @@
-import create from "zustand";
-
 console.log("--> useColorStore");
 
 const charchoal = {
@@ -10,7 +8,7 @@ const charchoal = {
     fill: "rgba(0, 0, 0, 0.12)"
 }
 
-export default create(set => ({
+export default (set, get) => ({
     colors: {
         list: [/*
             {
@@ -33,4 +31,4 @@ export default create(set => ({
         newColors.list = [charchoal, ...rawColors];
         return { colors: newColors }
     }),
-}));
+});

@@ -1,11 +1,9 @@
-import create from "zustand";
-import { devtools } from "zustand/middleware";
 import date from "date-and-time";
 import { today, tomorrow } from "../components/TodayTomorrowVars";
 
 console.log("--> useTaskStore");
 
-const store = set => ({
+const createTaskSlice = (set, get) => ({
     tasks: {
         list: [/*
             {
@@ -76,5 +74,4 @@ const store = set => ({
     }),
 })
 
-
-export default create(devtools(store))
+export default createTaskSlice;

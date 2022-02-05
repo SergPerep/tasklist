@@ -1,9 +1,9 @@
 import create from "zustand";
-import useSectionsStore from "./useSectionsStore";
+import useSectionsStore from "./createSectionSlice";
 
-const setSections = useSectionsStore.getState().setSections;
+// const setSections = useSectionsStore.getState().setSections;
 
-export default create(set => ({
+const createProjectSlice = (set, get) => ({
     projects: {
         list: [/*{
             id: 3, 
@@ -23,6 +23,9 @@ export default create(set => ({
             return { projects: newProjects }
         })
         console.log("--> setProjects")
-        setSections(folders);
+        get().setSections(folders)
+        // setSections(folders);
     }
-}));
+});
+
+export default createProjectSlice;

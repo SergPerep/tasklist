@@ -4,14 +4,13 @@ import Modal from "./Modal";
 import ColorDisplay from "../BasicUI/ColorDisplay";
 import Icon from "../BasicUI/Icon";
 import { useState } from "react";
-import useSectionsStore from "../../stores/useSectionsStore";
-import useColorsStore from "../../stores/useColorsStore";
+import useStore from "../../store/useStore";
 import addProject from "../../fetch/addProject";
 
 const ModalAddNewProject = ({ setIsModalOpen }) => {
     const [inputAddProjectValue, setInputAddProjectValue] = useState("");
-    const selectSection = useSectionsStore(state => state.select);
-    const colors = useColorsStore(state => state.colors);
+    const selectSection = useStore(state => state.select);
+    const colors = useStore(state => state.colors);
     const [selectedColor, setSelectedColor] = useState(null);
     return (
         <Modal buttonList={[{

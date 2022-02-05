@@ -1,10 +1,10 @@
 import Modal from "./Modal";
 import deleteProject from "../../fetch/deleteProject";
-import useSectionsStore from "../../stores/useSectionsStore";
+import useStore from "../../store/useStore";
 
 const ModalDeleteProject = ({ setIsModalOpen }) => {
-    const selectSection = useSectionsStore(state => state.select);
-    const selectedSection = useSectionsStore(state => state.sections.getSelectedSection());
+    const selectSection = useStore(state => state.select);
+    const selectedSection = useStore(state => state.sections.getSelectedSection());
 
     return (
         <Modal buttonList={[{

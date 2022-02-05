@@ -1,12 +1,7 @@
-import create from "zustand";
-import useTasksStore from "./useTasksStore";
-import useColorsStore from "./useColorsStore";
-import { devtools } from "zustand/middleware"
-
 console.log("--> useSectionStore");
 
-const tasks = useTasksStore.getState().tasks;
-const colors = useColorsStore.getState().colors;
+// const tasks = useStore.getState().tasks;
+// const colors = useStore.getState().colors;
 
 const defaultSections = [{
     id: "inb",
@@ -33,7 +28,7 @@ const defaultSections = [{
     isAProject: false
 }]
 
-const store = set => ({
+export default (set, get) => ({
     sections: {
         list: [...defaultSections
             /**
@@ -68,7 +63,9 @@ const store = set => ({
     }),
     setSections: (projects) => set(state => {
         console.log("--> setSections");
-        const newSections = {...state.sections};
+        const tasks = get().tasks;
+        const colors = get().colors;
+        const newSections = { ...state.sections };
         const newProjects = projects.map(project => {
             return {
                 id: project.id,
@@ -81,16 +78,16 @@ const store = set => ({
         });
         // const notProjects = newSections.list.filter(section => !section.isAProject);
         newSections.list = [...defaultSections, ...newProjects];
+        /*
         newSections.list
             .map(section => {
                 if (section.id === "inb") section.tasksNum = tasks.getInboxTasks().length;
-                if (section.id === "td") section.tasksNum = tasks.getTodayTasks().length;
+                if (section.id === "td") section.tasksNum = tasks.getTodayTasks().length + tasks.getOverdueTasks().length;
                 if (section.id === "tmr") section.tasksNum = tasks.getTomorrowTasks().length;
                 return section;
             })
+            */
         console.log({ newSections });
         return { sections: newSections }
     })
 });
-
-export default create(store);

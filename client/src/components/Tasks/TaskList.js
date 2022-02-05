@@ -1,14 +1,13 @@
 import React from "react";
 import TaskItem from "./TaskItem";
 import Accordion from "../Accordion";
-import useTasksStore from "../../stores/useTasksStore";
-import useSectionsStore from "../../stores/useSectionsStore";
+import useStore from "../../store/useStore";
 
 
 const TaskList = () => {
-    const sections = useSectionsStore(state => state.sections);
-    const tasks = useTasksStore(state => state.tasks);
-    const isShowCompletedTasks = useTasksStore(state => state.isShowCompleted);
+    const sections = useStore(state => state.sections);
+    const tasks = useStore(state => state.tasks);
+    const isShowCompletedTasks = useStore(state => state.isShowCompleted);
     const selectedSection = sections?.getSelectedSection();
     const selectedSectionId = selectedSection.id;
     const isSelectedSectionAProject = selectedSection.isAProject;
