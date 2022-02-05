@@ -58,8 +58,6 @@ export default (set, get) => ({
         return { sections: newSections };
     }),
     setSections: (projects) => set(state => {
-        console.log("--> setSections");
-        const tasks = get().getInboxTasks;
         const getProjectTasks = state.getProjectTasks;
         const getColor = state.getColor;
         const newProjects = projects.map(project => {
@@ -80,7 +78,7 @@ export default (set, get) => ({
                 if (section.id === "tmr") section.tasksNum = state.getTomorrowTasks().length;
                 return section;
             })
-        console.log({ newSections });
+        // console.log({ newSections });
         return { sections: newSections }
     })
 });

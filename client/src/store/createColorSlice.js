@@ -22,11 +22,5 @@ export default (set, get) => ({
         return get().colors
             .find(color => color.id === colorId)
     },
-    setColors: (rawColors) => set(state => {
-        console.log("--> setColors")
-        // const newColors = state.colors;
-        // console.log(newColors);
-        // state.colors = [charchoal, ...rawColors];
-        return { colors: [charchoal, ...rawColors] }
-    }),
+    setColors: (rawColors) => set({ colors: [charchoal, ...rawColors] })
 });

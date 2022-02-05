@@ -5,7 +5,7 @@ import useStore from "../../store/useStore";
 
 
 const TaskList = () => {
-    const isShowCompletedTasks = useStore(state => state.isShowCompleted);
+    const isShowCompletedTasks = useStore(state => state.isShowCompletedTasks);
     const selectedSection = useStore(state => state.getSelectedSection());
     const selectedSectionId = selectedSection.id;
     const isSelectedSectionAProject = selectedSection.isAProject;

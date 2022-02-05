@@ -15,12 +15,9 @@ const createProjectSlice = (set, get) => ({
             .find(project => project.id === id)
     },
     setProjects: (folders) => {
-        set(state => {
-            return { projects: folders }
-        })
-        console.log("--> setProjects")
+        set({ projects: folders })
+        // console.log("--> setProjects")
         get().setSections(folders)
-        // setSections(folders);
     }
 });
 

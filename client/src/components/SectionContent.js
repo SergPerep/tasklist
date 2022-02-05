@@ -10,8 +10,8 @@ const SectionContent = () => {
     const selectedSection = useStore(state => state.getSelectedSection());
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-    const isShowCompletedTasks = useStore(state => state.isShowCompleted);
-    const setIsShowCompletedTasks = useStore(state => state.setShowCompleted);
+    const isShowCompletedTasks = useStore(state => state.isShowCompletedTasks);
+    const setIsShowCompletedTasks = useStore(state => state.setIsShowCompletedTasks);
 
     useEffect(() => {
         localStorage.setItem("isShowCompletedTasks", isShowCompletedTasks);
