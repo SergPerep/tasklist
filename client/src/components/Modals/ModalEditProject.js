@@ -9,7 +9,7 @@ import useStore from "../../store/useStore";
 
 const ModalEditProject = ({ setIsModalOpen }) => {
     const colors = useStore(state => state.colors);
-    const selectedSection = useStore(state => state.sections.getSelectedSection());
+    const selectedSection = useStore(state => state.getSelectedSection());
     const project = selectedSection.isAProject ? selectedSection : null;
     const [selectedColor, setSelectedColor] = useState(selectedSection?.color);
     const [inputProjectNameValue, setInputProjectNameValue] = useState(selectedSection?.name);

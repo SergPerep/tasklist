@@ -73,15 +73,13 @@ export default (set, get) => ({
             };
         });
         const newSections = [...defaultSections, ...newProjects];
-        /*
         newSections
             .map(section => {
-                if (section.id === "inb") section.tasksNum = tasks.getInboxTasks().length;
-                if (section.id === "td") section.tasksNum = tasks.getTodayTasks().length + tasks.getOverdueTasks().length;
-                if (section.id === "tmr") section.tasksNum = tasks.getTomorrowTasks().length;
+                if (section.id === "inb") section.tasksNum = state.getInboxTasks().length;
+                if (section.id === "td") section.tasksNum = state.getTodayTasks().length + state.getOverdueTasks().length;
+                if (section.id === "tmr") section.tasksNum = state.getTomorrowTasks().length;
                 return section;
             })
-            */
         console.log({ newSections });
         return { sections: newSections }
     })

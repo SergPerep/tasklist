@@ -4,7 +4,7 @@ import useStore from "../../store/useStore";
 
 const ModalDeleteProject = ({ setIsModalOpen }) => {
     const selectSection = useStore(state => state.select);
-    const selectedSection = useStore(state => state.sections.getSelectedSection());
+    const selectedSection = useStore(state => state.getSelectedSection());
 
     return (
         <Modal buttonList={[{
