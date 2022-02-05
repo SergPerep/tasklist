@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react";
 import { AuthenticationContext } from "../contexts/AuthenticationContext";
-import { DatabaseProvider } from "../contexts/DatabaseContext";
 import SideNav from "../SideNav/SideNav";
 import { DateAndTimePickerProvider } from "../Pickers/DateAndTimePickerContext";
 import { ProjectPickerProvider } from "../Pickers/ProjectPickerContext";
@@ -16,7 +15,6 @@ import useStore from "../../store/useStore";
 
 const MainPage = () => {
     const { logoutUser } = useContext(AuthenticationContext);
-    const tasks = useStore(state => state.tasks);
     const setTasks = useStore(state => state.setTasks);
     const setProjects = useStore(state => state.setProjects);
     const setColors = useStore(state => state.setColors);
@@ -39,29 +37,27 @@ const MainPage = () => {
         <Button design="outlined" onClick={handleClickLogout}>Logout</Button> */}
 
         <SnackbarProvider>
-            <DatabaseProvider>
-                <div className="taskboard">
-                    <div className="taskboard-header">
-                        <TopNav />
-                    </div>
-                    <div className="taskboard-container">
-                        <OpenAndCloseEditProvider>
-                            <div className="taskboard-sidenav">
-                                <SideNav />
-                            </div>
-                            <div className="taskboard-display">
-                                <div className="taskboard-display-container">
-                                    <DateAndTimePickerProvider>
-                                        <ProjectPickerProvider>
-                                            <SectionContent />
-                                        </ProjectPickerProvider>
-                                    </DateAndTimePickerProvider>
-                                </div>
-                            </div>
-                        </OpenAndCloseEditProvider>
-                    </div>
+            <div className="taskboard">
+                <div className="taskboard-header">
+                    <TopNav />
                 </div>
-            </DatabaseProvider>
+                <div className="taskboard-container">
+                    <OpenAndCloseEditProvider>
+                        <div className="taskboard-sidenav">
+                            <SideNav />
+                        </div>
+                        <div className="taskboard-display">
+                            <div className="taskboard-display-container">
+                                <DateAndTimePickerProvider>
+                                    <ProjectPickerProvider>
+                                        <SectionContent />
+                                    </ProjectPickerProvider>
+                                </DateAndTimePickerProvider>
+                            </div>
+                        </div>
+                    </OpenAndCloseEditProvider>
+                </div>
+            </div>
             <Snackbar />
         </SnackbarProvider>
 

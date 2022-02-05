@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import Checkbox from "../BasicUI/Checkbox";
 import date from "date-and-time";
-import { DatabaseContext } from "../contexts/DatabaseContext";
 import { useClickOutside } from "../CustomHooks";
 import EditTask from "../EditTask";
 import { OpenAndCloseEditContext } from "../contexts/OpenAndCloseEditContext";
@@ -10,10 +9,14 @@ import Icon from "../BasicUI/Icon";
 import Modal from "../Modals/Modal";
 import Menu from "../Menus/Menu";
 import { SnackbarContext } from "../contexts/SnackbarContext";
+import getTasks from "../../fetch/getTasks";
+import useStore from "../../store/useStore";
 
 const TaskItem = props => {
     const { id, description, status_of_completion, date_and_time, read_time, folder} = props.data;
-    const { getTasks, projects, colors } = useContext(DatabaseContext);
+    const projects = useStore(state => state.projects);
+    const colors = useStore(state => state.colors);
+    const setTasks = useStore(state => state.setTasks);
     const { openEditArr, openOneEditCloseAllOther } = useContext(OpenAndCloseEditContext);
     const openThisEdit = openEditArr.find(x => x.id === id) ? openEditArr.find(x => x.id === id).openEdit : false;
     const [menuIsOpen, setMenuIsOpen] = useState(false);
@@ -48,7 +51,8 @@ const TaskItem = props => {
             const response = await updateCheckStatus.json();
             console.log(response);
             runSnackbar(response);
-            getTasks();
+
+            getTasks().then(data => setTasks(data));
         } catch (error) {
             console.error(error.message);
         }

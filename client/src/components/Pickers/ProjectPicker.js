@@ -3,11 +3,12 @@ import { useClickOutside } from "../CustomHooks";
 import Icon from "../BasicUI/Icon";
 import MenuItem from "../Menus/MenuItem";
 import { ProjectPickerContext } from "./ProjectPickerContext";
-import { DatabaseContext } from "../contexts/DatabaseContext";
 import ColorDisplay from "../BasicUI/ColorDisplay";
+import useStore from "../../store/useStore";
 
 const ProjectPicker = () => {
-    const { projects, colors } = useContext(DatabaseContext);
+    const projects = useStore(state => state.projects);
+    const colors = useStore(state => state.colors);
     const { selectedProject, setSelectedProject } = useContext(ProjectPickerContext);
     const [openProjectMenu, setOpenProjectMenu] = useState(false);
 

@@ -1,5 +1,4 @@
 import { useContext, useState, useEffect } from "react";
-import { DatabaseContext } from "../contexts/DatabaseContext";
 import SideNavItem from "./SideNavItem";
 import date from "date-and-time";
 import { today, tomorrow } from "../TodayTomorrowVars";
@@ -16,7 +15,6 @@ const SideNav = () => {
         }
         return localStorage.getItem("openProjects") === "true" ? true : false
     });
-    const { taskList } = useContext(DatabaseContext);
     const { closeAllEdits } = useContext(OpenAndCloseEditContext);
     const [isModalAddProjectOpen, setIsModalAddProjectOpen] = useState(false);
 
@@ -36,7 +34,7 @@ const SideNav = () => {
         setIsModalAddProjectOpen(true);
     }
 
-    const areThereTomorrowTasks = true && taskList
+    const areThereTomorrowTasks = true && tasks
         .find(task => {
             if (!task.status_of_completion) {
                 if (task.date_and_time) {

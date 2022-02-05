@@ -3,10 +3,11 @@ import DateAndTimePicker from "./Pickers/DateAndTimePicker";
 import ProjectPicker from "./Pickers/ProjectPicker";
 import { DateAndTimePickerContext } from "./Pickers/DateAndTimePickerContext";
 import { useContext, useEffect, useState } from "react";
-import { DatabaseContext } from "./contexts/DatabaseContext";
 import { ProjectPickerContext } from "./Pickers/ProjectPickerContext";
 import date from "date-and-time";
 import { OpenAndCloseEditContext } from "./contexts/OpenAndCloseEditContext";
+import getTasks from "../fetch/getTasks";
+import useStore from "../store/useStore";
 
 
 const EditTask = props => {
@@ -15,7 +16,7 @@ const EditTask = props => {
     const { btnName = "Save" } = props;
     const { considerTime, setConsiderTime, selectedDate, setSelectedDate, setTimeDisplay } = useContext(DateAndTimePickerContext);
     const { selectedProject, setSelectedProject } = useContext(ProjectPickerContext);
-    const { getTasks, projects } = useContext(DatabaseContext);
+    const projects = useStore(state => state.projects);
     const { closeOneEdit } = useContext(OpenAndCloseEditContext);
     const [taskInputValue, setTaskInputValue] = useState("");
 

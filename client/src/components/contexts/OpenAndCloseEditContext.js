@@ -5,8 +5,8 @@
  */
 
 import { createContext, useState, useEffect, useContext } from "react";
-import { DatabaseContext } from "./DatabaseContext";
 import { v4 as uuidv4 } from 'uuid';
+import useStore from "../../store/useStore";
 
 export const OpenAndCloseEditContext = createContext();
 
@@ -14,12 +14,11 @@ const taskInputId = uuidv4(); // id of the input of «Add new task» is needed t
 
 export const OpenAndCloseEditProvider = props => {
     const [openEditArr, setOpenEditArr] = useState([]); // Will be array of objects when defined
-    const { taskList } = useContext(DatabaseContext); // taskList is requred to build openEditArr
-
+    const tasks = useStore(state => state.tasks); // tasks are requred to build openEditArr
     // Makes an array that stores open-edit-statuses with correlated ids
     const buildOpenEditArr = () => {
         // 1. Makes array of open-edit-statuses for each task-item
-        let data = taskList.map(task => {
+        let data = tasks.map(task => {
             return {
                 id: task.id,
                 openEdit: false
@@ -42,7 +41,7 @@ export const OpenAndCloseEditProvider = props => {
      */
     useEffect(() => {
         buildOpenEditArr();
-    }, [taskList]);
+    }, [tasks]);
 
     // Opens edit of correlated id and closes all other edits
     const openOneEditCloseAllOther = id => {
