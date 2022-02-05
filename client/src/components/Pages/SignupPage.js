@@ -1,15 +1,15 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Button from "../BasicUI/Button";
 import Input from "../BasicUI/Input";
 import { useNavigate } from "react-router-dom";
 import HreflessLink from "../BasicUI/HreflessLink";
-import { AuthenticationContext } from "../contexts/AuthenticationContext";
+import signupUser from "../../fetch/auth/signupUser";
+import useStore from "../../store/useStore";
 
 const SignupPage = () => {
 
     const [inputs, setInputs] = useState({ username: "goodBoy55", password: "pa$$55" })
-
-    const { signupUser } = useContext(AuthenticationContext);
+    const setIsUserAuthenticated = useStore(state => state.setIsUserAuthenticated);
 
     const navigate = useNavigate();
 
@@ -19,7 +19,7 @@ const SignupPage = () => {
 
     const handleSumbitForm = e => {
         e.preventDefault();
-        signupUser(inputs.username, inputs.password);
+        signupUser(inputs.username, inputs.password).then(result => setIsUserAuthenticated(result));
     }
     return <div className="canvas">
         <div className="authentication">

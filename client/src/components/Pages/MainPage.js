@@ -1,5 +1,4 @@
-import { useContext, useEffect } from "react";
-import { AuthenticationContext } from "../contexts/AuthenticationContext";
+import { useEffect } from "react";
 import SideNav from "../SideNav/SideNav";
 import { DateAndTimePickerProvider } from "../Pickers/DateAndTimePickerContext";
 import { ProjectPickerProvider } from "../Pickers/ProjectPickerContext";
@@ -12,12 +11,13 @@ import getFolders from "../../fetch/getFolders";
 import getTasks from "../../fetch/getTasks";
 import getColors from "../../fetch/getColors";
 import useStore from "../../store/useStore";
+import logoutUser from "../../fetch/auth/logoutUser";
 
 const MainPage = () => {
-    const { logoutUser } = useContext(AuthenticationContext);
     const setTasks = useStore(state => state.setTasks);
     const setProjects = useStore(state => state.setProjects);
     const setColors = useStore(state => state.setColors);
+    const setIsUserAuthenticated = useStore(state => state.setIsUserAuthenticated);
 
     useEffect(() => {
         Promise.all([getColors(), getFolders(), getTasks()])
@@ -30,7 +30,7 @@ const MainPage = () => {
     }, [])
 
     const handleClickLogout = () => {
-        logoutUser();
+        logoutUser().then(result => setIsUserAuthenticated(result));
     }
     return <>
         {/*<h1>Main page</h1>

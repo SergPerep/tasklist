@@ -1,14 +1,19 @@
-import React, { useContext, useState } from "react"
+import React, { useEffect } from "react"
 import './App.css';
 import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 import MainPage from "./components/Pages/MainPage";
 import LoginPage from "./components/Pages/LoginPage";
 import SignupPage from "./components/Pages/SignupPage";
-import { AuthenticationContext } from "./components/contexts/AuthenticationContext";
-
+import checkWhetherUserIsAuthenticated from "./fetch/auth/checkWhetherUserIsAuthenticated";
+import useStore from "./store/useStore";
 
 function App() {
-  const { isUserAuthenticated } = useContext(AuthenticationContext);
+  const isUserAuthenticated = useStore(state => state.isUserAuthenticated);
+  const setIsUserAuthenticated = useStore(state => state.setIsUserAuthenticated);
+
+  useEffect(() => {
+    checkWhetherUserIsAuthenticated().then(result => setIsUserAuthenticated(result));
+}, [])
 
   return (
     <>
