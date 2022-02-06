@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { useContext } from "react";
 import { DateAndTimePickerContext } from "./DateAndTimePickerContext";
 import Icon from "../BasicUI/Icon";
-import { today } from "../TodayTomorrowVars";
+import { today } from "../../utils/days";
 
 const Calendar = () => {
     const contextValue = useContext(DateAndTimePickerContext);

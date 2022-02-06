@@ -1,7 +1,7 @@
 import date from "date-and-time";
 import Icon from "./BasicUI/Icon";
 import Menu from "./Menus/Menu";
-import { today, tomorrow } from "./TodayTomorrowVars";
+import { today, tomorrow } from "../utils/days";
 import { useClickOutside } from "./CustomHooks";
 import { useState } from "react";
 

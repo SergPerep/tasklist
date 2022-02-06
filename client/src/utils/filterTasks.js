@@ -1,5 +1,5 @@
 import date from "date-and-time";
-import { today, tomorrow } from "../components/TodayTomorrowVars";
+import { today, tomorrow } from "./days";
 
 export const filterInboxTasks = (tasks, areCompleted = false) => {
     // console.log("--> getInboxTasks");

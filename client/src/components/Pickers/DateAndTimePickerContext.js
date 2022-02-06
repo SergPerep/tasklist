@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { today } from "../TodayTomorrowVars";
+import { today } from "../../utils/days";
 export const DateAndTimePickerContext = createContext();
 
 export const DateAndTimePickerProvider = props => {

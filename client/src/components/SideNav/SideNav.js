@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import SideNavItem from "./SideNavItem";
 import date from "date-and-time";
-import { today, tomorrow } from "../TodayTomorrowVars";
+import { tomorrow } from "../../utils/days";
 import useStore from "../../store/useStore";
 import ModalAddNewProject from "../Modals/ModalAddNewProject";
 

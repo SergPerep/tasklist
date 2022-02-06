@@ -1,8 +1,3 @@
-import date from "date-and-time";
-import { today, tomorrow } from "../components/TodayTomorrowVars";
-
-console.log("--> useTaskStore");
-
 const createTaskSlice = (set, get) => ({
     tasks: [/*
             {

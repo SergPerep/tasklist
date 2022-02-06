@@ -3,7 +3,7 @@ import EditTask from "./EditTask";
 import { DateAndTimePickerContext } from "./Pickers/DateAndTimePickerContext";
 import { ProjectPickerContext } from "./Pickers/ProjectPickerContext";
 import useStore from "../store/useStore";
-import { today, tomorrow } from "./TodayTomorrowVars";
+import { today, tomorrow } from "../utils/days";
 import NEW_TASK_EDIT_ID from "../utils/NEW_TASK_EDIT_ID";
 
 const AddTaskInput = () => {

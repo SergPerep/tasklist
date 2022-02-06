@@ -3,7 +3,7 @@ import Checkbox from "../BasicUI/Checkbox";
 import date from "date-and-time";
 import { useClickOutside } from "../CustomHooks";
 import EditTask from "../EditTask";
-import { today, tomorrow } from "../TodayTomorrowVars";
+import { today, tomorrow } from "../../utils/days";
 import Icon from "../BasicUI/Icon";
 import Modal from "../Modals/Modal";
 import Menu from "../Menus/Menu";

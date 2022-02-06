@@ -6,7 +6,7 @@ import { DateAndTimePickerContext } from "./DateAndTimePickerContext";
 import MenuItem from "../Menus/MenuItem";
 import TimePicker from "./TimePicker";
 import { useClickOutside } from "../CustomHooks";
-import {today, tomorrow} from "../TodayTomorrowVars";
+import {today, tomorrow} from "../../utils/days";
 
 const DateAndTimePicker = () => {
     const { selectedDate, setSelectedDate, considerTime, setConsiderTime, setAncorDate } = useContext(DateAndTimePickerContext);
