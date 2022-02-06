@@ -10,7 +10,7 @@ import Menu from "../Menus/Menu";
 import getTasks from "../../fetch/getTasks";
 import useStore from "../../store/useStore";
 
-const TaskItem = props => {
+const Task = props => {
     const { id, description, status_of_completion, date_and_time, read_time, folder } = props.data;
     const projects = useStore(state => state.projects);
     const colors = useStore(state => state.colors);
@@ -159,4 +159,4 @@ const TaskItem = props => {
     )
 }
 
-export default TaskItem;
+export default Task;

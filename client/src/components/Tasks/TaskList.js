@@ -1,4 +1,4 @@
-import TaskItem from "./TaskItem";
+import Task from "./Task";
 import Accordion from "../Accordion";
 import useStore from "../../store/useStore";
 import { filterInboxTasks, filterOverdueTasks, filterTodayTasks, filterTomorrowTasks, filterProjectTasks } from "../../utils/filterTasks";
@@ -13,7 +13,7 @@ const TaskList = () => {
     const tasks = useStore(state => state.tasks);
 
     // Takes array and makes a list of elements out of it
-    const buldList = list => list.map(task => <TaskItem data={task} key={task.id} />);
+    const buldList = list => list.map(task => <Task data={task} key={task.id} />);
 
     /* INBOX */
     const inboxTaskList = filterInboxTasks(tasks, false);
