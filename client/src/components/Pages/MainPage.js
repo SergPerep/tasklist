@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import SideNav from "../SideNav/SideNav";
 import { DateAndTimePickerProvider } from "../Pickers/DateAndTimePickerContext";
 import { ProjectPickerProvider } from "../Pickers/ProjectPickerContext";
-import { OpenAndCloseEditProvider } from "../contexts/OpenAndCloseEditContext";
 import SectionContent from "../SectionContent";
 import TopNav from "../TopNav";
 import getFolders from "../../fetch/getFolders";
@@ -34,28 +33,23 @@ const MainPage = () => {
         {/*<h1>Main page</h1>
         <Button design="outlined" onClick={handleClickLogout}>Logout</Button> */}
 
-
         <div className="taskboard">
             <div className="taskboard-header">
                 <TopNav />
             </div>
             <div className="taskboard-container">
-                <OpenAndCloseEditProvider>
-                    <div className="taskboard-sidenav">
-                        <SideNav />
+                <div className="taskboard-sidenav">
+                    <SideNav />
+                </div>
+                <div className="taskboard-display">
+                    <div className="taskboard-display-container">
+                        <DateAndTimePickerProvider>
+                            <ProjectPickerProvider>
+                                <SectionContent />
+                            </ProjectPickerProvider>
+                        </DateAndTimePickerProvider>
                     </div>
-                    <div className="taskboard-display">
-                        <div className="taskboard-display-container">
-                            <DateAndTimePickerProvider>
-                                <ProjectPickerProvider>
-                                    <SectionContent />
-                                </ProjectPickerProvider>
-                            </DateAndTimePickerProvider>
-                        </div>
-                    </div>
-                    
-                </OpenAndCloseEditProvider>
-
+                </div>
             </div>
         </div>
     </>

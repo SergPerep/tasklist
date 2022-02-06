@@ -1,34 +1,36 @@
 import { useContext } from "react";
 import EditTask from "./EditTask";
-import { OpenAndCloseEditContext } from "./contexts/OpenAndCloseEditContext";
 import { DateAndTimePickerContext } from "./Pickers/DateAndTimePickerContext";
 import { ProjectPickerContext } from "./Pickers/ProjectPickerContext";
 import useStore from "../store/useStore";
 import { today, tomorrow } from "./TodayTomorrowVars";
+import NEW_TASK_EDIT_ID from "../utils/NEW_TASK_EDIT_ID";
 
-const AddTaskInput = props => {
-    const { openEditArr, openOneEditCloseAllOther, taskInputId } = useContext(OpenAndCloseEditContext);
-    const openThisEdit = openEditArr && openEditArr.find(x => x.id === taskInputId) ? openEditArr.find(x => x.id === taskInputId).openEdit : false;
+const AddTaskInput = () => {
+    const openedEditId = useStore(state => state.openedEditId);
+    const isThisEditOpened = openedEditId === NEW_TASK_EDIT_ID;
+    const setOpenedEdit = useStore(state => state.setOpenedEdit);
+    
     const { setSelectedProject } = useContext(ProjectPickerContext);
     const { setSelectedDate } = useContext(DateAndTimePickerContext);
     const selectedSection = useStore(state => state.selectSection);
     const selectedSectionId = useStore(state => state.selectedSectionId);
     return (
         <div className="addtaskinput">
-            {!openThisEdit &&
+            {!isThisEditOpened &&
                 <div className="addtask-container" onClick={() => {
-                    openOneEditCloseAllOther(taskInputId); // open this Edit, close all other
+                    setOpenedEdit(NEW_TASK_EDIT_ID); // open this Edit, close all other
                     if (selectedSectionId === "td") return setSelectedDate(today)
                     if (selectedSectionId === "tmr") return setSelectedDate(tomorrow)
-                    if (selectedSection.isAProject)  return setSelectedProject(selectedSection)
+                    if (selectedSection.isAProject) return setSelectedProject(selectedSection)
                 }}>
                     <div className="addtask-display">
                         +Add task
                     </div>
                 </div>
             }
-            {openThisEdit &&
-                <EditTask btnName="Add Task" taskInputId={taskInputId} />
+            {isThisEditOpened &&
+                <EditTask btnName="Add Task"/>
             }
         </div>
     )

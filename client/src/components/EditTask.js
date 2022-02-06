@@ -5,20 +5,18 @@ import { DateAndTimePickerContext } from "./Pickers/DateAndTimePickerContext";
 import { useContext, useEffect, useState } from "react";
 import { ProjectPickerContext } from "./Pickers/ProjectPickerContext";
 import date from "date-and-time";
-import { OpenAndCloseEditContext } from "./contexts/OpenAndCloseEditContext";
 import getTasks from "../fetch/getTasks";
 import useStore from "../store/useStore";
 
 
 const EditTask = props => {
     const { id, description, date_and_time, read_time, folder } = props.data || {};
-    const taskInputId = props.taskInputId || {};
     const { btnName = "Save" } = props;
     const { considerTime, setConsiderTime, selectedDate, setSelectedDate, setTimeDisplay } = useContext(DateAndTimePickerContext);
     const { selectedProject, setSelectedProject } = useContext(ProjectPickerContext);
     const projects = useStore(state => state.projects);
-    const { closeOneEdit } = useContext(OpenAndCloseEditContext);
     const [taskInputValue, setTaskInputValue] = useState("");
+    const closeEdits = useStore(state => state.closeEdits);
 
     useEffect(() => {
         loadDataToEditFields();
@@ -27,7 +25,7 @@ const EditTask = props => {
     // console.log(projects);
     // console.log(folder);
     //console.log(projects.find(project => project.id === folder.id).color_id);
-    
+
 
     const handleSubmitTask = async (e) => {
         e.preventDefault();
@@ -39,7 +37,7 @@ const EditTask = props => {
                 read_time: considerTime,
                 folder_id: selectedProject ? selectedProject.id : undefined
             }
-            
+
             const editTask = await fetch(`/tasks/${id}`, {
                 method: "PUT",
                 headers: {
@@ -51,7 +49,7 @@ const EditTask = props => {
             console.log(message);
             getTasks();
             resetEditFields();
-            closeOneEdit(id);
+            closeEdits();
         } else {
             // Add new task with POST method
             try {
@@ -72,7 +70,7 @@ const EditTask = props => {
                 console.log(message);
                 getTasks();
                 resetEditFields();
-                closeOneEdit(taskInputId);
+                closeEdits();
             } catch (error) {
                 console.error(error.message);
             }
@@ -112,11 +110,7 @@ const EditTask = props => {
     }
 
     const handleClickClose = () => {
-        if (id) {
-            closeOneEdit(id);
-        } else if (taskInputId) {
-            closeOneEdit(taskInputId);
-        }
+        closeEdits();
         resetEditFields();
     }
 

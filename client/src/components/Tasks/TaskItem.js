@@ -1,9 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import Checkbox from "../BasicUI/Checkbox";
 import date from "date-and-time";
 import { useClickOutside } from "../CustomHooks";
 import EditTask from "../EditTask";
-import { OpenAndCloseEditContext } from "../contexts/OpenAndCloseEditContext";
 import { today, tomorrow } from "../TodayTomorrowVars";
 import Icon from "../BasicUI/Icon";
 import Modal from "../Modals/Modal";
@@ -12,12 +11,15 @@ import getTasks from "../../fetch/getTasks";
 import useStore from "../../store/useStore";
 
 const TaskItem = props => {
-    const { id, description, status_of_completion, date_and_time, read_time, folder} = props.data;
+    const { id, description, status_of_completion, date_and_time, read_time, folder } = props.data;
     const projects = useStore(state => state.projects);
     const colors = useStore(state => state.colors);
     const setTasks = useStore(state => state.setTasks);
-    const { openEditArr, openOneEditCloseAllOther } = useContext(OpenAndCloseEditContext);
-    const openThisEdit = openEditArr.find(x => x.id === id) ? openEditArr.find(x => x.id === id).openEdit : false;
+
+    const openedEditId = useStore(state => state.openedEditId);
+    const isThisEditOpened = openedEditId === id;
+    const setOpenedEdit = useStore(state => state.setOpenedEdit);
+
     const [menuIsOpen, setMenuIsOpen] = useState(false);
     const isOverdue = date_and_time ? date_and_time.getTime() < today.getTime() && !date.isSameDay(date_and_time, today) : false;
     const [openModal, setOpenModal] = useState(false);
@@ -57,7 +59,7 @@ const TaskItem = props => {
 
 
     const handleClickEdit = () => {
-        openOneEditCloseAllOther(id);
+        setOpenedEdit(id);
     }
 
 
@@ -98,7 +100,7 @@ const TaskItem = props => {
 
     return (
         <div className={"taskitem " + (isOverdue ? "overdue " : "") + (status_of_completion ? "completed" : "")}>
-            {!openThisEdit &&
+            {!isThisEditOpened &&
                 <div className="taskitem-container">
                     <Checkbox status={status_of_completion} updateStatus={updateStatus} />
                     <div className="taskitem-content-wrapper">
@@ -111,14 +113,14 @@ const TaskItem = props => {
                                 {date.format(date_and_time, "HH:mm")}
                             </span>}
                             {folder.id && <span className="taskitem-project"
-                            style={{backgroundColor: colorBG, color: colorFont}}>
+                                style={{ backgroundColor: colorBG, color: colorFont }}>
                                 {folder.name}
-                                </span>}
+                            </span>}
                         </div>
                     </div>
                     <div className="more" onClick={handleClickMore} ref={more}>
                         <Icon name="More" size="md" />
-                        
+
                         {menuIsOpen &&
                             <div className="more-content">
                                 <Menu menuList={[{
@@ -136,7 +138,7 @@ const TaskItem = props => {
 
                 </div>
             }
-            {openThisEdit && <EditTask data={props.data} />}
+            {isThisEditOpened && <EditTask data={props.data} />}
             {openModal &&
                 <Modal buttonList={[{
                     title: "Delete",

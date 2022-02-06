@@ -1,21 +1,20 @@
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import SideNavItem from "./SideNavItem";
 import date from "date-and-time";
 import { today, tomorrow } from "../TodayTomorrowVars";
-import { OpenAndCloseEditContext } from "../contexts/OpenAndCloseEditContext";
 import useStore from "../../store/useStore";
 import ModalAddNewProject from "../Modals/ModalAddNewProject";
 
 const SideNav = () => {
     const sections = useStore(state => state.sections);
-    const selectSection = useStore(state => state.selectSection);
+    const setSelectedSection = useStore(state => state.setSelectedSection);
+    const closeEdits = useStore(state => state.closeEdits);
     const [openProjects, setOpenProjects] = useState(() => {
         if (localStorage.getItem("openProjects") === null) {
             return true
         }
         return localStorage.getItem("openProjects") === "true" ? true : false
     });
-    const { closeAllEdits } = useContext(OpenAndCloseEditContext);
     const [isModalAddProjectOpen, setIsModalAddProjectOpen] = useState(false);
 
     const tasks = useStore(state => state.tasks);
@@ -50,7 +49,10 @@ const SideNav = () => {
                 .map(section => <SideNavItem
                     leftIcon={section.leftIcon}
                     count={section.tasksNum}
-                    onClick={() => selectSection(section.id)}
+                    onClick={() => {
+                        setSelectedSection(section.id);
+                        closeEdits();
+                    }}
                     selected={section.selected}
                     key={section.id}
                 >
@@ -66,7 +68,10 @@ const SideNav = () => {
                 .filter(section => section.isAProject === true)
                 .map(section => <SideNavItem
                     count={section.tasksNum}
-                    onClick={() => selectSection(section.id)}
+                    onClick={() => {
+                        setSelectedSection(section.id);
+                        closeEdits();
+                    }}
                     selected={section.selected}
                     key={section.id}
                     color={section?.color?.label}

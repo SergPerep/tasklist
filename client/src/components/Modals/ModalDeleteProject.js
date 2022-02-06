@@ -3,7 +3,7 @@ import deleteProject from "../../fetch/deleteProject";
 import useStore from "../../store/useStore";
 
 const ModalDeleteProject = ({ setIsModalOpen }) => {
-    const selectSection = useStore(state => state.selectSection);
+    const setSelectedSection = useStore(state => state.setSelectedSection);
     const sections = useStore(state => state.sections);
     const selectedSection = sections.find(section => section.selected);
 
@@ -20,7 +20,7 @@ const ModalDeleteProject = ({ setIsModalOpen }) => {
                 setIsModalOpen(false);
                 if (!selectedSection.isAProject) return;
                 deleteProject(selectedSection.id);
-                selectSection("inb");
+                setSelectedSection("inb");
             }
         }]}>
             Delete project <b>{selectedSection.name}</b>?

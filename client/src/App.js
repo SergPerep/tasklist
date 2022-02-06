@@ -11,23 +11,25 @@ function App() {
   const isUserAuthenticated = useStore(state => state.isUserAuthenticated);
   const setIsUserAuthenticated = useStore(state => state.setIsUserAuthenticated);
 
+  const openEditArr = useStore(state => state.openEditArr);
+  console.log({ openEditArr });
+
   useEffect(() => {
     checkWhetherUserIsAuthenticated().then(result => setIsUserAuthenticated(result));
-}, [])
+  }, [])
 
   return (
     <>
-    
-    <Router>
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        {/* 
+      <Router>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          {/* 
         <Route path="/" element={isUserAuthenticated ? <MainPage /> : <Navigate to="/login"/>} />
         <Route path="/login" element={isUserAuthenticated ? <Navigate to="/"/> : <LoginPage />} />
         <Route path="/signup" element={isUserAuthenticated ? <Navigate to="/"/> : <SignupPage />} />
         */}
-      </Routes>
-    </Router>
+        </Routes>
+      </Router>
     </>
   );
 }

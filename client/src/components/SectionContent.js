@@ -14,7 +14,7 @@ const SectionContent = () => {
     const isShowCompletedTasks = useStore(state => state.isShowCompletedTasks);
     const setIsShowCompletedTasks = useStore(state => state.setIsShowCompletedTasks);
 
-    console.log({selectedSection})
+    // console.log({selectedSection})
     useEffect(() => {
         localStorage.setItem("isShowCompletedTasks", isShowCompletedTasks);
     }, [isShowCompletedTasks]);

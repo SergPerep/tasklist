@@ -10,7 +10,7 @@ import addProject from "../../fetch/addProject";
 const ModalAddNewProject = ({ setIsModalOpen }) => {
     const [inputAddProjectValue, setInputAddProjectValue] = useState("");
     const sections = useStore(state => state.sections);
-    const selectSection = sections.find(section => section.selected);
+    const setSelectedSection = useStore(state => state.setSelectedSection);
     const colors = useStore(state => state.colors);
     const getColor = useStore(state => state.getColor);
     const [selectedColor, setSelectedColor] = useState(null);
@@ -30,7 +30,7 @@ const ModalAddNewProject = ({ setIsModalOpen }) => {
                 const folderPromise = addProject(inputAddProjectValue, selectedColor);
                 folderPromise.then((folder) => {
                     const id = folder.id;
-                    selectSection(id);
+                    setSelectedSection(id);
                     setIsModalOpen(false);
                     setInputAddProjectValue("");
                     setSelectedColor(null);

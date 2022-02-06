@@ -1,6 +1,6 @@
 import makeSections from "../utils/makeSections";
 
-export const computedStore = (state) => {
+export const createComputedSectionSlice = (state) => {
     return {
         sections: makeSections(state.tasks, state.projects, state.colors, state.selectedSectionId)
     }
@@ -8,8 +8,5 @@ export const computedStore = (state) => {
 
 export default (set, get) => ({
     selectedSectionId: "inb",
-    selectSection: (id) => set((state) => {
-        console.log("--> selectSelection");
-        return { selectedSectionId: id }
-    })
+    setSelectedSection: (id) => set({ selectedSectionId: id })
 });
