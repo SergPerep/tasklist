@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import SideNav from "../SideNav/SideNav";
 import { DateAndTimePickerProvider } from "../Pickers/DateAndTimePickerContext";
-import { ProjectPickerProvider } from "../Pickers/ProjectPickerContext";
 import SectionContent from "../SectionContent";
 import TopNav from "../TopNav";
 import getFolders from "../../fetch/getFolders";
@@ -44,9 +43,7 @@ const MainPage = () => {
                 <div className="taskboard-display">
                     <div className="taskboard-display-container">
                         <DateAndTimePickerProvider>
-                            <ProjectPickerProvider>
                                 <SectionContent />
-                            </ProjectPickerProvider>
                         </DateAndTimePickerProvider>
                     </div>
                 </div>

@@ -3,7 +3,6 @@ import DateAndTimePicker from "./Pickers/DateAndTimePicker";
 import ProjectPicker from "./Pickers/ProjectPicker";
 import { DateAndTimePickerContext } from "./Pickers/DateAndTimePickerContext";
 import { useContext, useEffect, useState } from "react";
-import { ProjectPickerContext } from "./Pickers/ProjectPickerContext";
 import date from "date-and-time";
 import getTasks from "../fetch/getTasks";
 import useStore from "../store/useStore";
@@ -13,7 +12,9 @@ const EditTask = props => {
     const { id, description, date_and_time, read_time, folder } = props.data || {};
     const { btnName = "Save" } = props;
     const { considerTime, setConsiderTime, selectedDate, setSelectedDate, setTimeDisplay } = useContext(DateAndTimePickerContext);
-    const { selectedProject, setSelectedProject } = useContext(ProjectPickerContext);
+    
+    const pickedProjectId = useStore(state => state.pickedProjectId);
+    const setPickedProject = useStore(state => state.setPickedProject)
     const projects = useStore(state => state.projects);
     const [taskInputValue, setTaskInputValue] = useState("");
     const closeEdits = useStore(state => state.closeEdits);
@@ -21,10 +22,6 @@ const EditTask = props => {
     useEffect(() => {
         loadDataToEditFields();
     }, []);
-
-    // console.log(projects);
-    // console.log(folder);
-    //console.log(projects.find(project => project.id === folder.id).color_id);
 
 
     const handleSubmitTask = async (e) => {
@@ -35,7 +32,7 @@ const EditTask = props => {
                 description: taskInputValue,
                 date_and_time: selectedDate ? date.format(selectedDate, "YYYY-MM-DD HH:mm:ss") : undefined,
                 read_time: considerTime,
-                folder_id: selectedProject ? selectedProject.id : undefined
+                folder_id: pickedProjectId
             }
 
             const editTask = await fetch(`/tasks/${id}`, {
@@ -57,7 +54,7 @@ const EditTask = props => {
                     description: taskInputValue,
                     date_and_time: selectedDate ? date.format(selectedDate, "YYYY-MM-DD HH:mm:ss") : undefined,
                     read_time: considerTime,
-                    folder_id: selectedProject ? selectedProject.id : undefined
+                    folder_id: pickedProjectId
                 }
                 const addTask = await fetch("/tasks", {
                     method: "POST",
@@ -81,7 +78,7 @@ const EditTask = props => {
         setTaskInputValue(""); // Clear input
         setConsiderTime(undefined); // Reset time
         setSelectedDate(undefined); // Reset date
-        setSelectedProject(undefined); // Reset project
+        setPickedProject(undefined); // Reset project
         setTimeDisplay(undefined); // Clear time display
     }
 
@@ -100,7 +97,7 @@ const EditTask = props => {
                 setTimeDisplay(date.format(date_and_time, "H:mm"));
             }
             if (folder.id) {
-                setSelectedProject({
+                setPickedProject({
                     id: projects.find(x => x.id === folder.id) ? projects.find(x => x.id === folder.id).id : undefined,
                     name: folder.name,
                     color_id: projects.find(project => project.id === folder.id) ? projects.find(project => project.id === folder.id).color_id : undefined

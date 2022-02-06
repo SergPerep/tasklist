@@ -1,60 +1,63 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useClickOutside } from "../CustomHooks";
 import Icon from "../BasicUI/Icon";
 import MenuItem from "../Menus/MenuItem";
-import { ProjectPickerContext } from "./ProjectPickerContext";
 import ColorDisplay from "../BasicUI/ColorDisplay";
 import useStore from "../../store/useStore";
 
 const ProjectPicker = () => {
-    const projects = useStore(state => state.projects);
-    const colors = useStore(state => state.colors);
-    const { selectedProject, setSelectedProject } = useContext(ProjectPickerContext);
-    const [openProjectMenu, setOpenProjectMenu] = useState(false);
+
+    const sections = useStore(state => state.sections);
+    const pickedProjectId = useStore(state => state.pickedProjectId);
+    const pickedSection = sections.find(section => section.id === pickedProjectId);
+    const setPickedProject = useStore(state => state.setPickedProject);
+
+    const [isProjectMenuOpen, setIsProjectMenuOpen] = useState(false);
 
     const handleClickMenuItem = id => {
-        const arr = projects.filter(x => x.id === id);
-        setSelectedProject(arr[0]);
-        setOpenProjectMenu(false);
+        setPickedProject(id);
+        setIsProjectMenuOpen(false);
     }
 
     const handleClickInbox = () => {
-        setSelectedProject(undefined);
-        setOpenProjectMenu(false)
+        setPickedProject("inb");
+        setIsProjectMenuOpen(false)
     }
 
     const handleClickProjectDisplay = () => {
-        setOpenProjectMenu(true);
+        setIsProjectMenuOpen(true);
     }
 
     const domNode = useClickOutside(() => {
-        setOpenProjectMenu(false);
+        setIsProjectMenuOpen(false);
     });
 
     return (
         <div className="project-picker">
             <div className="project-display" onClick={handleClickProjectDisplay}>
-                {!selectedProject && <>
+                {!pickedSection?.isAProject && <>
                     <Icon name="Inbox" size="sm" />
                     <div className="project-desc">Inbox</div>
                 </>}
-                {selectedProject && <>
+                {pickedSection?.isAProject && <>
                     <ColorDisplay
-                        color={colors.find(color => color.id === selectedProject.color_id) ? colors.find(color => color.id === selectedProject.color_id).label : undefined}
+                        color={pickedSection.color.label}
                         size="sm"
                     />
-                    <div className="project-desc">{selectedProject.name}</div>
+                    <div className="project-desc">{pickedSection.name}</div>
                 </>}
             </div>
-            {openProjectMenu &&
+            {isProjectMenuOpen &&
                 <div className="project-menu" ref={domNode}>
                     <MenuItem iconName="Inbox" onClick={handleClickInbox}>Inbox</MenuItem>
-                    {projects.map(project => <MenuItem
-                        color={colors.find(color => color.id === project.color_id) ? colors.find(color => color.id === project.color_id).label : undefined}
-                        key={project.id}
-                        onClick={() => handleClickMenuItem(project.id)}>
-                        {project.name}
-                    </MenuItem>)}
+                    {sections
+                        .filter(section => section.isAProject)
+                        .map(project => <MenuItem
+                            color={project.color?.label}
+                            key={project.id}
+                            onClick={() => handleClickMenuItem(project.id)}>
+                            {project.name}
+                        </MenuItem>)}
                 </div>}
         </div>
     )

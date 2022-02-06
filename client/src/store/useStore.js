@@ -8,6 +8,7 @@ import { computed } from 'zustand-middleware-computed-state';
 import createAuthenticationSlice from "./createAuthenticationSlice";
 import createSectionSlice, { createComputedSectionSlice } from "./createSectionSlice";
 import createEditSlice, { createComputedEditSlice } from "./createEditSlice";
+import createPickerSlice from "./createPickerSlice";
 
 const store = (set, get) => ({
     ...createTaskSlice(set, get),
@@ -15,7 +16,8 @@ const store = (set, get) => ({
     ...createProjectSlice(set, get),
     ...createAuthenticationSlice(set, get),
     ...createSectionSlice(set, get),
-    ...createEditSlice(set, get)
+    ...createEditSlice(set, get),
+    ...createPickerSlice(set, get)
 })
 
 const computedStore = (state) => ({
