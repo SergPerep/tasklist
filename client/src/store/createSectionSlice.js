@@ -8,5 +8,5 @@ export const createComputedSectionSlice = (state) => {
 
 export default (set, get) => ({
     selectedSectionId: "inb",
-    setSelectedSection: (id) => set({ selectedSectionId: id })
+    setSelectedSectionId: (id) => set({ selectedSectionId: id })
 });

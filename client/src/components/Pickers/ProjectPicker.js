@@ -10,17 +10,17 @@ const ProjectPicker = () => {
     const sections = useStore(state => state.sections);
     const pickedProjectId = useStore(state => state.pickedProjectId);
     const pickedSection = sections.find(section => section.id === pickedProjectId);
-    const setPickedProject = useStore(state => state.setPickedProject);
+    const setPickedProjectId = useStore(state => state.setPickedProjectId);
 
     const [isProjectMenuOpen, setIsProjectMenuOpen] = useState(false);
 
     const handleClickMenuItem = id => {
-        setPickedProject(id);
+        setPickedProjectId(id);
         setIsProjectMenuOpen(false);
     }
 
     const handleClickInbox = () => {
-        setPickedProject("inb");
+        setPickedProjectId("inb");
         setIsProjectMenuOpen(false)
     }
 

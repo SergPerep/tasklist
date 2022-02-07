@@ -1,16 +1,15 @@
 import React, { useState } from "react"
 import clsx from "clsx"
+import updateTaskStatus from "../../fetch/updateTaskStatus";
 
-const Checkbox = (props) => {
-    // const {status} = props;
-    const [status, setStatus] = useState(props.status);
-    const updateStatus = props.updateStatus;
+const Checkbox = ({ id, isCompleted }) => {
+    const [status, setStatus] = useState(isCompleted);
     const checkboxCls = clsx({
         checkbox: true,
         checked: status
     });
     const handleCheckCheckbox = () => {
-        updateStatus();
+        updateTaskStatus(id);
         setStatus(!status);
     }
     return (

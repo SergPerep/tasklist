@@ -7,7 +7,7 @@ import ModalAddNewProject from "../Modals/ModalAddNewProject";
 
 const SideNav = () => {
     const sections = useStore(state => state.sections);
-    const setSelectedSection = useStore(state => state.setSelectedSection);
+    const setSelectedSectionId = useStore(state => state.setSelectedSectionId);
     const closeEdits = useStore(state => state.closeEdits);
     const [openProjects, setOpenProjects] = useState(() => {
         if (localStorage.getItem("openProjects") === null) {
@@ -22,11 +22,6 @@ const SideNav = () => {
     useEffect(() => {
         localStorage.setItem("openProjects", openProjects);
     }, [openProjects]);
-
-
-    const handleClickProjects = () => {
-        setOpenProjects(!openProjects);
-    };
 
     const handleAddNewProject = e => {
         e.stopPropagation();
@@ -50,7 +45,7 @@ const SideNav = () => {
                     leftIcon={section.leftIcon}
                     count={section.tasksNum}
                     onClick={() => {
-                        setSelectedSection(section.id);
+                        setSelectedSectionId(section.id);
                         closeEdits();
                     }}
                     selected={section.selected}
@@ -69,7 +64,7 @@ const SideNav = () => {
                 .map(section => <SideNavItem
                     count={section.tasksNum}
                     onClick={() => {
-                        setSelectedSection(section.id);
+                        setSelectedSectionId(section.id);
                         closeEdits();
                     }}
                     selected={section.selected}

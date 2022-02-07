@@ -13,7 +13,7 @@ const TaskList = () => {
     const tasks = useStore(state => state.tasks);
 
     // Takes array and makes a list of elements out of it
-    const buldList = list => list.map(task => <Task data={task} key={task.id} />);
+    const buldList = list => list.map(task => <Task task={task} key={task.id} />);
 
     /* INBOX */
     const inboxTaskList = filterInboxTasks(tasks, false);

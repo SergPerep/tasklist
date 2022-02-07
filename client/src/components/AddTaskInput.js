@@ -10,7 +10,7 @@ const AddTaskInput = () => {
     const isThisEditOpened = openedEditId === NEW_TASK_EDIT_ID;
     const setOpenedEdit = useStore(state => state.setOpenedEdit);
     
-    const setPickedProject = useStore(state => state.setPickedProject);
+    const setPickedProjectId = useStore(state => state.setPickedProjectId);
     const { setSelectedDate } = useContext(DateAndTimePickerContext);
     
     const selectedSectionId = useStore(state => state.selectedSectionId);
@@ -23,7 +23,7 @@ const AddTaskInput = () => {
                     setOpenedEdit(NEW_TASK_EDIT_ID); // open this Edit, close all other
                     if (selectedSectionId === "td") return setSelectedDate(today)
                     if (selectedSectionId === "tmr") return setSelectedDate(tomorrow)
-                    if (selectedSection.isAProject) return setPickedProject(selectedSectionId)
+                    if (selectedSection.isAProject) return setPickedProjectId(selectedSectionId)
                 }}>
                     <div className="addtask-display">
                         +Add task
