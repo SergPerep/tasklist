@@ -1,6 +1,6 @@
 import TaskList from "./Tasks/TaskList";
 import Header from "./Header";
-import AddTaskInput from "./AddTaskInput";
+import AddTaskInput from "./Tasks/AddTaskInput";
 import { useEffect, useState } from "react";
 import useStore from "../store/useStore";
 import ModalDeleteProject from "./Modals/ModalDeleteProject";

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Checkbox from "../BasicUI/Checkbox";
 import date from "date-and-time";
 import { useClickOutside } from "../CustomHooks";
-import EditTask from "../EditTask";
+import EditTask from "./EditTask";
 import { today } from "../../utils/days";
 import displayDate from "../../utils/displayDate";
 import Icon from "../BasicUI/Icon";

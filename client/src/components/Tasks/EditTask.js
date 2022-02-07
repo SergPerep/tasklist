@@ -1,12 +1,12 @@
-import Button from "./BasicUI/Button";
-import DateAndTimePicker from "./Pickers/DateAndTimePicker";
-import ProjectPicker from "./Pickers/ProjectPicker";
-import { DateAndTimePickerContext } from "./Pickers/DateAndTimePickerContext";
+import Button from "../BasicUI/Button";
+import DateAndTimePicker from "../Pickers/DateAndTimePicker";
+import ProjectPicker from "../Pickers/ProjectPicker";
+import { DateAndTimePickerContext } from "../Pickers/DateAndTimePickerContext";
 import { useContext, useEffect, useState } from "react";
 import date from "date-and-time";
-import useStore from "../store/useStore";
-import updateTask from "../fetch/updateTask";
-import addTask from "../fetch/addTask";
+import useStore from "../../store/useStore";
+import updateTask from "../../fetch/updateTask";
+import addTask from "../../fetch/addTask";
 
 
 const EditTask = ({ task, btnName = "Save" }) => {
