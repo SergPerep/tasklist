@@ -10,7 +10,7 @@ import addTask from "../../fetch/addTask";
 
 
 const EditTask = ({ task, btnName = "Save" }) => {
-    const { id, description, date_and_time, read_time, folder } = task;
+    const { id, description, date_and_time, read_time, folder } = task || {};
     const { considerTime, setConsiderTime, selectedDate, setSelectedDate, setTimeDisplay } = useContext(DateAndTimePickerContext);
 
     const pickedProjectId = useStore(state => state.pickedProjectId);
