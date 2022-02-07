@@ -6,13 +6,13 @@ import { useClickOutside } from "../CustomHooks";
 
 const TimePicker = () => {
     const { selectedDate, setSelectedDate, considerTime, setConsiderTime, timeDisplay, setTimeDisplay } = useContext(DateAndTimePickerContext);
-    const [openTimeInput, setOpenTimeInput] = useState(false);
+    const [isTimeInputOpen, setIsTimeInputOpen] = useState(false);
     const [timeInput, setTimeInput] = useState("");
     const [showSave, setShowSave] = useState(false);
 
     const handleClickTimeDisplay = () => {
-        if (!openTimeInput) {
-            setOpenTimeInput(true);
+        if (!isTimeInputOpen) {
+            setIsTimeInputOpen(true);
         }
     }
 
@@ -26,8 +26,8 @@ const TimePicker = () => {
         setSelectedDate(newDate);
         setConsiderTime(true); // make time readable
         setShowSave(false); // hide «Save» button
-        if (openTimeInput) {
-            setOpenTimeInput(false); // hide time-input and show diplay
+        if (isTimeInputOpen) {
+            setIsTimeInputOpen(false); // hide time-input and show diplay
         }
         setTimeDisplay(date.format(newDate, "H:mm"));
     }
@@ -58,7 +58,7 @@ const TimePicker = () => {
 
 
     const domRef = useClickOutside(() => {
-        setOpenTimeInput(false); // hide input and show display
+        setIsTimeInputOpen(false); // hide input and show display
         setShowSave(false); // hide «Save» button
         setTimeInput(""); // clear input
 
@@ -67,13 +67,13 @@ const TimePicker = () => {
     return (
         <div className="timepicker">
             <div className="time-display-container" ref={domRef} onClick={handleClickTimeDisplay}>
-                {!openTimeInput &&
+                {!isTimeInputOpen &&
                     <div className="time-display" >
                         {!timeDisplay && <span className="placeholder">Add time</span>}
                         {timeDisplay && timeDisplay}
                     </div>
                 }
-                {openTimeInput &&
+                {isTimeInputOpen &&
                     <div className="input-container">
                         <input type="text" value={timeInput} onChange={handleChangeTimeInput} placeholder="e.g. 14:30" size="" />
                         {showSave &&
@@ -81,7 +81,7 @@ const TimePicker = () => {
                     </div>
                 }
             </div>
-            {considerTime && !openTimeInput &&
+            {considerTime && !isTimeInputOpen &&
                 <div className="close-btn" onClick={handleClickClose}>
                     <Icon name="Close" size="sm" />
                 </div>
