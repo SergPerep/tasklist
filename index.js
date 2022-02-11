@@ -7,7 +7,7 @@ const session = require("express-session");
 const MongoDBStorage = require("connect-mongodb-session")(session);
 const handleErrors = require("./middlewares/handleErrors");
 const requireAuth = require("./middlewares/requireAuth");
-
+const logger = require("./utils/logger");
 
 const {
     PORT = 5000,
@@ -46,6 +46,8 @@ if (NODE_ENV === "production") {
 }
 
 // ROUTES //
+
+logger.info("Hello, this is Winston!");
 
 app.get("/session", (req, res) => {
     res.json(req.session);

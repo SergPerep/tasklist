@@ -24,7 +24,8 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "password-validator": "^5.2.1",
-    "pg": "^8.7.1"
+    "pg": "^8.7.1",
+    "winston": "^3.5.1"
   },
   "devDependencies": {
     "jest": "^27.4.7",
