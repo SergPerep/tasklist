@@ -1,17 +1,18 @@
-import useStore from "../store/useStore";
+// import useStore from "../store/useStore";
 
-const setTasks = useStore.getState().setTasks;
+// const setTasks = useStore.getState().setTasks;
 
 // Converts data so that JS can work with it
 const convertData = (oldArr) => {
     return oldArr.map(obj => {
-        obj.date_and_time = obj.date_and_time ? new Date(obj.date_and_time) : undefined;
-        obj.time_of_creation = new Date(obj.time_of_creation);
-        obj.time_of_last_update = new Date(obj.time_of_last_update);
+        // obj.date_and_time = obj.date_and_time ? new Date(obj.date_and_time) : undefined;
+        // obj.time_of_creation = new Date(obj.time_of_creation);
         obj.folder = {
             id: obj.folder_id,
             name: obj.folder_name,
         }
+        obj.isCompleted = obj.is_completed;
+        delete obj.is_completed;
         delete obj.folder_id;
         delete obj.folder_name;
         return obj

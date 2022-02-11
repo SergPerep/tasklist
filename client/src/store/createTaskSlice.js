@@ -3,15 +3,12 @@ const createTaskSlice = (set, get) => ({
             {
                 id: 110,
                 description: "New",
-                status_of_completion: false,
+                isCompleted: false,
                 time_of_creation: "2021-12-17T20:44:25.154Z",
-                time_of_last_update: "2021-12-17T20:44:25.154Z",
-                date_and_time: "2021-12-16T23:00:00.000Z",
-                read_time: false,
-                folder: {
-                    id: null,
-                    name: null
-                }
+                date: "2021-12-16",
+                time: false,
+                folder.id: null,
+                folder.name: null
             },...
         */],
     isShowCompletedTasks: localStorage.getItem("isShowCompletedTasks") === "true",

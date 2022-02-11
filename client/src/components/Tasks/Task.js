@@ -11,7 +11,7 @@ import MenuForTask from "./MenuForTask";
 import ModalForDeleteTask from "./ModalForDeleteTask";
 
 const Task = ({ task }) => {
-    const { id, description, status_of_completion, date_and_time, read_time, folder } = task;
+    const { id, description, isCompleted, date_and_time, read_time, folder } = task;
     const sections = useStore(state => state.sections);
     const project = sections
         .filter(section => section.isAProject)
@@ -35,10 +35,10 @@ const Task = ({ task }) => {
     }
 
     return (
-        <div className={"taskitem " + (isTaskOverdue ? "overdue " : "") + (status_of_completion ? "completed" : "")}>
+        <div className={"taskitem " + (isTaskOverdue ? "overdue " : "") + (isCompleted ? "completed" : "")}>
             {!isThisEditOpened &&
                 <div className="taskitem-container">
-                    <Checkbox id={id} isCompleted={status_of_completion} />
+                    <Checkbox id={id} isCompleted={isCompleted} />
                     <div className="taskitem-content-wrapper">
                         <div className="taskitem-desc">{description}</div>
                         <div className="taskitem-details">

@@ -1,2 +1,43 @@
 # Get all tasks
 GET http://localhost:5000/tasks
+
+###
+
+# Create new task
+POST http://localhost:5000/tasks
+Content-Type: application/json
+
+{
+    "description": "REFACTOR first task",
+    "date": "2022-08-17",
+    "time": "16:00",
+    "folder_id": 1
+}
+
+###
+
+# Check/Uncheck task
+PUT http://localhost:5000/tasks/55
+Content-Type: application/json
+
+{
+    "is_completed": true
+}
+
+###
+
+# Update task
+PUT http://localhost:5000/tasks/110
+Content-Type: application/json
+
+{
+    "description": "To the dentist",
+    "date": "2022-02-11",
+    "time": "14:00",
+    "folder_id": 1
+}
+
+###
+
+# Delete task
+DELETE http://localhost:5000/tasks/120

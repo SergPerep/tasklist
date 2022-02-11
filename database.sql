@@ -46,12 +46,11 @@ WHERE
 -- Schema of tasklist
 CREATE TABLE task(
     id SERIAL PRIMARY KEY,
-    description VARCHAR(255),
-    status_of_completion BOOLEAN DEFAULT FALSE NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    is_completed BOOLEAN DEFAULT FALSE NOT NULL,
     time_of_creation TIMESTAMP DEFAULT NOW() NOT NULL,
-    time_of_last_update TIMESTAMP DEFAULT NOW() NOT NULL,
-    date_and_time TIMESTAMP,
-    read_time BOOLEAN DEFAULT FALSE CHECK (date_and_time != NULL),
+    date DATE,
+    time TIME WITH TIME ZONE CHECK (date != NULL),
     folder_id INTEGER REFERENCES folder (id),
     user_id uuid REFERENCES users (id) NOT NULL
 );
@@ -64,25 +63,24 @@ VALUES
 
 -- Adding new task with description and data
 INSERT INTO
-    task (description, date_and_time)
+    task (description, date)
 VALUES
     ('This is my task description', '2021-10-28');
 
 -- Adding new task with description, data, time and folder
 INSERT INTO
-    task (description, date_and_time, read_time, folder_id)
+    task (description, date, time, folder_id)
 VALUES
-    ('This is tomorrow task', '2021-10-20', true, 1);
+    ('This is tomorrow task', '2021-10-20', '4:00', 1);
 
 -- Get all tasks
 SELECT
     task.id as id,
     description,
-    status_of_completion,
+    is_completed,
     time_of_creation,
-    time_of_last_update,
-    date_and_time,
-    read_time,
+    date,
+    time,
     folder.name as folder_name,
     folder.id as folder_id
 FROM
@@ -92,27 +90,27 @@ ORDER BY
     time_of_creation DESC;
 
 INSERT INTO
-    task (description, date_and_time, read_time, folder_id)
+    task (description, date, time, folder_id)
 VALUES
     (
         'Search for a good physeotherapist in Houten and Utrecht. And add new meeting to calendar.',
-        '2021-10-19 16:05',
-        true,
+        '2021-10-19',
+        '16:05',
         1
     );
 
 INSERT INTO
-    task (description, date_and_time, read_time, folder_id)
+    task (description, date, time, folder_id)
 VALUES
     (
         'Doing the best that I can',
-        '2021-11-24 11:30',
-        true,
+        '2021-11-24',
+        '11:30',
         1
     );
 
 INSERT INTO
-    task (description, date_and_time, read_time)
+    task (description, date, time)
 VALUES
     (
         'I dont know the time',
@@ -124,8 +122,7 @@ VALUES
 UPDATE
     task
 SET
-    status_of_completion = TRUE,
-    time_of_last_update = NOW()
+    is_completed = TRUE
 WHERE
     id = 1;
 
@@ -140,9 +137,8 @@ UPDATE
     task
 SET
     description = 'New description',
-    time_of_last_update = NOW(),
-    date_and_time = '2021-10-19 16:05',
-    read_time = TRUE,
+    date = '2021-10-19 16:05',
+    time = TRUE,
     folder_id = 1
 WHERE
     id = 30;

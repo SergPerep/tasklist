@@ -1,0 +1,2 @@
+# Get colors
+GET http://localhost:5000/colors

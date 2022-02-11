@@ -24,11 +24,10 @@ CREATE TABLE folder(
 -- Schema for tasklist
 CREATE TABLE task(
     id SERIAL PRIMARY KEY,
-    description VARCHAR(255),
-    status_of_completion BOOLEAN DEFAULT FALSE NOT NULL,
-    time_of_creation TIMESTAMP DEFAULT NOW() NOT NULL,
-    time_of_last_update TIMESTAMP DEFAULT NOW() NOT NULL,
-    date_and_time TIMESTAMP,
+    description VARCHAR(255) NOT NULL,
+    is_completed BOOLEAN DEFAULT FALSE NOT NULL,
+    date DATE,
+    time TIME WITH TIME ZONE CHECK (date != NULL),
     read_time BOOLEAN DEFAULT FALSE CHECK (date_and_time != NULL),
     folder_id INTEGER REFERENCES folder (id)
 );
