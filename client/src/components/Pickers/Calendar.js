@@ -1,23 +1,25 @@
 import date from "date-and-time";
 import clsx from "clsx";
-import { useContext } from "react";
-import { DateAndTimePickerContext } from "./DateAndTimePickerContext";
 import Icon from "../BasicUI/Icon";
 import makeDaysToDisplay from "../../utils/makeDaysToDisplay";
+import useStore from "../../store/useStore";
 
 const Calendar = () => {
-    const contextValue = useContext(DateAndTimePickerContext);
-    const { ancorDate, setAncorDate, selectedDate, setSelectedDate } = contextValue;
-    const daysToDisplay = makeDaysToDisplay(ancorDate, selectedDate);
+    const anchorDate = useStore(state => state.anchorDate);
+    const setAnchorDate = useStore(state => state.setAnchorDate);
+    const selectedDate = useStore(state => state.selectedDate);
+    const setSelectedDate = useStore(state => state.setSelectedDate);
+    
+    const daysToDisplay = makeDaysToDisplay(anchorDate, selectedDate);
 
     // Handles going a month back
     const handleClickBack = () => {
-        setAncorDate(date.addMonths(ancorDate, -1));
+        setAnchorDate(date.addMonths(anchorDate, -1));
     }
 
     // Handles going a month further
     const handleClickFurther = () => {
-        setAncorDate(date.addMonths(ancorDate, 1));
+        setAnchorDate(date.addMonths(anchorDate, 1));
     }
 
     // Handles click on a date to select
@@ -32,7 +34,7 @@ const Calendar = () => {
         <div className="calendar">
             <div className="calendar-controls">
                 <div className="month-back" onClick={handleClickBack}><Icon name="AngleLeft" size="md" /></div>
-                <div className="month-display">{date.format(ancorDate, "MMMM YYYY")}</div>
+                <div className="month-display">{date.format(anchorDate, "MMMM YYYY")}</div>
                 <div className="month-further" onClick={handleClickFurther}><Icon name="AngleRight" size="md" /></div>
             </div>
             <div className="calendar-weekdays">

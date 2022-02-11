@@ -1,6 +1,4 @@
-import { useContext } from "react";
 import EditTask from "./EditTask";
-import { DateAndTimePickerContext } from "../Pickers/DateAndTimePickerContext";
 import useStore from "../../store/useStore";
 import { today, tomorrow } from "../../utils/days";
 import NEW_TASK_EDIT_ID from "../../utils/NEW_TASK_EDIT_ID";
@@ -11,7 +9,7 @@ const AddTaskInput = () => {
     const setOpenedEdit = useStore(state => state.setOpenedEdit);
     
     const setPickedProjectId = useStore(state => state.setPickedProjectId);
-    const { setSelectedDate } = useContext(DateAndTimePickerContext);
+    const setSelectedDate = useStore(state => state.setSelectedDate);
     
     const selectedSectionId = useStore(state => state.selectedSectionId);
     const sections = useStore(state => state.sections);

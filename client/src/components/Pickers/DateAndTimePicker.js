@@ -1,15 +1,21 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import date from "date-and-time";
 import Icon from "../BasicUI/Icon";
 import Calendar from "./Calendar";
-import { DateAndTimePickerContext } from "./DateAndTimePickerContext";
 import MenuItem from "../Menus/MenuItem";
 import TimePicker from "./TimePicker";
 import { useClickOutside } from "../CustomHooks";
 import { today, tomorrow } from "../../utils/days";
+import useStore from "../../store/useStore";
 
 const DateAndTimePicker = () => {
-    const { selectedDate, setSelectedDate, considerTime, setConsiderTime, setAncorDate } = useContext(DateAndTimePickerContext);
+
+    const selectedDate = useStore(state => state.selectedDate);
+    const setSelectedDate = useStore(state => state.setSelectedDate);
+    const considerTime = useStore(state => state.considerTime);
+    const setConsiderTime = useStore(state => state.setConsiderTime);
+    const setAnchorDate = useStore(state => state.setAnchorDate);
+
     const [isDateMenuOpen, setIsDateMenuOpen] = useState(false);
 
     // Defines title for date display 
@@ -38,8 +44,8 @@ const DateAndTimePicker = () => {
     }, [selectedDate]);
 
     useEffect(() => {
-        if (selectedDate) return setAncorDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth()));
-        setAncorDate(new Date(today.getFullYear(), today.getMonth()));
+        if (selectedDate) return setAnchorDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth()));
+        setAnchorDate(new Date(today.getFullYear(), today.getMonth()));
     }, [isDateMenuOpen])
 
     // Takes two date objects and returns another –

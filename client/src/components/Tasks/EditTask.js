@@ -1,8 +1,7 @@
 import Button from "../BasicUI/Button";
 import DateAndTimePicker from "../Pickers/DateAndTimePicker";
 import ProjectPicker from "../Pickers/ProjectPicker";
-import { DateAndTimePickerContext } from "../Pickers/DateAndTimePickerContext";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import date from "date-and-time";
 import useStore from "../../store/useStore";
 import updateTask from "../../fetch/updateTask";
@@ -11,7 +10,12 @@ import addTask from "../../fetch/addTask";
 
 const EditTask = ({ task, btnName = "Save" }) => {
     const { id, description, date_and_time, read_time, folder } = task || {};
-    const { considerTime, setConsiderTime, selectedDate, setSelectedDate, setTimeDisplay } = useContext(DateAndTimePickerContext);
+
+    const considerTime = useStore(state => state.considerTime);
+    const setConsiderTime = useStore(state => state.setConsiderTime);
+    const selectedDate = useStore(state => state.selectedDate);
+    const setSelectedDate = useStore(state => state.setSelectedDate);
+    const setTimeDisplay = useStore(state => state.setTimeDisplay);
 
     const pickedProjectId = useStore(state => state.pickedProjectId);
     const setPickedProjectId = useStore(state => state.setPickedProjectId)

@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import SideNav from "../SideNav/SideNav";
-import { DateAndTimePickerProvider } from "../Pickers/DateAndTimePickerContext";
 import SectionContent from "../SectionContent";
 import TopNav from "../TopNav";
 import getFolders from "../../fetch/getFolders";
@@ -42,9 +41,7 @@ const MainPage = () => {
                 </div>
                 <div className="taskboard-display">
                     <div className="taskboard-display-container">
-                        <DateAndTimePickerProvider>
-                                <SectionContent />
-                        </DateAndTimePickerProvider>
+                        <SectionContent />
                     </div>
                 </div>
             </div>

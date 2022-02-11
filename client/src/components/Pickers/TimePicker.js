@@ -1,11 +1,18 @@
-import { useState, useContext } from "react";
-import { DateAndTimePickerContext } from "./DateAndTimePickerContext";
+import { useState } from "react";
 import Icon from "../BasicUI/Icon";
 import date from "date-and-time";
 import { useClickOutside } from "../CustomHooks";
+import useStore from "../../store/useStore";
 
 const TimePicker = () => {
-    const { selectedDate, setSelectedDate, considerTime, setConsiderTime, timeDisplay, setTimeDisplay } = useContext(DateAndTimePickerContext);
+
+    const selectedDate = useStore(state => state.selectedDate);
+    const setSelectedDate = useStore(state => state.setSelectedDate);
+    const considerTime = useStore(state => state.considerTime);
+    const setConsiderTime = useStore(state => state.setConsiderTime);
+    const timeDisplay = useStore(state => state.timeDisplay);
+    const setTimeDisplay = useStore(state => state.setTimeDisplay);
+
     const [isTimeInputOpen, setIsTimeInputOpen] = useState(false);
     const [timeInput, setTimeInput] = useState("");
     const [showSave, setShowSave] = useState(false);
