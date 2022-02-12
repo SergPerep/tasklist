@@ -32,17 +32,17 @@ router.get("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
     try {
         const id = req.params.id;
-        const { is_completed, description, date, time, folder_id } = req.body;
-        if (is_completed !== undefined) {
+        const { description, date, time, folder_id } = req.body;
+        if (!description) {
             const changeTaskStatus = await pool.query(`
             UPDATE
                 task
             SET
-                is_completed = $2
+                is_completed = NOT task.is_completed
             WHERE
                 id = $1;
             `,
-                [id, is_completed]
+                [id]
             );
         } else {
             const editTask = await pool.query(`

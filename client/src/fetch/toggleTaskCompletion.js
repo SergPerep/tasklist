@@ -1,16 +1,20 @@
 import useStore from "../store/useStore";
+import { WrongTypeError, EmptyValueError } from "../utils/customErrors";
 import getTasks from "./getTasks";
 
 const setTasks = useStore.getState().setTasks;
 
-const updateTaskStatus = async (id, status_of_completion) => {
+const updateTaskStatus = async (id) => {
     try {
-        const body = { status_of_completion: !status_of_completion };
+
+        if (!id) throw new EmptyValueError(undefined, { id });
+        if (typeof id !== "number") throw new WrongTypeError("number", id, { id });
+
+        // const body = { is_completed: !isCompleted };
         const updateCheckStatus = await fetch(`/tasks/${id}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body)
+            method: "PUT"
         });
+
         const response = await updateCheckStatus.json();
         console.log(response);
 

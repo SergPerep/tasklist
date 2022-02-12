@@ -79,8 +79,7 @@ VALUES
 UPDATE
     task
 SET
-    status_of_completion = TRUE,
-    time_of_last_update = NOW()
+    is_completed = NOT task.is_completed
 WHERE
     id = 1;
 

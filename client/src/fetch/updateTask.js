@@ -1,16 +1,42 @@
 import getTasks from "./getTasks";
 import date from "date-and-time";
 import useStore from "../store/useStore";
+import { EmptyValueError, ValidationError, WrongTypeError } from "../utils/customErrors";
+import catchError from "../utils/catchError";
 
 const setTasks = useStore.getState().setTasks;
 
-const updateTask = async ({ id, taskInputValue, selectedDate, pickedTime, pickedProjectId }) => {
+const updateTask = async ({ id, description, dateStr = null, timeStr = null, projectId = null }) => {
     try {
+
+        if (!id) throw new EmptyValueError(undefined, { id });
+        if (typeof id !== "number") throw new WrongTypeError("number", id, { id });
+
+        if (!description) throw new EmptyValueError(undefined, { description });
+        if (typeof description !== "string") throw new WrongTypeError("string", description, { description });
+        if (!description.trim()) throw new EmptyValueError(undefined, { description });
+        description = description.trim();
+
+        if (dateStr) {
+            if (typeof dateStr !== "string") throw new WrongTypeError("string", dateStr, { dateStr });
+            if (!date.isValid(dateStr, "YYYY-MM-DD")) throw new ValidationError("Expected valid date string YYYY-MM-DD instead of", { dateStr });
+        }
+
+        if (timeStr) {
+            if (typeof timeStr !== "string") throw new WrongTypeError("string", timeStr, { timeStr });
+            if (!date.isValid(timeStr, "HH:mm")) throw new ValidationError("Expected valid time string HH:mm instead of", { timeStr });
+        }
+
+        if (projectId) {
+            if (typeof projectId !== "number" && typeof projectId !== "string") throw new WrongTypeError("number or string", projectId, { projectId })
+            if (typeof projectId === "string") projectId = null;
+        }
+
         const body = {
-            description: taskInputValue,
-            date: selectedDate ? date.format(selectedDate, "YYYY-MM-DD HH:mm:ss") : undefined,
-            time: pickedTime,
-            folder_id: pickedProjectId
+            description: description,
+            date: dateStr ? date.format(dateStr, "YYYY-MM-DD HH:mm:ss") : undefined,
+            time: timeStr,
+            folder_id: projectId
         }
         const editTask = await fetch(`/tasks/${id}`, {
             method: "PUT",
@@ -23,7 +49,7 @@ const updateTask = async ({ id, taskInputValue, selectedDate, pickedTime, picked
         console.log(message);
         getTasks().then(data => setTasks(data));
     } catch (error) {
-        console.error(error.message);
+        catchError(error);
     }
 }
 

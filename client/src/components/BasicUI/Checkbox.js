@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import clsx from "clsx"
-import updateTaskStatus from "../../fetch/updateTaskStatus";
+import toggleTaskCompletion from "../../fetch/toggleTaskCompletion";
 
 const Checkbox = ({ id, isCompleted }) => {
     const [status, setStatus] = useState(isCompleted);
@@ -9,7 +9,7 @@ const Checkbox = ({ id, isCompleted }) => {
         checked: status
     });
     const handleCheckCheckbox = () => {
-        updateTaskStatus(id);
+        toggleTaskCompletion(id);
         setStatus(!status);
     }
     return (

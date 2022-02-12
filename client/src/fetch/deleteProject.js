@@ -1,8 +1,13 @@
+import catchError from "../utils/catchError";
+import { EmptyValueError, WrongTypeError } from "../utils/customErrors";
 import getFolders from "./getFolders";
 import getTasks from "./getTasks";
 
 const deleteProject = async (id) => {
     try {
+        if (!id) throw new EmptyValueError(undefined, { id });
+        if (typeof id !== "number") throw new WrongTypeError("number", id, { id });
+
         const delProject = await fetch(`/folders/${id}`, {
             method: "DELETE"
         });
@@ -11,7 +16,7 @@ const deleteProject = async (id) => {
         getFolders();
         getTasks();
     } catch (error) {
-        console.error(error.message);
+        catchError(error);
     }
 }
 
