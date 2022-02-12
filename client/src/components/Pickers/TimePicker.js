@@ -1,21 +1,21 @@
 import { useState } from "react";
 import Icon from "../BasicUI/Icon";
-import date from "date-and-time";
 import { useClickOutside } from "../CustomHooks";
 import useStore from "../../store/useStore";
+import checkTimeFormat from "../../utils/checkTimeFormat";
 
 const TimePicker = () => {
 
-    const selectedDate = useStore(state => state.selectedDate);
-    const setSelectedDate = useStore(state => state.setSelectedDate);
-    const considerTime = useStore(state => state.considerTime);
-    const setConsiderTime = useStore(state => state.setConsiderTime);
+    const pickedDateStr = useStore(state => state.pickedDateStr);
+    const setPickedDate = useStore(state => state.setPickedDate);
+    const pickedTimeStr = useStore(state => state.pickedTimeStr);
+    const setPickedTimeStr = useStore(state => state.setPickedTimeStr);
     const timeDisplay = useStore(state => state.timeDisplay);
     const setTimeDisplay = useStore(state => state.setTimeDisplay);
 
     const [isTimeInputOpen, setIsTimeInputOpen] = useState(false);
     const [timeInput, setTimeInput] = useState("");
-    const [showSave, setShowSave] = useState(false);
+    const [isSaveButtonShown, setIsSaveButtonShown] = useState(false);
 
     const handleClickTimeDisplay = () => {
         if (!isTimeInputOpen) {
@@ -24,49 +24,37 @@ const TimePicker = () => {
     }
 
     const handleClickSave = () => {
-        const timeArr = timeInput.trim().split(":", 2);
-        timeArr.map(x => parseInt(x, 10));
-        const [hours, minutes] = timeArr;
-        let newDate = new Date(selectedDate);
-        newDate.setHours(hours);
-        newDate.setMinutes(minutes);
-        setSelectedDate(newDate);
-        setConsiderTime(true); // make time readable
-        setShowSave(false); // hide «Save» button
+        // console.log({timeInput})
+        setPickedTimeStr(timeInput);
+        setIsSaveButtonShown(false); // hide «Save» button
         if (isTimeInputOpen) {
             setIsTimeInputOpen(false); // hide time-input and show diplay
         }
-        setTimeDisplay(date.format(newDate, "H:mm"));
-    }
-
-    const checkTimeFormat = (timeString) => {
-        const regEx = /\d{1,2}:\d{1,2}(\s+)?([pP][mM]|[aA][mM])?/g;
-        const isTimeString = regEx.test(timeString);
-        return isTimeString;
+        setTimeDisplay(timeInput);
     }
 
     const handleChangeTimeInput = (e) => {
         setTimeInput(e.target.value);
         if (checkTimeFormat(e.target.value)) {
-            setShowSave(true);
+            setIsSaveButtonShown(true);
         } else {
-            setShowSave(false);
+            setIsSaveButtonShown(false);
         }
     }
 
     const handleClickClose = () => {
         setTimeDisplay(false);
-        let newDate = new Date(selectedDate);
+        let newDate = new Date(pickedDateStr);
         newDate.setHours(0);
         newDate.setMinutes(0);
-        setSelectedDate(newDate);
-        setConsiderTime(false);
+        setPickedDate(newDate);
+        setPickedTimeStr(null);
     }
 
 
     const domRef = useClickOutside(() => {
         setIsTimeInputOpen(false); // hide input and show display
-        setShowSave(false); // hide «Save» button
+        setIsSaveButtonShown(false); // hide «Save» button
         setTimeInput(""); // clear input
 
     });
@@ -83,12 +71,12 @@ const TimePicker = () => {
                 {isTimeInputOpen &&
                     <div className="input-container">
                         <input type="text" value={timeInput} onChange={handleChangeTimeInput} placeholder="e.g. 14:30" size="" />
-                        {showSave &&
+                        {isSaveButtonShown &&
                             <div className="time-display-button" onClick={handleClickSave}>Save</div>}
                     </div>
                 }
             </div>
-            {considerTime && !isTimeInputOpen &&
+            {pickedTimeStr && !isTimeInputOpen &&
                 <div className="close-btn" onClick={handleClickClose}>
                     <Icon name="Close" size="sm" />
                 </div>

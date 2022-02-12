@@ -5,36 +5,36 @@ import makeDaysToDisplay from "../../utils/makeDaysToDisplay";
 import useStore from "../../store/useStore";
 
 const Calendar = () => {
-    const anchorDate = useStore(state => state.anchorDate);
+    const anchorDateObj = useStore(state => state.anchorDateObj);
     const setAnchorDate = useStore(state => state.setAnchorDate);
-    const selectedDate = useStore(state => state.selectedDate);
-    const setSelectedDate = useStore(state => state.setSelectedDate);
+    const pickedDateStr = useStore(state => state.pickedDateStr);
+    const setPickedDate = useStore(state => state.setPickedDate);
     
-    const daysToDisplay = makeDaysToDisplay(anchorDate, selectedDate);
+    const daysToDisplay = makeDaysToDisplay(anchorDateObj, pickedDateStr);
+
+    // Just names of days of the week for render
+    const weekDays = ["M", "T", "W", "T", "F", "S", "S"];
 
     // Handles going a month back
     const handleClickBack = () => {
-        setAnchorDate(date.addMonths(anchorDate, -1));
+        setAnchorDate(date.addMonths(anchorDateObj, -1));
     }
 
     // Handles going a month further
     const handleClickFurther = () => {
-        setAnchorDate(date.addMonths(anchorDate, 1));
+        setAnchorDate(date.addMonths(anchorDateObj, 1));
     }
 
     // Handles click on a date to select
-    const handleClickDay = (aDate) => {
-        setSelectedDate(aDate);
+    const handleClickDay = (dateObj) => {
+        setPickedDate(dateObj);
     }
-
-    // Just names of days of the week for render
-    const weekDays = ["M", "T", "W", "T", "F", "S", "S"];
 
     return (
         <div className="calendar">
             <div className="calendar-controls">
                 <div className="month-back" onClick={handleClickBack}><Icon name="AngleLeft" size="md" /></div>
-                <div className="month-display">{date.format(anchorDate, "MMMM YYYY")}</div>
+                <div className="month-display">{date.format(anchorDateObj, "MMMM YYYY")}</div>
                 <div className="month-further" onClick={handleClickFurther}><Icon name="AngleRight" size="md" /></div>
             </div>
             <div className="calendar-weekdays">
@@ -48,9 +48,9 @@ const Calendar = () => {
                         "this-month": day.isThisMonth,
                         "selected": day.isSelected
                     });
-                    return <div className={dayCls} key={index} onClick={() => { handleClickDay(day.aDate) }}>
+                    return <div className={dayCls} key={index} onClick={() => { handleClickDay(day.dateObj) }}>
                         <div className="select-area">
-                            {day.aDate.getDate()}
+                            {day.dateObj.getDate()}
                         </div>
                     </div>
                 })}

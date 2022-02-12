@@ -2,10 +2,11 @@ import date from "date-and-time";
 import { today } from "./days";
 
 // Makes an array that will be used to render calendar grid
-const makeDaysToDisplay = (anchorDate, selectedDate) => {
+const makeDaysToDisplay = (anchorDateObj, pickedDateStr) => {
+    const pickedDateObj = new Date(pickedDateStr);
     // Trying to find the start of calendar grid
-    const year = anchorDate.getFullYear();
-    const monthIndex = anchorDate.getMonth();
+    const year = anchorDateObj.getFullYear();
+    const monthIndex = anchorDateObj.getMonth();
     const firstDayOfMonth = new Date(year, monthIndex, 1);
     const diff = firstDayOfMonth.getDay() - 1;
     let startOfCalGrid;
@@ -25,13 +26,13 @@ const makeDaysToDisplay = (anchorDate, selectedDate) => {
     // Make an array of dates starting with «the start of calendar grid»
     let arr = [];
     for (let i = 0; i < 42; i++) {
-        const aDate = date.addDays(startOfCalGrid, i)
-        const isToday = date.isSameDay(aDate, today);
-        const isThisMonth = aDate.getMonth() === monthIndex;
+        const dateObj = date.addDays(startOfCalGrid, i)
+        const isToday = date.isSameDay(dateObj, today);
+        const isThisMonth = dateObj.getMonth() === monthIndex;
         // Is this date selected?
-        const isSelected = selectedDate ? date.isSameDay(aDate, selectedDate) : false;
+        const isSelected = pickedDateObj ? date.isSameDay(dateObj, pickedDateObj) : false;
         arr.push({
-            aDate, // Date object
+            dateObj, // Date object
             isToday, // Boolean
             isThisMonth, // Boolean
             isSelected // Boolean

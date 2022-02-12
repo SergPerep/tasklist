@@ -10,25 +10,25 @@ import useStore from "../../store/useStore";
 
 const DateAndTimePicker = () => {
 
-    const selectedDate = useStore(state => state.selectedDate);
-    const setSelectedDate = useStore(state => state.setSelectedDate);
-    const considerTime = useStore(state => state.considerTime);
-    const setConsiderTime = useStore(state => state.setConsiderTime);
+    const pickedDateStr = useStore(state => state.pickedDateStr);
+    const pickedDateObj = new Date(pickedDateStr);
+    const setPickedDate = useStore(state => state.setPickedDate);
+    const setPickedTimeStr = useStore(state => state.setPickedTimeStr);
     const setAnchorDate = useStore(state => state.setAnchorDate);
 
     const [isDateMenuOpen, setIsDateMenuOpen] = useState(false);
 
     // Defines title for date display 
-    const displayDate = () => {
-        if (!selectedDate) return <span className="placeholder">Schedule</span>
-        // if selectedDate is another year
-        if (selectedDate.getFullYear() !== today.getFullYear()) return date.format(selectedDate, "DD MMM YYYY");
-        // if selectedDate is today
-        if (date.isSameDay(selectedDate, today)) return "Today";
-        // if selectedDate is tomorrow
-        if (date.isSameDay(selectedDate, tomorrow)) return "Tomorrow";
-        // if selectedDate is this year but not today or tomorrow
-        return date.format(selectedDate, "DD MMM");
+    const formatDateForDisplay = () => {
+        if (!pickedDateStr) return <span className="placeholder">Schedule</span>
+        // if pickedDateStr is another year
+        if (pickedDateObj.getFullYear() !== today.getFullYear()) return date.format(pickedDateObj, "DD MMM YYYY");
+        // if pickedDateStr is today
+        if (date.isSameDay(pickedDateObj, today)) return "Today";
+        // if pickedDateStr is tomorrow
+        if (date.isSameDay(pickedDateObj, tomorrow)) return "Tomorrow";
+        // if pickedDateStr is this year but not today or tomorrow
+        return date.format(pickedDateObj, "DD MMM");
     }
 
     const handleClickDateDisplay = () => {
@@ -41,39 +41,23 @@ const DateAndTimePicker = () => {
 
     useEffect(() => {
         setIsDateMenuOpen(false);
-    }, [selectedDate]);
+    }, [pickedDateStr]);
 
     useEffect(() => {
-        if (selectedDate) return setAnchorDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth()));
-        setAnchorDate(new Date(today.getFullYear(), today.getMonth()));
+        setAnchorDate(pickedDateStr);
     }, [isDateMenuOpen])
 
-    // Takes two date objects and returns another –
-    // sets hours and minutes of second date object for first date object
-    const mergeDateAndTime = (dateDateObj, timeDateObj) => {
-        let dateDateAndTimeObj = new Date(dateDateObj);
-        const hours = timeDateObj.getHours();
-        const minutes = timeDateObj.getMinutes();
-        dateDateAndTimeObj.setHours(hours);
-        dateDateAndTimeObj.setMinutes(minutes);
-        return dateDateAndTimeObj
-    }
-
     const handleClickToday = () => {
-        if (!considerTime) return setSelectedDate(today);
-        const newDate = mergeDateAndTime(today, selectedDate);
-        setSelectedDate(newDate);
+        setPickedDate(today);
     }
 
     const handleClickTomorrow = () => {
-        if (!considerTime) return setSelectedDate(tomorrow);
-        const newDate = mergeDateAndTime(tomorrow, selectedDate);
-        setSelectedDate(newDate);
+        setPickedDate(tomorrow);
     }
 
     const handleClickNoDate = () => {
-        setSelectedDate(undefined);
-        setConsiderTime(false);
+        setPickedDate(null);
+        setPickedTimeStr(null);
         setIsDateMenuOpen(false);
     }
 
@@ -83,7 +67,7 @@ const DateAndTimePicker = () => {
                 <div className="date-display" onClick={handleClickDateDisplay}>
                     <Icon name="Today" size="sm" />
                     <div className="date-desc">
-                        {displayDate()}
+                        {formatDateForDisplay()}
                     </div>
                 </div>
                 {isDateMenuOpen &&
@@ -98,7 +82,7 @@ const DateAndTimePicker = () => {
             </div>
 
             <div className="time-container">
-                {selectedDate && <TimePicker />}
+                {pickedDateStr && <TimePicker />}
             </div>
 
         </div>

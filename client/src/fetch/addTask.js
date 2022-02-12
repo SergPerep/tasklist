@@ -1,17 +1,17 @@
 import getTasks from "./getTasks";
 import useStore from "../store/useStore";
-import date from "date-and-time";
 
 const setTasks = useStore.getState().setTasks;
 
-const addTask = async ({ taskInputValue, selectedDate, considerTime, pickedProjectId }) => {
+const addTask = async ({ taskInputValue, selectedDate, pickedTime, pickedProjectId }) => {
     try {
         const body = {
             description: taskInputValue,
-            date_and_time: selectedDate ? date.format(selectedDate, "YYYY-MM-DD HH:mm:ss") : undefined,
-            read_time: considerTime,
-            folder_id: pickedProjectId
+            date: selectedDate,
+            time: pickedTime,
+            folder_id: typeof pickedProjectId === "number" ? pickedProjectId : null
         }
+        console.log({body});
         const addTask = await fetch("/tasks", {
             method: "POST",
             headers: {

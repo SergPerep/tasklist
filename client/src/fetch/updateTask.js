@@ -4,12 +4,12 @@ import useStore from "../store/useStore";
 
 const setTasks = useStore.getState().setTasks;
 
-const updateTask = async ({ id, taskInputValue, selectedDate, considerTime, pickedProjectId }) => {
+const updateTask = async ({ id, taskInputValue, selectedDate, pickedTime, pickedProjectId }) => {
     try {
         const body = {
             description: taskInputValue,
-            date_and_time: selectedDate ? date.format(selectedDate, "YYYY-MM-DD HH:mm:ss") : undefined,
-            read_time: considerTime,
+            date: selectedDate ? date.format(selectedDate, "YYYY-MM-DD HH:mm:ss") : undefined,
+            time: pickedTime,
             folder_id: pickedProjectId
         }
         const editTask = await fetch(`/tasks/${id}`, {

@@ -2,7 +2,7 @@ import { filterInboxTasks, filterTodayTasks, filterOverdueTasks, filterTomorrowT
 import getColor from "./getColor";
 
 const makeSections = (tasks, projects, colors, selectedSectionId) => {
-    
+
     const defaultSections = [{
         id: "inb",
         name: "Inbox",
@@ -30,7 +30,7 @@ const makeSections = (tasks, projects, colors, selectedSectionId) => {
 
     if (!Array.isArray(tasks) && !Array.isArray(projects) && !Array.isArray(colors)) return defaultSections;
 
-    let modifiedProjects = [ ...projects ]?.map(project => {
+    let modifiedProjects = [...projects]?.map(project => {
         return {
             id: project.id,
             name: project.name,

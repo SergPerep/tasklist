@@ -2,19 +2,19 @@ import Button from "../BasicUI/Button";
 import DateAndTimePicker from "../Pickers/DateAndTimePicker";
 import ProjectPicker from "../Pickers/ProjectPicker";
 import { useEffect, useState } from "react";
-import date from "date-and-time";
 import useStore from "../../store/useStore";
 import updateTask from "../../fetch/updateTask";
 import addTask from "../../fetch/addTask";
+import formatTimeString from "../../utils/formatTimeString";
 
 
 const EditTask = ({ task, btnName = "Save" }) => {
-    const { id, description, date_and_time, read_time, folder } = task || {};
+    // const { id, description, date_and_time, read_time, folder } = task || {};
 
-    const considerTime = useStore(state => state.considerTime);
-    const setConsiderTime = useStore(state => state.setConsiderTime);
-    const selectedDate = useStore(state => state.selectedDate);
-    const setSelectedDate = useStore(state => state.setSelectedDate);
+    const pickedTimeStr = useStore(state => state.pickedTimeStr);
+    const setPickedTimeStr = useStore(state => state.setPickedTimeStr);
+    const pickedDateStr = useStore(state => state.pickedDateStr);
+    const setPickedDate = useStore(state => state.setPickedDate);
     const setTimeDisplay = useStore(state => state.setTimeDisplay);
 
     const pickedProjectId = useStore(state => state.pickedProjectId);
@@ -24,24 +24,24 @@ const EditTask = ({ task, btnName = "Save" }) => {
 
     useEffect(() => {
         if (!task) return
-        if (description) setTaskInputValue(description)
-        if (date_and_time) setSelectedDate(date_and_time)
-        if (read_time) {
-            setConsiderTime(true);
-            setTimeDisplay(date.format(date_and_time, "H:mm"));
+        if (task.description) setTaskInputValue(task.description)
+        if (task.date) setPickedDate(task.date)
+        if (task.time) {
+            setPickedTimeStr(task.time);
+            setTimeDisplay(formatTimeString(task.time));
         }
-        if (folder.id) setPickedProjectId(folder.id);
+        if (task.folder.id) setPickedProjectId(task.folder.id);
     }, []);
 
-
     const handleSubmitTask = (e) => {
+        console.log({ pickedTimeStr });
         e.preventDefault();
         if (task) {
             // Update new task with PUT method
-            updateTask({ id, taskInputValue, selectedDate, considerTime, pickedProjectId });
+            updateTask({ id: task.id, taskInputValue, pickedDateStr, pickedTimeStr, pickedProjectId });
         } else {
             // Add new task with POST method
-            addTask({ taskInputValue, selectedDate, considerTime, pickedProjectId })
+            addTask({ taskInputValue, pickedDateStr, pickedTimeStr, pickedProjectId })
         }
         resetEditFields();
         closeEdits();
@@ -49,8 +49,8 @@ const EditTask = ({ task, btnName = "Save" }) => {
 
     const resetEditFields = () => {
         setTaskInputValue(""); // Clear input
-        setConsiderTime(undefined); // Reset time
-        setSelectedDate(undefined); // Reset date
+        setPickedTimeStr(null); // Reset time
+        setPickedDate(null); // Reset date
         setPickedProjectId("inb"); // Reset project
         setTimeDisplay(undefined); // Clear time display
     }
