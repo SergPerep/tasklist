@@ -22,7 +22,7 @@ const makeSections = (tasks, projects, colors, selectedSectionId) => {
     {
         id: "tmr",
         name: "Tomorrow",
-        tasksNum: filterTomorrowTasks(tasks, false),
+        tasksNum: filterTomorrowTasks(tasks, false)?.length,
         leftIcon: "Tomorrow",
         selected: "tmr" === selectedSectionId,
         isAProject: false

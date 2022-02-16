@@ -12,6 +12,10 @@ const convertData = (oldArr) => {
             name: obj.folder_name,
         }
         obj.isCompleted = obj.is_completed;
+        obj.dateStr = obj.date;
+        delete obj.date;
+        obj.timeStr = obj.time;
+        delete obj.time;
         delete obj.is_completed;
         delete obj.folder_id;
         delete obj.folder_name;

@@ -9,7 +9,7 @@ const AddTaskInput = () => {
     const setOpenedEdit = useStore(state => state.setOpenedEdit);
     
     const setPickedProjectId = useStore(state => state.setPickedProjectId);
-    const setSelectedDate = useStore(state => state.setSelectedDate);
+    const setPickedDate = useStore(state => state.setPickedDate);
     
     const selectedSectionId = useStore(state => state.selectedSectionId);
     const sections = useStore(state => state.sections);
@@ -19,8 +19,8 @@ const AddTaskInput = () => {
             {!isThisEditOpened &&
                 <div className="addtask-container" onClick={() => {
                     setOpenedEdit(NEW_TASK_EDIT_ID); // open this Edit, close all other
-                    if (selectedSectionId === "td") return setSelectedDate(today)
-                    if (selectedSectionId === "tmr") return setSelectedDate(tomorrow)
+                    if (selectedSectionId === "td") return setPickedDate(today)
+                    if (selectedSectionId === "tmr") return setPickedDate(tomorrow)
                     if (selectedSection.isAProject) return setPickedProjectId(selectedSectionId)
                 }}>
                     <div className="addtask-display">

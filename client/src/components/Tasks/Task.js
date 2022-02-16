@@ -20,7 +20,7 @@ const Task = ({ task }) => {
     const isThisEditOpened = openedEditId === task.id;
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const isTaskOverdue = (new Date(task.date))?.getTime() < today.getTime();
+    const isTaskOverdue = (new Date(task.dateStr))?.getTime() < today.getTime();
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     // Handles click outside of «more»
@@ -41,11 +41,11 @@ const Task = ({ task }) => {
                     <div className="taskitem-content-wrapper">
                         <div className="taskitem-desc">{task.description}</div>
                         <div className="taskitem-details">
-                            {task.date && <span className="taskitem-date">
-                                {formatDateString(task.date)}
+                            {task.dateStr && <span className="taskitem-date">
+                                {formatDateString(task.dateStr)}
                             </span>}
-                            {task.time && <span className="taskitem-time">
-                                {formatTimeString(task.time)}
+                            {task.timeStr && <span className="taskitem-time">
+                                {formatTimeString(task.timeStr)}
                             </span>}
                             {task.folder.id && <span className="taskitem-project"
                                 style={{ backgroundColor: project?.color?.fill, color: project?.color?.font }}>

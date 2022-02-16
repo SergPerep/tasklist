@@ -25,10 +25,10 @@ const EditTask = ({ task, btnName = "Save" }) => {
     useEffect(() => {
         if (!task) return
         if (task.description) setTaskInputValue(task.description)
-        if (task.date) setPickedDate(task.date)
-        if (task.time) {
-            setPickedTimeStr(task.time);
-            setTimeDisplay(formatTimeString(task.time));
+        if (task.dateStr) setPickedDate(task.dateStr)
+        if (task.timeStr) {
+            setPickedTimeStr(task.timeStr);
+            setTimeDisplay(formatTimeString(task.timeStr));
         }
         if (task.folder.id) setPickedProjectId(task.folder.id);
     }, []);
@@ -38,10 +38,21 @@ const EditTask = ({ task, btnName = "Save" }) => {
         e.preventDefault();
         if (task) {
             // Update new task with PUT method
-            updateTask({ id: task.id, taskInputValue, pickedDateStr, pickedTimeStr, pickedProjectId });
+            updateTask({
+                id: task.id,
+                description: taskInputValue,
+                dateStr: pickedDateStr,
+                timeStr: pickedTimeStr,
+                projectId: pickedProjectId
+            });
         } else {
             // Add new task with POST method
-            addTask({ taskInputValue, pickedDateStr, pickedTimeStr, pickedProjectId })
+            addTask({
+                description: taskInputValue,
+                dateStr: pickedDateStr,
+                timeStr: pickedTimeStr,
+                projectId: pickedProjectId
+            })
         }
         resetEditFields();
         closeEdits();
