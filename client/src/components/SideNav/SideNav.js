@@ -38,7 +38,7 @@ const SideNav = () => {
         });
 
     return (
-        <div className="tasknav">
+        <div className="sidenav">
             {sections
                 .filter(section => section.isAProject === false)
                 .map(section => <SideNavItem

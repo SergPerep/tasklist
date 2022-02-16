@@ -1,0 +1,73 @@
+@use "../colors";
+@use "../fonts";
+/* PICKERS */
+
+.dt-picker {
+  display: flex;
+  background-color: colors.$white-04;
+  border: 1px solid colors.$white-04;
+  border-radius: 6px;
+
+  .date-menu .button-container {
+    padding: 8px 0;
+    border-bottom: 1px solid colors.$white-12;
+  }
+
+  .date-desc,
+  .time-display {
+    @include fonts.small-reg;
+  }
+
+  .date-display,
+  .time-display {
+    padding: 2px 8px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: colors.$white-12;
+    }
+  }
+
+  .date-display {
+    display: flex;
+    align-items: center;
+    .line-icon {
+      margin-right: 4px;
+    }
+  }
+}
+
+.project-picker {
+  .project-desc {
+    @include fonts.small-reg;
+  }
+
+  .project-display {
+    background-color: colors.$white-04;
+    border: 1px solid colors.$white-04;
+    border-radius: 6px;
+  }
+
+  .project-display {
+    padding: 2px 8px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: colors.$white-12;
+    }
+  }
+
+  .project-display .line-icon {
+    margin-right: 4px;
+  }
+
+  .project-display {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.date-menu {
+  border: 1px solid var(--c-black-30);
+  border-radius: 2px;
+}

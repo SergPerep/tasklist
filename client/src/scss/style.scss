@@ -1,8 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap");
-@import "LineIcons.css";
+@use "./fonts";
+@use "./colors";
+@import "./reset";
+@import "./icons";
+@import "./SideNav";
+@import "./Tasks/Tasks";
+@import "./Tasks/AddTaskInput";
+@import "./Tasks/EditTask";
+@import "./Pickers/DateAndTimePicker";
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -11,65 +20,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-/* Default browser styles reset*/
-* {
-  margin: 0;
-}
-
-h1, h2, h3, h4, h6, h6 {
-  font-size: inherit;
-  font-weight: bold;
-  color: black;
-}
-
-h2 {
-  font-size: 18px;
-  line-height: 28px;
-  margin-bottom: 12px;
-}
-
-/* Box-sizing reset method*/
-html, body, input, button, div {
-  box-sizing: border-box;
-}
-
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-
-/* Lists reset*/
-ul {
-  padding-left: 0;
-}
-
-ul > li {
-  list-style: none;
-}
-
-/* Links style reset */
-a {
-  text-decoration: none;
-}
-
-/* Font family */
-* {
-  font-family: "IBM Plex Mono", monospace;
-}
-
-/* COLORS */
-:root {
-  --c-light-gray: #f0f0f0;
-  --c-black-60: rgba(0, 0, 0, 0.6);
-  --c-black-30: rgba(0, 0, 0, 0.3);
-  --c-black-12: rgba(0, 0, 0, 0.12);
-  --c-black-08: rgba(0, 0, 0, 0.08);
-  --c-black-04: rgba(0, 0, 0, 0.04);
-  --c-white-70: rgba(255, 255, 255, 0.7);
-  --c-white-40: rgba(255, 255, 255, 0.4);
-  --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #D21111;
-  --c-primary: #000000;
-}
 
 .line-icon {
   display: block;
@@ -107,11 +57,8 @@ p {
   line-height: 24px;
 }
 
-div {
-  box-sizing: border-box;
-}
-
 /* BASIC LAYOUT */
+
 .topnav {
   background-color: var(--c-primary);
   height: 44px;
@@ -134,6 +81,7 @@ div {
   justify-content: center;
   width: calc(100% - 300px);
   overflow-y: scroll;
+  background-color: colors.$ash03;
 }
 
 .taskboard-display-container {
@@ -147,6 +95,7 @@ div {
 }
 
 /* CHECKBOX */
+
 .checkbox .circle {
   width: 16px;
   height: 16px;
@@ -180,85 +129,8 @@ div {
   padding: 4px;
 }
 
-/* TASK ITEM */
-.taskitem .taskitem-container {
-  display: flex;
-  align-items: flex-start;
-  background-color: white;
-  padding: 12px 16px;
-}
-
-.taskitem .taskitem-content-wrapper {
-  padding-left: 8px;
-  width: 100%;
-}
-
-.taskitem.overdue .taskitem-date, .taskitem.overdue .taskitem-time {
-  color: var(--c-error);
-}
-
-.taskitem.completed .taskitem-date,
-.taskitem.completed .taskitem-time,
-.taskitem.overdue.completed .taskitem-date,
-.taskitem.overdue.completed .taskitem-time {
-  color: var(--c-black-30);
-}
-
-.taskitem .taskitem-project {
-  background-color: var(--c-black-12);
-  font-size: 12px;
-  line-height: 14px;
-  padding: 4px 5px;
-  border-radius: 2px;
-}
-
-.taskitem.completed .taskitem-project {
-  background-color: var(--c-black-04);
-  color: var(--c-black-30);
-}
-
-.taskitem .taskitem-date, .taskitem .taskitem-time {
-  color: var(--c-black-60);
-  font-size: 14px;
-}
-
-.taskitem.completed .taskitem-desc {
-  color: var(--c-black-30);
-}
-
-.taskitem-details {
-  padding-top: 4px;
-  display: flex;
-  align-items: center;
-}
-
-.taskitem-details span:not(:first-child) {
-  margin-left: 8px;
-}
-
-.taskitem.completed .checkbox.checked .circle {
-  background-color: var(--c-black-12);
-  border-color: transparent;
-}
-
-.taskitem.completed .more > .line-icon {
-  color: var(--c-black-30);
-}
-
-.taskitem .more-content {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 1;
-}
 
 /* TaskList */
-.tasklist {
-  background-color: white;
-  padding: 8px 0;
-  min-width: 610px;
-  max-width: calc(100vw - 96px);
-}
 
 .icon-angle {
   width: 16px;
@@ -289,7 +161,9 @@ div {
   height: 16px;
 }
 
-.icon-more::before, .icon-more::after, .icon-more .circle {
+.icon-more::before,
+.icon-more::after,
+.icon-more .circle {
   content: "";
   display: block;
   box-sizing: border-box;
@@ -339,81 +213,6 @@ div {
   line-height: 14px;
 }
 
-.taskinput-options {
-  display: flex;
-  padding-left: 16px;
-  padding-bottom: 12px;
-}
-
-.taskinput-options .dropdown:not(:last-child) {
-  margin-right: 8px;
-}
-
-.taskinput {
-  background-color: white;
-}
-
-.taskinput input {
-  width: 100%;
-  display: block;
-  box-sizing: border-box;
-  border: none;
-  font-size: 16px;
-  line-height: 24px;
-  padding: 12px 16px 8px;
-}
-
-/* TASKNAV */
-.tasknav {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 16px;
-}
-
-.tasknav-item {
-  width: 100%;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  border-radius: 4px;
-  padding: 12px;
-}
-
-.tasknav-item:hover {
-  background-color: var(--c-black-12);
-}
-
-.tasknav-item.selected {
-  background-color: var(--c-black-12);
-}
-
-.tasknav-item .tasknav-desc {
-  width: 100%;
-  font-size: 16px;
-  line-height: 24px;
-}
-
-.tasknav-item .tasknav-icon {
-  width: 24px;
-  height: 24px;
-}
-
-.tasknav-item .tasknav-icon:first-child {
-  margin-right: 8px;
-}
-
-.tasknav-item .tasknav-icon:last-child {
-  margin-left: 8px;
-}
-
-.tasknav-count {
-  font-size: 12px;
-  line-height: 24px;
-  padding-right: 8px;
-  color: var(--c-black-60);
-}
 
 .projects-container {
   display: flex;
@@ -422,7 +221,8 @@ div {
   overflow-y: hidden;
 }
 
-.projects-content, .projects-header {
+.projects-content,
+.projects-header {
   width: 100%;
 }
 
@@ -460,8 +260,9 @@ div {
   flex-wrap: wrap;
 }
 
-.calendar-cell, .calendar-weekdays div {
-  width: 14.2857142857%;
+.calendar-cell,
+.calendar-weekdays div {
+  width: calc(100% / 7);
   text-align: center;
 }
 
@@ -474,7 +275,8 @@ div {
   cursor: pointer;
 }
 
-.calendar-cell, .calendar-cell .select-area {
+.calendar-cell,
+.calendar-cell .select-area {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -513,7 +315,8 @@ div {
   width: 100%;
 }
 
-.calendar-controls .month-back, .calendar-controls .month-further {
+.calendar-controls .month-back,
+.calendar-controls .month-further {
   cursor: pointer;
 }
 
@@ -553,86 +356,8 @@ div {
   width: 100%;
 }
 
-/* PICKERS */
-.dt-picker .date-desc, .dt-picker .time-display, .project-picker .project-desc {
-  font-size: 14px;
-  line-height: 24px;
-}
-
-.dt-picker .date-display, .dt-picker .time-display, .project-picker .project-display {
-  padding: 2px 8px;
-  cursor: pointer;
-}
-
-.dt-picker .date-display:hover, .dt-picker .time-display:hover, .project-picker .project-display:hover {
-  background-color: var(--c-black-12);
-}
-
-.dt-picker, .project-picker .project-display {
-  border: 1px var(--c-black-30) solid;
-  border-radius: 2px;
-}
-
-.dt-picker .date-display .line-icon, .project-picker .project-display .line-icon {
-  margin-right: 4px;
-}
-
-.dt-picker .date-display, .project-picker .project-display {
-  display: flex;
-  align-items: center;
-}
-
-.dt-picker {
-  display: flex;
-}
-
-.edittask .picker-container {
-  display: flex;
-  padding: 0 20px 16px;
-}
-
-.edittask .picker-container .dt-picker {
-  margin-right: 8px;
-}
-
-.edittask .edit-fields {
-  border: 1px solid var(--c-black-30);
-  border-radius: 2px;
-}
-
-.edit-fields .taskinput {
-  font-size: 16px;
-  height: 24px;
-  border: none;
-  height: auto;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 16px 20px 24px;
-}
-
-.edittask .button-container {
-  padding-top: 16px;
-}
-
-.edittask .button-container .button:not(:first-child) {
-  margin-left: 12px;
-}
-
-.edittask {
-  padding: 0 20px 24px;
-}
-
-.dt-picker .date-menu .button-container {
-  padding: 8px 0;
-  border-bottom: 1px solid var(--c-black-30);
-}
-
-.date-menu {
-  border: 1px solid var(--c-black-30);
-  border-radius: 2px;
-}
-
 /* HEADER */
+
 .header {
   padding: 20px 20px 8px;
   display: flex;
@@ -668,6 +393,7 @@ div {
 }
 
 /* MENUS */
+
 .menu {
   border: 1px solid var(--c-black-30);
   background-color: white;
@@ -681,7 +407,8 @@ div {
   cursor: pointer;
 }
 
-.menu-item:hover, .menu-item.selected {
+.menu-item:hover,
+.menu-item.selected {
   background-color: var(--c-black-12);
 }
 
@@ -703,7 +430,8 @@ div {
   height: 100%;
 }
 
-.timepicker, .timepicker .input-container {
+.timepicker,
+.timepicker .input-container {
   display: flex;
   align-items: center;
 }
@@ -758,6 +486,7 @@ div {
 }
 
 /* Project picker */
+
 .project-picker {
   position: relative;
 }
@@ -773,26 +502,8 @@ div {
   min-width: 180px;
 }
 
-/* ADD TASK INPUT */
-.addtaskinput .addtask-container {
-  padding: 8px 20px;
-}
-
-.addtaskinput .addtask-display {
-  border: 1px solid var(--c-black-30);
-  border-radius: 2px;
-  padding: 12px 20px;
-  color: var(--c-black-30);
-  line-height: 24px;
-  font-size: 16px;
-  cursor: text;
-}
-
-.addtaskinput .edittask {
-  padding-top: 8px;
-}
-
 /* ACCORDION */
+
 .accordion .accordion-header {
   padding: 12px 16px;
   display: flex;
@@ -803,7 +514,8 @@ div {
   padding: 4px;
 }
 
-.accordion-title, .accordion-count {
+.accordion-title,
+.accordion-count {
   cursor: default;
 }
 
@@ -826,6 +538,7 @@ div {
 }
 
 /* MODAL */
+
 .overlay {
   width: 100vw;
   height: 100vh;
@@ -859,13 +572,16 @@ div {
 
 /* INPUT */
 /* SELECT */
-.input-field label, .select-label {
+
+.input-field label,
+.select-label {
   display: block;
   color: var(--c-black-60);
   margin-bottom: 12px;
 }
 
-.input-field input, .select-display {
+.input-field input,
+.select-display {
   display: block;
   width: 100%;
   padding: 12px 12px;
@@ -873,7 +589,10 @@ div {
   border-radius: 4px;
 }
 
-.input-field label, .input-field input, .select-label, .select-display {
+.input-field label,
+.input-field input,
+.select-label,
+.select-display {
   font-size: 16px;
   line-height: 18px;
 }
@@ -918,6 +637,7 @@ div {
 }
 
 /* COLOR DISPLAY */
+
 .color-display {
   width: 24px;
   height: 24px;
@@ -956,6 +676,7 @@ div {
 }
 
 /* EMPTY STATE */
+
 .empty-state {
   display: flex;
   flex-direction: column;
@@ -975,11 +696,13 @@ div {
   margin-top: 8px;
 }
 
-.empty-state-title, .empty-state-desc {
+.empty-state-title,
+.empty-state-desc {
   text-align: center;
 }
 
 /* AUTHENTICATION */
+
 .authentication {
   width: 360px;
   padding: 24px;
@@ -998,7 +721,9 @@ div {
 }
 
 /* Hrefless link */
-button.hrefless-link, button.hrefless-link:active {
+
+button.hrefless-link,
+button.hrefless-link:active {
   background: none !important;
   border: none;
   padding: 0 !important;
@@ -1008,5 +733,3 @@ button.hrefless-link, button.hrefless-link:active {
   color: var(--c-black-60);
   text-align: left;
 }
-
-/*# sourceMappingURL=index.css.map */

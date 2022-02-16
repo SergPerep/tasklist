@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap');
+/* Font family */
+
+* {
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+@mixin body-reg {
+    font-size: 16px;
+    line-height: 28px;
+}
+
+@mixin body-bold {
+    @include body-reg;
+    font-weight: bold;
+}
+
+@mixin small-reg {
+    font-size: 14px;
+    line-height: 24px;
+}
+
+@mixin xSmall-reg {
+    font-size: 12px;
+    line-height: 20px;
+}

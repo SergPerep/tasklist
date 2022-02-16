@@ -1,0 +1,57 @@
+@use "./colors";
+@use "./fonts";
+
+/* SIDENAV */
+
+.sidenav {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    background-color: colors.$ash02;
+}
+
+.sidenav-item {
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    padding: 12px;
+    color: colors.$white-40;
+
+    &:hover,
+    &.selected {
+        background-color: colors.$ash01;
+        color: colors.$white-80;
+    }
+
+    .sidenav-desc {
+        width: 100%;
+        @include fonts.body-reg;
+    }
+
+    .sidenav-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .sidenav-icon:first-child {
+        margin-right: 12px;
+    }
+
+    .sidenav-icon:last-child {
+        margin-left: 8px;
+    }
+    .color-display{
+        margin-right: 12px;
+    }
+}
+
+.sidenav-count {
+    @include fonts.xSmall-reg;
+    padding-right: 8px;
+    color: colors.$white-40;
+}

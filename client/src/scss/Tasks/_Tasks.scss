@@ -1,0 +1,88 @@
+.tasklist {
+    // background-color: white;
+    padding: 8px 0;
+    min-width: 610px;
+    max-width: calc(100vw - 96px);
+}
+
+/* TASK ITEM */
+.taskitem {
+    .taskitem-container {
+        display: flex;
+        align-items: flex-start;
+        padding: 12px 16px;
+    }
+
+    .taskitem-content-wrapper {
+        padding-left: 8px;
+        width: 100%;
+    }
+
+    .taskitem-desc {
+        @include fonts.body-reg;
+        color: colors.$white-80;
+    }
+
+    .taskitem-date,
+    .taskitem-time {
+        color: var(--c-black-60);
+        font-size: 14px;
+    }
+
+    .taskitem-details {
+        padding-top: 4px;
+        display: flex;
+        align-items: center;
+        span:not(:first-child) {
+            margin-left: 8px;
+        }
+    }
+
+    .taskitem-project {
+        background-color: var(--c-black-12);
+        font-size: 12px;
+        line-height: 14px;
+        padding: 4px 5px;
+        border-radius: 2px;
+    }
+
+    .more-content {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1;
+    }
+
+    &.overdue {
+        .taskitem-date,
+        .taskitem-time {
+            color: var(--c-error);
+        }
+    }
+
+    &.completed {
+        .taskitem-project {
+            background-color: var(--c-black-04);
+            color: var(--c-black-30);
+        }
+        .taskitem-desc {
+            color: var(--c-black-30);
+        }
+        .checkbox.checked .circle {
+            background-color: var(--c-black-12);
+            border-color: transparent;
+        }
+        .more > .line-icon {
+            color: var(--c-black-30);
+        }
+    }
+
+    &.completed,
+    &.completed.overdue {
+        .taskitem-date,
+        .taskitem-time {
+            color: var(--c-black-30);
+        }
+    }
+}
+
