@@ -453,6 +453,10 @@ div {
 .edittask .edit-fields {
   border-radius: 6px;
   background-color: #202020;
+  border: 1px solid transparent;
+}
+.edittask .edit-fields.focused {
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 .edittask .taskinput {
   font-size: 16px;

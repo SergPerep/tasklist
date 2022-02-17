@@ -21,6 +21,7 @@ const EditTask = ({ task, btnName = "Save" }) => {
     const setPickedProjectId = useStore(state => state.setPickedProjectId)
     const [taskInputValue, setTaskInputValue] = useState("");
     const closeEdits = useStore(state => state.closeEdits);
+    const [isFocused, setIsFocused] = useState(false);
 
     useEffect(() => {
         if (!task) return
@@ -73,14 +74,16 @@ const EditTask = ({ task, btnName = "Save" }) => {
 
     return (
         <form className="edittask" onSubmit={handleSubmitTask} id="edittask">
-            <div className="edit-fields">
+            <div className={`edit-fields ${isFocused ? "focused" : ""}`}>
                 <input
-                    autoFocus
                     className="taskinput"
                     type="text"
                     placeholder="Task discription"
                     onChange={e => setTaskInputValue(e.target.value)}
                     value={taskInputValue}
+                    autoFocus
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => setIsFocused(false)}
                 />
                 <div className="picker-container">
                     <DateAndTimePicker />
