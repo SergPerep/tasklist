@@ -257,6 +257,7 @@ div {
   border-radius: 6px;
   padding: 12px;
   color: rgba(255, 255, 255, 0.4);
+  transition: all ease-in-out 0.2s;
 }
 .sidenav-item:hover, .sidenav-item.selected {
   background-color: #080808;
@@ -557,6 +558,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body::-webkit-scrollbar {
+  width: 4px;
+}
+body::-webkit-scrollbar-track {
+  background-color: #292929;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
@@ -622,6 +634,16 @@ p {
   overflow-y: scroll;
   background-color: #292929;
 }
+.taskboard-display::-webkit-scrollbar {
+  width: 4px;
+}
+.taskboard-display::-webkit-scrollbar-track {
+  background-color: #292929;
+}
+.taskboard-display::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+}
 
 .taskboard-display-container {
   width: 800px;
@@ -631,6 +653,16 @@ p {
   width: 300px;
   background-color: var(--c-light-gray);
   overflow-y: scroll;
+}
+.taskboard-sidenav::-webkit-scrollbar {
+  width: 4px;
+}
+.taskboard-sidenav::-webkit-scrollbar-track {
+  background-color: #202020;
+}
+.taskboard-sidenav::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
 }
 
 /* CHECKBOX */

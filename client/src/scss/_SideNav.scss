@@ -21,6 +21,7 @@
     border-radius: 6px;
     padding: 12px;
     color: colors.$white-40;
+    transition: all ease-in-out 0.2s;
 
     &:hover,
     &.selected {
