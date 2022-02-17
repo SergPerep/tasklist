@@ -71,6 +71,7 @@ const SideNav = () => {
                     }}
                     selected={section.selected}
                     key={section.id}
+                    projectId={section.id}
                     color={section?.color?.label}
                 >
                     {section.name}

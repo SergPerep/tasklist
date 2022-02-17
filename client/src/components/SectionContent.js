@@ -8,6 +8,7 @@ import ModalEditProject from "./Modals/ModalEditProject";
 
 const SectionContent = () => {
     const sections = useStore(state => state.sections);
+    const selectedSectionId = useStore(state => state.selectedSectionId);
     const selectedSection  = sections.find(section => section.selected);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -50,10 +51,10 @@ const SectionContent = () => {
             {selectedSection?.name}
         </Header>
         {isDeleteModalOpen &&
-            <ModalDeleteProject setIsModalOpen={setIsDeleteModalOpen} />
+            <ModalDeleteProject setIsModalOpen={setIsDeleteModalOpen} projectId={selectedSectionId}/>
         }
         {isEditModalOpen &&
-            <ModalEditProject setIsModalOpen={setIsEditModalOpen} />
+            <ModalEditProject setIsModalOpen={setIsEditModalOpen} projectId={selectedSectionId} />
         }
         <AddTaskInput />
         <TaskList />

@@ -10,7 +10,7 @@
     align-items: center;
     padding: 16px;
     background-color: colors.$ash02;
-    .divider{
+    .divider {
         height: 1px;
         width: calc(100% - 16px);
         background-color: colors.$white-12;
@@ -30,7 +30,8 @@
     transition: all ease-in-out 0.2s;
 
     &:hover,
-    &.selected {
+    &.selected,
+    &.more-is-open {
         background-color: colors.$ash01;
         color: colors.$white-80;
     }
@@ -52,8 +53,17 @@
     .sidenav-icon:last-child {
         margin-left: 8px;
     }
-    .color-display{
+    .color-display {
         margin-right: 12px;
+    }
+    .more {
+        padding: 0;
+        position: relative;
+        .more-content {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
     }
 }
 
@@ -63,7 +73,7 @@
     color: colors.$white-40;
 }
 
-.new-project-btn{
+.new-project-btn {
     color: colors.$active;
     display: flex;
     justify-content: center;
@@ -73,14 +83,14 @@
     border-radius: 6px;
     transition: all ease-in-out 0.2s;
     cursor: pointer;
-    .line-icon{
+    .line-icon {
         margin-right: 12px;
     }
-    .desc{
+    .desc {
         @include fonts.body-reg;
         width: 100%;
     }
-    &:hover{
+    &:hover {
         background-color: colors.$ash01;
     }
 }

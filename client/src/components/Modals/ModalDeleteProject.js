@@ -2,10 +2,12 @@ import Modal from "./Modal";
 import deleteProject from "../../fetch/deleteProject";
 import useStore from "../../store/useStore";
 
-const ModalDeleteProject = ({ setIsModalOpen }) => {
-    const setSelectedSection = useStore(state => state.setSelectedSection);
+const ModalDeleteProject = ({ setIsModalOpen, projectId }) => {
     const sections = useStore(state => state.sections);
-    const selectedSection = sections.find(section => section.selected);
+    const project = sections
+        .filter(section => section?.isAProject)
+        .find(section => section?.id === projectId);
+    const setSelectedSectionId = useStore(state => state.setSelectedSectionId);
 
     return (
         <Modal buttonList={[{
@@ -18,12 +20,12 @@ const ModalDeleteProject = ({ setIsModalOpen }) => {
             title: "Delete",
             onClick: () => {
                 setIsModalOpen(false);
-                if (!selectedSection.isAProject) return;
-                deleteProject(selectedSection.id);
-                setSelectedSection("inb");
+                if (!project.isAProject) return;
+                deleteProject(project.id);
+                setSelectedSectionId("inb");
             }
         }]}>
-            Delete project <b>{selectedSection.name}</b>?
+            Delete project <b>{project.name}</b>?
         </Modal>
     )
 }

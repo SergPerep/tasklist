@@ -7,14 +7,16 @@ import { useState } from "react";
 import updateProject from "../../fetch/updateProject";
 import useStore from "../../store/useStore";
 
-const ModalEditProject = ({ setIsModalOpen }) => {
-    const colors = useStore(state => state.colors);
+const ModalEditProject = ({ setIsModalOpen, projectId }) => {
     const sections = useStore(state => state.sections);
-    const selectedSection = sections.find(sections => sections.selected);
-    const project = selectedSection.isAProject ? selectedSection : null;
-    const [selectedColor, setSelectedColor] = useState(selectedSection?.color);
-    const [inputProjectNameValue, setInputProjectNameValue] = useState(selectedSection?.name);
+    const project = sections
+        .filter(section => section?.isAProject)
+        .find(section => section?.id === projectId);
+    const colors = useStore(state => state.colors);
+    const [selectedColor, setSelectedColor] = useState(project?.color);
+    const [inputProjectNameValue, setInputProjectNameValue] = useState(project?.name);
 
+    console.log({ project });
     console.log({ selectedColor });
 
     return <Modal buttonList={[{

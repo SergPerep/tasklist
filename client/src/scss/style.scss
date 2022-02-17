@@ -17,6 +17,7 @@
 @import "./Pickers/Calendar";
 @import "./BasicUI/Menu";
 @import "./Pickers/ProjectPicker";
+@import "./Modal";
 
 body {
   margin: 0;
@@ -228,39 +229,6 @@ p {
 
 .refer {
   height: 100%;
-}
-
-/* MODAL */
-
-.overlay {
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--c-black-30);
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
-}
-
-.modal {
-  background-color: white;
-  padding: 24px;
-  border-radius: 2px;
-  width: 100%;
-  max-width: 420px;
-}
-
-.modal-button-group {
-  padding-top: 24px;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.modal-button-group .button:not(:first-child) {
-  margin-left: 12px;
 }
 
 /* INPUT */
