@@ -9,6 +9,14 @@
 @import "./Tasks/EditTask";
 @import "./Pickers/DateAndTimePicker";
 @import "./BasicUI/ColorDisplay";
+@import "./Header";
+@import "./BasicUI/CheckBox";
+@import "./Accorion";
+@import "./BasicUI/Button";
+@import "./BasicUI/HreflessLink";
+@import "./Pickers/Calendar";
+@import "./BasicUI/Menu";
+@import "./Pickers/ProjectPicker";
 
 body {
   margin: 0;
@@ -20,6 +28,10 @@ body {
 
 body {
   @include scrollbar.handsome(colors.$ash03, colors.$white-12);
+}
+
+h1{
+  @include fonts.h1;
 }
 
 code {
@@ -99,41 +111,6 @@ p {
   background-color: var(--c-light-gray);
   overflow-y: scroll;
   @include scrollbar.handsome(colors.$ash02, colors.$white-12);
-}
-
-/* CHECKBOX */
-
-.checkbox .circle {
-  width: 16px;
-  height: 16px;
-  border: 1px solid black;
-  border-radius: 50%;
-}
-
-.checkbox.checked .circle {
-  background-color: black;
-}
-
-.checkbox.checked .circle::before {
-  content: "";
-  display: block;
-  width: 9px;
-  height: 2px;
-  background-color: white;
-  transform: translate(4px, 6px) rotate(-45deg);
-}
-
-.checkbox.checked .circle::after {
-  content: "";
-  display: block;
-  width: 4px;
-  height: 2px;
-  background-color: white;
-  transform: translate(2px, 5px) rotate(45deg);
-}
-
-.checkbox {
-  padding: 4px;
 }
 
 /* TaskList */
@@ -249,297 +226,8 @@ p {
   width: 100%;
 }
 
-.calendar {
-  border-radius: 2px;
-  padding: 16px;
-  background-color: white;
-  min-width: 280px;
-}
-
-.calendar-weekdays {
-  display: flex;
-}
-
-.calendar-days {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.calendar-cell,
-.calendar-weekdays div {
-  width: calc(100% / 7);
-  text-align: center;
-}
-
-.calendar-weekdays div {
-  color: var(--c-black-12);
-}
-
-.calendar-cell {
-  color: var(--c-black-30);
-  cursor: pointer;
-}
-
-.calendar-cell,
-.calendar-cell .select-area {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.calendar-cell .select-area {
-  border-radius: 50%;
-  height: 28px;
-  width: 28px;
-}
-
-.calendar-cell.today {
-  color: black;
-  font-weight: bold;
-}
-
-.calendar-cell.this-month {
-  color: black;
-}
-
-.calendar-cell:hover .select-area {
-  background-color: var(--c-black-12);
-}
-
-.calendar-cell.selected .select-area {
-  background-color: black;
-  color: white;
-}
-
-.calendar-controls {
-  display: flex;
-}
-
-.calendar-controls .month-display {
-  text-align: center;
-  width: 100%;
-}
-
-.calendar-controls .month-back,
-.calendar-controls .month-further {
-  cursor: pointer;
-}
-
-.button {
-  background-color: black;
-  display: inline-block;
-  padding: 8px 16px;
-  min-width: 80px;
-  color: white;
-  border-radius: 2px;
-  font-size: 16px;
-  text-align: center;
-  border: 1px solid black;
-  line-height: 24px;
-  cursor: pointer;
-}
-
-.button[disabled] {
-  background-color: var(--c-black-04);
-  color: var(--c-black-30);
-  cursor: default;
-  border: 1px solid var(--c-black-12);
-}
-
-.button.outlined {
-  background-color: transparent;
-  border: 1px solid var(--c-black-30);
-  color: black;
-}
-
-.calendar .button-containter {
-  padding: 8px;
-  display: flex;
-}
-
-.calendar .button-containter .button {
-  width: 100%;
-}
-
-/* HEADER */
-
-.header {
-  padding: 20px 20px 8px;
-  display: flex;
-}
-
-.header-text-group {
-  width: 100%;
-}
-
-.header h1 {
-  font-size: 24px;
-  line-height: 36px;
-  margin: 0;
-  font-weight: bold;
-  display: inline;
-}
-
-.header span {
-  font-size: 14px;
-  line-height: 24px;
-  color: var(--c-black-60);
-  margin-left: 8px;
-}
-
-.header .more {
-  position: relative;
-}
-
-.header .more-content {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-/* MENUS */
-
-.menu {
-  border: 1px solid var(--c-black-30);
-  background-color: white;
-  padding: 8px 0;
-  border-radius: 4px;
-}
-
-.menu-item {
-  display: flex;
-  padding: 6px 12px;
-  cursor: pointer;
-}
-
-.menu-item:hover,
-.menu-item.selected {
-  background-color: var(--c-black-12);
-}
-
-.menu-item-title {
-  width: 100%;
-  font-size: 14px;
-  line-height: 24px;
-}
-
-.menu-icon-left {
-  margin-right: 8px;
-}
-
-.menu-icon-right {
-  margin-right: 8px;
-}
-
 .refer {
   height: 100%;
-}
-
-.timepicker,
-.timepicker .input-container {
-  display: flex;
-  align-items: center;
-}
-
-.timepicker .input-container input {
-  border: none;
-  padding: 4px 8px;
-  width: 100px;
-}
-
-.timepicker .time-display-button {
-  padding: 2px 8px;
-  color: var(--c-black-60);
-  cursor: pointer;
-}
-
-.timepicker .time-display-button:hover {
-  background-color: var(--c-black-12);
-  color: black;
-}
-
-.timepicker .close-btn {
-  cursor: pointer;
-  padding: 6px;
-  border-left: 1px solid var(--c-black-30);
-  color: var(--c-black-60);
-}
-
-.timepicker .close-btn:hover {
-  background-color: var(--c-black-12);
-  color: black;
-}
-
-.timepicker {
-  border-left: 1px var(--c-black-30) solid;
-}
-
-.dt-picker .placeholder {
-  color: var(--c-black-60);
-}
-
-.date-container {
-  position: relative;
-}
-
-.date-container .date-menu {
-  position: absolute;
-  top: -1px;
-  left: -1px;
-  background-color: white;
-  z-index: 1;
-}
-
-/* Project picker */
-
-.project-picker {
-  position: relative;
-}
-
-.project-menu {
-  border: 1px solid var(--c-black-30);
-  border-radius: 2px;
-  padding: 4px 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: white;
-  min-width: 180px;
-}
-
-/* ACCORDION */
-
-.accordion .accordion-header {
-  padding: 12px 16px;
-  display: flex;
-}
-
-.accordion-icon-container {
-  cursor: pointer;
-  padding: 4px;
-}
-
-.accordion-title,
-.accordion-count {
-  cursor: default;
-}
-
-.accordion-title {
-  font-size: 16px;
-  line-height: 24px;
-  padding-left: 8px;
-  font-weight: bold;
-}
-
-.accordion-count {
-  font-size: 12px;
-  line-height: 20px;
-  padding-left: 8px;
-  color: var(--c-black-60);
-}
-
-.accordion-content {
-  width: 100%;
 }
 
 /* MODAL */
@@ -629,18 +317,6 @@ p {
   height: 18px;
 }
 
-/* SNACKBAR */
-.snackbar {
-  background-color: #262626;
-  padding: 16px;
-  color: white;
-  text-align: left;
-  border-radius: 4px;
-  position: fixed;
-  bottom: 16px;
-  right: 16px;
-}
-
 /* EMPTY STATE */
 
 .empty-state {
@@ -684,18 +360,4 @@ p {
   margin-top: 16px;
   display: flex;
   justify-content: right;
-}
-
-/* Hrefless link */
-
-button.hrefless-link,
-button.hrefless-link:active {
-  background: none !important;
-  border: none;
-  padding: 0 !important;
-  font-size: 16px;
-  /*input has OS specific font-family*/
-  cursor: pointer;
-  color: var(--c-black-60);
-  text-align: left;
 }

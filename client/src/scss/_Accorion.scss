@@ -1,0 +1,36 @@
+@use "./fonts";
+@use "./colors";
+
+/* ACCORDION */
+
+.accordion .accordion-header {
+    padding: 12px 16px;
+    display: flex;
+}
+
+.accordion-icon-container {
+    cursor: pointer;
+    padding: 4px;
+    color: colors.$white-40;
+}
+
+.accordion-title,
+.accordion-count {
+    cursor: default;
+}
+
+.accordion-title {
+    @include fonts.body-bold;
+    color: colors.$white-80;
+    padding-left: 8px;
+}
+
+.accordion-count {
+    @include fonts.xSmall-reg;
+    color: colors.$white-40;
+    padding-left: 8px;
+}
+
+.accordion-content {
+    width: 100%;
+}

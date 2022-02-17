@@ -1,0 +1,46 @@
+@use "../colors";
+@use "../fonts";
+
+/* Project picker */
+
+.project-picker {
+    position: relative;
+    .project-desc {
+        @include fonts.small-reg;
+    }
+
+    .project-display {
+        background-color: colors.$white-04;
+        border: 1px solid colors.$white-04;
+        color: colors.$white-80;
+        border-radius: 6px;
+    }
+
+    .project-display {
+        padding: 3px 8px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: colors.$white-12;
+        }
+    }
+
+    .project-display .line-icon {
+        margin-right: 4px;
+    }
+
+    .project-display {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.project-menu {
+    border-radius: 6px;
+    padding: 4px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: colors.$ash01;
+    min-width: 180px;
+}

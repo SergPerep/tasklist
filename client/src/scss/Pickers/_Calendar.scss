@@ -1,0 +1,80 @@
+@use "../colors";
+
+.calendar {
+    border-radius: 2px;
+    padding: 16px;
+    min-width: 280px;
+    .button-containter {
+        padding: 8px;
+        display: flex;
+        .button {
+            width: 100%;
+        }
+    }
+}
+
+.calendar-weekdays {
+    display: flex;
+}
+
+.calendar-days {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.calendar-cell,
+.calendar-weekdays div {
+    width: calc(100% / 7);
+    text-align: center;
+}
+
+.calendar-weekdays div {
+    color: colors.$white-40;
+}
+
+.calendar-cell {
+    color: colors.$white-40;
+    cursor: pointer;
+    &,
+    & .select-area {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .select-area {
+        border-radius: 50%;
+        height: 28px;
+        width: 28px;
+    }
+    &.today {
+        color: colors.$white-80;
+        font-weight: bold;
+    }
+    &.this-month {
+        color: colors.$white-80;
+    }
+
+    &:hover .select-area {
+        background-color: colors.$white-12;
+    }
+
+    &.selected .select-area {
+        background-color: colors.$active;
+        color: colors.$white-80;
+    }
+}
+
+.calendar-controls {
+    display: flex;
+    .month-display {
+        text-align: center;
+        width: 100%;
+        color: colors.$white-80;
+    }
+
+    .month-back,
+    .month-further {
+        cursor: pointer;
+        color:colors.$white-40;
+    }
+}

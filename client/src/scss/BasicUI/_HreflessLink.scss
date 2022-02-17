@@ -1,0 +1,14 @@
+@use "../colors";
+/* Hrefless link */
+
+button.hrefless-link,
+button.hrefless-link:active {
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    font-size: 16px;
+    /*input has OS specific font-family*/
+    cursor: pointer;
+    color: var(--c-black-60);
+    text-align: left;
+}

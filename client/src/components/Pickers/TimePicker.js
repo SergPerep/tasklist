@@ -70,7 +70,7 @@ const TimePicker = () => {
                 }
                 {isTimeInputOpen &&
                     <div className="input-container">
-                        <input type="text" value={timeInput} onChange={handleChangeTimeInput} placeholder="e.g. 14:30" size="" />
+                        <input type="text" value={timeInput} autoFocus onChange={handleChangeTimeInput} placeholder="e.g. 14:30" size="" />
                         {isSaveButtonShown &&
                             <div className="time-display-button" onClick={handleClickSave}>Save</div>}
                     </div>

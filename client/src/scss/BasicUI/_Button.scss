@@ -1,0 +1,29 @@
+@use "../colors";
+@use "../fonts";
+
+.button {
+    background-color: colors.$active;
+    display: inline-block;
+    padding: 8px 16px;
+    min-width: 80px;
+    color: colors.$white-80;
+    border-radius: 6px;
+    font-size: 16px;
+    text-align: center;
+    border: 1px solid transparent;
+    line-height: 24px;
+    cursor: pointer;
+
+    &[disabled] {
+        background-color: colors.$white-04;
+        color: colors.$white-12;
+        cursor: default;
+        border: 1px solid colors.$white-04;
+    }
+
+    &.outlined {
+        background-color: transparent;
+        border: 1px solid colors.$active;
+        color: colors.$active;
+    }
+}

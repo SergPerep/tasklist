@@ -1,0 +1,33 @@
+@use "../colors";
+
+/* CHECKBOX */
+
+.checkbox {
+    padding: 4px;
+    .circle {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: colors.$white-12;
+    }
+
+    &.checked .circle {
+        background-color: black;
+        &::before {
+            content: "";
+            display: block;
+            width: 9px;
+            height: 2px;
+            background-color: white;
+            transform: translate(4px, 6px) rotate(-45deg);
+        }
+        &::after {
+            content: "";
+            display: block;
+            width: 4px;
+            height: 2px;
+            background-color: white;
+            transform: translate(2px, 5px) rotate(45deg);
+        }
+    }
+}

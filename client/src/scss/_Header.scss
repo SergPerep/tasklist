@@ -1,0 +1,35 @@
+@use "./colors";
+@use "./fonts";
+/* HEADER */
+
+.header {
+    padding: 20px 20px 8px;
+    display: flex;
+
+    h1 {
+        display: inline;
+        color: colors.$white-80;
+    }
+
+    span {
+        @include fonts.small-reg;
+        color: colors.$white-40;
+        margin-left: 8px;
+    }
+
+    .more {
+        position: relative;
+        .more-icon {
+            color: colors.$white-40;
+        }
+        .more-content {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    }
+}
+
+.header-text-group {
+    width: 100%;
+}
