@@ -34,18 +34,7 @@ const MainPage = () => {
     const handleClickLogout = () => {
         logoutUser().then(result => setIsUserAuthenticated(result));
     }
-    return <>
-        <button onClick={() => {
-            updateTask({
-                id: 2,
-                description: "Some",
-                dateStr: "2020-06-18",
-                timeStr: "14:44",
-                projectId: "1"
-            });
-        }}>Add task</button>
-
-        <div className="taskboard">
+    return <div className="taskboard">
             <div className="taskboard-header">
                 <TopNav />
             </div>
@@ -60,7 +49,6 @@ const MainPage = () => {
                 </div>
             </div>
         </div>
-    </>
 }
 
 export default MainPage;
