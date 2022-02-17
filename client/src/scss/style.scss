@@ -8,6 +8,7 @@
 @import "./Tasks/AddTaskInput";
 @import "./Tasks/EditTask";
 @import "./Pickers/DateAndTimePicker";
+@import "./BasicUI/ColorDisplay";
 
 body {
   margin: 0;
@@ -638,45 +639,6 @@ p {
   position: fixed;
   bottom: 16px;
   right: 16px;
-}
-
-/* COLOR DISPLAY */
-
-.color-display {
-  width: 24px;
-  height: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 4px;
-  flex-shrink: 0;
-}
-
-.color-display.sm {
-  width: 16px;
-  height: 16px;
-}
-
-.color-display .color-spot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: var(--c-black-12);
-}
-
-.color-display.sm .color-spot {
-  width: 8px;
-  height: 8px;
-}
-
-.select-display-color {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.select-display-color-name {
-  width: 100%;
 }
 
 /* EMPTY STATE */

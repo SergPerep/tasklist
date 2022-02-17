@@ -1,0 +1,37 @@
+/* COLOR DISPLAY */
+
+.color-display {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 4px;
+    flex-shrink: 0;
+
+    .color-spot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: var(--c-black-12);
+    }
+
+    &.sm {
+        width: 16px;
+        height: 16px;
+        .color-spot {
+            width: 8px;
+            height: 8px;
+        }
+    }
+}
+
+.select-display-color {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.select-display-color-name {
+    width: 100%;
+}
