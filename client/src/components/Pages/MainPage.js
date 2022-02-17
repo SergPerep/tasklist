@@ -7,11 +7,6 @@ import getTasks from "../../fetch/getTasks";
 import getColors from "../../fetch/getColors";
 import useStore from "../../store/useStore";
 import logoutUser from "../../fetch/auth/logoutUser";
-import addTask from "../../fetch/addTask";
-import addProject from "../../fetch/addProject";
-import deleteProject from "../../fetch/deleteProject";
-import updateProject from "../../fetch/updateProject";
-import updateTask from "../../fetch/updateTask";
 
 const MainPage = () => {
     const setTasks = useStore(state => state.setTasks);
