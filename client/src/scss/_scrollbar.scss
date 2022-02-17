@@ -1,5 +1,3 @@
-@use "./colors";
-
 @mixin handsome($background, $foreground) {
     &::-webkit-scrollbar {
         width: 4px;

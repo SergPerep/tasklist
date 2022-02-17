@@ -18,7 +18,7 @@ body {
 }
 
 body {
-  @include scrollbar.handsome(colors.$ash03, colors.$white-40);
+  @include scrollbar.handsome(colors.$ash03, colors.$white-12);
 }
 
 code {
@@ -45,7 +45,7 @@ code {
 }
 
 #root {
-  /* height: 100vh; */
+  height: 100vh;
   background-color: var(--c-light-gray);
 }
 
@@ -86,7 +86,7 @@ p {
   width: calc(100% - 300px);
   overflow-y: scroll;
   background-color: colors.$ash03;
-  @include scrollbar.handsome(colors.$ash03, colors.$white-40);
+  @include scrollbar.handsome(colors.$ash03, colors.$white-12);
 }
 
 .taskboard-display-container {
@@ -97,7 +97,7 @@ p {
   width: 300px;
   background-color: var(--c-light-gray);
   overflow-y: scroll;
-  @include scrollbar.handsome(colors.$ash02, colors.$white-40);
+  @include scrollbar.handsome(colors.$ash02, colors.$white-12);
 }
 
 /* CHECKBOX */

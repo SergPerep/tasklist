@@ -10,6 +10,12 @@
     align-items: center;
     padding: 16px;
     background-color: colors.$ash02;
+    .divider{
+        height: 1px;
+        width: calc(100% - 16px);
+        background-color: colors.$white-12;
+        margin: 16px 0;
+    }
 }
 
 .sidenav-item {
@@ -55,4 +61,26 @@
     @include fonts.xSmall-reg;
     padding-right: 8px;
     color: colors.$white-40;
+}
+
+.new-project-btn{
+    color: colors.$active;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    transition: all ease-in-out 0.2s;
+    cursor: pointer;
+    .line-icon{
+        margin-right: 12px;
+    }
+    .desc{
+        @include fonts.body-reg;
+        width: 100%;
+    }
+    &:hover{
+        background-color: colors.$ash01;
+    }
 }

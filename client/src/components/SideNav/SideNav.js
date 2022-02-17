@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
-import SideNavItem from "./SideNavItem";
 import date from "date-and-time";
 import { tomorrow } from "../../utils/days";
 import useStore from "../../store/useStore";
 import ModalAddNewProject from "../Modals/ModalAddNewProject";
+import DefaultSectionItem from "./DefaultSectionItem";
+import ProjectItem from "./ProjectItem";
+import NewProjectButton from "./NewProjectButton";
 
 const SideNav = () => {
     const sections = useStore(state => state.sections);
@@ -41,7 +43,7 @@ const SideNav = () => {
         <div className="sidenav">
             {sections
                 .filter(section => section.isAProject === false)
-                .map(section => <SideNavItem
+                .map(section => <DefaultSectionItem
                     leftIcon={section.leftIcon}
                     count={section.tasksNum}
                     onClick={() => {
@@ -52,16 +54,16 @@ const SideNav = () => {
                     key={section.id}
                 >
                     {section.name}
-                </SideNavItem>
+                </DefaultSectionItem>
                 )
             }
-            <button onClick={handleAddNewProject}>New project</button>
+            <div className="divider"></div>
             {isModalAddProjectOpen &&
                 <ModalAddNewProject setIsModalOpen={setIsModalAddProjectOpen} />
             }
             {sections
                 .filter(section => section.isAProject === true)
-                .map(section => <SideNavItem
+                .map(section => <ProjectItem
                     count={section.tasksNum}
                     onClick={() => {
                         setSelectedSectionId(section.id);
@@ -72,7 +74,8 @@ const SideNav = () => {
                     color={section?.color?.label}
                 >
                     {section.name}
-                </SideNavItem>)}
+                </ProjectItem>)}
+            <NewProjectButton />
         </div>
     )
 }
