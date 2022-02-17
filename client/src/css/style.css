@@ -1129,19 +1129,6 @@ button.hrefless-link:active {
 }
 
 /* MODAL */
-.overlay {
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--c-black-30);
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
-}
-
 .modal {
   background-color: #292929;
   padding: 24px;
@@ -1157,6 +1144,34 @@ button.hrefless-link:active {
 }
 .modal-button-group .button:not(:first-child) {
   margin-left: 12px;
+}
+
+/* COLORS */
+:root {
+  --c-light-gray: #f0f0f0;
+  --c-black-60: rgba(0, 0, 0, 0.6);
+  --c-black-30: rgba(0, 0, 0, 0.3);
+  --c-black-12: rgba(0, 0, 0, 0.12);
+  --c-black-08: rgba(0, 0, 0, 0.08);
+  --c-black-04: rgba(0, 0, 0, 0.04);
+  --c-white-70: rgba(255, 255, 255, 0.7);
+  --c-white-40: rgba(255, 255, 255, 0.4);
+  --c-white-20: rgba(255, 255, 255, 0.2);
+  --c-error: #EB5757;
+  --c-primary: #000000;
+}
+
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--c-black-30);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
 }
 
 body {
