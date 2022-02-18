@@ -12,15 +12,16 @@ const SideNav = () => {
     const setSelectedSectionId = useStore(state => state.setSelectedSectionId);
     const closeEdits = useStore(state => state.closeEdits);
     const [openProjects, setOpenProjects] = useState(() => {
-        if (localStorage.getItem("openProjects") === null) {
-            return true
-        }
+        if (localStorage.getItem("openProjects") === null) return true;
         return localStorage.getItem("openProjects") === "true" ? true : false
     });
     const [isModalAddProjectOpen, setIsModalAddProjectOpen] = useState(false);
 
     const tasks = useStore(state => state.tasks);
 
+    const isScreenSmall = useStore(state => state.isScreenSmall);
+    const setIsSideNavOpened = useStore(state => state.setIsSideNavOpened);
+    
     useEffect(() => {
         localStorage.setItem("openProjects", openProjects);
     }, [openProjects]);
@@ -40,44 +41,50 @@ const SideNav = () => {
         });
 
     return (
-        <div className="sidenav">
-            {sections
-                .filter(section => section.isAProject === false)
-                .map(section => <DefaultSectionItem
-                    leftIcon={section.leftIcon}
-                    count={section.tasksNum}
-                    onClick={() => {
-                        setSelectedSectionId(section.id);
-                        closeEdits();
-                    }}
-                    selected={section.selected}
-                    key={section.id}
-                >
-                    {section.name}
-                </DefaultSectionItem>
-                )
-            }
-            <div className="divider"></div>
-            {isModalAddProjectOpen &&
-                <ModalAddNewProject setIsModalOpen={setIsModalAddProjectOpen} />
-            }
-            {sections
-                .filter(section => section.isAProject === true)
-                .map(section => <ProjectItem
-                    count={section.tasksNum}
-                    onClick={() => {
-                        setSelectedSectionId(section.id);
-                        closeEdits();
-                    }}
-                    selected={section.selected}
-                    key={section.id}
-                    projectId={section.id}
-                    color={section?.color?.label}
-                >
-                    {section.name}
-                </ProjectItem>)}
-            <NewProjectButton />
-        </div>
+        <>
+            
+            <div className="sidenav">
+                {sections
+                    .filter(section => section.isAProject === false)
+                    .map(section => <DefaultSectionItem
+                        leftIcon={section.leftIcon}
+                        count={section.tasksNum}
+                        onClick={() => {
+                            setSelectedSectionId(section.id);
+                            closeEdits();
+                            if(isScreenSmall) setIsSideNavOpened(false);
+                        }}
+                        selected={section.selected}
+                        key={section.id}
+                    >
+                        {section.name}
+                    </DefaultSectionItem>
+                    )
+                }
+                <div className="divider"></div>
+                {isModalAddProjectOpen &&
+                    <ModalAddNewProject setIsModalOpen={setIsModalAddProjectOpen} />
+                }
+                {sections
+                    .filter(section => section.isAProject === true)
+                    .map(section => <ProjectItem
+                        count={section.tasksNum}
+                        onClick={() => {
+                            setSelectedSectionId(section.id);
+                            closeEdits();
+                            if(isScreenSmall) setIsSideNavOpened(false);
+                        }}
+                        selected={section.selected}
+                        key={section.id}
+                        projectId={section.id}
+                        color={section?.color?.label}
+                    >
+                        {section.name}
+                    </ProjectItem>)}
+                <NewProjectButton />
+            </div>
+
+        </>
     )
 }
 

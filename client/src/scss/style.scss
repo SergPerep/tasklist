@@ -1,6 +1,7 @@
 @use "./fonts";
 @use "./colors";
 @use "./scrollbar";
+@import "./layout";
 @import "./reset";
 @import "./icons";
 @import "./SideNav";
@@ -77,44 +78,6 @@ p {
   line-height: 24px;
 }
 
-/* BASIC LAYOUT */
-
-.topnav {
-  background-color: var(--c-primary);
-  height: 44px;
-}
-
-.taskboard {
-  display: flex;
-  flex-direction: column;
-  background: white;
-  height: 100%;
-}
-
-.taskboard-container {
-  display: flex;
-  min-height: calc(100% - 44px);
-}
-
-.taskboard-display {
-  display: flex;
-  justify-content: center;
-  width: calc(100% - 300px);
-  overflow-y: scroll;
-  background-color: colors.$ash03;
-  @include scrollbar.handsome(colors.$ash03, colors.$white-12);
-}
-
-.taskboard-display-container {
-  width: 800px;
-}
-
-.taskboard-sidenav {
-  width: 300px;
-  background-color: var(--c-light-gray);
-  overflow-y: scroll;
-  @include scrollbar.handsome(colors.$ash02, colors.$white-12);
-}
 
 /* TaskList */
 

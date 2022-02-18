@@ -1,0 +1,65 @@
+@use "./colors";
+@use "./fonts";
+@use "./scrollbar";
+
+/* BASIC LAYOUT */
+
+$sideNavWidth: 300px;
+$topNavHeight: 44px;
+
+.topnav {
+    background-color: var(--c-primary);
+    height: $topNavHeight;
+}
+
+.taskboard {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    height: 100%;
+}
+
+.taskboard-container {
+    min-height: calc(100% - 44px);
+
+    .taskboard-sidenav {
+        width: $sideNavWidth;
+        background-color: var(--c-light-gray);
+        overflow-y: scroll;
+        @include scrollbar.handsome(colors.$ash02, colors.$white-12);
+        position: fixed;
+        z-index: 1;
+        height: 100%;
+        left: 0;
+        transition: left ease-in-out 0.2s;
+    }
+
+    .taskboard-display {
+        height: 100%;
+        overflow-y: scroll;
+        background-color: colors.$ash03;
+        @include scrollbar.handsome(colors.$ash03, colors.$white-12);
+        margin-left: $sideNavWidth;
+        transition: margin-left ease-in-out 0.2s;
+        .taskboard-display-container {
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 0 24px;
+        }
+    }
+
+    &.sidenav-is-hidden {
+        .taskboard-sidenav {
+            left: -$sideNavWidth;
+        }
+        .taskboard-display {
+            margin-left: 0;
+        }
+    }
+
+    &.small-screen{
+        .taskboard-display{
+            margin-left: 0;
+        }
+    }
+}

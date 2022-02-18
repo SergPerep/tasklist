@@ -1,5 +1,13 @@
+import useStore from "../store/useStore";
+
 const TopNav = () => {
-    return <div className="topnav">Some</div>
+    const toggleIsSideNavOpened = useStore(state => state.toggleIsSideNavOpened)
+    return <div className="topnav">
+        
+        <button onClick={()=>{
+            toggleIsSideNavOpened();
+        }}>Menu</button>
+    </div>
 }
 
 export default TopNav;
