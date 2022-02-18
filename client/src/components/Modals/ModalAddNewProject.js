@@ -14,23 +14,29 @@ const ModalAddNewProject = ({ setIsModalOpen }) => {
     const getColor = useStore(state => state.getColor);
     const [selectedColorId, setSelectedColorId] = useState(null);
 
+    const isScreenSmall = useStore(state => state.isScreenSmall);
+    const setIsSideNavOpened = useStore(state => state.setIsSideNavOpened);
+
     const handleClickAdd = () => {
         addProject(inputAddProjectValue, selectedColorId, (folderId) => {
             setInputAddProjectValue("");
             setSelectedColorId(null);
             setSelectedSectionId(folderId);
             setIsModalOpen(false);
+            if (isScreenSmall) setIsSideNavOpened(false);
         })
     }
+    const handleClickClose = () => {
+        setIsModalOpen(false)
+        setInputAddProjectValue("");
+        setSelectedColorId(null);
+    }
+    
     return (
         <Modal buttonList={[{
             title: "Close",
             design: "outlined",
-            onClick: () => {
-                setIsModalOpen(false)
-                setInputAddProjectValue("");
-                setSelectedColorId(null)
-            }
+            onClick: handleClickClose
         }, {
             title: "Add",
             disabled: inputAddProjectValue ? false : true,

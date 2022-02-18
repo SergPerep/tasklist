@@ -9,6 +9,9 @@ const ModalDeleteProject = ({ setIsModalOpen, projectId }) => {
         .find(section => section?.id === projectId);
     const setSelectedSectionId = useStore(state => state.setSelectedSectionId);
 
+    const isScreenSmall = useStore(state => state.isScreenSmall);
+    const setIsSideNavOpened = useStore(state => state.setIsSideNavOpened);
+
     return (
         <Modal buttonList={[{
             title: "Close",
@@ -23,6 +26,7 @@ const ModalDeleteProject = ({ setIsModalOpen, projectId }) => {
                 if (!project.isAProject) return;
                 deleteProject(project.id);
                 setSelectedSectionId("inb");
+                if (isScreenSmall) setIsSideNavOpened(false);
             }
         }]}>
             Delete project <b>{project.name}</b>?

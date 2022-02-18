@@ -16,8 +16,8 @@ const ModalEditProject = ({ setIsModalOpen, projectId }) => {
     const [selectedColor, setSelectedColor] = useState(project?.color);
     const [inputProjectNameValue, setInputProjectNameValue] = useState(project?.name);
 
-    console.log({ project });
-    console.log({ selectedColor });
+    const isScreenSmall = useStore(state => state.isScreenSmall);
+    const setIsSideNavOpened = useStore(state => state.setIsSideNavOpened);
 
     return <Modal buttonList={[{
         title: "Close",
@@ -31,6 +31,7 @@ const ModalEditProject = ({ setIsModalOpen, projectId }) => {
         onClick: () => {
             updateProject(project.id, inputProjectNameValue, selectedColor.id);
             setIsModalOpen(false);
+            if (isScreenSmall) setIsSideNavOpened(false);
         }
     }]}>
         <h2>{`Edit project «${project?.name}»`}</h2>
