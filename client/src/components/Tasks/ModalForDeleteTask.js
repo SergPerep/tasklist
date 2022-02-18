@@ -1,16 +1,13 @@
 import Modal from "../Modals/Modal";
 import deleteTask from "../../fetch/deleteTask";
-import getTasks from "../../fetch/getTasks";
 import useStore from "../../store/useStore";
 
 const ModalForDeleteTask = ({ id, description, setIsModalOpen }) => {
-
-    const setTasks = useStore(state => state.setTasks);
     
     return <Modal buttonList={[{
         title: "Delete",
         onClick: () => {
-            deleteTask(id).then(getTasks(result => setTasks(result)));
+            deleteTask(id);
             setIsModalOpen(false);
         }
     },

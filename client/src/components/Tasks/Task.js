@@ -64,7 +64,7 @@ const Task = ({ task }) => {
                     </div>
                     <div className="more" onClick={handleClickMore} ref={more}>
                         <Icon name="More" size="md" />
-                        {isMenuOpen && <MenuForTask id={task.id} setIsMenuOpen={setIsModalOpen} />}
+                        {isMenuOpen && <MenuForTask id={task.id} setIsModalOpen={setIsModalOpen} />}
                     </div>
                 </div>
             }

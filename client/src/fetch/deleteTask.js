@@ -1,5 +1,6 @@
 import catchError from "../utils/catchError";
 import { EmptyValueError, WrongTypeError } from "../utils/customErrors";
+import getTasks from "./getTasks";
 
 const deleteTask = async (id) => {
     try {
@@ -11,6 +12,7 @@ const deleteTask = async (id) => {
             method: "DELETE"
         });
         const message = await delTask.json();
+        getTasks();
     } catch (error) {
         catchError(error)
     }

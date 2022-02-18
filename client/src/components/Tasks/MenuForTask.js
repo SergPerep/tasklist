@@ -11,7 +11,6 @@ const MenuForTask = ({ id, setIsModalOpen }) => {
 
     const handleDeleteClick = () => {
         setIsModalOpen(true);
-        /* deleteTask(); */
     }
 
     return <div className="more-content">
