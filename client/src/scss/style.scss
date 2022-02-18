@@ -21,6 +21,7 @@
 @import "./Modal";
 @import "./BasicUI/overlay";
 @import "./BasicUI/Select&Input";
+@import "./authentication";
 
 body {
   margin: 0;
@@ -63,7 +64,7 @@ code {
 
 #root {
   height: 100vh;
-  background-color: var(--c-light-gray);
+  background-color: colors.$ash01;
 }
 
 .canvas {
@@ -220,23 +221,4 @@ p {
 .empty-state-title,
 .empty-state-desc {
   text-align: center;
-}
-
-/* AUTHENTICATION */
-
-.authentication {
-  width: 360px;
-  padding: 24px;
-  background-color: white;
-  border-radius: 8px;
-}
-
-.input-field {
-  margin-bottom: 16px;
-}
-
-.authentication .button-container {
-  margin-top: 16px;
-  display: flex;
-  justify-content: right;
 }

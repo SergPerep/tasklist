@@ -9,6 +9,6 @@ button.hrefless-link:active {
     font-size: 16px;
     /*input has OS specific font-family*/
     cursor: pointer;
-    color: var(--c-black-60);
+    color: colors.$active;
     text-align: left;
 }

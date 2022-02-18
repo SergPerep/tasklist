@@ -40,7 +40,12 @@ const SignupPage = () => {
                     placeholder="*****"
                     onChange={handleChangeInput}
                 />
-                <HreflessLink onClick={() => navigate("/login")}>Already have an account?</HreflessLink>
+                <HreflessLink onClick={e => {
+                    e.preventDefault();
+                    navigate("/login")
+                }}>
+                    Already have an account?
+                </HreflessLink>
                 <div className="button-container">
                     <Button type="submit" tag="button" name="submit">Sign up</Button>
                 </div>

@@ -1,0 +1,20 @@
+@use "./colors";
+
+/* AUTHENTICATION */
+
+.authentication {
+    width: 360px;
+    padding: 24px;
+    background-color: colors.$ash03;
+    border-radius: 8px;
+}
+
+.input-field {
+    margin-bottom: 16px;
+}
+
+.authentication .button-container {
+    margin-top: 16px;
+    display: flex;
+    justify-content: right;
+}
