@@ -9,6 +9,7 @@ import MenuForTask from "./MenuForTask";
 import ModalForDeleteTask from "./ModalForDeleteTask";
 import formatDateString from "../../utils/formatDateString";
 import formatTimeString from "../../utils/formatTimeString";
+import ColorDisplay from "../BasicUI/ColorDisplay";
 
 const Task = ({ task }) => {
     const sections = useStore(state => state.sections);
@@ -41,16 +42,24 @@ const Task = ({ task }) => {
                     <div className="taskitem-content-wrapper">
                         <div className="taskitem-desc">{task.description}</div>
                         <div className="taskitem-details">
-                            {task.dateStr && <span className="taskitem-date">
-                                {formatDateString(task.dateStr)}
-                            </span>}
-                            {task.timeStr && <span className="taskitem-time">
-                                {formatTimeString(task.timeStr)}
-                            </span>}
-                            {task.folder.id && <span className="taskitem-project"
-                                style={{ backgroundColor: project?.color?.fill, color: project?.color?.font }}>
-                                {task.folder.name}
-                            </span>}
+
+                            {task.dateStr && <div className="time-and-date">
+                                <Icon size="sm" name="Today" />
+                                <div className="taskitem-date">
+                                    {formatDateString(task.dateStr)}
+                                </div>
+                                {task.timeStr && <div className="taskitem-time">
+                                    {formatTimeString(task.timeStr)}
+                                </div>}
+                            </div>}
+
+                            {task.folder.id && <div className="taskitem-project"
+                                style={{ color: project?.color?.label }}>
+                                <ColorDisplay size="sm" color={project?.color?.label} />
+                                <div className="project-desc">
+                                    {task.folder.name}
+                                </div>
+                            </div>}
                         </div>
                     </div>
                     <div className="more" onClick={handleClickMore} ref={more}>

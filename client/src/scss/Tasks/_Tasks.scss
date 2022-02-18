@@ -23,12 +23,6 @@
         color: colors.$white-80;
     }
 
-    .taskitem-date,
-    .taskitem-time {
-        color: var(--c-black-60);
-        font-size: 14px;
-    }
-
     .taskitem-details {
         padding-top: 4px;
         display: flex;
@@ -38,12 +32,31 @@
         }
     }
 
+    .time-and-date {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include fonts.small-reg;
+        color: colors.$white-40;
+        margin-right: 12px;
+        .taskitem-date,
+        .taskitem-time {
+            margin-left: 8px;
+        }
+    }
+
     .taskitem-project {
-        background-color: var(--c-black-12);
-        font-size: 12px;
-        line-height: 14px;
-        padding: 4px 5px;
-        border-radius: 2px;
+        @include fonts.small-reg;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .color-display{
+            margin-left: -4px;
+        }
+    }
+
+    .more{
+        color: colors.$white-40;
     }
 
     .more-content {
@@ -54,26 +67,34 @@
     }
 
     &.overdue {
-        .taskitem-date,
-        .taskitem-time {
-            color: var(--c-error);
+        .time-and-date {
+            color: colors.$error;
         }
     }
 
     &.completed {
+        /*
         .taskitem-project {
             background-color: var(--c-black-04);
             color: var(--c-black-30);
         }
+        */
         .taskitem-desc {
-            color: var(--c-black-30);
+            text-decoration: line-through;
+            color: colors.$white-40;
         }
         .checkbox.checked .circle {
-            background-color: var(--c-black-12);
-            border-color: transparent;
+            background-color: colors.$active-30;
+            &::before,
+            &::after {
+                background-color: colors.$white-20;
+            }
+        }
+        .time-and-date {
+            color: colors.$white-20;
         }
         .more > .line-icon {
-            color: var(--c-black-30);
+            color: colors.$white-12;
         }
     }
 
@@ -81,8 +102,7 @@
     &.completed.overdue {
         .taskitem-date,
         .taskitem-time {
-            color: var(--c-black-30);
+            color: colors.$white-20;
         }
     }
 }
-

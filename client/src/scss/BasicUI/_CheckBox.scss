@@ -9,25 +9,35 @@
         height: 20px;
         border-radius: 50%;
         background-color: colors.$white-12;
-    }
-
-    &.checked .circle {
-        background-color: black;
         &::before {
             content: "";
             display: block;
             width: 9px;
             height: 2px;
-            background-color: white;
-            transform: translate(4px, 6px) rotate(-45deg);
+            background-color: transparent;
+            transform: translate(7px, 9px) rotate(-45deg);
         }
         &::after {
             content: "";
             display: block;
             width: 4px;
             height: 2px;
-            background-color: white;
-            transform: translate(2px, 5px) rotate(45deg);
+            background-color: transparent;
+            transform: translate(5px, 8px) rotate(45deg);
+        }
+    }
+    &:hover .circle {
+        background-color: colors.$white-20;
+        &::before,
+        &::after {
+            background-color: colors.$white-20;
+        }
+    }
+    &.checked .circle {
+        background-color: colors.$active;
+        &::before,
+        &::after {
+            background-color: colors.$white-80;
         }
     }
 }

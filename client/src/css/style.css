@@ -25,7 +25,7 @@
   --c-white-70: rgba(255, 255, 255, 0.7);
   --c-white-40: rgba(255, 255, 255, 0.4);
   --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #EB5757;
+  --c-error: #eb5757;
   --c-primary: #000000;
 }
 
@@ -236,7 +236,7 @@ div {
   --c-white-70: rgba(255, 255, 255, 0.7);
   --c-white-40: rgba(255, 255, 255, 0.4);
   --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #EB5757;
+  --c-error: #eb5757;
   --c-primary: #000000;
 }
 
@@ -312,7 +312,7 @@ div {
 }
 
 .new-project-btn {
-  color: #9B51E0;
+  color: #9b51e0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -355,11 +355,6 @@ div {
   line-height: 28px;
   color: rgba(255, 255, 255, 0.8);
 }
-.taskitem .taskitem-date,
-.taskitem .taskitem-time {
-  color: var(--c-black-60);
-  font-size: 14px;
-}
 .taskitem .taskitem-details {
   padding-top: 4px;
   display: flex;
@@ -368,12 +363,31 @@ div {
 .taskitem .taskitem-details span:not(:first-child) {
   margin-left: 8px;
 }
+.taskitem .time-and-date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 24px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-right: 12px;
+}
+.taskitem .time-and-date .taskitem-date,
+.taskitem .time-and-date .taskitem-time {
+  margin-left: 8px;
+}
 .taskitem .taskitem-project {
-  background-color: var(--c-black-12);
-  font-size: 12px;
-  line-height: 14px;
-  padding: 4px 5px;
-  border-radius: 2px;
+  font-size: 14px;
+  line-height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.taskitem .taskitem-project .color-display {
+  margin-left: -4px;
+}
+.taskitem .more {
+  color: rgba(255, 255, 255, 0.4);
 }
 .taskitem .more-content {
   position: absolute;
@@ -381,28 +395,37 @@ div {
   right: 0;
   z-index: 1;
 }
-.taskitem.overdue .taskitem-date,
-.taskitem.overdue .taskitem-time {
-  color: var(--c-error);
+.taskitem.overdue .time-and-date {
+  color: #eb5757;
 }
-.taskitem.completed .taskitem-project {
-  background-color: var(--c-black-04);
-  color: var(--c-black-30);
+.taskitem.completed {
+  /*
+  .taskitem-project {
+      background-color: var(--c-black-04);
+      color: var(--c-black-30);
+  }
+  */
 }
 .taskitem.completed .taskitem-desc {
-  color: var(--c-black-30);
+  text-decoration: line-through;
+  color: rgba(255, 255, 255, 0.4);
 }
 .taskitem.completed .checkbox.checked .circle {
-  background-color: var(--c-black-12);
-  border-color: transparent;
+  background-color: rgba(155, 81, 224, 0.3);
+}
+.taskitem.completed .checkbox.checked .circle::before, .taskitem.completed .checkbox.checked .circle::after {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.taskitem.completed .time-and-date {
+  color: rgba(255, 255, 255, 0.2);
 }
 .taskitem.completed .more > .line-icon {
-  color: var(--c-black-30);
+  color: rgba(255, 255, 255, 0.12);
 }
 .taskitem.completed .taskitem-date,
 .taskitem.completed .taskitem-time, .taskitem.completed.overdue .taskitem-date,
 .taskitem.completed.overdue .taskitem-time {
-  color: var(--c-black-30);
+  color: rgba(255, 255, 255, 0.2);
 }
 
 /* COLORS */
@@ -416,7 +439,7 @@ div {
   --c-white-70: rgba(255, 255, 255, 0.7);
   --c-white-40: rgba(255, 255, 255, 0.4);
   --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #EB5757;
+  --c-error: #eb5757;
   --c-primary: #000000;
 }
 
@@ -445,7 +468,7 @@ div {
   --c-white-70: rgba(255, 255, 255, 0.7);
   --c-white-40: rgba(255, 255, 255, 0.4);
   --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #EB5757;
+  --c-error: #eb5757;
   --c-primary: #000000;
 }
 
@@ -537,7 +560,7 @@ div {
   --c-white-70: rgba(255, 255, 255, 0.7);
   --c-white-40: rgba(255, 255, 255, 0.4);
   --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #EB5757;
+  --c-error: #eb5757;
   --c-primary: #000000;
 }
 
@@ -622,7 +645,7 @@ div {
   color: rgba(255, 255, 255, 0.8);
 }
 .timepicker .input-container input:focus {
-  outline: 1px dotted #9B51E0;
+  outline: 1px dotted #9b51e0;
 }
 .timepicker .time-display-button {
   padding: 3px 8px;
@@ -691,7 +714,7 @@ div {
   --c-white-70: rgba(255, 255, 255, 0.7);
   --c-white-40: rgba(255, 255, 255, 0.4);
   --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #EB5757;
+  --c-error: #eb5757;
   --c-primary: #000000;
 }
 
@@ -742,7 +765,7 @@ div {
   --c-white-70: rgba(255, 255, 255, 0.7);
   --c-white-40: rgba(255, 255, 255, 0.4);
   --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #EB5757;
+  --c-error: #eb5757;
   --c-primary: #000000;
 }
 
@@ -756,24 +779,33 @@ div {
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.12);
 }
-.checkbox.checked .circle {
-  background-color: black;
-}
-.checkbox.checked .circle::before {
+.checkbox .circle::before {
   content: "";
   display: block;
   width: 9px;
   height: 2px;
-  background-color: white;
-  transform: translate(4px, 6px) rotate(-45deg);
+  background-color: transparent;
+  transform: translate(7px, 9px) rotate(-45deg);
 }
-.checkbox.checked .circle::after {
+.checkbox .circle::after {
   content: "";
   display: block;
   width: 4px;
   height: 2px;
-  background-color: white;
-  transform: translate(2px, 5px) rotate(45deg);
+  background-color: transparent;
+  transform: translate(5px, 8px) rotate(45deg);
+}
+.checkbox:hover .circle {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.checkbox:hover .circle::before, .checkbox:hover .circle::after {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.checkbox.checked .circle {
+  background-color: #9b51e0;
+}
+.checkbox.checked .circle::before, .checkbox.checked .circle::after {
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 /* Font family */
@@ -792,7 +824,7 @@ div {
   --c-white-70: rgba(255, 255, 255, 0.7);
   --c-white-40: rgba(255, 255, 255, 0.4);
   --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #EB5757;
+  --c-error: #eb5757;
   --c-primary: #000000;
 }
 
@@ -843,7 +875,7 @@ div {
   --c-white-70: rgba(255, 255, 255, 0.7);
   --c-white-40: rgba(255, 255, 255, 0.4);
   --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #EB5757;
+  --c-error: #eb5757;
   --c-primary: #000000;
 }
 
@@ -853,7 +885,7 @@ div {
 }
 
 .button {
-  background-color: #9B51E0;
+  background-color: #9b51e0;
   display: inline-block;
   padding: 8px 16px;
   min-width: 80px;
@@ -873,8 +905,8 @@ div {
 }
 .button.outlined {
   background-color: transparent;
-  border: 1px solid #9B51E0;
-  color: #9B51E0;
+  border: 1px solid #9b51e0;
+  color: #9b51e0;
 }
 
 /* COLORS */
@@ -888,7 +920,7 @@ div {
   --c-white-70: rgba(255, 255, 255, 0.7);
   --c-white-40: rgba(255, 255, 255, 0.4);
   --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #EB5757;
+  --c-error: #eb5757;
   --c-primary: #000000;
 }
 
@@ -916,7 +948,7 @@ button.hrefless-link:active {
   --c-white-70: rgba(255, 255, 255, 0.7);
   --c-white-40: rgba(255, 255, 255, 0.4);
   --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #EB5757;
+  --c-error: #eb5757;
   --c-primary: #000000;
 }
 
@@ -977,7 +1009,7 @@ button.hrefless-link:active {
   background-color: rgba(255, 255, 255, 0.12);
 }
 .calendar-cell.selected .select-area {
-  background-color: #9B51E0;
+  background-color: #9b51e0;
   color: rgba(255, 255, 255, 0.8);
 }
 
@@ -1006,7 +1038,7 @@ button.hrefless-link:active {
   --c-white-70: rgba(255, 255, 255, 0.7);
   --c-white-40: rgba(255, 255, 255, 0.4);
   --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #EB5757;
+  --c-error: #eb5757;
   --c-primary: #000000;
 }
 
@@ -1060,7 +1092,7 @@ button.hrefless-link:active {
   --c-white-70: rgba(255, 255, 255, 0.7);
   --c-white-40: rgba(255, 255, 255, 0.4);
   --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #EB5757;
+  --c-error: #eb5757;
   --c-primary: #000000;
 }
 
@@ -1119,7 +1151,7 @@ button.hrefless-link:active {
   --c-white-70: rgba(255, 255, 255, 0.7);
   --c-white-40: rgba(255, 255, 255, 0.4);
   --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #EB5757;
+  --c-error: #eb5757;
   --c-primary: #000000;
 }
 
@@ -1157,7 +1189,7 @@ button.hrefless-link:active {
   --c-white-70: rgba(255, 255, 255, 0.7);
   --c-white-40: rgba(255, 255, 255, 0.4);
   --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #EB5757;
+  --c-error: #eb5757;
   --c-primary: #000000;
 }
 
