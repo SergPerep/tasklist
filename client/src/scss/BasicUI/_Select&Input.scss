@@ -1,0 +1,69 @@
+@use "../colors";
+@use "../fonts";
+
+/* INPUT */
+/* SELECT */
+
+.input-field label,
+.select-label {
+    display: block;
+    color: colors.$white-40;
+    margin-bottom: 8px;
+}
+
+.input-field input,
+.select-display {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    border: none;
+    // border: 1px solid var(--c-black-30);
+    background-color: colors.$black-30;
+    color: colors.$white-40;
+    border-radius: 4px;
+    transition: all ease-in-out .2s;
+    outline: 1px solid transparent;
+    &:hover{
+        background-color: colors.$black-60;
+        color: colors.$white-80;
+    }
+    &:focus{
+        background-color: colors.$black-60;
+        color: colors.$white-80;
+        outline: 1px solid colors.$active;
+    }
+}
+
+.input-field label,
+.input-field input,
+.select-label,
+.select-display {
+    @include fonts.body-reg;
+}
+
+.select-display {
+    display: flex;
+    cursor: pointer;
+}
+
+.select {
+    margin-top: 24px;
+    color: black;
+}
+
+.select-field {
+    position: relative;
+}
+
+.select-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.select-display-color .color-display {
+    width: 24px;
+    height: 18px;
+}

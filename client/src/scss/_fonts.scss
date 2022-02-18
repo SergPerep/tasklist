@@ -1,3 +1,4 @@
+@use "./colors";
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap");
 /* Font family */
 
@@ -33,4 +34,14 @@
 @mixin xSmall-reg {
     font-size: 12px;
     line-height: 20px;
+}
+
+
+h2 {
+    @include h2;
+    margin-bottom: 12px;
+}
+
+body{
+    color: colors.$white-80;
 }

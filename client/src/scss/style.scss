@@ -19,6 +19,7 @@
 @import "./Pickers/ProjectPicker";
 @import "./Modal";
 @import "./BasicUI/overlay";
+@import "./BasicUI/Select&Input";
 
 body {
   margin: 0;
@@ -230,60 +231,6 @@ p {
 
 .refer {
   height: 100%;
-}
-
-/* INPUT */
-/* SELECT */
-
-.input-field label,
-.select-label {
-  display: block;
-  color: var(--c-black-60);
-  margin-bottom: 12px;
-}
-
-.input-field input,
-.select-display {
-  display: block;
-  width: 100%;
-  padding: 12px 12px;
-  border: 1px solid var(--c-black-30);
-  border-radius: 4px;
-}
-
-.input-field label,
-.input-field input,
-.select-label,
-.select-display {
-  font-size: 16px;
-  line-height: 18px;
-}
-
-.select-display {
-  display: flex;
-  cursor: pointer;
-}
-
-.select {
-  margin-top: 24px;
-  color: black;
-}
-
-.select-field {
-  position: relative;
-}
-
-.select-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1;
-}
-
-.select-display-color .color-display {
-  width: 24px;
-  height: 18px;
 }
 
 /* EMPTY STATE */

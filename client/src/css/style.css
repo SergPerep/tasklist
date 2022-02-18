@@ -9,11 +9,7 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap");
-/* Font family */
-* {
-  font-family: "IBM Plex Sans", sans-serif;
-}
-
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap");
 /* COLORS */
 :root {
   --c-light-gray: #f0f0f0;
@@ -29,6 +25,21 @@
   --c-primary: #000000;
 }
 
+/* Font family */
+* {
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+h2 {
+  font-size: 18px;
+  line-height: 28px;
+  margin-bottom: 12px;
+}
+
+body {
+  color: rgba(255, 255, 255, 0.8);
+}
+
 * {
   margin: 0;
 }
@@ -41,13 +52,6 @@ h6,
 h6 {
   font-size: inherit;
   font-weight: bold;
-  color: black;
-}
-
-h2 {
-  font-size: 18px;
-  line-height: 28px;
-  margin-bottom: 12px;
 }
 
 /* Box-sizing reset method*/
@@ -243,6 +247,16 @@ div {
 /* Font family */
 * {
   font-family: "IBM Plex Sans", sans-serif;
+}
+
+h2 {
+  font-size: 18px;
+  line-height: 28px;
+  margin-bottom: 12px;
+}
+
+body {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* SIDENAV */
@@ -477,6 +491,16 @@ div {
   font-family: "IBM Plex Sans", sans-serif;
 }
 
+h2 {
+  font-size: 18px;
+  line-height: 28px;
+  margin-bottom: 12px;
+}
+
+body {
+  color: rgba(255, 255, 255, 0.8);
+}
+
 .edittask {
   padding: 0 20px 24px;
 }
@@ -567,6 +591,16 @@ div {
 /* Font family */
 * {
   font-family: "IBM Plex Sans", sans-serif;
+}
+
+h2 {
+  font-size: 18px;
+  line-height: 28px;
+  margin-bottom: 12px;
+}
+
+body {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* PICKERS */
@@ -723,6 +757,16 @@ div {
   font-family: "IBM Plex Sans", sans-serif;
 }
 
+h2 {
+  font-size: 18px;
+  line-height: 28px;
+  margin-bottom: 12px;
+}
+
+body {
+  color: rgba(255, 255, 255, 0.8);
+}
+
 /* HEADER */
 .header {
   padding: 20px 20px 8px;
@@ -808,11 +852,6 @@ div {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
-/* Font family */
-* {
-  font-family: "IBM Plex Sans", sans-serif;
-}
-
 /* COLORS */
 :root {
   --c-light-gray: #f0f0f0;
@@ -826,6 +865,21 @@ div {
   --c-white-20: rgba(255, 255, 255, 0.2);
   --c-error: #eb5757;
   --c-primary: #000000;
+}
+
+/* Font family */
+* {
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+h2 {
+  font-size: 18px;
+  line-height: 28px;
+  margin-bottom: 12px;
+}
+
+body {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* ACCORDION */
@@ -882,6 +936,16 @@ div {
 /* Font family */
 * {
   font-family: "IBM Plex Sans", sans-serif;
+}
+
+h2 {
+  font-size: 18px;
+  line-height: 28px;
+  margin-bottom: 12px;
+}
+
+body {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .button {
@@ -1047,6 +1111,16 @@ button.hrefless-link:active {
   font-family: "IBM Plex Sans", sans-serif;
 }
 
+h2 {
+  font-size: 18px;
+  line-height: 28px;
+  margin-bottom: 12px;
+}
+
+body {
+  color: rgba(255, 255, 255, 0.8);
+}
+
 /* MENU */
 .menu {
   background-color: #080808;
@@ -1099,6 +1173,16 @@ button.hrefless-link:active {
 /* Font family */
 * {
   font-family: "IBM Plex Sans", sans-serif;
+}
+
+h2 {
+  font-size: 18px;
+  line-height: 28px;
+  margin-bottom: 12px;
+}
+
+body {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* Project picker */
@@ -1160,6 +1244,16 @@ button.hrefless-link:active {
   font-family: "IBM Plex Sans", sans-serif;
 }
 
+h2 {
+  font-size: 18px;
+  line-height: 28px;
+  margin-bottom: 12px;
+}
+
+body {
+  color: rgba(255, 255, 255, 0.8);
+}
+
 /* MODAL */
 .modal {
   background-color: #292929;
@@ -1204,6 +1298,104 @@ button.hrefless-link:active {
   justify-content: center;
   align-items: center;
   z-index: 1;
+}
+
+/* COLORS */
+:root {
+  --c-light-gray: #f0f0f0;
+  --c-black-60: rgba(0, 0, 0, 0.6);
+  --c-black-30: rgba(0, 0, 0, 0.3);
+  --c-black-12: rgba(0, 0, 0, 0.12);
+  --c-black-08: rgba(0, 0, 0, 0.08);
+  --c-black-04: rgba(0, 0, 0, 0.04);
+  --c-white-70: rgba(255, 255, 255, 0.7);
+  --c-white-40: rgba(255, 255, 255, 0.4);
+  --c-white-20: rgba(255, 255, 255, 0.2);
+  --c-error: #eb5757;
+  --c-primary: #000000;
+}
+
+/* Font family */
+* {
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+h2 {
+  font-size: 18px;
+  line-height: 28px;
+  margin-bottom: 12px;
+}
+
+body {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* INPUT */
+/* SELECT */
+.input-field label,
+.select-label {
+  display: block;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 8px;
+}
+
+.input-field input,
+.select-display {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+  transition: all ease-in-out 0.2s;
+  outline: 1px solid transparent;
+}
+.input-field input:hover,
+.select-display:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: rgba(255, 255, 255, 0.8);
+}
+.input-field input:focus,
+.select-display:focus {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: rgba(255, 255, 255, 0.8);
+  outline: 1px solid #9b51e0;
+}
+
+.input-field label,
+.input-field input,
+.select-label,
+.select-display {
+  font-size: 16px;
+  line-height: 28px;
+}
+
+.select-display {
+  display: flex;
+  cursor: pointer;
+}
+
+.select {
+  margin-top: 24px;
+  color: black;
+}
+
+.select-field {
+  position: relative;
+}
+
+.select-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.select-display-color .color-display {
+  width: 24px;
+  height: 18px;
 }
 
 body {
@@ -1439,59 +1631,6 @@ p {
 
 .refer {
   height: 100%;
-}
-
-/* INPUT */
-/* SELECT */
-.input-field label,
-.select-label {
-  display: block;
-  color: var(--c-black-60);
-  margin-bottom: 12px;
-}
-
-.input-field input,
-.select-display {
-  display: block;
-  width: 100%;
-  padding: 12px 12px;
-  border: 1px solid var(--c-black-30);
-  border-radius: 4px;
-}
-
-.input-field label,
-.input-field input,
-.select-label,
-.select-display {
-  font-size: 16px;
-  line-height: 18px;
-}
-
-.select-display {
-  display: flex;
-  cursor: pointer;
-}
-
-.select {
-  margin-top: 24px;
-  color: black;
-}
-
-.select-field {
-  position: relative;
-}
-
-.select-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1;
-}
-
-.select-display-color .color-display {
-  width: 24px;
-  height: 18px;
 }
 
 /* EMPTY STATE */
