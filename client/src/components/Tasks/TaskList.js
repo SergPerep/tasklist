@@ -9,7 +9,7 @@ const TaskList = () => {
     const sections = useStore(state => state.sections);
     const selectedSection = sections.find(section => section.selected);
     const selectedSectionId = useStore(state => state.selectedSectionId);
-    const isSelectedSectionAProject = selectedSection.isAProject;
+    const isSelectedSectionAProject = selectedSection?.isAProject;
     const tasks = useStore(state => state.tasks);
 
     // Takes array and makes a list of elements out of it

@@ -2,9 +2,9 @@ import catchError from "../utils/catchError";
 import { EmptyValueError, WrongTypeError } from "../utils/customErrors";
 import getFolders from "./getFolders";
 
-const addProject = async (folderName, colorId = null) => {
+const addProject = async (folderName, colorId = null, callback) => {
     try {
-
+        console.log("--> addProject");
         if (!folderName) throw new EmptyValueError(undefined, { folderName });
         if (typeof folderName !== "string") throw new WrongTypeError("string", folderName, { folderName })
         if (!folderName.trim()) throw new EmptyValueError(undefined, { folderName });
@@ -23,12 +23,11 @@ const addProject = async (folderName, colorId = null) => {
             body: JSON.stringify(body)
         });
         // Feddback to client
-        const message = await response.json();
-        console.log(message);
-        // Return current folder
-        const folders = await getFolders();
-        const currFolder = folders.find(folder => folder.name === folderName);
-        return currFolder; // expect: {name: "Music", id: 283}
+        const { folderId } = await response.json();
+        await getFolders();
+        // return folderId;
+        callback(folderId);
+        
     } catch (error) {
         catchError(error);
     }

@@ -28,10 +28,13 @@ router.post("/", async (req, res) => {
         INSERT INTO
             folder (name, color_id, user_id)
         VALUES
-            ($1, $2, $3);
+            ($1, $2, $3)
+        RETURNING 
+            id;
         `,
             [folderName, colorId, userId]);
-        res.json(`Project «${folderName}» has been created`);
+        const folderId = await addFolder.rows[0].id;
+        res.json({ folderId });
     } catch (error) {
         console.error(error.message);
     }

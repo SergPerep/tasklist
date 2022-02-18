@@ -12,7 +12,16 @@ const ModalAddNewProject = ({ setIsModalOpen }) => {
     const setSelectedSectionId = useStore(state => state.setSelectedSectionId);
     const colors = useStore(state => state.colors);
     const getColor = useStore(state => state.getColor);
-    const [selectedColor, setSelectedColor] = useState(null);
+    const [selectedColorId, setSelectedColorId] = useState(null);
+
+    const handleClickAdd = () => {
+        addProject(inputAddProjectValue, selectedColorId, (folderId) => {
+            setInputAddProjectValue("");
+            setSelectedColorId(null);
+            setSelectedSectionId(folderId);
+            setIsModalOpen(false);
+        })
+    }
     return (
         <Modal buttonList={[{
             title: "Close",
@@ -20,21 +29,12 @@ const ModalAddNewProject = ({ setIsModalOpen }) => {
             onClick: () => {
                 setIsModalOpen(false)
                 setInputAddProjectValue("");
-                setSelectedColor(null)
+                setSelectedColorId(null)
             }
         }, {
             title: "Add",
             disabled: inputAddProjectValue ? false : true,
-            onClick: () => {
-                const folderPromise = addProject(inputAddProjectValue, selectedColor);
-                folderPromise.then((folder) => {
-                    const id = folder.id;
-                    setSelectedSectionId(id);
-                    setIsModalOpen(false);
-                    setInputAddProjectValue("");
-                    setSelectedColor(null);
-                });
-            }
+            onClick: handleClickAdd
         }]}>
             <h2>Add project</h2>
             <Input
@@ -49,15 +49,15 @@ const ModalAddNewProject = ({ setIsModalOpen }) => {
                     return {
                         title: color.name,
                         color: color.label,
-                        selected: selectedColor === color.id,
+                        selected: selectedColorId === color.id,
                         onClick: () => {
-                            setSelectedColor(color.id);
+                            setSelectedColorId(color.id);
                         }
                     }
                 })}>
                 <div className="select-display-color">
-                    <ColorDisplay color={getColor(selectedColor).label} />
-                    <div className="select-display-color-name">{getColor(selectedColor).name}</div>
+                    <ColorDisplay color={getColor(selectedColorId).label} />
+                    <div className="select-display-color-name">{getColor(selectedColorId).name}</div>
                     <Icon name="AngleDown" size="sm" />
                 </div>
             </Select>
