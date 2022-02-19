@@ -54,7 +54,7 @@ const ModalAddNewProject = ({ setIsModalOpen }) => {
                 selectList={colors.map(color => {
                     return {
                         title: color.name,
-                        color: color.label,
+                        color: color.value,
                         selected: selectedColorId === color.id,
                         onClick: () => {
                             setSelectedColorId(color.id);
@@ -62,7 +62,7 @@ const ModalAddNewProject = ({ setIsModalOpen }) => {
                     }
                 })}>
                 <div className="select-display-color">
-                    <ColorDisplay color={getColor(selectedColorId).label} />
+                    <ColorDisplay color={getColor(selectedColorId).value} />
                     <div className="select-display-color-name">{getColor(selectedColorId).name}</div>
                     <Icon name="AngleDown" size="sm" />
                 </div>

@@ -8,9 +8,7 @@ router.get("/", async (req, res) => {
         SELECT
             id,
             name,
-            label,
-            font,
-            fill
+            value
         FROM 
             color`);
     // Feedback to client

@@ -59,8 +59,8 @@ const Task = ({ task }) => {
                             </div>}
 
                             {task.folder.id && <div className="taskitem-project"
-                                style={{ color: project?.color?.label }}>
-                                <ColorDisplay size="sm" color={project?.color?.label} />
+                                style={{ color: project?.color?.value }}>
+                                <ColorDisplay size="sm" color={project?.color?.value} />
                                 <div className="project-desc">
                                     {task.folder.name}
                                 </div>

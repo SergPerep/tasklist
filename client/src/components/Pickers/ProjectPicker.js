@@ -41,7 +41,7 @@ const ProjectPicker = () => {
                 </>}
                 {pickedSection?.isAProject && <>
                     <ColorDisplay
-                        color={pickedSection.color.label}
+                        color={pickedSection.color.value}
                         size="sm"
                     />
                     <div className="project-desc">{pickedSection.name}</div>
@@ -53,7 +53,7 @@ const ProjectPicker = () => {
                     {sections
                         .filter(section => section.isAProject)
                         .map(project => <MenuItem
-                            color={project.color?.label}
+                            color={project.color?.value}
                             key={project.id}
                             onClick={() => handleClickMenuItem(project.id)}>
                             {project.name}

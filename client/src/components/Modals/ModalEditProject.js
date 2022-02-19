@@ -45,7 +45,7 @@ const ModalEditProject = ({ setIsModalOpen, projectId }) => {
             selectList={colors.map(color => {
                 return {
                     title: color.name,
-                    color: color.label,
+                    color: color.value,
                     selected: selectedColor.id === color.id,
                     onClick: () => {
                         setSelectedColor(color);
@@ -53,7 +53,7 @@ const ModalEditProject = ({ setIsModalOpen, projectId }) => {
                 }
             })}>
             <div className="select-display-color">
-                <ColorDisplay color={selectedColor?.label} />
+                <ColorDisplay color={selectedColor?.value} />
                 <div className="select-display-color-name">{selectedColor?.name}</div>
                 <Icon name="AngleDown" size="sm" />
             </div>

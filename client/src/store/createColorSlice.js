@@ -3,9 +3,7 @@ console.log("--> useColorStore");
 const charchoal = {
     id: null,
     name: "Charcoal",
-    label: "#808080",
-    font: "#000000",
-    fill: "rgba(0, 0, 0, 0.12)"
+    value: "#808080"
 }
 
 export default (set, get) => ({
@@ -13,9 +11,7 @@ export default (set, get) => ({
             {
                 id: null,
                 name: "Charcoal",
-                label: "#808080",
-                font: "#000000",
-                fill: "rgba(0, 0, 0, 0.12)"
+                value: "#808080"
             },...
         */],
     getColor(colorId) {
