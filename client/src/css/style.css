@@ -1,60 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap");
 /* COLORS */
+/* Font styles */
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap");
+/* Font styles */
 /* COLORS */
-:root {
-  --c-light-gray: #f0f0f0;
-  --c-black-60: rgba(0, 0, 0, 0.6);
-  --c-black-30: rgba(0, 0, 0, 0.3);
-  --c-black-12: rgba(0, 0, 0, 0.12);
-  --c-black-08: rgba(0, 0, 0, 0.08);
-  --c-black-04: rgba(0, 0, 0, 0.04);
-  --c-white-70: rgba(255, 255, 255, 0.7);
-  --c-white-40: rgba(255, 255, 255, 0.4);
-  --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #eb5757;
-  --c-primary: #000000;
-}
-
-/* Font family */
-* {
-  font-family: "IBM Plex Sans", sans-serif;
-}
-
-h2 {
-  font-size: 18px;
-  line-height: 28px;
-  margin-bottom: 12px;
-}
-
-body {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-:root {
-  --c-light-gray: #f0f0f0;
-  --c-black-60: rgba(0, 0, 0, 0.6);
-  --c-black-30: rgba(0, 0, 0, 0.3);
-  --c-black-12: rgba(0, 0, 0, 0.12);
-  --c-black-08: rgba(0, 0, 0, 0.08);
-  --c-black-04: rgba(0, 0, 0, 0.04);
-  --c-white-70: rgba(255, 255, 255, 0.7);
-  --c-white-40: rgba(255, 255, 255, 0.4);
-  --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #eb5757;
-  --c-primary: #000000;
-}
-
 /* Font family */
 * {
   font-family: "IBM Plex Sans", sans-serif;
@@ -72,7 +20,7 @@ body {
 
 /* BASIC LAYOUT */
 .topnav {
-  background-color: var(--c-primary);
+  background-color: #080808;
   height: 44px;
 }
 
@@ -92,7 +40,6 @@ body {
 }
 .taskboard-container .taskboard-sidenav {
   width: 300px;
-  background-color: var(--c-light-gray);
   overflow-y: scroll;
   position: fixed;
   z-index: 1;
@@ -333,35 +280,7 @@ div {
 }
 
 /* COLORS */
-:root {
-  --c-light-gray: #f0f0f0;
-  --c-black-60: rgba(0, 0, 0, 0.6);
-  --c-black-30: rgba(0, 0, 0, 0.3);
-  --c-black-12: rgba(0, 0, 0, 0.12);
-  --c-black-08: rgba(0, 0, 0, 0.08);
-  --c-black-04: rgba(0, 0, 0, 0.04);
-  --c-white-70: rgba(255, 255, 255, 0.7);
-  --c-white-40: rgba(255, 255, 255, 0.4);
-  --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #eb5757;
-  --c-primary: #000000;
-}
-
-/* Font family */
-* {
-  font-family: "IBM Plex Sans", sans-serif;
-}
-
-h2 {
-  font-size: 18px;
-  line-height: 28px;
-  margin-bottom: 12px;
-}
-
-body {
-  color: rgba(255, 255, 255, 0.8);
-}
-
+/* Font styles */
 /* SIDENAV */
 .sidenav {
   width: 100%;
@@ -391,7 +310,7 @@ body {
   transition: all ease-in-out 0.2s;
 }
 .sidenav-item:hover, .sidenav-item.selected, .sidenav-item.more-is-open {
-  background-color: #080808;
+  background-color: rgba(0, 0, 0, 0.3);
   color: rgba(255, 255, 255, 0.8);
 }
 .sidenav-item .sidenav-desc {
@@ -514,14 +433,6 @@ body {
 .taskitem.overdue .time-and-date {
   color: #eb5757;
 }
-.taskitem.completed {
-  /*
-  .taskitem-project {
-      background-color: var(--c-black-04);
-      color: var(--c-black-30);
-  }
-  */
-}
 .taskitem.completed .taskitem-desc {
   text-decoration: line-through;
   color: rgba(255, 255, 255, 0.4);
@@ -545,20 +456,6 @@ body {
 }
 
 /* COLORS */
-:root {
-  --c-light-gray: #f0f0f0;
-  --c-black-60: rgba(0, 0, 0, 0.6);
-  --c-black-30: rgba(0, 0, 0, 0.3);
-  --c-black-12: rgba(0, 0, 0, 0.12);
-  --c-black-08: rgba(0, 0, 0, 0.08);
-  --c-black-04: rgba(0, 0, 0, 0.04);
-  --c-white-70: rgba(255, 255, 255, 0.7);
-  --c-white-40: rgba(255, 255, 255, 0.4);
-  --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #eb5757;
-  --c-primary: #000000;
-}
-
 /* ADD TASK INPUT */
 .addtaskinput .addtask-container {
   padding: 8px 20px;
@@ -574,35 +471,7 @@ body {
 }
 
 /* COLORS */
-:root {
-  --c-light-gray: #f0f0f0;
-  --c-black-60: rgba(0, 0, 0, 0.6);
-  --c-black-30: rgba(0, 0, 0, 0.3);
-  --c-black-12: rgba(0, 0, 0, 0.12);
-  --c-black-08: rgba(0, 0, 0, 0.08);
-  --c-black-04: rgba(0, 0, 0, 0.04);
-  --c-white-70: rgba(255, 255, 255, 0.7);
-  --c-white-40: rgba(255, 255, 255, 0.4);
-  --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #eb5757;
-  --c-primary: #000000;
-}
-
-/* Font family */
-* {
-  font-family: "IBM Plex Sans", sans-serif;
-}
-
-h2 {
-  font-size: 18px;
-  line-height: 28px;
-  margin-bottom: 12px;
-}
-
-body {
-  color: rgba(255, 255, 255, 0.8);
-}
-
+/* Font styles */
 .edittask {
   padding: 0 20px 24px;
 }
@@ -676,35 +545,7 @@ body {
 }
 */
 /* COLORS */
-:root {
-  --c-light-gray: #f0f0f0;
-  --c-black-60: rgba(0, 0, 0, 0.6);
-  --c-black-30: rgba(0, 0, 0, 0.3);
-  --c-black-12: rgba(0, 0, 0, 0.12);
-  --c-black-08: rgba(0, 0, 0, 0.08);
-  --c-black-04: rgba(0, 0, 0, 0.04);
-  --c-white-70: rgba(255, 255, 255, 0.7);
-  --c-white-40: rgba(255, 255, 255, 0.4);
-  --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #eb5757;
-  --c-primary: #000000;
-}
-
-/* Font family */
-* {
-  font-family: "IBM Plex Sans", sans-serif;
-}
-
-h2 {
-  font-size: 18px;
-  line-height: 28px;
-  margin-bottom: 12px;
-}
-
-body {
-  color: rgba(255, 255, 255, 0.8);
-}
-
+/* Font styles */
 /* PICKERS */
 .dt-picker {
   display: flex;
@@ -818,7 +659,7 @@ body {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: var(--c-black-12);
+  background-color: rgba(0, 0, 0, 0.12);
 }
 .color-display.sm {
   width: 16px;
@@ -840,35 +681,7 @@ body {
 }
 
 /* COLORS */
-:root {
-  --c-light-gray: #f0f0f0;
-  --c-black-60: rgba(0, 0, 0, 0.6);
-  --c-black-30: rgba(0, 0, 0, 0.3);
-  --c-black-12: rgba(0, 0, 0, 0.12);
-  --c-black-08: rgba(0, 0, 0, 0.08);
-  --c-black-04: rgba(0, 0, 0, 0.04);
-  --c-white-70: rgba(255, 255, 255, 0.7);
-  --c-white-40: rgba(255, 255, 255, 0.4);
-  --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #eb5757;
-  --c-primary: #000000;
-}
-
-/* Font family */
-* {
-  font-family: "IBM Plex Sans", sans-serif;
-}
-
-h2 {
-  font-size: 18px;
-  line-height: 28px;
-  margin-bottom: 12px;
-}
-
-body {
-  color: rgba(255, 255, 255, 0.8);
-}
-
+/* Font styles */
 /* HEADER */
 .header {
   padding: 20px 20px 8px;
@@ -901,20 +714,6 @@ body {
 }
 
 /* COLORS */
-:root {
-  --c-light-gray: #f0f0f0;
-  --c-black-60: rgba(0, 0, 0, 0.6);
-  --c-black-30: rgba(0, 0, 0, 0.3);
-  --c-black-12: rgba(0, 0, 0, 0.12);
-  --c-black-08: rgba(0, 0, 0, 0.08);
-  --c-black-04: rgba(0, 0, 0, 0.04);
-  --c-white-70: rgba(255, 255, 255, 0.7);
-  --c-white-40: rgba(255, 255, 255, 0.4);
-  --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #eb5757;
-  --c-primary: #000000;
-}
-
 /* CHECKBOX */
 .checkbox {
   padding: 4px;
@@ -954,36 +753,8 @@ body {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
+/* Font styles */
 /* COLORS */
-:root {
-  --c-light-gray: #f0f0f0;
-  --c-black-60: rgba(0, 0, 0, 0.6);
-  --c-black-30: rgba(0, 0, 0, 0.3);
-  --c-black-12: rgba(0, 0, 0, 0.12);
-  --c-black-08: rgba(0, 0, 0, 0.08);
-  --c-black-04: rgba(0, 0, 0, 0.04);
-  --c-white-70: rgba(255, 255, 255, 0.7);
-  --c-white-40: rgba(255, 255, 255, 0.4);
-  --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #eb5757;
-  --c-primary: #000000;
-}
-
-/* Font family */
-* {
-  font-family: "IBM Plex Sans", sans-serif;
-}
-
-h2 {
-  font-size: 18px;
-  line-height: 28px;
-  margin-bottom: 12px;
-}
-
-body {
-  color: rgba(255, 255, 255, 0.8);
-}
-
 /* ACCORDION */
 .accordion .accordion-header {
   padding: 12px 16px;
@@ -1021,35 +792,7 @@ body {
 }
 
 /* COLORS */
-:root {
-  --c-light-gray: #f0f0f0;
-  --c-black-60: rgba(0, 0, 0, 0.6);
-  --c-black-30: rgba(0, 0, 0, 0.3);
-  --c-black-12: rgba(0, 0, 0, 0.12);
-  --c-black-08: rgba(0, 0, 0, 0.08);
-  --c-black-04: rgba(0, 0, 0, 0.04);
-  --c-white-70: rgba(255, 255, 255, 0.7);
-  --c-white-40: rgba(255, 255, 255, 0.4);
-  --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #eb5757;
-  --c-primary: #000000;
-}
-
-/* Font family */
-* {
-  font-family: "IBM Plex Sans", sans-serif;
-}
-
-h2 {
-  font-size: 18px;
-  line-height: 28px;
-  margin-bottom: 12px;
-}
-
-body {
-  color: rgba(255, 255, 255, 0.8);
-}
-
+/* Font styles */
 .button {
   background-color: #9b51e0;
   display: inline-block;
@@ -1083,20 +826,6 @@ body {
 }
 
 /* COLORS */
-:root {
-  --c-light-gray: #f0f0f0;
-  --c-black-60: rgba(0, 0, 0, 0.6);
-  --c-black-30: rgba(0, 0, 0, 0.3);
-  --c-black-12: rgba(0, 0, 0, 0.12);
-  --c-black-08: rgba(0, 0, 0, 0.08);
-  --c-black-04: rgba(0, 0, 0, 0.04);
-  --c-white-70: rgba(255, 255, 255, 0.7);
-  --c-white-40: rgba(255, 255, 255, 0.4);
-  --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #eb5757;
-  --c-primary: #000000;
-}
-
 /* Hrefless link */
 button.hrefless-link,
 button.hrefless-link:active {
@@ -1111,20 +840,6 @@ button.hrefless-link:active {
 }
 
 /* COLORS */
-:root {
-  --c-light-gray: #f0f0f0;
-  --c-black-60: rgba(0, 0, 0, 0.6);
-  --c-black-30: rgba(0, 0, 0, 0.3);
-  --c-black-12: rgba(0, 0, 0, 0.12);
-  --c-black-08: rgba(0, 0, 0, 0.08);
-  --c-black-04: rgba(0, 0, 0, 0.04);
-  --c-white-70: rgba(255, 255, 255, 0.7);
-  --c-white-40: rgba(255, 255, 255, 0.4);
-  --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #eb5757;
-  --c-primary: #000000;
-}
-
 .calendar {
   border-radius: 2px;
   padding: 16px;
@@ -1201,35 +916,7 @@ button.hrefless-link:active {
 }
 
 /* COLORS */
-:root {
-  --c-light-gray: #f0f0f0;
-  --c-black-60: rgba(0, 0, 0, 0.6);
-  --c-black-30: rgba(0, 0, 0, 0.3);
-  --c-black-12: rgba(0, 0, 0, 0.12);
-  --c-black-08: rgba(0, 0, 0, 0.08);
-  --c-black-04: rgba(0, 0, 0, 0.04);
-  --c-white-70: rgba(255, 255, 255, 0.7);
-  --c-white-40: rgba(255, 255, 255, 0.4);
-  --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #eb5757;
-  --c-primary: #000000;
-}
-
-/* Font family */
-* {
-  font-family: "IBM Plex Sans", sans-serif;
-}
-
-h2 {
-  font-size: 18px;
-  line-height: 28px;
-  margin-bottom: 12px;
-}
-
-body {
-  color: rgba(255, 255, 255, 0.8);
-}
-
+/* Font styles */
 /* MENU */
 .menu {
   background-color: #080808;
@@ -1265,35 +952,7 @@ body {
 }
 
 /* COLORS */
-:root {
-  --c-light-gray: #f0f0f0;
-  --c-black-60: rgba(0, 0, 0, 0.6);
-  --c-black-30: rgba(0, 0, 0, 0.3);
-  --c-black-12: rgba(0, 0, 0, 0.12);
-  --c-black-08: rgba(0, 0, 0, 0.08);
-  --c-black-04: rgba(0, 0, 0, 0.04);
-  --c-white-70: rgba(255, 255, 255, 0.7);
-  --c-white-40: rgba(255, 255, 255, 0.4);
-  --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #eb5757;
-  --c-primary: #000000;
-}
-
-/* Font family */
-* {
-  font-family: "IBM Plex Sans", sans-serif;
-}
-
-h2 {
-  font-size: 18px;
-  line-height: 28px;
-  margin-bottom: 12px;
-}
-
-body {
-  color: rgba(255, 255, 255, 0.8);
-}
-
+/* Font styles */
 /* Project picker */
 .project-picker {
   position: relative;
@@ -1334,35 +993,7 @@ body {
 }
 
 /* COLORS */
-:root {
-  --c-light-gray: #f0f0f0;
-  --c-black-60: rgba(0, 0, 0, 0.6);
-  --c-black-30: rgba(0, 0, 0, 0.3);
-  --c-black-12: rgba(0, 0, 0, 0.12);
-  --c-black-08: rgba(0, 0, 0, 0.08);
-  --c-black-04: rgba(0, 0, 0, 0.04);
-  --c-white-70: rgba(255, 255, 255, 0.7);
-  --c-white-40: rgba(255, 255, 255, 0.4);
-  --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #eb5757;
-  --c-primary: #000000;
-}
-
-/* Font family */
-* {
-  font-family: "IBM Plex Sans", sans-serif;
-}
-
-h2 {
-  font-size: 18px;
-  line-height: 28px;
-  margin-bottom: 12px;
-}
-
-body {
-  color: rgba(255, 255, 255, 0.8);
-}
-
+/* Font styles */
 /* MODAL */
 .modal {
   background-color: #292929;
@@ -1382,24 +1013,10 @@ body {
 }
 
 /* COLORS */
-:root {
-  --c-light-gray: #f0f0f0;
-  --c-black-60: rgba(0, 0, 0, 0.6);
-  --c-black-30: rgba(0, 0, 0, 0.3);
-  --c-black-12: rgba(0, 0, 0, 0.12);
-  --c-black-08: rgba(0, 0, 0, 0.08);
-  --c-black-04: rgba(0, 0, 0, 0.04);
-  --c-white-70: rgba(255, 255, 255, 0.7);
-  --c-white-40: rgba(255, 255, 255, 0.4);
-  --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #eb5757;
-  --c-primary: #000000;
-}
-
 .overlay {
   width: 100vw;
   height: 100vh;
-  background-color: var(--c-black-30);
+  background-color: rgba(0, 0, 0, 0.3);
   position: fixed;
   top: 0;
   left: 0;
@@ -1410,35 +1027,7 @@ body {
 }
 
 /* COLORS */
-:root {
-  --c-light-gray: #f0f0f0;
-  --c-black-60: rgba(0, 0, 0, 0.6);
-  --c-black-30: rgba(0, 0, 0, 0.3);
-  --c-black-12: rgba(0, 0, 0, 0.12);
-  --c-black-08: rgba(0, 0, 0, 0.08);
-  --c-black-04: rgba(0, 0, 0, 0.04);
-  --c-white-70: rgba(255, 255, 255, 0.7);
-  --c-white-40: rgba(255, 255, 255, 0.4);
-  --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #eb5757;
-  --c-primary: #000000;
-}
-
-/* Font family */
-* {
-  font-family: "IBM Plex Sans", sans-serif;
-}
-
-h2 {
-  font-size: 18px;
-  line-height: 28px;
-  margin-bottom: 12px;
-}
-
-body {
-  color: rgba(255, 255, 255, 0.8);
-}
-
+/* Font styles */
 /* INPUT */
 /* SELECT */
 .input-field label,
@@ -1508,20 +1097,6 @@ body {
 }
 
 /* COLORS */
-:root {
-  --c-light-gray: #f0f0f0;
-  --c-black-60: rgba(0, 0, 0, 0.6);
-  --c-black-30: rgba(0, 0, 0, 0.3);
-  --c-black-12: rgba(0, 0, 0, 0.12);
-  --c-black-08: rgba(0, 0, 0, 0.08);
-  --c-black-04: rgba(0, 0, 0, 0.04);
-  --c-white-70: rgba(255, 255, 255, 0.7);
-  --c-white-40: rgba(255, 255, 255, 0.4);
-  --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #eb5757;
-  --c-primary: #000000;
-}
-
 /* AUTHENTICATION */
 .authentication {
   width: 360px;
@@ -1541,20 +1116,6 @@ body {
 }
 
 /* COLORS */
-:root {
-  --c-light-gray: #f0f0f0;
-  --c-black-60: rgba(0, 0, 0, 0.6);
-  --c-black-30: rgba(0, 0, 0, 0.3);
-  --c-black-12: rgba(0, 0, 0, 0.12);
-  --c-black-08: rgba(0, 0, 0, 0.08);
-  --c-black-04: rgba(0, 0, 0, 0.04);
-  --c-white-70: rgba(255, 255, 255, 0.7);
-  --c-white-40: rgba(255, 255, 255, 0.4);
-  --c-white-20: rgba(255, 255, 255, 0.2);
-  --c-error: #eb5757;
-  --c-primary: #000000;
-}
-
 .topnav {
   padding: 0 24px;
   display: flex;
@@ -1745,7 +1306,7 @@ p {
 
 .dropdown-button {
   display: flex;
-  border: 1px solid var(--c-black-30);
+  border: 1px solid rgba(0, 0, 0, 0.3);
   padding: 4px 6px;
   border-radius: 2px;
 }
@@ -1772,7 +1333,7 @@ p {
 }
 
 .projects-header .tasknav-item .right-icon:hover {
-  background-color: var(--c-white-20);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .icon-today {

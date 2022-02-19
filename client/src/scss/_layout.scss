@@ -2,13 +2,30 @@
 @use "./fonts";
 @use "./scrollbar";
 
+
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap");
+/* Font family */
+
+* {
+    font-family: "IBM Plex Sans", sans-serif;
+}
+
+h2 {
+    @include fonts.h2;
+    margin-bottom: 12px;
+}
+
+body{
+    color: colors.$white-80;
+}
+
 /* BASIC LAYOUT */
 
 $sideNavWidth: 300px;
 $topNavHeight: 44px;
 
 .topnav {
-    background-color: var(--c-primary);
+    background-color: colors.$prime01;
     height: $topNavHeight;
 }
 
@@ -28,9 +45,8 @@ $topNavHeight: 44px;
 
     .taskboard-sidenav {
         width: $sideNavWidth;
-        background-color: var(--c-light-gray);
         overflow-y: scroll;
-        @include scrollbar.handsome(colors.$ash02, colors.$white-12);
+        @include scrollbar.handsome(colors.$prime02, colors.$white-12);
         position: fixed;
         z-index: 1;
         height: 100%;
@@ -41,8 +57,8 @@ $topNavHeight: 44px;
     .taskboard-display {
         height: 100%;
         overflow-y: scroll;
-        background-color: colors.$ash03;
-        @include scrollbar.handsome(colors.$ash03, colors.$white-12);
+        background-color: colors.$prime03;
+        @include scrollbar.handsome(colors.$prime03, colors.$white-12);
         margin-left: $sideNavWidth;
         transition: margin-left ease-in-out 0.2s;
         .taskboard-display-container {

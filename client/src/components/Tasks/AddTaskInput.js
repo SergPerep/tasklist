@@ -24,7 +24,7 @@ const AddTaskInput = () => {
                     if (selectedSection.isAProject) return setPickedProjectId(selectedSectionId)
                 }}>
                     <div className="addtask-display">
-                        +Add task
+                        + Add task
                     </div>
                 </div>
             }

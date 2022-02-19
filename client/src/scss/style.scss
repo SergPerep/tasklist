@@ -33,7 +33,7 @@ body {
 }
 
 body {
-  @include scrollbar.handsome(colors.$ash03, colors.$white-12);
+  @include scrollbar.handsome(colors.$prime03, colors.$white-12);
 }
 
 h1{
@@ -65,7 +65,7 @@ code {
 
 #root {
   height: 100vh;
-  background-color: colors.$ash01;
+  background-color: colors.$prime01;
 }
 
 .canvas {
@@ -154,7 +154,7 @@ p {
 
 .dropdown-button {
   display: flex;
-  border: 1px solid var(--c-black-30);
+  border: 1px solid colors.$black-30;
   padding: 4px 6px;
   border-radius: 2px;
 }
@@ -181,7 +181,7 @@ p {
 }
 
 .projects-header .tasknav-item .right-icon:hover {
-  background-color: var(--c-white-20);
+  background-color: colors.$white-20;
 }
 
 .icon-today {

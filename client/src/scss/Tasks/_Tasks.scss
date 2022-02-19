@@ -70,12 +70,6 @@
     }
 
     &.completed {
-        /*
-        .taskitem-project {
-            background-color: var(--c-black-04);
-            color: var(--c-black-30);
-        }
-        */
         .taskitem-desc {
             text-decoration: line-through;
             color: colors.$white-40;
