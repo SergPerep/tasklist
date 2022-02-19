@@ -46,8 +46,8 @@
         height: 28px;
         width: 28px;
     }
-    &.today {
-        color: colors.$white-80;
+    &.today .select-area {
+        color: colors.$active;
         font-weight: bold;
     }
     &.this-month {

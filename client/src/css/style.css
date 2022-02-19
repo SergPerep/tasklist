@@ -1171,8 +1171,8 @@ button.hrefless-link:active {
   height: 28px;
   width: 28px;
 }
-.calendar-cell.today {
-  color: rgba(255, 255, 255, 0.8);
+.calendar-cell.today .select-area {
+  color: #9b51e0;
   font-weight: bold;
 }
 .calendar-cell.this-month {
