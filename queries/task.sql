@@ -1,14 +1,13 @@
 -- Schema of tasklist
 CREATE TABLE task(
     id SERIAL PRIMARY KEY,
-    description VARCHAR(255),
-    status_of_completion BOOLEAN DEFAULT FALSE NOT NULL,
-    time_of_creation TIMESTAMP DEFAULT NOW() NOT NULL,
-    time_of_last_update TIMESTAMP DEFAULT NOW() NOT NULL,
-    date_and_time TIMESTAMP,
-    read_time BOOLEAN DEFAULT FALSE CHECK (date_and_time != NULL),
+    description VARCHAR(255) NOT NULL,
+    is_completed BOOLEAN DEFAULT FALSE NOT NULL,
+    date DATE,
+    time TIME WITH TIME ZONE CHECK (date != NULL),
     folder_id INTEGER REFERENCES folder (id),
-    user_id uuid REFERENCES users (id) NOT NULL
+    user_id uuid REFERENCES users (id) NOT NULL,
+    time_of_creation TIMESTAMP DEFAULT NOW() NOT NULL
 );
 
 -- Adding new task with description only

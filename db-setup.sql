@@ -9,16 +9,15 @@ CREATE TABLE users(
 CREATE TABLE color(
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    label VARCHAR(255) NOT NULL,
-    font VARCHAR(255) NOT NULL,
-    fill VARCHAR(255) NOT NULL
+    value VARCHAR(255) NOT NULL
 );
 
 -- Schema for folder
 CREATE TABLE folder(
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
-    color_id INTEGER REFERENCES color (id)
+    color_id INTEGER REFERENCES color (id),
+    user_id uuid REFERENCES users (id) NOT NULL
 );
 
 -- Schema for tasklist
@@ -28,8 +27,9 @@ CREATE TABLE task(
     is_completed BOOLEAN DEFAULT FALSE NOT NULL,
     date DATE,
     time TIME WITH TIME ZONE CHECK (date != NULL),
-    read_time BOOLEAN DEFAULT FALSE CHECK (date_and_time != NULL),
-    folder_id INTEGER REFERENCES folder (id)
+    folder_id INTEGER REFERENCES folder (id),
+    user_id uuid REFERENCES users (id) NOT NULL,
+    time_of_creation TIMESTAMP DEFAULT NOW() NOT NULL
 );
 
 -- Add Orange
@@ -41,7 +41,7 @@ VALUES
         '#FF9749',
         '#875306',
         'rgba(211, 136, 23, 0.28)'
-);
+    );
 
 -- Add Blue
 INSERT INTO
@@ -52,7 +52,7 @@ VALUES
         '#3D77F6',
         '#254894',
         'rgba(65, 87, 135, 0.2)'
-);
+    );
 
 -- Add Green
 INSERT INTO
@@ -63,7 +63,7 @@ VALUES
         '#169446',
         '#19522F',
         'rgba(31, 116, 64, 0.18)'
-);
+    );
 
 -- Add Berry Red
 INSERT INTO
@@ -74,4 +74,4 @@ VALUES
         '#BC245D',
         '#681735',
         'rgba(151, 17, 67, 0.16)'
-);
+    );
