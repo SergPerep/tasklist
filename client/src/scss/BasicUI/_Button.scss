@@ -26,4 +26,11 @@
         border: 1px solid colors.$active;
         color: colors.$active;
     }
+    &.transparent{
+        background-color: transparent;
+        color: colors.$white-40;
+        &:hover{
+            color: colors.$white-80;
+        }
+    }
 }

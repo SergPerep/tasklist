@@ -5,7 +5,8 @@ const Button = props => {
     const isFormButton = tag === "button";
     const btnCls = clsx({
         "button": true,
-        "outlined": design === "outlined" ? true : false
+        "outlined": design === "outlined" ? true : false,
+        "transparent": design === "transparent"
     });
     return (
         <>

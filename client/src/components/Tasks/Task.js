@@ -18,6 +18,7 @@ const Task = ({ task }) => {
         .find(project => project.id === task.folder.id);
 
     const openedEditId = useStore(state => state.openedEditId);
+    const setOpenedEdit = useStore(state => state.setOpenedEdit);
     const isThisEditOpened = openedEditId === task.id;
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,7 +41,11 @@ const Task = ({ task }) => {
                 <div className="taskitem-container">
                     <Checkbox id={task.id} isCompleted={task.isCompleted} />
                     <div className="taskitem-content-wrapper">
-                        <div className="taskitem-desc">{task.description}</div>
+                        <div className="taskitem-desc"
+                        onClick={() => setOpenedEdit(task.id)}
+                        >
+                            {task.description}
+                        </div>
                         <div className="taskitem-details">
 
                             {task.dateStr && <div className="time-and-date">

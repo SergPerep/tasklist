@@ -1,0 +1,63 @@
+@use "./colors";
+
+.topnav {
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sidenav-btn {
+    padding: 4px;
+
+    display: inline-block;
+    border-radius: 6px;
+    background-color: transparent;
+    transition: background-color ease-in-out 0.2s;
+    cursor: pointer;
+    &:hover {
+        background-color: colors.$white-20;
+        .sidenav-btn-icon {
+            &::before,
+            &::after {
+                background-color: colors.$white-80;
+            }
+        }
+    }
+    .sidenav-btn-icon {
+        width: 24px;
+        height: 24px;
+        position: relative;
+        &::before,
+        &::after {
+            content: "";
+            display: block;
+            background-color: colors.$white-40;
+            width: 16px;
+            height: 2px;
+            border-radius: 2px;
+            position: absolute;
+            transition: all ease-in-out 0.2s;
+        }
+        &::before {
+            top: 7px;
+            left: 4px;
+        }
+        &::after {
+            bottom: 7px;
+            left: 4px;
+        }
+    }
+    &.selected {
+        .sidenav-btn-icon::before {
+            transform-origin: center;
+            transform: translateY(4px) rotate(45deg);
+            background-color: colors.$white-80;
+        }
+        .sidenav-btn-icon::after {
+            transform-origin: center;
+            transform: translateY(-4px) rotate(-45deg);
+            background-color: colors.$white-80;
+        }
+    }
+}

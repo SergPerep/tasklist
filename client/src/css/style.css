@@ -83,6 +83,10 @@ body {
   height: 100%;
 }
 
+.taskboard-header {
+  z-index: 3;
+}
+
 .taskboard-container {
   min-height: calc(100% - 44px);
 }
@@ -1070,6 +1074,13 @@ body {
   border: 1px solid #9b51e0;
   color: #9b51e0;
 }
+.button.transparent {
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.4);
+}
+.button.transparent:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
 
 /* COLORS */
 :root {
@@ -1527,6 +1538,76 @@ body {
   margin-top: 16px;
   display: flex;
   justify-content: right;
+}
+
+/* COLORS */
+:root {
+  --c-light-gray: #f0f0f0;
+  --c-black-60: rgba(0, 0, 0, 0.6);
+  --c-black-30: rgba(0, 0, 0, 0.3);
+  --c-black-12: rgba(0, 0, 0, 0.12);
+  --c-black-08: rgba(0, 0, 0, 0.08);
+  --c-black-04: rgba(0, 0, 0, 0.04);
+  --c-white-70: rgba(255, 255, 255, 0.7);
+  --c-white-40: rgba(255, 255, 255, 0.4);
+  --c-white-20: rgba(255, 255, 255, 0.2);
+  --c-error: #eb5757;
+  --c-primary: #000000;
+}
+
+.topnav {
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidenav-btn {
+  padding: 4px;
+  display: inline-block;
+  border-radius: 6px;
+  background-color: transparent;
+  transition: background-color ease-in-out 0.2s;
+  cursor: pointer;
+}
+.sidenav-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.sidenav-btn:hover .sidenav-btn-icon::before, .sidenav-btn:hover .sidenav-btn-icon::after {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.sidenav-btn .sidenav-btn-icon {
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
+.sidenav-btn .sidenav-btn-icon::before, .sidenav-btn .sidenav-btn-icon::after {
+  content: "";
+  display: block;
+  background-color: rgba(255, 255, 255, 0.4);
+  width: 16px;
+  height: 2px;
+  border-radius: 2px;
+  position: absolute;
+  transition: all ease-in-out 0.2s;
+}
+.sidenav-btn .sidenav-btn-icon::before {
+  top: 7px;
+  left: 4px;
+}
+.sidenav-btn .sidenav-btn-icon::after {
+  bottom: 7px;
+  left: 4px;
+}
+.sidenav-btn.selected .sidenav-btn-icon::before {
+  transform-origin: center;
+  transform: translateY(4px) rotate(45deg);
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.sidenav-btn.selected .sidenav-btn-icon::after {
+  transform-origin: center;
+  transform: translateY(-4px) rotate(-45deg);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 body {
