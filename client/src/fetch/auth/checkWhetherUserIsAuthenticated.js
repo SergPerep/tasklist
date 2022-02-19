@@ -1,6 +1,6 @@
 export default async () => {
     try {
-        const response = await fetch("http://localhost:5000/auth/check-auth", {
+        const response = await fetch("/auth/check-auth", {
             method: "GET",
             credentials: "include"
         });

@@ -1,7 +1,7 @@
 export default async (username, password) => {
     try {
         const body = { username, password };
-        const response = await fetch("http://localhost:5000/auth/register", {
+        const response = await fetch("/auth/register", {
             credentials: "include",
             method: "POST",
             headers: { "Content-Type": "application/json" },
