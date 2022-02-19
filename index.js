@@ -47,8 +47,6 @@ if (NODE_ENV === "production") {
 
 // ROUTES //
 
-logger.info("Hello, this is Winston!");
-
 app.get("/session", (req, res) => {
     res.json(req.session);
 })
@@ -61,5 +59,5 @@ app.use("/colors", require("./routes/colors"));
 app.use(handleErrors);
 
 app.listen(PORT, () => {
-    console.log(`server started on port ${PORT}`)
+    logger.info(`server started on port ${PORT}`)
 });
