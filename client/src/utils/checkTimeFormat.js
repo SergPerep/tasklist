@@ -4,4 +4,4 @@ const checkTimeFormat = (timeString) => {
     return isTimeString;
 }
 
-export default checkTimeFormat;
+module.exports = checkTimeFormat;
