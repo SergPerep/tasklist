@@ -21,6 +21,7 @@ const AddTaskInput = () => {
             {!isThisEditOpened &&
                 <div className="addtask-container" onClick={() => {
                     setOpenedEdit(NEW_TASK_EDIT_ID); // open this Edit, close all other
+                    if (selectedSectionId === "inb") return setPickedDateStr("");
                     if (selectedSectionId === "td") return setPickedDateObj(today);
                     if (selectedSectionId === "tmr") return setPickedDateObj(tomorrow);
                     if (selectedSection.isAProject) return setPickedProjectId(selectedSectionId)

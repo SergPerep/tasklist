@@ -1,6 +1,5 @@
 import Modal from "../Modals/Modal";
 import deleteTask from "../../fetch/deleteTask";
-import useStore from "../../store/useStore";
 
 const ModalForDeleteTask = ({ id, description, setIsModalOpen }) => {
     
