@@ -34,8 +34,8 @@ const updateTask = async ({ id, description, dateStr = null, timeStr = null, pro
 
         const body = {
             description: description,
-            date: dateStr ? date.format(dateStr, "YYYY-MM-DD HH:mm:ss") : undefined,
-            time: timeStr,
+            date: dateStr || null,
+            time: timeStr || null,
             folder_id: projectId
         }
         const editTask = await fetch(`/tasks/${id}`, {

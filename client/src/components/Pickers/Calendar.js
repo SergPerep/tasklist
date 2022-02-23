@@ -4,13 +4,11 @@ import Icon from "../BasicUI/Icon";
 import makeDaysToDisplay from "../../utils/makeDaysToDisplay";
 import useStore from "../../store/useStore";
 
-const Calendar = () => {
+const Calendar = ({selectedDateStr, setSelectedDateObj}) => {
     const anchorDateObj = useStore(state => state.anchorDateObj);
     const setAnchorDate = useStore(state => state.setAnchorDate);
-    const pickedDateStr = useStore(state => state.pickedDateStr);
-    const setPickedDate = useStore(state => state.setPickedDate);
     
-    const daysToDisplay = makeDaysToDisplay(anchorDateObj, pickedDateStr);
+    const daysToDisplay = makeDaysToDisplay(anchorDateObj, selectedDateStr);
 
     // Just names of days of the week for render
     const weekDays = ["M", "T", "W", "T", "F", "S", "S"];
@@ -27,7 +25,7 @@ const Calendar = () => {
 
     // Handles click on a date to select
     const handleClickDay = (dateObj) => {
-        setPickedDate(dateObj);
+        setSelectedDateObj(dateObj);
     }
 
     return (

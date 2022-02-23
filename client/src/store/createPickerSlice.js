@@ -1,21 +1,25 @@
 import { today } from "../utils/days";
-import date from "date-and-time";
+import formatTimeStringForDisplay from "../utils/formatTimeStringForDisplay";
 
 const createPickerSlice = (set, get) => ({
+    pickedDateStr: "",
+    setPickedDateStr: (dateStr) => set({ pickedDateStr: dateStr }),
+
     pickedProjectId: "inb",
     setPickedProjectId: (id) => set({ pickedProjectId: id }),
-    pickedDateStr: null,
-    setPickedDate: someDate => set(() => {
-        // console.log("someDate is a " + typeof someDate);
-        if (!someDate) return { pickedDateStr: null };
+
+    pickedDateStr: "",
+    setPickedDateStr: someDate => set(() => {
+        if (!someDate) return { pickedDateStr: "" };
         if (typeof someDate === "string") return { pickedDateStr: someDate }
-        if (someDate instanceof Date) return { pickedDateStr: date.format(someDate, "YYYY-MM-DD") }
-        return;
     }),
-    pickedTimeStr: null,
-    setPickedTimeStr: timeStr => set({ pickedTimeStr: timeStr }),
-    timeDisplay: null, // Text String for ex. 12:30
-    setTimeDisplay: timeStr => set({ timeDisplay: timeStr }),
+
+    pickedTimeStr: "",
+    setPickedTimeStr: timeStr => set(() => {
+        if (typeof timeStr !== "string") return { pickedTimeStr: "" };
+        return { pickedTimeStr: timeStr };
+    }),
+
     anchorDateObj: new Date(today.getFullYear(), today.getMonth()),
     setAnchorDate: someDate => set(() => {
         if (!someDate) return { anchorDateObj: new Date(today.getFullYear(), today.getMonth()) };

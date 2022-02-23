@@ -1,21 +1,17 @@
 import Button from "../BasicUI/Button";
-import DateAndTimePicker from "../Pickers/DateAndTimePicker";
+import DTPicker from "../Pickers/DTPicker";
 import ProjectPicker from "../Pickers/ProjectPicker";
 import { useEffect, useState } from "react";
 import useStore from "../../store/useStore";
 import updateTask from "../../fetch/updateTask";
 import addTask from "../../fetch/addTask";
-import formatTimeString from "../../utils/formatTimeString";
 
 
 const EditTask = ({ task, btnName = "Save" }) => {
-    // const { id, description, date_and_time, read_time, folder } = task || {};
-
     const pickedTimeStr = useStore(state => state.pickedTimeStr);
     const setPickedTimeStr = useStore(state => state.setPickedTimeStr);
     const pickedDateStr = useStore(state => state.pickedDateStr);
-    const setPickedDate = useStore(state => state.setPickedDate);
-    const setTimeDisplay = useStore(state => state.setTimeDisplay);
+    const setPickedDateStr = useStore(state => state.setPickedDateStr);
 
     const pickedProjectId = useStore(state => state.pickedProjectId);
     const setPickedProjectId = useStore(state => state.setPickedProjectId)
@@ -26,16 +22,12 @@ const EditTask = ({ task, btnName = "Save" }) => {
     useEffect(() => {
         if (!task) return
         if (task.description) setTaskInputValue(task.description)
-        if (task.dateStr) setPickedDate(task.dateStr)
-        if (task.timeStr) {
-            setPickedTimeStr(task.timeStr);
-            setTimeDisplay(formatTimeString(task.timeStr));
-        }
+        if (task.dateStr) setPickedDateStr(task.dateStr)
+        if (task.timeStr) setPickedTimeStr(task.timeStr);
         if (task.folder.id) setPickedProjectId(task.folder.id);
     }, []);
 
-    const handleSubmitTask = (e) => {
-        console.log({ pickedTimeStr });
+    const handleSubmitTask = e => {
         e.preventDefault();
         if (task) {
             // Update new task with PUT method
@@ -61,10 +53,9 @@ const EditTask = ({ task, btnName = "Save" }) => {
 
     const resetEditFields = () => {
         setTaskInputValue(""); // Clear input
-        setPickedTimeStr(null); // Reset time
-        setPickedDate(null); // Reset date
+        setPickedTimeStr(""); // Reset time
+        setPickedDateStr(""); // Reset date
         setPickedProjectId("inb"); // Reset project
-        setTimeDisplay(undefined); // Clear time display
     }
 
     const handleClickClose = () => {
@@ -86,7 +77,7 @@ const EditTask = ({ task, btnName = "Save" }) => {
                     onBlur={() => setIsFocused(false)}
                 />
                 <div className="picker-container">
-                    <DateAndTimePicker />
+                    <DTPicker />
                     <ProjectPicker />
                 </div>
             </div>

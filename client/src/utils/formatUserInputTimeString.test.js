@@ -7,7 +7,8 @@ test("24-hour clock with separator", () => {
 test("24-hour clock without separator", () => {
     expect(formatUserInputTimeString("1400")).toBe("14:00");
     expect(formatUserInputTimeString("616")).toBe("6:16");
-    expect(formatUserInputTimeString("25")).toBe("2:50");
+    expect(formatUserInputTimeString("13")).toBe("13:00");
+    expect(formatUserInputTimeString("25")).toBe(null);
 })
 
 test("12-hour clock with separator", () => {

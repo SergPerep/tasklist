@@ -140,8 +140,8 @@ div {
 
 @font-face {
   font-family: "lineicons";
-  src: url("../fonts/lineicons.eot?xahgdc");
-  src: url("../fonts/lineicons.eot?xahgdc#iefix") format("embedded-opentype"), url("../fonts/lineicons.ttf?xahgdc") format("truetype"), url("../fonts/lineicons.woff?xahgdc") format("woff"), url("../fonts/lineicons.svg?xahgdc#lineicons") format("svg");
+  src: url("../fonts/lineicons.eot?fugxi6");
+  src: url("../fonts/lineicons.eot?fugxi6#iefix") format("embedded-opentype"), url("../fonts/lineicons.ttf?fugxi6") format("truetype"), url("../fonts/lineicons.woff?fugxi6") format("woff"), url("../fonts/lineicons.svg?fugxi6#lineicons") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -157,6 +157,10 @@ div {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-Clock-md:before {
+  content: "\e91e";
 }
 
 .icon-AngleDown-md:before {
@@ -574,6 +578,16 @@ div {
   margin-right: 4px;
   color: rgba(255, 255, 255, 0.12);
 }
+.dt-picker .button-group {
+  padding: 8px 16px;
+  display: flex;
+}
+.dt-picker .button-group .button {
+  width: 100%;
+}
+.dt-picker .button-group .button:last-child {
+  margin-left: 8px;
+}
 
 .date-container {
   position: relative;
@@ -591,58 +605,34 @@ div {
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-/* TIMEPICKER*/
-.timepicker,
-.timepicker .input-container {
+/* TIMEINPUT */
+.timeinput {
   display: flex;
   align-items: center;
+  padding: 8px 16px;
 }
-
-.timepicker {
-  font-size: 14px;
-  line-height: 24px;
-  border-left: 1px solid rgba(255, 255, 255, 0.04);
-  border-radius: 0 6px 6px 0;
-  cursor: pointer;
-}
-.timepicker .time-display {
-  padding: 3px 8px;
-  color: rgba(255, 255, 255, 0.8);
-}
-.timepicker .time-display:hover {
-  background-color: rgba(255, 255, 255, 0.12);
-}
-.timepicker .input-container input {
-  font-size: 14px;
-  line-height: 24px;
-  border: none;
-  padding: 3px 8px;
-  background-color: transparent;
-  width: 100px;
-  color: rgba(255, 255, 255, 0.8);
-}
-.timepicker .input-container input:focus {
-  outline: 1px dotted #9b51e0;
-}
-.timepicker .time-display-button {
-  padding: 3px 8px;
-  border-radius: 0 6px 6px 0;
-  color: rgba(255, 255, 255, 0.8);
-  cursor: pointer;
-}
-.timepicker .time-display-button:hover {
-  background-color: rgba(255, 255, 255, 0.12);
-}
-.timepicker .close-btn {
-  cursor: pointer;
-  padding: 7px 6px;
-  border-radius: 0 6px 6px 0;
-  border-left: 1px solid rgba(255, 255, 255, 0.04);
+.timeinput .line-icon {
   color: rgba(255, 255, 255, 0.4);
 }
-.timepicker .close-btn:hover {
-  background-color: rgba(255, 255, 255, 0.12);
+.timeinput input {
+  margin-left: 12px;
+  display: block;
+  width: 100%;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid transparent;
+  font-size: 16px;
+  line-height: 28px;
+  padding: 4px 12px;
+  transition: all ease-in-out 0.2s;
   color: rgba(255, 255, 255, 0.8);
+  outline: 1px solid transparent;
+}
+.timeinput input:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+.timeinput input:focus {
+  outline: 1px solid #9b51e0;
 }
 
 /* COLOR DISPLAY */

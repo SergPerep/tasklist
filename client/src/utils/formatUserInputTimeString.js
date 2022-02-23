@@ -1,8 +1,9 @@
 const formatUserInputTimeString = (timeString) => {
     if (typeof timeString !== "string") return console.log(`Expected string instead of ${typeof timeString}`);
 
-    timeString.replace(/[\d:amp]/gi, '');
+    timeString = timeString.replace(/[^\d:amp]/gi, '');
     timeString = timeString.toLowerCase();
+    if(!timeString) return null;
 
     let hoursStr, hoursNum, minutesStr, minutesNum;
 
@@ -23,12 +24,9 @@ const formatUserInputTimeString = (timeString) => {
 
         switch (numStr.length) {
             case 1:
+            case 2:
                 hoursNum = parseInt(numStr);
                 minutesNum = 0;
-                break;
-            case 2:
-                hoursNum = parseInt(numStr.slice(0, 1));
-                minutesNum = parseInt(numStr.slice(1, 2)) * 10;
                 break;
             case 3:
                 hoursNum = parseInt(numStr.slice(0, 1));
@@ -39,8 +37,9 @@ const formatUserInputTimeString = (timeString) => {
                 hoursNum = parseInt(numStr.slice(0, 2));
                 minutesNum = parseInt(numStr.slice(2, 4));
                 break;
+            default:
+                return null;
         }
-
     }
     // console.log({ hoursNum, minutesNum });
 

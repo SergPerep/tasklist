@@ -17,6 +17,7 @@ const addTask = async ({ description, dateStr = null, timeStr = null, projectId 
             if (typeof dateStr !== "string") throw new WrongTypeError("string", dateStr, { dateStr });
             if (!date.isValid(dateStr, "YYYY-MM-DD")) throw new ValidationError("Expected valid YYYY-MM-DD instead of", { dateStr });
         }
+        if (dateStr === "") dateStr = null;
 
         if (timeStr) {
             if (typeof timeStr !== "string") throw new WrongTypeError("string", timeStr, { timeStr });
@@ -30,8 +31,8 @@ const addTask = async ({ description, dateStr = null, timeStr = null, projectId 
 
         const body = {
             description: description,
-            date: dateStr,
-            time: timeStr,
+            date: dateStr || null,
+            time: timeStr || null,
             folder_id: projectId
         }
 
