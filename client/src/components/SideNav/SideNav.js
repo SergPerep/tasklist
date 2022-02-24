@@ -21,15 +21,10 @@ const SideNav = () => {
 
     const isScreenSmall = useStore(state => state.isScreenSmall);
     const setIsSideNavOpened = useStore(state => state.setIsSideNavOpened);
-    
+
     useEffect(() => {
         localStorage.setItem("openProjects", openProjects);
     }, [openProjects]);
-
-    const handleAddNewProject = e => {
-        e.stopPropagation();
-        setIsModalAddProjectOpen(true);
-    }
 
     const areThereTomorrowTasks = true && tasks
         ?.find(task => {
@@ -42,7 +37,7 @@ const SideNav = () => {
 
     return (
         <>
-            
+
             <div className="sidenav">
                 {sections
                     .filter(section => section.isAProject === false)
@@ -52,7 +47,7 @@ const SideNav = () => {
                         onClick={() => {
                             setSelectedSectionId(section.id);
                             closeEdits();
-                            if(isScreenSmall) setIsSideNavOpened(false);
+                            if (isScreenSmall) setIsSideNavOpened(false);
                         }}
                         selected={section.selected}
                         key={section.id}
@@ -72,7 +67,7 @@ const SideNav = () => {
                         onClick={() => {
                             setSelectedSectionId(section.id);
                             closeEdits();
-                            if(isScreenSmall) setIsSideNavOpened(false);
+                            if (isScreenSmall) setIsSideNavOpened(false);
                         }}
                         selected={section.selected}
                         key={section.id}

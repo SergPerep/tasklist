@@ -1,5 +1,5 @@
 const Input = props => {
-    const { label, name, value, placeholder, onChange, autoFocus, type = "text" } = props;
+    const { label, name, value, placeholder, onChange, autoFocus, type = "text", maxLength, minLength } = props;
     return <div className="input-field">
         <label>{label}</label>
         <input 
@@ -8,6 +8,8 @@ const Input = props => {
         value={value} 
         onChange={onChange} 
         autoFocus={autoFocus}
+        maxLength={maxLength}
+        minLength={minLength}
         placeholder={placeholder}></input>
     </div>
 }

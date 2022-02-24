@@ -29,3 +29,9 @@
     font-size: 12px;
     line-height: 20px;
 }
+
+@mixin turncatedString {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

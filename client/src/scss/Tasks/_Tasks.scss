@@ -47,8 +47,15 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        max-width: 70%;
         .color-display{
             margin-left: -4px;
+        }
+        .project-desc{
+            max-width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
     }
 

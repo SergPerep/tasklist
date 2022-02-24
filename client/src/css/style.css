@@ -319,6 +319,9 @@ div {
 }
 .sidenav-item .sidenav-desc {
   width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
   font-size: 16px;
   line-height: 28px;
 }
@@ -421,9 +424,16 @@ div {
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 70%;
 }
 .taskitem .taskitem-project .color-display {
   margin-left: -4px;
+}
+.taskitem .taskitem-project .project-desc {
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .taskitem .more {
   color: rgba(255, 255, 255, 0.4);
@@ -556,6 +566,7 @@ div {
   background-color: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.04);
   border-radius: 6px;
+  flex-shrink: 0;
 }
 .dt-picker .placeholder {
   color: rgba(255, 255, 255, 0.12);
@@ -946,10 +957,14 @@ button.hrefless-link:active {
 /* Project picker */
 .project-picker {
   position: relative;
+  min-width: 0;
 }
 .project-picker .project-desc {
   font-size: 14px;
   line-height: 24px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .project-picker .project-display {
   background-color: rgba(255, 255, 255, 0.04);
@@ -973,6 +988,7 @@ button.hrefless-link:active {
 }
 
 .project-menu {
+  max-width: 140px;
   border-radius: 6px;
   padding: 4px;
   position: absolute;
@@ -980,6 +996,11 @@ button.hrefless-link:active {
   left: 0;
   background-color: #080808;
   min-width: 180px;
+}
+.project-menu .menu-item-title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 /* COLORS */

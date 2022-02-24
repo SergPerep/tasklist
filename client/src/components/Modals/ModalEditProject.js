@@ -27,7 +27,7 @@ const ModalEditProject = ({ setIsModalOpen, projectId }) => {
         }
     }, {
         title: "Save",
-        disabled: inputProjectNameValue ? false : true,
+        disabled: inputProjectNameValue.trim() ? false : true,
         onClick: () => {
             updateProject(project.id, inputProjectNameValue, selectedColor.id);
             setIsModalOpen(false);
@@ -38,6 +38,7 @@ const ModalEditProject = ({ setIsModalOpen, projectId }) => {
         <Input
             label="Name"
             value={inputProjectNameValue}
+            maxLength="100"
             onChange={e => { setInputProjectNameValue(e.target.value) }} />
         <Select
             placeholder="New select"

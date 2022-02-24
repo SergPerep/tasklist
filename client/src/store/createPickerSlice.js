@@ -1,17 +1,13 @@
 import { today } from "../utils/days";
-import formatTimeStringForDisplay from "../utils/formatTimeStringForDisplay";
 
 const createPickerSlice = (set, get) => ({
-    pickedDateStr: "",
-    setPickedDateStr: (dateStr) => set({ pickedDateStr: dateStr }),
-
     pickedProjectId: "inb",
     setPickedProjectId: (id) => set({ pickedProjectId: id }),
 
     pickedDateStr: "",
-    setPickedDateStr: someDate => set(() => {
-        if (!someDate) return { pickedDateStr: "" };
-        if (typeof someDate === "string") return { pickedDateStr: someDate }
+    setPickedDateStr: dateStr => set(() => {
+        if (!dateStr) return { pickedDateStr: "" };
+        if (typeof dateStr === "string") return { pickedDateStr: dateStr }
     }),
 
     pickedTimeStr: "",

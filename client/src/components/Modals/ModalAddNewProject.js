@@ -39,7 +39,7 @@ const ModalAddNewProject = ({ setIsModalOpen }) => {
             onClick: handleClickClose
         }, {
             title: "Add",
-            disabled: inputAddProjectValue ? false : true,
+            disabled: inputAddProjectValue.trim() ? false : true,
             onClick: handleClickAdd
         }]}>
             <h2>Add project</h2>
@@ -47,6 +47,7 @@ const ModalAddNewProject = ({ setIsModalOpen }) => {
                 label="Name"
                 value={inputAddProjectValue}
                 autoFocus
+                maxLength="100"
                 onChange={e => { setInputAddProjectValue(e.target.value) }} />
             <Select
                 placeholder="New select"

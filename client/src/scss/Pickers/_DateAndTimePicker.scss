@@ -9,7 +9,7 @@ $borderColor: colors.$white-04;
   background-color: colors.$white-04;
   border: 1px solid $borderColor;
   border-radius: 6px;
-
+  flex-shrink: 0;
   .placeholder {
     color: colors.$white-12;
   }

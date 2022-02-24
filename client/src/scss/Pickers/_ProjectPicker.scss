@@ -5,8 +5,11 @@
 
 .project-picker {
     position: relative;
+    min-width: 0;
     .project-desc {
         @include fonts.small-reg;
+        @include fonts.turncatedString;
+        // width: 100%;
     }
 
     .project-display {
@@ -36,6 +39,7 @@
 }
 
 .project-menu {
+    max-width: 140px;
     border-radius: 6px;
     padding: 4px;
     position: absolute;
@@ -43,4 +47,7 @@
     left: 0;
     background-color: colors.$prime01;
     min-width: 180px;
+    .menu-item-title {
+        @include fonts.turncatedString;
+    }
 }

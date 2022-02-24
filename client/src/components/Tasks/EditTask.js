@@ -70,6 +70,7 @@ const EditTask = ({ task, btnName = "Save" }) => {
                     className="taskinput"
                     type="text"
                     placeholder="Task discription"
+                    max="255"
                     onChange={e => setTaskInputValue(e.target.value)}
                     value={taskInputValue}
                     autoFocus
