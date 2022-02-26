@@ -1,4 +1,5 @@
 @use "./colors";
+@use "./fonts";
 
 /* AUTHENTICATION */
 
@@ -7,6 +8,32 @@
     padding: 24px;
     background-color: colors.$prime03;
     border-radius: 8px;
+    .input-field:first-child {
+        margin-bottom: 8px;
+    }
+    .hint {
+        margin-bottom: 16px;
+        display: flex;
+        // align-items: center;
+        .spinner {
+            margin-right: 8px;
+        }
+        span {
+            @include fonts.small-reg;
+            color: colors.$white-40;
+            margin-left: 8px;
+        }
+        .icon-container {
+            padding: 4px 0 4px;
+            &.check-icon{
+                color: colors.$success;
+            }
+
+            &.close-icon{
+                color: colors.$error;
+            }
+        }
+    }
 }
 
 .input-field {

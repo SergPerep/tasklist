@@ -140,8 +140,8 @@ div {
 
 @font-face {
   font-family: "lineicons";
-  src: url("../fonts/lineicons.eot?fugxi6");
-  src: url("../fonts/lineicons.eot?fugxi6#iefix") format("embedded-opentype"), url("../fonts/lineicons.ttf?fugxi6") format("truetype"), url("../fonts/lineicons.woff?fugxi6") format("woff"), url("../fonts/lineicons.svg?fugxi6#lineicons") format("svg");
+  src: url("../fonts/lineicons.eot?f5o6n0");
+  src: url("../fonts/lineicons.eot?f5o6n0#iefix") format("embedded-opentype"), url("../fonts/lineicons.ttf?f5o6n0") format("truetype"), url("../fonts/lineicons.woff?f5o6n0") format("woff"), url("../fonts/lineicons.svg?f5o6n0#lineicons") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -157,6 +157,14 @@ div {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-EyeOff-md:before {
+  content: "\e91f";
+}
+
+.icon-EyeOn-md:before {
+  content: "\e920";
 }
 
 .icon-Clock-md:before {
@@ -1060,6 +1068,10 @@ button.hrefless-link:active {
   transition: all ease-in-out 0.2s;
   outline: 1px solid transparent;
 }
+.input-field input::placeholder,
+.select-display::placeholder {
+  color: rgba(255, 255, 255, 0.12);
+}
 .input-field input:hover,
 .select-display:hover {
   background-color: rgba(0, 0, 0, 0.6);
@@ -1107,13 +1119,109 @@ button.hrefless-link:active {
   height: 18px;
 }
 
+.password-input-field .input-container {
+  position: relative;
+}
+.password-input-field .input-container label[for=password-strength] {
+  display: none;
+}
+.password-input-field .input-container .show-password-btn {
+  position: absolute;
+  padding: 4px;
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.2);
+  background-color: transparent;
+  right: 6px;
+  top: 6px;
+  cursor: pointer;
+  transition: all ease-in-out 0.2s;
+}
+.password-input-field .input-container .show-password-btn:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.4);
+}
+.password-input-field .input-container input {
+  border-radius: 6px 6px 0 0;
+}
+.password-input-field .input-container meter {
+  width: 100%;
+  height: 2px;
+  border-radius: 0;
+  display: block;
+  border: none;
+}
+.password-input-field .input-container meter::-webkit-meter-bar {
+  background: none;
+  background-color: rgba(255, 255, 255, 0.12);
+  border: none;
+  border-radius: 0;
+  height: 2px;
+}
+.password-input-field .input-container meter::-webkit-meter-optimum-value {
+  transition: all ease-in-out 0.2s;
+}
+.password-input-field .input-container meter[value="1"]::-webkit-meter-optimum-value {
+  background-color: #eb5757;
+}
+.password-input-field .input-container meter[value="2"]::-webkit-meter-optimum-value {
+  background-color: #f97c1c;
+}
+.password-input-field .input-container meter[value="3"]::-webkit-meter-optimum-value {
+  background-color: #E8B70E;
+}
+.password-input-field .input-container meter[value="4"]::-webkit-meter-optimum-value {
+  background-color: #0DAD70;
+}
+.password-input-field .input-container .hint {
+  padding-top: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  flex-direction: column;
+  font-size: 14px;
+  line-height: 24px;
+}
+.password-input-field .input-container .hint .title {
+  display: flex;
+}
+.password-input-field .input-container .hint .icon-container[score="0"], .password-input-field .input-container .hint .icon-container[score="1"], .password-input-field .input-container .hint .icon-container[score="2"] {
+  color: #eb5757;
+}
+.password-input-field .input-container .hint .icon-container[score="3"], .password-input-field .input-container .hint .icon-container[score="4"] {
+  color: #0DAD70;
+}
+
 /* COLORS */
+/* Font styles */
 /* AUTHENTICATION */
 .authentication {
   width: 360px;
   padding: 24px;
   background-color: #292929;
   border-radius: 8px;
+}
+.authentication .input-field:first-child {
+  margin-bottom: 8px;
+}
+.authentication .hint {
+  margin-bottom: 16px;
+  display: flex;
+}
+.authentication .hint .spinner {
+  margin-right: 8px;
+}
+.authentication .hint span {
+  font-size: 14px;
+  line-height: 24px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-left: 8px;
+}
+.authentication .hint .icon-container {
+  padding: 4px 0 4px;
+}
+.authentication .hint .icon-container.check-icon {
+  color: #0DAD70;
+}
+.authentication .hint .icon-container.close-icon {
+  color: #eb5757;
 }
 
 .input-field {
@@ -1182,6 +1290,60 @@ button.hrefless-link:active {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
+/* COLORS */
+.spinner {
+  display: block;
+}
+.spinner.lg {
+  width: 50px;
+  height: 50px;
+}
+.spinner.md {
+  width: 16px;
+  height: 16px;
+}
+.spinner .spinner-line {
+  r: 18px;
+  stroke-width: 4px;
+  stroke: #9b51e0;
+  fill: none;
+  transform-origin: 50% 50%;
+  transform: rotate(-90deg);
+  animation: expanding 1.4s ease-in-out infinite;
+}
+.spinner .spinner-group {
+  transform-origin: 50% 50%;
+  animation: spinning 1.4s linear infinite;
+}
+
+@keyframes expanding {
+  0%, 100% {
+    stroke-dasharray: 6.28px, 106.76px;
+  }
+  50% {
+    stroke-dasharray: 87.92px, 106.76px;
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -81.64px;
+  }
+  0% {
+    transform: rotate(-90deg);
+  }
+  100% {
+    transform: rotate(10deg);
+  }
+}
+@keyframes spinning {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(1turn);
+  }
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;

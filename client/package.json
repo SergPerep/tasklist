@@ -17,7 +17,8 @@
     "uuid": "^8.3.2",
     "web-vitals": "^1.1.2",
     "zustand": "^3.6.9",
-    "zustand-middleware-computed-state": "^0.1.0"
+    "zustand-middleware-computed-state": "^0.1.0",
+    "zxcvbn": "^4.4.2"
   },
   "scripts": {
     "start": "react-scripts start",

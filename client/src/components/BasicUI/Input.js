@@ -10,7 +10,7 @@ const Input = props => {
         autoFocus={autoFocus}
         maxLength={maxLength}
         minLength={minLength}
-        placeholder={placeholder}></input>
+        placeholder={placeholder} />
     </div>
 }
 

@@ -55,6 +55,7 @@ app.use("/auth", require("./routes/auth"));
 app.use("/tasks", requireAuth, require("./routes/tasks"));
 app.use("/folders",requireAuth ,require("./routes/folders"));
 app.use("/colors", require("./routes/colors"));
+app.use("/users", require("./routes/users"));
 
 app.use(handleErrors);
 

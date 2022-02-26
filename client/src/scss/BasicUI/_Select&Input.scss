@@ -20,13 +20,16 @@
     background-color: colors.$black-30;
     color: colors.$white-40;
     border-radius: 4px;
-    transition: all ease-in-out .2s;
+    transition: all ease-in-out 0.2s;
     outline: 1px solid transparent;
-    &:hover{
+    &::placeholder {
+        color: colors.$white-12;
+    }
+    &:hover {
         background-color: colors.$black-60;
         color: colors.$white-80;
     }
-    &:focus{
+    &:focus {
         background-color: colors.$black-60;
         color: colors.$white-80;
         outline: 1px solid colors.$active;
@@ -65,4 +68,86 @@
 .select-display-color .color-display {
     width: 24px;
     height: 18px;
+}
+
+.password-input-field {
+    .input-container {
+        position: relative;
+        label[for="password-strength"] {
+            display: none;
+        }
+        .show-password-btn {
+            position: absolute;
+            padding: 4px;
+            border-radius: 6px;
+            color: colors.$white-20;
+            background-color: transparent;
+            right: 6px;
+            top: 6px;
+            cursor: pointer;
+            transition: all ease-in-out 0.2s;
+            &:hover {
+                background-color: colors.$white-04;
+                color: colors.$white-40;
+            }
+        }
+        input {
+            border-radius: 6px 6px 0 0;
+        }
+        meter {
+            width: 100%;
+            height: 2px;
+            border-radius: 0;
+            display: block;
+            // border: 1px solid white;
+            border: none;
+            &::-webkit-meter-bar {
+                background: none;
+                background-color: colors.$white-12;
+                border: none;
+                border-radius: 0;
+                height: 2px;
+            }
+            &::-webkit-meter-optimum-value {
+                transition: all ease-in-out 0.2s;
+            }
+            &[value="1"]::-webkit-meter-optimum-value {
+                background-color: colors.$error;
+            }
+            &[value="2"]::-webkit-meter-optimum-value {
+                background-color: #f97c1c;
+            }
+            &[value="3"]::-webkit-meter-optimum-value {
+                background-color: colors.$warning;
+            }
+            &[value="4"]::-webkit-meter-optimum-value {
+                background-color: colors.$success;
+            }
+        }
+        .hint {
+            // padding: 12px 16px;
+            padding-top: 12px;
+            // border-radius: 0 0 6px 6px;
+            // background-color: colors.$white-04;
+            color: colors.$white-40;
+            flex-direction: column;
+            @include fonts.small-reg;
+            // transition: max-height ease-in-out 0.2s;
+            .title {
+                display: flex;
+            }
+
+            .icon-container {
+                &[score="0"],
+                &[score="1"],
+                &[score="2"] {
+                    color: colors.$error;
+                }
+                &[score="3"],
+                &[score="4"] {
+                    color: colors.$success;
+                }
+            }
+        }
+    }
 }

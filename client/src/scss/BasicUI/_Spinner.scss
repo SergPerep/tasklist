@@ -1,0 +1,79 @@
+@use "../colors";
+//Inputs
+$r: 18px;
+$arc01: 20deg; //angle of a short arc
+$arc02: 280deg; // angle of a long arc
+$length-change-speed: 1.4s;
+$outer-rotation-speed: 1.4s;
+//Constants
+$pi: 3.14;
+//Formulas
+$C: 2 * $pi * $r; //length of circle
+$l01: calc($pi * $r * $arc01 / 180deg); // length of the short line
+$l02: calc($pi * $r * $arc02 / 180deg); // length of the long line
+$e: $C - $l01; // dash step for stroke-dasharray property
+$alpha: 360deg - $arc02 + $arc01 - 90deg; // angle of turn that had to be made to return line to the original position
+$offset: $l01 - $l02; // length of offset for stroke-dashoffset property
+// body {
+//     background: #f5f5f5;
+//     margin: 0;
+//     min-height: 100vh;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+.spinner {
+    display: block;
+    &.lg {
+        width: 50px;
+        height: 50px;
+    }
+    &.md {
+        width: 16px;
+        height: 16px;
+    }
+    .spinner-line {
+        r: $r;
+        stroke-width: 4px;
+        stroke: colors.$active;
+        fill: none;
+        transform-origin: 50% 50%;
+        transform: rotate(-90deg);
+        animation: expanding $length-change-speed ease-in-out infinite;
+    }
+    .spinner-group {
+        transform-origin: 50% 50%;
+        animation: spinning $outer-rotation-speed linear infinite;
+    }
+}
+
+@keyframes expanding {
+    0%,
+    100% {
+        stroke-dasharray: $l01, $e;
+    }
+    50% {
+        stroke-dasharray: $l02, $e;
+    }
+    50% {
+        stroke-dashoffset: 0;
+    }
+    100% {
+        stroke-dashoffset: $offset;
+    }
+    0% {
+        transform: rotate(-90deg);
+    }
+    100% {
+        transform: rotate($alpha);
+    }
+}
+
+@keyframes spinning {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(1turn);
+    }
+}
