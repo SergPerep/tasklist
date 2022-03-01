@@ -1,0 +1,27 @@
+@use "./colors";
+@use "./fonts";
+
+/* EMPTY STATE */
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    .empty-state-title {
+        @include fonts.body-reg;
+        color: colors.$white-80;
+        margin-top: 24px;
+    }
+
+    .empty-state-desc {
+        @include fonts.small-reg;
+        color: colors.$white-40;
+        margin-top: 4px;
+    }
+
+    .empty-state-title,
+    .empty-state-desc {
+        text-align: center;
+    }
+}

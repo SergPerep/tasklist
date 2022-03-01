@@ -2,6 +2,7 @@ import Task from "./Task";
 import Accordion from "../Accordion";
 import useStore from "../../store/useStore";
 import { filterInboxTasks, filterOverdueTasks, filterTodayTasks, filterTomorrowTasks, filterProjectTasks } from "../../utils/filterTasks";
+import EmptyState from "../EmptyState";
 
 
 const TaskList = () => {
@@ -34,6 +35,10 @@ const TaskList = () => {
     const projectTaskList = filterProjectTasks(tasks, selectedSectionId, false);
     const completedProjectTaskList = filterProjectTasks(tasks, selectedSectionId, true);
 
+    const isInboxListEmpty = !(inboxTaskList.length > 0 || (isShowCompletedTasks && completedInboxTaskList.length > 0))
+    const isTodayListEmpty = !(overdueTaskList.length > 0 || todayTaskList?.length !== 0 || (isShowCompletedTasks && completedTodayTaskList.length > 0));
+    const isTomorrowListEmpty = !(tomorrowTaskList.length > 0 || (isShowCompletedTasks && completedTomorrowTaskList.length > 0));
+    const isProjectListEmpty = !(projectTaskList?.length > 0 || (isShowCompletedTasks && completedProjectTaskList?.length > 0));
     return (
         <div className="tasklist">
 
@@ -46,6 +51,7 @@ const TaskList = () => {
                             {buldList(completedInboxTaskList)}
                         </Accordion>
                     }
+                    {isInboxListEmpty && <EmptyState sectionType="Inbox" />}
                 </>
             }
             {/* TODAY */}
@@ -56,7 +62,7 @@ const TaskList = () => {
                             <Accordion title="Overdue" count={overdueTaskList.length}>
                                 {buldList(overdueTaskList)}
                             </Accordion>
-                            {todayTaskList && todayTaskList.length !== 0 &&
+                            {todayTaskList?.length !== 0 &&
                                 <Accordion title="Today" count={todayTaskList.length}>
                                     {buldList(todayTaskList)}
                                 </Accordion>
@@ -71,7 +77,7 @@ const TaskList = () => {
                             {buldList(completedTodayTaskList)}
                         </Accordion>
                     }
-
+                    {isTodayListEmpty && <EmptyState sectionType="Today" />}
                 </>
             }
             {/* TOMORROW */}
@@ -83,6 +89,7 @@ const TaskList = () => {
                             {buldList(completedTomorrowTaskList)}
                         </Accordion>
                     }
+                    {isTomorrowListEmpty && <EmptyState sectionType="Tomorrow" />}
                 </>
             }
             {/* PROJECT */}
@@ -94,6 +101,7 @@ const TaskList = () => {
                             {buldList(completedProjectTaskList)}
                         </Accordion>
                     }
+                    {isProjectListEmpty && <EmptyState sectionType="Project" />}
                 </>
             }
         </div>

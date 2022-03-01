@@ -24,6 +24,7 @@
 @import "./authentication";
 @import "./TopNav";
 @import "./BasicUI/Spinner";
+@import "./EmptyState";
 
 body {
   margin: 0;
@@ -200,28 +201,3 @@ p {
   height: 100%;
 }
 
-/* EMPTY STATE */
-
-.empty-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 24px;
-}
-
-.empty-state-title {
-  font-size: 18px;
-  line-height: 28px;
-  font-weight: bold;
-  margin-top: 8px;
-}
-
-.empty-state-desc {
-  line-height: 24px;
-  margin-top: 8px;
-}
-
-.empty-state-title,
-.empty-state-desc {
-  text-align: center;
-}
