@@ -1145,7 +1145,7 @@ button.hrefless-link:active {
 }
 .password-input-field .input-container meter {
   width: 100%;
-  height: 2px;
+  height: 3px;
   border-radius: 0;
   display: block;
   border: none;
@@ -1155,7 +1155,7 @@ button.hrefless-link:active {
   background-color: rgba(255, 255, 255, 0.12);
   border: none;
   border-radius: 0;
-  height: 2px;
+  height: 3px;
 }
 .password-input-field .input-container meter::-webkit-meter-optimum-value {
   transition: all ease-in-out 0.2s;
@@ -1197,6 +1197,19 @@ button.hrefless-link:active {
   padding: 24px;
   background-color: #292929;
   border-radius: 8px;
+}
+.authentication .logo-container {
+  margin: 0 auto 12px;
+  padding: 4px;
+  border-radius: 50%;
+  width: 96px;
+  height: 96px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.authentication .logo-container svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 .authentication .input-field:first-child {
   margin-bottom: 8px;

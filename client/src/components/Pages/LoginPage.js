@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import HreflessLink from "../BasicUI/HreflessLink";
 import loginUser from "../../fetch/auth/loginUser";
 import useStore from "../../store/useStore";
+import { ReactComponent as Logo } from "../../img/Logo-transparent.svg";
 
 const LoginPage = () => {
     const [inputs, setInputs] = useState({ username: "Bob", password: "BobTheBuilder1084" });
@@ -23,6 +24,9 @@ const LoginPage = () => {
     return (
         <div className="canvas">
             <div className="authentication">
+                <div className="logo-container">
+                    <Logo />
+                </div>
                 <h2>Login</h2>
                 <form onSubmit={handleSumbitForm}>
                     <Input

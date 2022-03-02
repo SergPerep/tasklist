@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "../BasicUI/Button";
 import Input from "../BasicUI/Input";
 import PasswordInput from "../BasicUI/PasswordInput";
@@ -10,6 +10,7 @@ import checkWhearherUsernameExists from "../../fetch/checkWeatherUsernameExists"
 import validateUsername from "../../utils/validateUsername";
 import Spinner from "../BasicUI/Spinner";
 import Icon from "../BasicUI/Icon";
+import { ReactComponent as Logo } from "../../img/Logo-transparent.svg";
 
 const SignupPage = () => {
 
@@ -67,6 +68,9 @@ const SignupPage = () => {
     }
     return <div className="canvas">
         <div className="authentication">
+            <div className="logo-container">
+                <Logo />
+            </div>
             <h2>Sign up</h2>
             <form onSubmit={handleSumbitForm}>
                 <Input
