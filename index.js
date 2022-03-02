@@ -53,9 +53,16 @@ app.get("/session", (req, res) => {
 
 app.use("/auth", require("./routes/auth"));
 app.use("/tasks", requireAuth, require("./routes/tasks"));
-app.use("/folders",requireAuth ,require("./routes/folders"));
+app.use("/folders", requireAuth, require("./routes/folders"));
 app.use("/colors", require("./routes/colors"));
 app.use("/users", require("./routes/users"));
+
+
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, '/client/build/index.html'), function (err) {
+        if (err) res.status(500).send(err);
+    })
+})
 
 app.use(handleErrors);
 
