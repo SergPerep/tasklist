@@ -33,7 +33,7 @@ app.use(session({
 
 // Middleware
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: NODE_ENV === "production" ? false : "http://localhost:3000",
     credentials: true,
     methods: ['GET', 'PUT', 'POST', 'DELETE'],
     allowedHeaders: ['Content-Type', '*']
