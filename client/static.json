@@ -1,8 +1,0 @@
-{
-  "_comment": "Helps to redirect requests on client to index.html instead of server",
-  "root": "build/",
-  "clean_urls": false,
-  "routes": {
-    "/**": "index.html"
-  }
-}
