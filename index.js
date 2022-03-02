@@ -17,8 +17,6 @@ const {
     MONGODB_USER_PASSWORD
 } = process.env;
 
-logger.info(MONGODB_USER_PASSWORD);
-
 app.use(session({
     resave: false,
     saveUninitialized: true,
@@ -61,7 +59,7 @@ app.use("/colors", require("./routes/colors"));
 app.use("/users", require("./routes/users"));
 
 
-app.get('/*', function (req, res) {
+app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '/client/build/index.html'), function (err) {
         if (err) res.status(500).send(err);
     })
