@@ -8,13 +8,16 @@ const MongoDBStorage = require("connect-mongodb-session")(session);
 const handleErrors = require("./middlewares/handleErrors");
 const requireAuth = require("./middlewares/requireAuth");
 const logger = require("./utils/logger");
+require("dotenv").config();
 
 const {
     PORT = 5000,
     NODE_ENV = "development",
     SESS_SECRET = "session secret",
-    MONGODB_USER_PASSWORD = "u17FC7tjhKjtpM96"
+    MONGODB_USER_PASSWORD
 } = process.env;
+
+logger.info(MONGODB_USER_PASSWORD);
 
 app.use(session({
     resave: false,
@@ -33,7 +36,7 @@ app.use(session({
 
 // Middleware
 app.use(cors({
-    origin: NODE_ENV === "production" ? false : "http://localhost:3000",
+    origin: "http://localhost:3000",
     credentials: true,
     methods: ['GET', 'PUT', 'POST', 'DELETE'],
     allowedHeaders: ['Content-Type', '*']
