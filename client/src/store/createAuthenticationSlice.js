@@ -1,5 +1,5 @@
 export default (set, get) => ({
-    isUserAuthenticated: false,
+    isUserAuthenticated: null,
     setIsUserAuthenticated: (authStatus) => {
         if (authStatus === true) return set({ isUserAuthenticated: true })
         set({ isUserAuthenticated: false })

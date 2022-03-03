@@ -90,7 +90,7 @@ const SignupPage = () => {
                     </>}
 
                     {isUsernameExists === null && isUsernameCorrect && <>
-                        <Spinner size="md" />
+                        <Spinner size="sm" />
                         <span>Checking username...</span>
                     </>}
 

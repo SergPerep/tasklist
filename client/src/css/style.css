@@ -1312,6 +1312,10 @@ button.hrefless-link:active {
   height: 50px;
 }
 .spinner.md {
+  width: 24px;
+  height: 24px;
+}
+.spinner.sm {
   width: 16px;
   height: 16px;
 }
