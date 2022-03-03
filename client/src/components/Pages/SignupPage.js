@@ -14,7 +14,7 @@ import { ReactComponent as Logo } from "../../img/Logo-transparent.svg";
 
 const SignupPage = () => {
 
-    const [inputs, setInputs] = useState({ username: "goodBoy55", password: "pa$$55" })
+    const [inputs, setInputs] = useState({ username: "", password: "" })
     const setIsUserAuthenticated = useStore(state => state.setIsUserAuthenticated);
     const [isPasswordGood, setIsPasswordGood] = useState(false);
     const navigate = useNavigate();
@@ -77,7 +77,7 @@ const SignupPage = () => {
                     label="Username"
                     name="username"
                     value={inputs.username}
-                    placeholder="some-name"
+                    placeholder=""
                     onChange={handleChangeUsernameInput}
                 />
                 <div className="hint">
@@ -116,7 +116,7 @@ const SignupPage = () => {
                     label="Password"
                     name="password"
                     value={inputs.password}
-                    placeholder="••••••"
+                    placeholder=""
                     hasStrengthBar={true}
                     hasShowPassword={true}
                     onChange={handleChangePasswordInput}

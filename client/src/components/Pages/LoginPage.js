@@ -8,7 +8,7 @@ import useStore from "../../store/useStore";
 import { ReactComponent as Logo } from "../../img/Logo-transparent.svg";
 
 const LoginPage = () => {
-    const [inputs, setInputs] = useState({ username: "Bob", password: "BobTheBuilder1084" });
+    const [inputs, setInputs] = useState({ username: "", password: "" });
     const setIsUserAuthenticated = useStore(state => state.setIsUserAuthenticated);
 
     const navigate = useNavigate();
@@ -33,7 +33,7 @@ const LoginPage = () => {
                         label="Username"
                         name="username"
                         value={inputs.username}
-                        placeholder="some-name"
+                        placeholder=""
                         onChange={handleChangeInput}
                     />
                     <Input
@@ -41,7 +41,7 @@ const LoginPage = () => {
                         name="password"
                         type="password"
                         value={inputs.password}
-                        placeholder="*****"
+                        placeholder=""
                         onChange={handleChangeInput}
                     />
                     <HreflessLink onClick={e => {
