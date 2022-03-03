@@ -1,13 +1,14 @@
 const pool = require("../db");
-const date = require("date-and-time");
+// const date = require("date-and-time");
 const logger = require("./logger");
 
-const today = new Date();
-const yesterday = date.addDays(today, -1);
+// const today = new Date();
+// const yesterday = date.addDays(today, -1);
 
 module.exports = async (userId) => {
     try {
-        if(!userId) return logger.error("Missing credentials: userId");
+        if (!userId) return logger.error("Missing credentials: userId");
+        /*
         const addFolder = await pool.query(`
             INSERT INTO
                 folder (name, color_id, user_id)
@@ -18,47 +19,27 @@ module.exports = async (userId) => {
             `,
             ["Test project", 1, userId]);
         const folderId = await addFolder.rows[0].id;
-
+        */
         // logger.info("Folder has been created");
 
         const taskList = [
             {
-                description: "Tasks of a project have colorful labels",
-                isCompleted: false,
-                date: date.format(today, "YYYY-MM-DD"),
-                time: null,
-                folderId: folderId
-            },
-            {
-                description: "You can hide completed tasks through top-right “•••”",
-                isCompleted: true,
-                date: null,
-                time: null,
-                folderId: null
-            },
-            {
-                description: "This task is overdue",
-                isCompleted: false,
-                date: date.format(yesterday, "YYYY-MM-DD"),
-                time: null,
-                folderId: null
-            },
-            {
-                description: "Click on “+ New project” on the left side to create new project",
+                description: "Create new project: push “New project” button in side-navigation.",
                 isCompleted: false,
                 date: null,
                 time: null,
                 folderId: null
             },
             {
-                description: "Set date and time",
+                description: "Add new task. You can set up date, time and related project for the task.",
                 isCompleted: false,
-                date: date.format(today, "YYYY-MM-DD"),
-                time: "18:00",
+                date: null,
+                time: null,
                 folderId: null
             },
+
             {
-                description: "Add new task",
+                description: "Welcome to Tasklist!",
                 isCompleted: false,
                 date: null,
                 time: null,
