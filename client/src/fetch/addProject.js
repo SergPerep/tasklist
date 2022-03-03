@@ -4,7 +4,7 @@ import getFolders from "./getFolders";
 
 const addProject = async (folderName, colorId = null, callback) => {
     try {
-        console.log("--> addProject");
+        // console.log("--> addProject");
         if (!folderName) throw new EmptyValueError(undefined, { folderName });
         if (typeof folderName !== "string") throw new WrongTypeError("string", folderName, { folderName })
         if (!folderName.trim()) throw new EmptyValueError(undefined, { folderName });

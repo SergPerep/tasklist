@@ -4,14 +4,17 @@ const pool = require("../db");
 // Get all folders
 router.get("/", async (req, res) => {
     try {
+        const userId = req.session?.user?.userId;
         const allFolders = await pool.query(`
         SELECT
             id,
             name,
             color_id
         FROM
-            folder;
-        `);
+            folder
+        WHERE
+            folder.user_id = $1;
+        `, [userId]);
         // Feedback to client
         res.json(allFolders.rows);
     } catch (error) {

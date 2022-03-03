@@ -9,6 +9,7 @@ const checkWhetherUserAlreadyExists = require("../utils/checkWhetherUserAlreadyE
 const validateUsername = require("../utils/validateUsername");
 const validatePassword = require("../utils/validatePassword");
 const { ForbiddenError, MissingCredentialsError } = require("../utils/customErrors");
+const setupNewAccount = require("../utils/setupNewAccount");
 
 router.post("/register", async (req, res, next) => {
     try {
@@ -27,6 +28,8 @@ router.post("/register", async (req, res, next) => {
         const userId = dbData.rows[0].id;
 
         req.session.user = { userId };
+
+        await setupNewAccount(userId);
 
         res.status(200).json({ isAuthenticated: true });
 

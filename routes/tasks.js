@@ -1,9 +1,12 @@
 const router = require("express").Router();
 const pool = require("../db");
+const logger = require("../utils/logger");
 
 // Get all tasks
 router.get("/", async (req, res) => {
     try {
+        const userId = req.session?.user?.userId;
+        // logger.info(userId);
         const allTasks = await pool.query(`
             SELECT 
                 task.id as id, 
@@ -16,9 +19,10 @@ router.get("/", async (req, res) => {
                 folder.id as folder_id 
             FROM task
                 LEFT JOIN folder ON folder.id = task.folder_id
+            WHERE task.user_id = $1
             ORDER BY 
                 time_of_creation DESC;
-            `);
+            `, [userId]);
         // Feedback to client
         res.json(allTasks.rows);
     } catch (error) {
