@@ -12,7 +12,11 @@ const createInterfaceSlice = (set, get) => ({
     setIsSideNavOpened: (isOpened) => set({ isSideNavOpened: isOpened }),
     toggleIsSideNavOpened: () => set(state => ({ isSideNavOpened: !state.isSideNavOpened })),
     isScreenSmall: false,
-    setIsScreenSmall: (windowWidth) => set({ isScreenSmall: windowWidth < 800 })
+    setIsScreenSmall: (windowWidth) => set({ isScreenSmall: windowWidth < 800 }),
+    isTaskListLoaderVisible: true,
+    setIsTaskListLoaderVisible: (booleanVal) => set({ isTaskListLoaderVisible: booleanVal }),
+    isSideNavLoaderVisible: true,
+    setIsSideNavLoaderVisible: (booleanVal) => set({ isSideNavLoaderVisible: booleanVal })
 })
 
 export default createInterfaceSlice;

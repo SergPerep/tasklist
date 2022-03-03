@@ -11,9 +11,6 @@ function App() {
   const isUserAuthenticated = useStore(state => state.isUserAuthenticated);
   const setIsUserAuthenticated = useStore(state => state.setIsUserAuthenticated);
 
-  const openEditArr = useStore(state => state.openEditArr);
-  // console.log({ openEditArr });
-
   useEffect(() => {
     checkWhetherUserIsAuthenticated().then(result => setIsUserAuthenticated(result));
   }, [])

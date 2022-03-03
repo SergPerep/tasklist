@@ -1,4 +1,4 @@
-import { useEffect} from "react";
+import { useEffect } from "react";
 import SideNav from "../SideNav/SideNav";
 import SectionContent from "../SectionContent";
 import TopNav from "../TopNav";
@@ -17,6 +17,8 @@ const MainPage = () => {
     const isScreenSmall = useStore(state => state.isScreenSmall);
     const setIsScreenSmall = useStore(state => state.setIsScreenSmall);
     const updateDimentions = () => setIsScreenSmall(window.innerWidth);
+    const setIsTaskListLoaderVisible = useStore(state => state.setIsTaskListLoaderVisible);
+    const setIsSideNavLoaderVisible = useStore(state => state.setIsSideNavLoaderVisible);
 
     useEffect(() => {
         Promise.all([getColors(), getFolders(), getTasks()])
@@ -25,6 +27,8 @@ const MainPage = () => {
                 setTasks(rawTasks);
                 setColors(rawColors);
                 setProjects(rawFolders);
+                setIsSideNavLoaderVisible(false);
+                setIsTaskListLoaderVisible(false);
             });
     }, [])
 
@@ -45,21 +49,21 @@ const MainPage = () => {
     const isOverlayVisible = isScreenSmall && isSideNavOpened;
 
     return <div className="taskboard">
-        <div className="taskboard-header">
-            <TopNav />
-        </div>
-        <div className={`taskboard-container ${isSideNavOpened ? "" : "sidenav-is-hidden"} ${isScreenSmall ? "small-screen" : ""}`}>
-            {isOverlayVisible && <div className="overlay" onClick={() => setIsSideNavOpened(false)}></div>}
-            <div className="taskboard-sidenav">
-                <SideNav />
+            <div className="taskboard-header">
+                <TopNav />
             </div>
-            <main className="taskboard-display">
-                <div className="taskboard-display-container">
-                    <SectionContent />
+            <div className={`taskboard-container ${isSideNavOpened ? "" : "sidenav-is-hidden"} ${isScreenSmall ? "small-screen" : ""}`}>
+                {isOverlayVisible && <div className="overlay" onClick={() => setIsSideNavOpened(false)}></div>}
+                <div className="taskboard-sidenav">
+                    <SideNav />
                 </div>
-            </main>
+                <main className="taskboard-display">
+                    <div className="taskboard-display-container">
+                        <SectionContent />
+                    </div>
+                </main>
+            </div>
         </div>
-    </div>
 }
 
 export default MainPage;

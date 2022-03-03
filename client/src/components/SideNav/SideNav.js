@@ -6,6 +6,7 @@ import ModalAddNewProject from "../Modals/ModalAddNewProject";
 import DefaultSectionItem from "./DefaultSectionItem";
 import ProjectItem from "./ProjectItem";
 import NewProjectButton from "./NewProjectButton";
+import Spinner from "../BasicUI/Spinner";
 
 const SideNav = () => {
     const sections = useStore(state => state.sections);
@@ -16,6 +17,8 @@ const SideNav = () => {
         return localStorage.getItem("openProjects") === "true" ? true : false
     });
     const [isModalAddProjectOpen, setIsModalAddProjectOpen] = useState(false);
+
+    const isSideNavLoaderVisible = useStore(state => state.isSideNavLoaderVisible);
 
     const tasks = useStore(state => state.tasks);
 
@@ -60,6 +63,7 @@ const SideNav = () => {
                 {isModalAddProjectOpen &&
                     <ModalAddNewProject setIsModalOpen={setIsModalAddProjectOpen} />
                 }
+                {isSideNavLoaderVisible && <Spinner />}
                 {sections
                     .filter(section => section.isAProject === true)
                     .map(section => <ProjectItem

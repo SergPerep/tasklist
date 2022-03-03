@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import useStore from "../store/useStore";
 import ModalDeleteProject from "./Modals/ModalDeleteProject";
 import ModalEditProject from "./Modals/ModalEditProject";
+import Spinner from "./BasicUI/Spinner";
 
 const SectionContent = () => {
     const sections = useStore(state => state.sections);
@@ -14,6 +15,8 @@ const SectionContent = () => {
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const isShowCompletedTasks = useStore(state => state.isShowCompletedTasks);
     const setIsShowCompletedTasks = useStore(state => state.setIsShowCompletedTasks);
+
+    const isTaskListLoaderVisible = useStore(state => state.isTaskListLoaderVisible);
 
     // console.log({selectedSection})
     useEffect(() => {
@@ -57,7 +60,8 @@ const SectionContent = () => {
             <ModalEditProject setIsModalOpen={setIsEditModalOpen} projectId={selectedSectionId} />
         }
         <AddTaskInput />
-        <TaskList />
+        {isTaskListLoaderVisible && <div className="tasklist-loader"><Spinner /></div>}
+        {!isTaskListLoaderVisible && <TaskList />}
     </>
 }
 
