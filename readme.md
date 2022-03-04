@@ -1,7 +1,7 @@
 # Tasklist
 [→ Deployed project on heroku](srgprp-tasklist.herokuapp.com/)
 
-Tasklist is very basic
+![index-screen](./readme-media/Index-screen.png)
 
 ## Features
 
