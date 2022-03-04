@@ -47,11 +47,10 @@ Tasks
 <details>
 <summary><code>GET</code> /tasks</summary>
 
-
-Example Request
-
-    GET https://tasklist.heroku.com/tasks
-
+### Example Request
+```javascript
+GET https://tasklist.heroku.com/tasks
+```
 
 </details>
 
@@ -60,42 +59,47 @@ Example Request
 <summary><code>POST</code> /tasks</summary>
 
 
-Example Request
-    
-    GET https://tasklist.heroku.com/tasks
-    {
-        "description": "REFACTOR first task",
-        "date": "2022-08-17",
-        "time": "16:00",
-        "folder_id": 1
-    }
-
+### Example Request
+```JSON
+GET https://tasklist.heroku.com/tasks
+{
+    "description": "REFACTOR first task",
+    "date": "2022-08-17",
+    "time": "16:00",
+    "folder_id": 1
+}
+```
 </details>
 
 <details>
 <summary><code>PUT</code> /tasks/:id</summary>
 
-    PUT http://localhost:5000/tasks/110
-    {
-        "description": "To the dentist",
-        "date": "2022-02-11",
-        "time": "14:00",
-        "folder_id": 1
+```javascript
+PUT http://localhost:5000/tasks/110
+{
+    "description": "To the dentist",
+    "date": "2022-02-11",
+    "time": "14:00",
+    "folder_id": 1
     }
+```
 </details>
 
 <details>
 <summary><code>POST</code> /tasks</summary>
 
-Example Request
-    
-    POST http://localhost:5000/tasks
-    {
-        "description": "REFACTOR first task",
-        "date": "2022-08-17",
-        "time": "16:00",
-        "folder_id": 1
-    }
+
+```JSON
+// Example Request
+
+POST http://localhost:5000/tasks
+{
+    "description": "REFACTOR first task",
+    "date": "2022-08-17",
+    "time": "16:00",
+    "folder_id": 1
+}
+```
 </details>
 
 <details>
