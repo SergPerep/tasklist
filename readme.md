@@ -5,16 +5,12 @@
 
 ## Features
 
-- Tasks
-    - Add, delete and edit task
-    - Set date and time for a task
-    - Set project for a task
-- Projects
-    - Add, delete and edit project
-    - Set name and color of a project
-- Authorization
-    - Signup
-    - Login
+- Adding, deleting and editing task
+- Setting date and time for a task
+- Setting project for a task
+- Adding, deleting and editing project
+- Setting name and color of a project
+- Login and signup
 
 ## Data design
 I've choosen postgreSQl since I worked with this database before end I needed relational database to connect tasks with projects and users.
