@@ -60,7 +60,7 @@ GET https://tasklist.heroku.com/tasks
 
 
 ### Example Request
-```JSON
+```javascript
 GET https://tasklist.heroku.com/tasks
 {
     "description": "REFACTOR first task",
@@ -89,7 +89,7 @@ PUT http://localhost:5000/tasks/110
 <summary><code>POST</code> /tasks</summary>
 
 
-```JSON
+```javascript
 // Example Request
 
 POST http://localhost:5000/tasks
