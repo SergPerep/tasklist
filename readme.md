@@ -41,6 +41,89 @@ I've choosen postgreSQl since I worked with this database before end I needed re
 - Originally table also had <code>last_time_was_updated</code> column but it was deprecated, since no use was found for it.
 
 ## API
+
+Tasks
+
+<details>
+<summary><code>GET</code> /tasks</summary>
+
+
+Example Request
+
+    GET https://tasklist.heroku.com/tasks
+
+
+</details>
+
+<details>
+
+<summary><code>POST</code> /tasks</summary>
+
+
+Example Request
+    
+    GET https://tasklist.heroku.com/tasks
+    {
+        "description": "REFACTOR first task",
+        "date": "2022-08-17",
+        "time": "16:00",
+        "folder_id": 1
+    }
+
+</details>
+
+<details>
+<summary><code>PUT</code> /tasks/:id</summary>
+
+    PUT http://localhost:5000/tasks/110
+    {
+        "description": "To the dentist",
+        "date": "2022-02-11",
+        "time": "14:00",
+        "folder_id": 1
+    }
+</details>
+
+<details>
+<summary><code>POST</code> /tasks</summary>
+
+Example Request
+    
+    POST http://localhost:5000/tasks
+    {
+        "description": "REFACTOR first task",
+        "date": "2022-08-17",
+        "time": "16:00",
+        "folder_id": 1
+    }
+</details>
+
+<details>
+<summary><code>DELETE</code> /tasks</summary>
+Example Request
+    
+    DELETE http://localhost:5000/tasks/120
+</details>
+
+
+Colors
+- GET /colors
+
+Folders
+- GET /folders
+- POST /folders
+- PUT /folders/:id
+- DELETE /folder/:id
+
+Authentication
+- POST /auth/register
+- POST /auth/login
+- GET /auth/logout
+- GET /auth/check-auth
+
+Users
+- POST /users
+
 ## Authentication
 
 ## Icons
