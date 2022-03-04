@@ -44,12 +44,17 @@ I've choosen postgreSQl since I worked with this database before end I needed re
 
 Tasks
 
-<details>
-<summary><code>GET</code> /tasks</summary>
+<style>.green{background-color:green !important;}</style>
 
-### Example Request
+<details>
+<summary><code class="green">GET</code> /tasks</summary>
+
+##### Request example
 ```javascript
 GET https://tasklist.heroku.com/tasks
+```
+##### Response example
+```javascript
 ```
 
 </details>
@@ -59,7 +64,7 @@ GET https://tasklist.heroku.com/tasks
 <summary><code>POST</code> /tasks</summary>
 
 
-### Example Request
+##### Example Request
 ```javascript
 GET https://tasklist.heroku.com/tasks
 {
@@ -72,7 +77,9 @@ GET https://tasklist.heroku.com/tasks
 </details>
 
 <details>
-<summary><code>PUT</code> /tasks/:id</summary>
+ <summary><code>PUT</code> /tasks/:id</summary>
+
+##### Example Request
 
 ```javascript
 PUT http://localhost:5000/tasks/110
