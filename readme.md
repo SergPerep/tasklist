@@ -42,47 +42,89 @@ I've choosen postgreSQl since I worked with this database before end I needed re
 
 ## API
 
-Tasks
-
-<style>.green{background-color:green !important;}</style>
+### Tasks
 
 <details>
-<summary><code class="green">GET</code> /tasks</summary>
+    <summary>
+        <code>GET</code> <i>/tasks</i>
+    </summary>
 
-##### Request example
+#### Request example
 ```javascript
-GET https://tasklist.heroku.com/tasks
+GET "http://localhost:5000/tasks"
 ```
-##### Response example
+#### Response example
 ```javascript
+200 OK
+[
+  {
+    "id": 154,
+    "description": "Add new task",
+    "is_completed": false,
+    "time_of_creation": "2022-03-03T18:34:43.534Z",
+    "date": null,
+    "time": null,
+    "folder_name": null,
+    "folder_id": null
+  },
+  {
+    "id": 153,
+    "description": "Set date and time",
+    "is_completed": false,
+    "time_of_creation": "2022-03-03T18:34:43.531Z",
+    "date": "2022-03-03",
+    "time": "18:00:00+01:00",
+    "folder_name": "Casual",
+    "folder_id": 23
+  },
+  {
+    "id": 152,
+    "description": "Create new project",
+    "is_completed": false,
+    "time_of_creation": "2022-03-03T18:34:43.526Z",
+    "date": null,
+    "time": null,
+    "folder_name": null,
+    "folder_id": null
+  }
+]
 ```
-
 </details>
 
 <details>
+    <summary>
+        <code>POST</code> <i>/tasks</i>
+    </summary>
 
-<summary><code>POST</code> /tasks</summary>
-
-
-##### Example Request
+#### Request example
 ```javascript
-GET https://tasklist.heroku.com/tasks
+POST "http://localhost:5000/tasks"
 {
-    "description": "REFACTOR first task",
+    "description": "Make pasta",
     "date": "2022-08-17",
     "time": "16:00",
     "folder_id": 1
 }
 ```
+
+#### Response example
+```javascript
+200 OK
+{
+    "messageToUser": "New task was created"
+}
+```
 </details>
 
 <details>
- <summary><code>PUT</code> /tasks/:id</summary>
+    <summary>
+        <code>PUT</code> <i>/tasks/:id</i>
+    </summary>
 
-##### Example Request
+#### Request example
 
 ```javascript
-PUT http://localhost:5000/tasks/110
+PUT "http://localhost:5000/tasks/110"
 {
     "description": "To the dentist",
     "date": "2022-02-11",
@@ -90,53 +132,299 @@ PUT http://localhost:5000/tasks/110
     "folder_id": 1
     }
 ```
+
+#### Response example
+
+```javascript
+200 OK
+{
+    "messageToUser": "Task was successfully updated!"
+}
+```
+</details>
+
+
+<details>
+    <summary>
+        <code>DELETE</code> <i>/tasks</i>
+    </summary>
+
+#### Request example
+
+```javascript    
+DELETE "http://localhost:5000/tasks/120"
+```
+
+#### Response example
+
+```javascript
+200 OK
+{
+    "messageToUser": "Task was successfully deleted!"
+}
+```
+</details>
+
+
+### Colors
+<details>
+    <summary>
+        <code>GET</code><i>/colors</i>
+    </summary>
+
+
+#### Request example
+```javascript
+GET "http://localhost:5000/colors"
+```
+
+#### Response example
+```javascript
+200 OK
+[
+  {
+    "id": 1,
+    "name": "Orange",
+    "value": "#FF9749"
+  },
+  {
+    "id": 2,
+    "name": "Blue",
+    "value": "#3D77F6"
+  },
+  {
+    "id": 3,
+    "name": "Green",
+    "value": "#169446"
+  },
+  {
+    "id": 4,
+    "name": "Berry Red",
+    "value": "#BC245D"
+  }
+]
+```
+</details>
+
+### Folders
+
+<details>
+    <summary>
+        <code>GET</code> <i>/folders</i>
+    </summary>
+
+#### Request example
+
+```javascript
+GET "http://localhost:5000/folders"
+```
+
+#### Response example
+
+```javascript
+200 OK
+[
+  {
+    "id": 231,
+    "name": "Classic Music",
+    "color_id": 1
+  },
+  {
+    "id": 8,
+    "name": "Piano",
+    "color_id": 2
+  }
+]
+
+```
 </details>
 
 <details>
-<summary><code>POST</code> /tasks</summary>
+    <summary>
+        <code>POST</code> <i>/folders</i>
+    </summary>
 
+#### Request example
 
 ```javascript
-// Example Request
-
-POST http://localhost:5000/tasks
+POST "http://localhost:5000/folders"
 {
-    "description": "REFACTOR first task",
-    "date": "2022-08-17",
-    "time": "16:00",
-    "folder_id": 1
+    "folderName": "Writing",
+    "colorId": "1"
+}
+```
+
+#### Response example
+
+```javascript
+200 OK
+{
+  "folderId": 283
 }
 ```
 </details>
 
 <details>
-<summary><code>DELETE</code> /tasks</summary>
-Example Request
-    
-    DELETE http://localhost:5000/tasks/120
+    <summary>
+        <code>PUT</code> <i>/folders/:id</i>
+    </summary>
+
+#### Request example
+
+```javascript
+PUT "http://localhost:5000/folders/240"
+{
+    "folderName": "Writing a book",
+    "colorId": "283"
+}
+```
+
+#### Response example
+
+```javascript
+200 OK
+{
+    "messageToUser": "Project has been updated"
+}
+```
 </details>
 
+<details>
+    <summary>
+        <code>DETELE</code> <i>/folders/:id</i>
+    </summary>
 
-Colors
-- GET /colors
+#### Request example
 
-Folders
-- GET /folders
-- POST /folders
-- PUT /folders/:id
-- DELETE /folder/:id
+```javascript
+DELETE "http://localhost:5000/folders/283"
+```
 
-Authentication
-- POST /auth/register
-- POST /auth/login
-- GET /auth/logout
-- GET /auth/check-auth
+#### Response example
 
-Users
-- POST /users
+```javascript
+200 OK
+{
+    "messageToUser": "Folder has been deleted"
+}
+```
+</details>
 
-## Authentication
+### Authentication
 
-## Icons
 
-## Data
+<details>
+    <summary>
+        <code>POST</code> <i>/auth/register</i>
+    </summary>
+
+#### Request example
+```javascript
+POST "https://srgprp-tasklist.herokuapp.com/auth/register"
+{
+    "username": "JoanOfArc",
+    "password": "JoanTheFighter17@#"
+}
+```
+
+#### Response example
+```javascript
+200 OK
+{
+  "isAuthenticated": true
+}
+```
+</details>
+
+<details>
+    <summary>
+        <code>POST</code> <i>/auth/login</i>
+    </summary>
+
+#### Request example
+
+```javascript
+POST "https://srgprp-tasklist.herokuapp.com/auth/login"
+{
+    "username": "JoanOfArc",
+    "password": "JoanTheFighter17@#"
+}
+```
+#### Response example
+
+```javascript
+200 OK
+{
+  "isAuthenticated": true
+}
+```
+</details>
+
+<details>
+    <summary>
+        <code>GET</code> <i>/auth/logout</i>
+    </summary>
+
+#### Request exmaple
+
+```javascript
+GET "https://srgprp-tasklist.herokuapp.com/auth/logout"
+```
+
+#### Response example
+
+```javascript
+200 OK
+{
+  "isAuthenticated": false
+}
+```
+
+</details>
+
+<details>
+    <summary>
+        <code>GET</code> <i>/auth/check-auth</i>
+    </summary>
+
+#### Request example
+
+```javascript
+GET "https://srgprp-tasklist.herokuapp.com/auth/check-auth"
+```
+
+#### Response example
+```javascript
+200 OK
+{
+  "isAuthenticated": false
+}
+```
+
+</details>
+
+### Users
+
+<details>
+    <summary>
+        <code>POST</code> <i>/users</i>
+    </summary>
+
+#### Request example
+
+```javascript
+POST "https://srgprp-tasklist.herokuapp.com/users"
+{
+    "username": "bob"
+}
+```
+
+#### Response example
+
+```javascript
+200 OK
+{
+  "isUsernameExists": false
+}
+```
+</details>
