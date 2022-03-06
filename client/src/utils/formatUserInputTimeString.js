@@ -3,18 +3,21 @@ const formatUserInputTimeString = (timeString) => {
 
     timeString = timeString.replace(/[^\d:amp]/gi, '');
     timeString = timeString.toLowerCase();
-    if(!timeString) return null;
+    if (!timeString) return null;
 
     let hoursStr, hoursNum, minutesStr, minutesNum;
 
     const hasSeparator = /:/g.test(timeString);
     if (hasSeparator) {
-        const hoursStrArr = timeString.match(/\d{1,2}(?=:)/);
-        if(!hoursStrArr) return null;
+        
+        const [beginningOfString, endingOfString] = timeString.replace(/[^\d:]/gi, '').split(":");
+
+        const hoursStrArr = beginningOfString.match(/\d{1,2}/);
+        if (!hoursStrArr) return null;
         hoursStr = hoursStrArr[0];
         hoursNum = parseInt(hoursStr);
 
-        const minutesStrArr = timeString.match(/(?<=:)\d{1,2}/);
+        const minutesStrArr = endingOfString.match(/\d{1,2}/);
         minutesStr = minutesStrArr ? minutesStrArr[0] : "00";
         if (minutesStr.length !== 2) minutesStr = minutesStr + "0";
         minutesNum = parseInt(minutesStr);
