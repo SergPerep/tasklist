@@ -432,14 +432,22 @@ POST "https://srgprp-tasklist.herokuapp.com/users"
 ```
 </details>
 
-## Secutiry
-
-- Two databases
-- Sessions over tokens
-- Usernames instead of emails
-- Hashing passwords
-- Discoraging use of common passwords
-- Preventing DOS attacks
+## Security
 
 ### Usernames instead of emails
 
+The app utilises usernames instead of emails for authentication so that user is able to proceed with the app without worrying about possible misuse of their personal information.
+
+### Hasing passwords
+
+The app doesn't store passwords in their original form. Each password goes through hashing with [bcrypt.js](https://github.com/dcodeIO/bcrypt.js) before entering database.
+### Strong passwords
+
+Library [zxcvbn by dropbox](https://github.com/dropbox/zxcvbn) checks passwords on signup page. It discourages people to use common passwords and accepts only those that are at least moderate strength.
+
+### Sessions over tokens
+The app uses session-cookies to remember users and grant them access to their own collection of projects and tasks. The token-based authentication methods were also considered but they seem less secure, more bulky and to shine best in server-to-server interaction.
+
+[Express-session module](https://github.com/expressjs/session) was used to implement sessions.
+
+### DOS attacks prevention
