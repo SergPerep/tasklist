@@ -1,18 +1,24 @@
--- Schema for users
+-- Creating database
+CREATE DATABASE tasklist;
+
+-- Connect to database
+\c tasklist;
+
+-- Create users table
 CREATE TABLE users(
     id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     username VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL
 );
 
---Schema for color
+-- Create color table
 CREATE TABLE color(
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     value VARCHAR(255) NOT NULL
 );
 
--- Schema for folder
+-- Create folder table
 CREATE TABLE folder(
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
@@ -20,7 +26,7 @@ CREATE TABLE folder(
     user_id uuid REFERENCES users (id) NOT NULL
 );
 
--- Schema for tasklist
+-- Create tasklist folder
 CREATE TABLE task(
     id SERIAL PRIMARY KEY,
     description VARCHAR(255) NOT NULL,
@@ -34,44 +40,36 @@ CREATE TABLE task(
 
 -- Add Orange
 INSERT INTO
-    color (name, label, font, fill)
+    color (name, value)
 VALUES
     (
         'Orange',
-        '#FF9749',
-        '#875306',
-        'rgba(211, 136, 23, 0.28)'
+        '#FF9749'
     );
 
 -- Add Blue
 INSERT INTO
-    color (name, label, font, fill)
+    color (name, value)
 VALUES
     (
         'Blue',
-        '#3D77F6',
-        '#254894',
-        'rgba(65, 87, 135, 0.2)'
+        '#3D77F6'
     );
 
 -- Add Green
 INSERT INTO
-    color (name, label, font, fill)
+    color (name, value)
 VALUES
     (
         'Green',
-        '#169446',
-        '#19522F',
-        'rgba(31, 116, 64, 0.18)'
+        '#169446'
     );
 
 -- Add Berry Red
 INSERT INTO
-    color (name, label, font, fill)
+    color (name, value)
 VALUES
     (
         'Berry Red',
-        '#BC245D',
-        '#681735',
-        'rgba(151, 17, 67, 0.16)'
+        '#BC245D'
     );
