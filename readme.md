@@ -1,5 +1,8 @@
 # Tasklist
-[→ Deployed project on heroku](srgprp-tasklist.herokuapp.com/)
+[→ Deployed project on heroku](srgprp-tasklist.herokuapp.com/). Heroku needs some time to wake up its server and load the app, so be patient.
+
+Want to install this app on your local machine? 
+Follow [this setup guide](./setup/setup-guide.md) then.
 
 ![index-screen](./readme-media/Cover.png)
 
