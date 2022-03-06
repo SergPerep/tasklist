@@ -1,4 +1,4 @@
--- Creating database
+-- Create database
 CREATE DATABASE tasklist;
 
 -- Connect to database
