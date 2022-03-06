@@ -7,7 +7,7 @@ Guide to help you to install project on your local machine.
 npm install
 
 # For client
-cd client && npm install && cd ..
+npm install --prefix client
 ```
 ## Set up postgres database
 You have to install postgress on your local machine.
