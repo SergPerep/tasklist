@@ -46,12 +46,12 @@ I've choosen postgreSQl since I worked with this database before end I needed re
 
 <details>
     <summary>
-        <code>GET</code> <i>/tasks</i>
+        <code>GET</code> /tasks
     </summary>
 
 #### Request example
 ```javascript
-GET "http://localhost:5000/tasks"
+GET "https://srgprp-tasklist.herokuapp.com/tasks"
 ```
 #### Response example
 ```javascript
@@ -93,14 +93,14 @@ GET "http://localhost:5000/tasks"
 
 <details>
     <summary>
-        <code>POST</code> <i>/tasks</i>
+        <code>POST</code> /tasks
     </summary>
 
 #### Request example
 ```javascript
-POST "http://localhost:5000/tasks"
+POST "https://srgprp-tasklist.herokuapp.com/tasks"
 {
-    "description": "Make pasta",
+    "description": "Cook pasta",
     "date": "2022-08-17",
     "time": "16:00",
     "folder_id": 1
@@ -118,19 +118,19 @@ POST "http://localhost:5000/tasks"
 
 <details>
     <summary>
-        <code>PUT</code> <i>/tasks/:id</i>
+        <code>PUT</code> /tasks/:id
     </summary>
 
 #### Request example
 
 ```javascript
-PUT "http://localhost:5000/tasks/110"
+PUT "https://srgprp-tasklist.herokuapp.com/tasks/110"
 {
     "description": "To the dentist",
     "date": "2022-02-11",
     "time": "14:00",
     "folder_id": 1
-    }
+}
 ```
 
 #### Response example
@@ -146,13 +146,13 @@ PUT "http://localhost:5000/tasks/110"
 
 <details>
     <summary>
-        <code>DELETE</code> <i>/tasks</i>
+        <code>DELETE</code> /tasks
     </summary>
 
 #### Request example
 
 ```javascript    
-DELETE "http://localhost:5000/tasks/120"
+DELETE "https://srgprp-tasklist.herokuapp.com/tasks/120"
 ```
 
 #### Response example
@@ -169,13 +169,13 @@ DELETE "http://localhost:5000/tasks/120"
 ### Colors
 <details>
     <summary>
-        <code>GET</code><i>/colors</i>
+        <code>GET</code>/colors
     </summary>
 
 
 #### Request example
 ```javascript
-GET "http://localhost:5000/colors"
+GET "https://srgprp-tasklist.herokuapp.com/colors"
 ```
 
 #### Response example
@@ -210,13 +210,13 @@ GET "http://localhost:5000/colors"
 
 <details>
     <summary>
-        <code>GET</code> <i>/folders</i>
+        <code>GET</code> /folders
     </summary>
 
 #### Request example
 
 ```javascript
-GET "http://localhost:5000/folders"
+GET "https://srgprp-tasklist.herokuapp.com/folders"
 ```
 
 #### Response example
@@ -241,13 +241,13 @@ GET "http://localhost:5000/folders"
 
 <details>
     <summary>
-        <code>POST</code> <i>/folders</i>
+        <code>POST</code> /folders
     </summary>
 
 #### Request example
 
 ```javascript
-POST "http://localhost:5000/folders"
+POST "https://srgprp-tasklist.herokuapp.com/folders"
 {
     "folderName": "Writing",
     "colorId": "1"
@@ -266,13 +266,13 @@ POST "http://localhost:5000/folders"
 
 <details>
     <summary>
-        <code>PUT</code> <i>/folders/:id</i>
+        <code>PUT</code> /folders/:id
     </summary>
 
 #### Request example
 
 ```javascript
-PUT "http://localhost:5000/folders/240"
+PUT "https://srgprp-tasklist.herokuapp.com/folders/240"
 {
     "folderName": "Writing a book",
     "colorId": "283"
@@ -291,13 +291,13 @@ PUT "http://localhost:5000/folders/240"
 
 <details>
     <summary>
-        <code>DETELE</code> <i>/folders/:id</i>
+        <code>DETELE</code> /folders/:id
     </summary>
 
 #### Request example
 
 ```javascript
-DELETE "http://localhost:5000/folders/283"
+DELETE "https://srgprp-tasklist.herokuapp.com/folders/283"
 ```
 
 #### Response example
@@ -315,7 +315,7 @@ DELETE "http://localhost:5000/folders/283"
 
 <details>
     <summary>
-        <code>POST</code> <i>/auth/register</i>
+        <code>POST</code> /auth/register
     </summary>
 
 #### Request example
@@ -338,7 +338,7 @@ POST "https://srgprp-tasklist.herokuapp.com/auth/register"
 
 <details>
     <summary>
-        <code>POST</code> <i>/auth/login</i>
+        <code>POST</code> /auth/login
     </summary>
 
 #### Request example
@@ -362,7 +362,7 @@ POST "https://srgprp-tasklist.herokuapp.com/auth/login"
 
 <details>
     <summary>
-        <code>GET</code> <i>/auth/logout</i>
+        <code>GET</code> /auth/logout
     </summary>
 
 #### Request exmaple
@@ -384,7 +384,7 @@ GET "https://srgprp-tasklist.herokuapp.com/auth/logout"
 
 <details>
     <summary>
-        <code>GET</code> <i>/auth/check-auth</i>
+        <code>GET</code> /auth/check-auth
     </summary>
 
 #### Request example
@@ -407,7 +407,7 @@ GET "https://srgprp-tasklist.herokuapp.com/auth/check-auth"
 
 <details>
     <summary>
-        <code>POST</code> <i>/users</i>
+        <code>POST</code> /users
     </summary>
 
 #### Request example
@@ -428,3 +428,15 @@ POST "https://srgprp-tasklist.herokuapp.com/users"
 }
 ```
 </details>
+
+## Secutiry
+
+- Two databases
+- Sessions over tokens
+- Usernames instead of emails
+- Hashing passwords
+- Discoraging use of common passwords
+- Preventing DOS attacks
+
+### Usernames instead of emails
+
