@@ -1,7 +1,8 @@
 # Setup guide
-Guide to help you to install project on your local machine.
+Guide to help you to install project on your local machine
 
 ## Install dependencies
+After your have cloned repository to your local machine, open terminal and run the following commands:
 ```bash
 # For server
 npm install
@@ -10,25 +11,30 @@ npm install
 npm install --prefix client
 ```
 ## Set up postgres database
-You have to install postgress on your local machine.
-After that you can continue setting up database and tables.
+First, install postgreSQL on your local machine. [PostgreSQL documentation](https://www.postgresql.org/download/) should help you with that.
+
+After that run code of [postgres-db-setup.sql](./postgres-db-setup.sql) file. 
+
+Use this command:
 ```bash
 psql -a -f setup/postgres-db-setup.sql
 ```
+It creates database and relevant tables inside it.
+## Setup mongoDB
+To store user sessions you will require [MongoDB](https://www.mongodb.com/).
 
-## Set up mongoDB
-To start I recommend [MongoDB Atlas Tutorial – How to Get Started](https://www.freecodecamp.org/news/get-started-with-mongodb-atlas/).
+Use [this guide by freecodecamp](https://www.freecodecamp.org/news/get-started-with-mongodb-atlas/) to create an account and set up mongoDB.
 
-While you are setting up your mongoDB, grab `<username>`, `<password>`, `<cluster-name>` and `<db-name>`. You would have to put them in `.env` at the next step.
+While you doing that, grab `<username>`, `<password>`, `<cluster-name>` and `<db-name>`. You will need them to configure `.env` at the next step.
 
 
-## Set up environmental variables
-In a root directory create a file `.env`. It would hold sensitive information that you do not want to share.
+## Setup environmental variables
+In a root directory create a file `.env`. It would hold secret information that you do not want to share.
 
 For more information about `.env` read [dotenv documentation](https://github.com/motdotla/dotenv).
 
-### Postrgres variables
-These are variables that allow server to connect to postgres database. Below are standard values. You can probably copy-paste them and it should work fine.
+### Postgres variables
+These variables allow server to connect to postgres database. Below are standard values. You can probably copy-paste them and it would work fine.
 ```
 PG_USER=postgres
 PG_HOST=localhost
@@ -46,7 +52,7 @@ SESS_SECRET=your#session#secret
 For more information about sessions read [express-session documentation](https://github.com/expressjs/session).
 
 ### MongoDB 
-These are variables that allow server to connect to mongoDB. You should find them in your mongoDB account.
+These variables allow server to connect to mongoDB. You should find them in your mongoDB account.
 
 Below is an example. Your values going to be different.
 ```
@@ -57,7 +63,7 @@ MONGODB_DATABASE_NAME=tasklist
 ```
 ## Run the app
 ### Run server
-From root directory
+Run from root directory:
 ```bash
 # For development
 npm run dev
@@ -67,8 +73,8 @@ npm start
 ```
 You should see message in terminal "server started on port 5000".
 ### Run client
-Open new terminal and run from root directory
+Open another terminal and run from root directory:
 ```
 npm start --prefix client
 ```
-Then open browser and hit http://localhost:3000.
+Then open browser, hit http://localhost:3000 and enjoy!
