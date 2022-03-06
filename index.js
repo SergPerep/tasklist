@@ -14,7 +14,9 @@ const {
     PORT = 5000,
     NODE_ENV = "development",
     SESS_SECRET = "session secret",
-    MONGODB_USER_PASSWORD
+    MONGODB_USER_PASSWORD,
+    MONGODB_USER_NAME,
+    MONGODB_CLUSTER_NAME
 } = process.env;
 
 app.use(session({
@@ -23,7 +25,7 @@ app.use(session({
     secret: SESS_SECRET,
     secure: NODE_ENV === "production",
     store: new MongoDBStorage({
-        uri: `mongodb+srv://worm:${MONGODB_USER_PASSWORD}@cluster0.s0yec.mongodb.net/tasklist?retryWrites=true&w=majority`,
+        uri: `mongodb+srv://${MONGODB_USER_NAME}:${MONGODB_USER_PASSWORD}@${MONGODB_CLUSTER_NAME}.mongodb.net/tasklist?retryWrites=true&w=majority`,
         databaseName: "tasklist",
         collection: "session"
     }, (error) => { if (error) { console.log(error) } }),
