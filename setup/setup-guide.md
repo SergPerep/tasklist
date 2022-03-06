@@ -1,5 +1,5 @@
 # Setup guide
-Guide to help you to install project on your local machine
+A guide to help you to install project on your local machine
 
 ## Install dependencies
 After your have cloned repository to your local machine, open terminal and run the following commands:
