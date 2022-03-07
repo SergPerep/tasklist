@@ -1,8 +1,7 @@
 # Tasklist
 [→ Deployed project on heroku](srgprp-tasklist.herokuapp.com/). Heroku needs some time to wake up its server and load the app, so be patient.
 
-Want to install this app on your local machine? 
-Follow [this setup guide](./setup/setup-guide.md) then.
+Want to try and test this app on your local machine? Follow [this setup guide](./setup/setup-guide.md) then.
 
 ![index-screen](./readme-media/Cover.png)
 
@@ -446,7 +445,7 @@ The app doesn't store passwords in their original form. Each password goes throu
 Library [zxcvbn by dropbox](https://github.com/dropbox/zxcvbn) checks passwords on signup page. It discourages people to use common passwords and accepts only those that are at least moderate strength.
 
 ### Sessions over tokens
-The app uses session-cookies to remember users and grant them access to their own collection of projects and tasks. The token-based authentication methods were also considered but they seem less secure, more bulky and to shine best in server-to-server interaction.
+The app uses session-cookies to remember users and grant them access to their own collection of projects and tasks. The token-based authentication methods were also considered but they seem less secure, more bulky and shine best in server-to-server interaction.
 
 [Express-session module](https://github.com/expressjs/session) was used to implement sessions.
 
