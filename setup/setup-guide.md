@@ -65,16 +65,12 @@ MONGODB_DATABASE_NAME=tasklist
 ### Run server
 Run from root directory:
 ```bash
-# For development
-npm run dev
-
-# For production
-npm start
+npm run server
 ```
 You should see message in terminal "server started on port 5000".
 ### Run client
 Open another terminal and run from root directory:
 ```
-npm start --prefix client
+npm run client
 ```
 Then open browser, hit http://localhost:3000 and enjoy!
