@@ -34,7 +34,6 @@ const formatUserInputTimeString = (timeString) => {
             case 3:
                 hoursNum = parseInt(numStr.slice(0, 1));
                 minutesNum = parseInt(numStr.slice(1, 3));
-                // console.log({ hoursNum, minutesNum });
                 break;
             case 4:
                 hoursNum = parseInt(numStr.slice(0, 2));
@@ -44,7 +43,6 @@ const formatUserInputTimeString = (timeString) => {
                 return null;
         }
     }
-    // console.log({ hoursNum, minutesNum });
 
     const timePeriodArr = timeString.match(/[ap]m/i) || [];
     const timePeriod = timePeriodArr[0];
@@ -57,7 +55,7 @@ const formatUserInputTimeString = (timeString) => {
     if (hoursNum === 24) hoursNum = 0;
     hoursStr = hoursNum.toString();
     if (minutesNum > 59) return null;
-    // console.log({ minutesNum });
+
     minutesStr = minutesNum <= 10 ? "0" + minutesNum : minutesNum.toString();
     return `${hoursStr}:${minutesStr}`;
 }
