@@ -1,4 +1,3 @@
-console.log("--> useColorStore");
 
 const charchoal = {
     id: null,

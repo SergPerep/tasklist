@@ -14,7 +14,6 @@ const createTaskSlice = (set, get) => ({
     isShowCompletedTasks: localStorage.getItem("isShowCompletedTasks") === "true",
     setIsShowCompletedTasks: (isShowCompletedTasks) => set({ isShowCompletedTasks }),
     setTasks: (taskList) => {
-        console.log("--> setTasks");
         set({ tasks: taskList })
     }
 })

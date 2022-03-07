@@ -26,7 +26,6 @@ const getTasks = async () => {
         const response = await fetch("/tasks");
         const rawData = await response.json();
         const data = convertData(rawData);
-        console.log("---> getTasks");
         setTasks(data);
         return data;
     } catch (error) {

@@ -8,7 +8,6 @@ export default async () => {
         if (response.status < 200 || response.status > 299) return await response.json();
 
         const { isAuthenticated } = await response.json();
-        console.log(isAuthenticated);
         return isAuthenticated;
     } catch (error) {
         console.error(error.message);
