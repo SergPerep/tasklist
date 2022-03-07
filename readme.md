@@ -448,5 +448,3 @@ Library [zxcvbn by dropbox](https://github.com/dropbox/zxcvbn) checks passwords 
 The app uses session-cookies to remember users and grant them access to their own collection of projects and tasks. The token-based authentication methods were also considered but they seem less secure, more bulky and shine best in server-to-server interaction.
 
 [Express-session module](https://github.com/expressjs/session) was used to implement sessions.
-
-### DOS attacks prevention
