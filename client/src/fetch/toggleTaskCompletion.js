@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import useStore from "../store/useStore";
 import { WrongTypeError, EmptyValueError } from "../utils/customErrors";
 import getTasks from "./getTasks";
@@ -15,8 +16,8 @@ const updateTaskStatus = async (id) => {
             method: "PUT"
         });
 
-        const response = await updateCheckStatus.json();
-        console.log(response);
+        const { messageToUser } = await updateCheckStatus.json();
+        if (messageToUser) toast(messageToUser);
 
         getTasks().then(data => setTasks(data));
     } catch (error) {

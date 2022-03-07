@@ -1,6 +1,7 @@
 import catchError from "../utils/catchError";
 import { EmptyValueError, WrongTypeError } from "../utils/customErrors";
 import getTasks from "./getTasks";
+import { toast } from "react-toastify";
 
 const deleteTask = async (id) => {
     try {
@@ -11,7 +12,8 @@ const deleteTask = async (id) => {
         const delTask = await fetch(`/tasks/${id}`, {
             method: "DELETE"
         });
-        const message = await delTask.json();
+        const { messageToUser } = await delTask.json();
+        if (messageToUser) toast(messageToUser);
         getTasks();
     } catch (error) {
         catchError(error)
