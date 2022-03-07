@@ -6,7 +6,9 @@ export const createComputedSectionSlice = (state) => {
     }
 };
 
-export default (set, get) => ({
+const createSectionSlice = (set, get) => ({
     selectedSectionId: "inb",
     setSelectedSectionId: (id) => set({ selectedSectionId: id })
 });
+
+export default createSectionSlice;

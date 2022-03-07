@@ -1,4 +1,4 @@
-export default async () => {
+const checkWhetherUserIsAuthenticated = async () => {
     try {
         const response = await fetch("/auth/check-auth", {
             method: "GET",
@@ -13,3 +13,5 @@ export default async () => {
         console.error(error.message);
     }
 }
+
+export default checkWhetherUserIsAuthenticated;

@@ -1,4 +1,4 @@
-export default async (username, password) => {
+const signupUser =  async (username, password) => {
     try {
         const body = { username, password };
         const response = await fetch("/auth/register", {
@@ -16,3 +16,5 @@ export default async (username, password) => {
         console.error(error.message);
     }
 }
+
+export default signupUser;

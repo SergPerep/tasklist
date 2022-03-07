@@ -1,4 +1,4 @@
-export default async () => {
+const logoutUser = async () => {
     try {
         const response = await fetch("/auth/logout", {
             method: "GET",
@@ -12,3 +12,5 @@ export default async () => {
         console.error(error.message);
     }
 }
+
+export default logoutUser;

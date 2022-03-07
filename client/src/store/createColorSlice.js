@@ -5,7 +5,7 @@ const charchoal = {
     value: "#808080"
 }
 
-export default (set, get) => ({
+const createColorSlice = (set, get) => ({
     colors: [/*
             {
                 id: null,
@@ -19,3 +19,5 @@ export default (set, get) => ({
     },
     setColors: (rawColors) => set({ colors: [charchoal, ...rawColors] })
 });
+
+export default createColorSlice;

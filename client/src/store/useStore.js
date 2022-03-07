@@ -4,7 +4,6 @@ import createTaskSlice from "./createTaskSlice";
 import createColorSlice from "./createColorSlice";
 import createProjectSlice from "./createProjectSlice";
 import { computed } from 'zustand-middleware-computed-state';
-// import createSectionSlice from "./createSectionSlice";
 import createAuthenticationSlice from "./createAuthenticationSlice";
 import createSectionSlice, { createComputedSectionSlice } from "./createSectionSlice";
 import createInterfaceSlice, { createComputedInterfaceSlice } from "./createInterfaceSlice";

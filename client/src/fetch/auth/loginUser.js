@@ -1,4 +1,4 @@
-export default async (username, password) => {
+const loginUser = async (username, password) => {
     try {
         const body = { username, password };
         const response = await fetch("/auth/login", {
@@ -17,3 +17,5 @@ export default async (username, password) => {
         console.error(error.message);
     }
 }
+
+export default loginUser;
