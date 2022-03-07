@@ -21,7 +21,7 @@ router.post("/register", async (req, res, next) => {
         if (!password || password.length === 0) return next(new MissingCredentialsError("password"));
 
         const isUserAlreadyExists = await checkWhetherUserAlreadyExists(username);
-        if (isUserAlreadyExists) return res.status(400).json("User already exists. Try login")
+        if (isUserAlreadyExists) return res.status(400).json({ messageToUser: "User already exists. Try login" })
 
         const hash = genHash(password);
         const dbData = await pool.query(`INSERT INTO users (username, password) VALUES ($1, $2) RETURNING id`, [username, hash]);
@@ -48,19 +48,19 @@ router.post("/login", async (req, res, next) => {
         if (!password || password.length === 0) return next(new MissingCredentialsError("password"));
 
         const isUsernameValid = validateUsername(username);
-        if (!isUsernameValid) return res.status(400).json("Username is not valid");
+        if (!isUsernameValid) return res.status(400).json({ messageToUser: "Username is not valid" });
 
         const isPasswordValid = validatePassword(password);
-        if (!isPasswordValid) return res.status(400).json("Password is not valid");
+        if (!isPasswordValid) return res.status(400).json({ messageToUser: "Password is not valid" });
 
         const dbData = await pool.query("SELECT id, password FROM users WHERE username=$1", [username]);
-        if (!dbData.rows[0]) return res.status(400).json("Username and password do not match");
+        if (!dbData.rows[0]) return res.status(400).json({ messageToUser: "Username and password do not match" });
 
         const userId = dbData.rows[0].id;
         const hash = dbData.rows[0].password;
 
         const isPasswordVerified = bcrypt.compareSync(password, hash);
-        if (!isPasswordVerified) return res.status(400).json("Username and password do not match");
+        if (!isPasswordVerified) return res.status(400).json({ messageToUser: "Username and password do not match" });
 
         req.session.user = { userId };
 

@@ -113,7 +113,7 @@ POST "https://srgprp-tasklist.herokuapp.com/tasks"
 ```javascript
 200 OK
 {
-    "messageToUser": "New task was created"
+    "messageToUser": "New task has been created"
 }
 ```
 </details>
@@ -140,7 +140,7 @@ PUT "https://srgprp-tasklist.herokuapp.com/tasks/110"
 ```javascript
 200 OK
 {
-    "messageToUser": "Task was successfully updated!"
+    "messageToUser": "Task has been successfully updated!"
 }
 ```
 </details>
@@ -162,7 +162,7 @@ DELETE "https://srgprp-tasklist.herokuapp.com/tasks/120"
 ```javascript
 200 OK
 {
-    "messageToUser": "Task was successfully deleted!"
+    "messageToUser": "Task has been successfully deleted!"
 }
 ```
 </details>

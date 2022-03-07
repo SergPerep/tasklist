@@ -3,6 +3,6 @@ const { ForbiddenError, MissingCredentialsError, AuthenticationError } = require
 module.exports = (err, req, res, next) => {
     console.log("--> handleErrors");
     if (!err) return;
-    if(err instanceof ForbiddenError || MissingCredentialsError || AuthenticationError) res.status(err.statusCode).json(err.message);
+    if(err instanceof ForbiddenError || MissingCredentialsError || AuthenticationError) res.status(err.statusCode).json({messageToUser: err.message});
     console.log(err.stack);
 }

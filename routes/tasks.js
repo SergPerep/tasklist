@@ -62,7 +62,7 @@ router.put("/:id", async (req, res) => {
             `,
                 [id, description, date, time, folder_id]);
         }
-        res.json("Task was successfully updated!");
+        res.json({ messageToUser: "Task has been successfully updated!" });
     } catch (error) {
         console.error(error.message);
     }
@@ -82,7 +82,7 @@ router.post("/", async (req, res) => {
                 ($1, $2, $3, $4, $5);
             `, [description, date, time, folder_id, user_id]);
         if (newTodo.rowCount !== 1) return res.status(400).json("Failed to create new task");
-        res.json("New task was created");
+        res.json({ messageToUser: "New task has been created" });
     } catch (error) {
         console.error(error.message);
     }
@@ -100,7 +100,7 @@ router.delete("/:id", async (req, res) => {
             id = $1;
         `, [id]);
         if (delTask.rowCount === 0) return res.status(400).json("Can't delete task with such id since it doesn't exist");
-        res.json("Task was successfully deleted!");
+        res.json({ messageToUser: "Task has been successfully deleted!" });
     } catch (error) {
         console.error(error.message);
     }

@@ -60,7 +60,7 @@ router.put("/:id", async (req, res) => {
                 id = $1;`
             , [id, folderName, colorId]);
         // Feedback to client
-        res.json("Project has been updated");
+        res.json({ messageToUser: "Project has been updated" });
     } catch (error) {
         console.error(error.message);
     }
@@ -73,7 +73,7 @@ router.delete("/:id", async (req, res) => {
         const deleteTasks = await pool.query(`DELETE FROM task WHERE folder_id = $1;`, [id]);
         const deleteFolder = await pool.query(`DELETE FROM folder WHERE id = $1;`, [id]);
         // Feedback to client
-        res.json("Folder has been deleted")
+        res.json({ messageToUser: "Folder has been deleted" })
     } catch (error) {
         console.error(error.message);
     }
