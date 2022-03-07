@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 import MainPage from "./components/Pages/MainPage";
 import LoginPage from "./components/Pages/LoginPage";
@@ -11,9 +11,7 @@ function App() {
   const isUserAuthenticated = useStore(state => state.isUserAuthenticated);
   const setIsUserAuthenticated = useStore(state => state.setIsUserAuthenticated);
 
-  useEffect(() => {
-    checkWhetherUserIsAuthenticated().then(result => setIsUserAuthenticated(result));
-  }, [])
+  checkWhetherUserIsAuthenticated().then(result => setIsUserAuthenticated(result));
 
   const renderMainPathEl = () => {
     switch (isUserAuthenticated) {
