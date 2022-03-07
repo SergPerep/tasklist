@@ -60,4 +60,4 @@ const formatUserInputTimeString = (timeString) => {
     return `${hoursStr}:${minutesStr}`;
 }
 
-module.exports = formatUserInputTimeString;
+export default formatUserInputTimeString;
