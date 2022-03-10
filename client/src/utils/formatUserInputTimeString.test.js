@@ -1,4 +1,4 @@
-const formatUserInputTimeString = require("./formatUserInputTimeString");
+import formatUserInputTimeString from "./formatUserInputTimeString";
 
 test("24-hour clock with separator", () => {
     expect(formatUserInputTimeString("14:00")).toBe("14:00");
