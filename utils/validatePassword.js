@@ -10,6 +10,6 @@ module.exports = (password) => {
         .has().not(/[а-я]/gi) // Has no cyrillic symbols
 
     const isValid = shema.validate(password)
-    if (!isValid) console.log(shema.validate(password));
+    // if (!isValid) console.log(shema.validate(password));
     return isValid;
 }
