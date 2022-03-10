@@ -2,7 +2,7 @@ import { useState } from "react";
 import Menu from "../Menus/Menu";
 
 const Select = props => {
-    const { placeholder, selectList, label } = props;
+    const { selectList, label } = props;
     const [openSelect, setOpenSelect] = useState(false);
     return <div className="select">
         <div className="select-label">{label}</div>
