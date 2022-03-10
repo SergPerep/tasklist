@@ -1,6 +1,10 @@
 import date from "date-and-time";
 import { today } from "./days";
-const formatTimeStringForDisplay = (timeStr /* 16:00+0100 */) => {
+
+/* 04:16+10:00 -> 4:16 */
+
+const formatTimeStringForTaskState = (timeStr /* 16:00+01:00 */) => {
+    // console.log({timeStr});
     if(!timeStr) return null;
     if (typeof timeStr !== "string") return console.error(`Expected string instead of ${typeof timeStr}`, { timeStr });
     const dateObj = new Date(date.format(today, "YYYY-MM-DD") + " " + timeStr);
@@ -8,4 +12,4 @@ const formatTimeStringForDisplay = (timeStr /* 16:00+0100 */) => {
     return date.format(dateObj, "H:mm");
 }
 
-export default formatTimeStringForDisplay;
+export default formatTimeStringForTaskState;

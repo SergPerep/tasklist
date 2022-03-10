@@ -8,7 +8,6 @@ import { useClickOutside } from "../CustomHooks";
 import { today, tomorrow } from "../../utils/days";
 import useStore from "../../store/useStore";
 import formatUserInputTimeString from "../../utils/formatUserInputTimeString";
-import formatTimeStringForDisplay from "../../utils/formatTimeStringForDisplay";
 import TimeInput from "./TimeInput";
 
 const DTPicker = () => {
@@ -60,7 +59,7 @@ const DTPicker = () => {
         setSelectedDateStr(pickedDateStr);
         if (pickedDateStr) {
             setSelectedTimeStr(pickedTimeStr);
-            setTimeInputValue(formatTimeStringForDisplay(pickedTimeStr) || "");
+            setTimeInputValue(pickedTimeStr || "");
         } else {
             setSelectedTimeStr("");
             setTimeInputValue("");
@@ -122,7 +121,7 @@ const DTPicker = () => {
                 <Icon name="Today" size="sm" />
                 <div className="date-desc">
                     {formatDateForDisplay()}
-                    {pickedTimeStr && pickedDateStr && " " + formatTimeStringForDisplay(pickedTimeStr)}
+                    {pickedTimeStr && pickedDateStr && " " + pickedTimeStr}
                 </div>
             </div>
             {isDateMenuOpen &&

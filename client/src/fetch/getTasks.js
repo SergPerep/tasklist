@@ -1,4 +1,5 @@
 import useStore from "../store/useStore";
+import formatTimeStringForTaskState from "../utils/formatTimeStringForTaskState";
 
 const setTasks = useStore.getState().setTasks;
 
@@ -12,7 +13,7 @@ const convertData = (oldArr) => {
         obj.isCompleted = obj.is_completed;
         obj.dateStr = obj.date;
         delete obj.date;
-        obj.timeStr = obj.time;
+        obj.timeStr = formatTimeStringForTaskState(obj.time);
         delete obj.time;
         delete obj.is_completed;
         delete obj.folder_id;

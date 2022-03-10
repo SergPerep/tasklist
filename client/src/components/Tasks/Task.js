@@ -8,7 +8,6 @@ import useStore from "../../store/useStore";
 import MenuForTask from "./MenuForTask";
 import ModalForDeleteTask from "./ModalForDeleteTask";
 import formatDateString from "../../utils/formatDateString";
-import formatTimeStringForDisplay from "../../utils/formatTimeStringForDisplay";
 import ColorDisplay from "../BasicUI/ColorDisplay";
 
 const Task = ({ task }) => {
@@ -54,7 +53,7 @@ const Task = ({ task }) => {
                                     {formatDateString(task.dateStr)}
                                 </div>
                                 {task.timeStr && <div className="taskitem-time">
-                                    {formatTimeStringForDisplay(task.timeStr)}
+                                    {task.timeStr}
                                 </div>}
                             </div>}
 
