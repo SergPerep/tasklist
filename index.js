@@ -9,6 +9,7 @@ const handleErrors = require("./middlewares/handleErrors");
 const requireAuth = require("./middlewares/requireAuth");
 const logger = require("./utils/logger");
 require("dotenv").config();
+const enforce = require('express-sslify');
 
 const {
     PORT = 5000,
@@ -36,7 +37,7 @@ app.use(session({
 
 // Middleware
 app.use(cors({
-    origin: NODE_ENV !== "production" ? "http://localhost:3000" : undefined,
+    origin: "http://localhost:3000",
     credentials: true,
     methods: ['GET', 'PUT', 'POST', 'DELETE'],
     allowedHeaders: ['Content-Type', '*']
@@ -49,14 +50,7 @@ if (NODE_ENV === "production") {
 }
 
 // Redirect to https on heroku
-if (NODE_ENV === "production") {
-    app.use((req, res, next) => {
-        if (req.header('x-forwarded-proto') !== 'https')
-            res.redirect(`https://${req.header('host')}${req.url}`)
-        else
-            next()
-    })
-}
+app.use(enforce.HTTPS({ trustXForwardedHostHeader: true }))
 
 // ROUTES //
 
