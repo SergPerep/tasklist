@@ -5,6 +5,7 @@ import { EmptyValueError, ValidationError, WrongTypeError } from "../utils/custo
 import catchError from "../utils/catchError";
 
 const setTasks = useStore.getState().setTasks;
+const timeZoneOffsetStr = date.format(new Date(), 'ZZ');
 
 const updateTask = async ({ id, description, dateStr = null, timeStr = null, projectId = null }) => {
     try {
@@ -26,6 +27,8 @@ const updateTask = async ({ id, description, dateStr = null, timeStr = null, pro
             if (typeof timeStr !== "string") throw new WrongTypeError("string", timeStr, { timeStr });
             if (!date.isValid(timeStr, "HH:mm")) throw new ValidationError("Expected valid time string HH:mm instead of", { timeStr });
         }
+        if (timeStr === "") timeStr = null;
+        if (timeStr) timeStr = timeStr + timeZoneOffsetStr;
 
         if (projectId) {
             if (typeof projectId !== "number" && typeof projectId !== "string") throw new WrongTypeError("number or string", projectId, { projectId })

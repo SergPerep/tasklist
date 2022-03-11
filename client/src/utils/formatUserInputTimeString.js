@@ -1,6 +1,5 @@
 const formatUserInputTimeString = (timeString) => {
     if (typeof timeString !== "string") return console.log(`Expected string instead of ${typeof timeString}`);
-
     timeString = timeString.replace(/[^\d:amp]/gi, '');
     timeString = timeString.toLowerCase();
     if (!timeString) return null;
@@ -9,7 +8,6 @@ const formatUserInputTimeString = (timeString) => {
 
     const hasSeparator = /:/g.test(timeString);
     if (hasSeparator) {
-        
         const [beginningOfString, endingOfString] = timeString.replace(/[^\d:]/gi, '').split(":");
 
         const hoursStrArr = beginningOfString.match(/\d{1,2}/);

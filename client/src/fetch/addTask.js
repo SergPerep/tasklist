@@ -3,6 +3,7 @@ import useStore from "../store/useStore";
 import { EmptyValueError, ValidationError, WrongTypeError } from "../utils/customErrors";
 import date from "date-and-time"
 import catchError from "../utils/catchError";
+const timeZoneOffsetStr = date.format(new Date(), 'ZZ');
 
 const setTasks = useStore.getState().setTasks;
 
@@ -23,6 +24,8 @@ const addTask = async ({ description, dateStr = null, timeStr = null, projectId 
             if (typeof timeStr !== "string") throw new WrongTypeError("string", timeStr, { timeStr });
             if (!date.isValid(timeStr, "HH:mm")) throw new ValidationError("Expected valid HH:mm instead of", { timeStr })
         }
+        if (timeStr === "") timeStr = null;
+        if (timeStr) timeStr = timeStr + timeZoneOffsetStr;
 
         if (projectId) {
             if (typeof projectId !== "string" && typeof projectId !== "number") throw new WrongTypeError("string or number", projectId, { projectId });

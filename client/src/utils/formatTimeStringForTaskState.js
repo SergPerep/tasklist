@@ -1,15 +1,13 @@
 import date from "date-and-time";
-import { today } from "./days";
+import { WrongTypeError } from "./customErrors";
 
-/* 04:16+10:00 -> 4:16 */
+/* HH:mm:ssZZ -> H:mm */
 
 const formatTimeStringForTaskState = (timeStr /* 16:00+01:00 */) => {
-    // console.log({timeStr});
-    if(!timeStr) return null;
-    if (typeof timeStr !== "string") return console.error(`Expected string instead of ${typeof timeStr}`, { timeStr });
-    const dateObj = new Date(date.format(today, "YYYY-MM-DD") + " " + timeStr);
-    //console.log({ dateObj });
-    return date.format(dateObj, "H:mm");
+    if (!timeStr) return null;
+    if (typeof timeStr !== "string") throw new WrongTypeError("string", timeStr, { timeStr });
+
+    return date.transform(timeStr, "HH:mm:ssZZ", "H:mm");
 }
 
 export default formatTimeStringForTaskState;
