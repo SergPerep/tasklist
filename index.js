@@ -9,7 +9,7 @@ const handleErrors = require("./middlewares/handleErrors");
 const requireAuth = require("./middlewares/requireAuth");
 const logger = require("./utils/logger");
 require("dotenv").config();
-const enforce = require('express-sslify');
+// const enforce = require('express-sslify');
 
 const {
     PORT = 5000,
@@ -45,12 +45,14 @@ app.use(cors({
 app.use(express.json()); // parse req.body as json
 
 // Static content when production
+console.log({ NODE_ENV })
 if (NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "client/build")));
 }
 
+
 // Redirect to https on heroku
-app.use(enforce.HTTPS({ trustXForwardedHostHeader: true }))
+// if (NODE_ENV === "production") app.use(enforce.HTTPS({ trustXForwardedHostHeader: true }))
 
 // ROUTES //
 
