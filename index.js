@@ -48,6 +48,16 @@ if (NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "client/build")));
 }
 
+// Redirect to https on heroku
+if (NODE_ENV === "production") {
+    app.use((req, res, next) => {
+        if (req.header('x-forwarded-proto') !== 'https')
+            res.redirect(`https://${req.header('host')}${req.url}`)
+        else
+            next()
+    })
+}
+
 // ROUTES //
 
 app.get("/session", (req, res) => {
