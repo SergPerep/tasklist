@@ -53,12 +53,7 @@ if (NODE_ENV === "production") {
 
 // Redirect to https on heroku
 if (NODE_ENV === "production") {
-    app.use((req, res, next) => {
-        if (req.header('x-forwarded-proto') !== 'https')
-            enforce.HTTPS({ trustProtoHeader: true })
-        else
-            next()
-    })
+    enforce.HTTPS({ trustProtoHeader: true })
 }
 
 // ROUTES //
