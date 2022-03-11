@@ -9,7 +9,7 @@ const handleErrors = require("./middlewares/handleErrors");
 const requireAuth = require("./middlewares/requireAuth");
 const logger = require("./utils/logger");
 require("dotenv").config();
-// const enforce = require('express-sslify');
+const enforce = require('express-sslify');
 
 const {
     PORT = 5000,
@@ -55,12 +55,11 @@ if (NODE_ENV === "production") {
 if (NODE_ENV === "production") {
     app.use((req, res, next) => {
         if (req.header('x-forwarded-proto') !== 'https')
-          res.redirect(`https://${req.header('host')}${req.url}`)
+            enforce.HTTPS({ trustProtoHeader: true })
         else
-          next()
-      })
-    // app.use(enforce.HTTPS({ trustXForwardedHostHeader: true }))
-} 
+            next()
+    })
+}
 
 // ROUTES //
 
