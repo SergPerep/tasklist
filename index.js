@@ -37,7 +37,7 @@ app.use(session({
 
 // Middleware
 app.use(cors({
-    origin: "http://localhost:3000",
+    // origin: "http://localhost:3000",
     credentials: true,
     methods: ['GET', 'PUT', 'POST', 'DELETE'],
     allowedHeaders: ['Content-Type', '*']
@@ -52,7 +52,15 @@ if (NODE_ENV === "production") {
 
 
 // Redirect to https on heroku
-// if (NODE_ENV === "production") app.use(enforce.HTTPS({ trustXForwardedHostHeader: true }))
+if (NODE_ENV === "production") {
+    app.use((req, res, next) => {
+        if (req.header('x-forwarded-proto') !== 'https')
+          res.redirect(`https://${req.header('host')}${req.url}`)
+        else
+          next()
+      })
+    // app.use(enforce.HTTPS({ trustXForwardedHostHeader: true }))
+} 
 
 // ROUTES //
 
