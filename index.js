@@ -9,6 +9,7 @@ const requireAuth = require("./middlewares/requireAuth");
 const logger = require("./utils/logger");
 require("dotenv").config();
 const enforce = require('express-sslify');
+const morgan = require("morgan");
 
 const {
     PORT = 5000,
@@ -23,6 +24,8 @@ const {
 if (NODE_ENV === "production") {
     app.use(enforce.HTTPS({ trustProtoHeader: true }))
 }
+
+app.use(morgan("tiny"));
 
 app.use(session({
     resave: false,
