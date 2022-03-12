@@ -42,6 +42,10 @@ if (NODE_ENV === "production") {
 }
 
 // Redirect to https on heroku
+if (NODE_ENV === "production") {
+    app.use(enforce.HTTPS({ trustProtoHeader: true }))
+}
+
 
 // ROUTES //
 
