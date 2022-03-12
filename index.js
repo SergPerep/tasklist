@@ -19,6 +19,11 @@ const {
     MONGODB_CLUSTER_NAME
 } = process.env;
 
+// Redirect to https on heroku
+if (NODE_ENV === "production") {
+    app.use(enforce.HTTPS({ trustProtoHeader: true }))
+}
+
 app.use(session({
     resave: false,
     saveUninitialized: true,
@@ -40,12 +45,6 @@ app.use(express.json()); // parse req.body as json
 if (NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "client/build")));
 }
-
-// Redirect to https on heroku
-if (NODE_ENV === "production") {
-    app.use(enforce.HTTPS({ trustProtoHeader: true }))
-}
-
 
 // ROUTES //
 
