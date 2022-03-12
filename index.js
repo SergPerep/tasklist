@@ -60,6 +60,7 @@ app.use("/colors", require("./routes/colors"));
 app.use("/users", require("./routes/users"));
 
 app.get('/*', (req, res) => {
+    logger.info(path.join(__dirname, '/client/build/index.html'));
     res.sendFile(path.join(__dirname, '/client/build/index.html'), function (err) {
         if (err) res.status(500).send(err);
     })
