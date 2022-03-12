@@ -1,7 +1,6 @@
 // Modules
 const express = require("express");
 const app = express();
-const cors = require("cors");
 const path = require("path");
 const session = require("express-session");
 const MongoDBStorage = require("connect-mongodb-session")(session);
@@ -35,26 +34,14 @@ app.use(session({
     }
 }));
 
-// Middleware
-app.use(cors({
-    // origin: "http://localhost:3000",
-    credentials: true,
-    methods: ['GET', 'PUT', 'POST', 'DELETE'],
-    allowedHeaders: ['Content-Type', '*']
-}));
 app.use(express.json()); // parse req.body as json
 
 // Static content when production
-console.log({ NODE_ENV })
 if (NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "client/build")));
 }
 
-
 // Redirect to https on heroku
-if (NODE_ENV === "production") {
-    enforce.HTTPS({ trustProtoHeader: true })
-}
 
 // ROUTES //
 
@@ -67,7 +54,6 @@ app.use("/tasks", requireAuth, require("./routes/tasks"));
 app.use("/folders", requireAuth, require("./routes/folders"));
 app.use("/colors", require("./routes/colors"));
 app.use("/users", require("./routes/users"));
-
 
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '/client/build/index.html'), function (err) {
