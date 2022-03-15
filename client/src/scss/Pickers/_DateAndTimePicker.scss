@@ -10,9 +10,15 @@ $borderColor: colors.$white-04;
   border: 1px solid $borderColor;
   border-radius: 6px;
   flex-shrink: 0;
-  .placeholder {
-    color: colors.$white-12;
+
+  &:hover {
+    background-color: colors.$white-12;
   }
+
+  .placeholder {
+    color: colors.$white-40;
+  }
+
 
   .date-desc {
     color: colors.$white-80;
@@ -25,12 +31,9 @@ $borderColor: colors.$white-04;
     padding: 3px 8px;
     cursor: pointer;
 
-    &:hover {
-      background-color: colors.$white-12;
-    }
     .line-icon {
       margin-right: 4px;
-      color: colors.$white-12;
+      color: colors.$white-80;
     }
   }
 

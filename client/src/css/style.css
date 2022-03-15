@@ -576,8 +576,11 @@ div {
   border-radius: 6px;
   flex-shrink: 0;
 }
+.dt-picker:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
 .dt-picker .placeholder {
-  color: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.4);
 }
 .dt-picker .date-desc {
   color: rgba(255, 255, 255, 0.8);
@@ -590,12 +593,9 @@ div {
   padding: 3px 8px;
   cursor: pointer;
 }
-.dt-picker .date-display:hover {
-  background-color: rgba(255, 255, 255, 0.12);
-}
 .dt-picker .date-display .line-icon {
   margin-right: 4px;
-  color: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.8);
 }
 .dt-picker .button-group {
   padding: 8px 16px;
