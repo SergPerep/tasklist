@@ -20,12 +20,13 @@ Use this command:
 psql -a -f setup/postgres-db-setup.sql
 ```
 It creates database and relevant tables inside it.
-## Setup mongoDB
-To store user sessions you will require [MongoDB](https://www.mongodb.com/).
+## Setup sessions
 
-Use [this guide by freecodecamp](https://www.freecodecamp.org/news/get-started-with-mongodb-atlas/) to create an account and set up mongoDB.
-
-While you doing that, grab `<username>`, `<password>`, `<cluster-name>` and `<db-name>`. You will need them to configure `.env` at the next step.
+To create tables for sessions run this command:
+```bash
+psql tasklist < node_modules/connect-pg-simple/table.sql
+```
+For more information about sessions visit  documentation for [express-session](https://github.com/expressjs/session) and [connect-pg-simple](https://github.com/voxpelli/node-connect-pg-simple).
 
 
 ## Setup environmental variables
@@ -51,16 +52,6 @@ SESS_SECRET=your#session#secret
 ```
 For more information about sessions read [express-session documentation](https://github.com/expressjs/session).
 
-### MongoDB 
-These variables allow server to connect to mongoDB. You should find them in your mongoDB account.
-
-Below is an example. Your values going to be different.
-```
-MONGODB_USER_PASSWORD=u17FC7tjhKjtpM96
-MONGODB_USER_NAME=worm
-MONGODB_CLUSTER_NAME=cluster0.s0yec
-MONGODB_DATABASE_NAME=tasklist
-```
 ## Run the app
 ### Run server
 Run from root directory:
