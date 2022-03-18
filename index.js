@@ -3,7 +3,8 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const session = require("express-session");
-const MongoDBStorage = require("connect-mongodb-session")(session);
+const pgStorage = require("connect-pg-simple")(session);
+const pool = require("./db");
 const handleErrors = require("./middlewares/handleErrors");
 const requireAuth = require("./middlewares/requireAuth");
 const logger = require("./utils/logger");
@@ -14,10 +15,7 @@ const morgan = require("morgan");
 const {
     PORT = 5000,
     NODE_ENV = "development",
-    SESS_SECRET = "session secret",
-    MONGODB_USER_PASSWORD,
-    MONGODB_USER_NAME,
-    MONGODB_CLUSTER_NAME
+    SESS_SECRET = "session secret"
 } = process.env;
 
 // Redirect to https on heroku
@@ -28,15 +26,13 @@ if (NODE_ENV === "production") {
 app.use(morgan("tiny"));
 
 app.use(session({
+    store: new pgStorage({
+        pool: pool
+    }),
     resave: false,
     saveUninitialized: true,
     secret: SESS_SECRET,
     secure: NODE_ENV === "production",
-    store: new MongoDBStorage({
-        uri: `mongodb+srv://${MONGODB_USER_NAME}:${MONGODB_USER_PASSWORD}@${MONGODB_CLUSTER_NAME}.mongodb.net/tasklist?retryWrites=true&w=majority`,
-        databaseName: "tasklist",
-        collection: "session"
-    }, (error) => { if (error) { console.log(error) } }),
     cookie: {
         maxAge: 1000 * 60 * 60 * 2, // 2 hours
     }
