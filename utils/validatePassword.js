@@ -1,8 +1,8 @@
-const passwwordValidator = require("password-validator");
+const passwordValidator = require("password-validator");
 
 module.exports = (password) => {
 
-    const shema = new passwwordValidator();
+    const shema = new passwordValidator();
     shema
         .is().min(6) // Minimum lingth 8
         .is().max(20) // Maximum length 20
