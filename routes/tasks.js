@@ -35,6 +35,7 @@ router.get("/", async (req, res) => {
 // Edit description, dates and etc.
 router.put("/:id", async (req, res) => {
     try {
+        const userId = req.session?.user?.userId;
         const id = req.params.id;
         const { description, date, time, folder_id } = req.body;
         if (!description) {
@@ -44,10 +45,12 @@ router.put("/:id", async (req, res) => {
             SET
                 is_completed = NOT task.is_completed
             WHERE
-                id = $1;
+                id = $1 AND user_id = $2;
             `,
-                [id]
+                [id, userId]
             );
+            const isUpdateSuccessful = changeTaskStatus.rowCount > 0;
+            if (!isUpdateSuccessful) return res.status(404).json({ messageToUser: "No such task related to this user" });
         } else {
             const editTask = await pool.query(`
             UPDATE
@@ -58,9 +61,11 @@ router.put("/:id", async (req, res) => {
                 time = $4,
                 folder_id = $5
             WHERE
-                id = $1;
+                id = $1 AND user_id = $6;
             `,
-                [id, description, date, time, folder_id]);
+                [id, description, date, time, folder_id, userId]);
+            const isUpdateSuccessful = editTask.rowCount > 0;
+            if (!isUpdateSuccessful) return res.status(404).json({ messageToUser: "No such task related to this user" });
         }
         res.json({ messageToUser: "Task has been successfully updated!" });
     } catch (error) {
@@ -74,13 +79,13 @@ router.put("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
     try {
         const { description, date, time, folder_id } = req.body;
-        const user_id = req.session?.user?.userId;
+        const userId = req.session?.user?.userId;
         const newTodo = await pool.query(`
             INSERT INTO
                 task (description, date, time, folder_id, user_id)
             VALUES
                 ($1, $2, $3, $4, $5);
-            `, [description, date, time, folder_id, user_id]);
+            `, [description, date, time, folder_id, userId]);
         if (newTodo.rowCount !== 1) return res.status(400).json("Failed to create new task");
         res.json({ messageToUser: "New task has been created" });
     } catch (error) {
@@ -93,13 +98,14 @@ router.post("/", async (req, res) => {
 router.delete("/:id", async (req, res) => {
     try {
         const id = req.params.id;
+        const userId = req.session?.user?.userId;
         const delTask = await pool.query(`
         DELETE FROM
             task
         WHERE
-            id = $1;
-        `, [id]);
-        if (delTask.rowCount === 0) return res.status(400).json("Can't delete task with such id since it doesn't exist");
+            id = $1 AND user_id = $2;
+        `, [id, userId]);
+        if (delTask.rowCount === 0) return res.status(404).json({ messageToUser: "No such task related to this user" });
         res.json({ messageToUser: "Task has been successfully deleted!" });
     } catch (error) {
         console.error(error.message);
