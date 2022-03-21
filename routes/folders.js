@@ -48,17 +48,20 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
     try {
         const id = req.params.id;
+        const userId = req.session?.user?.userId;
         const { folderName, colorId } = req.body;
         console.log(req.body);
         const updateFolder = await pool.query(`
             UPDATE
                 folder
             SET
-                name = $2,
-                color_id = $3
+                name = $3,
+                color_id = $4
             WHERE
-                id = $1;`
-            , [id, folderName, colorId]);
+                id = $1 AND user_id = $2;`
+            , [id, userId, folderName, colorId]);
+        const isUpdateSuccessful = updateFolder.rowCount > 0;
+        if (!isUpdateSuccessful) return res.status(404).json({ messageToUser: "No such folder related to this user" });
         // Feedback to client
         res.json({ messageToUser: "Project has been updated" });
     } catch (error) {
@@ -70,8 +73,14 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
     try {
         const id = req.params.id;
-        const deleteTasks = await pool.query(`DELETE FROM task WHERE folder_id = $1;`, [id]);
-        const deleteFolder = await pool.query(`DELETE FROM folder WHERE id = $1;`, [id]);
+        const userId = req.session?.user?.userId;
+
+        await pool.query(`DELETE FROM task WHERE folder_id = $1 AND user_id = $2;`, [id, userId]);
+
+        const deleteFolder = await pool.query(`DELETE FROM folder WHERE id = $1 AND user_id = $2;`, [id, userId]);
+        const isUpdateSuccessful = deleteFolder.rowCount > 0;
+        if (!isUpdateSuccessful) return res.status(404).json({ messageToUser: "No such folder related to this user" });
+        
         // Feedback to client
         res.json({ messageToUser: "Folder has been deleted" })
     } catch (error) {
