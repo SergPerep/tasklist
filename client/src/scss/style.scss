@@ -26,6 +26,7 @@
 @import "./BasicUI/Spinner";
 @import "./EmptyState";
 @import "./BasicUI/loaders";
+@import "./NotFoundPage";
 
 body {
   margin: 0;
@@ -39,7 +40,7 @@ body {
   @include scrollbar.handsome(colors.$prime03, colors.$white-12);
 }
 
-h1{
+h1 {
   @include fonts.h1;
 }
 
@@ -82,7 +83,6 @@ p {
   font-size: 16px;
   line-height: 24px;
 }
-
 
 /* TaskList */
 
@@ -201,4 +201,3 @@ p {
 .refer {
   height: 100%;
 }
-

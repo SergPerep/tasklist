@@ -6,6 +6,7 @@ import SignupPage from "./components/Pages/SignupPage";
 import checkWhetherUserIsAuthenticated from "./fetch/auth/checkWhetherUserIsAuthenticated";
 import useStore from "./store/useStore";
 import LoadingScreen from "./components/Pages/LoadingScreen";
+import NotFoundPage from "./components/Pages/NotFoundPage";
 
 function App() {
   const isUserAuthenticated = useStore(state => state.isUserAuthenticated);
@@ -46,17 +47,16 @@ function App() {
     }
   }
 
-  return (
-    <>
+  return <>
       <Router>
         <Routes>
           <Route path="/" element={renderMainPathEl()} />
           <Route path="/login" element={renderLoginPathEl()} />
           <Route path="/signup" element={renderSignupPathEl()} />
+          <Route path="/*" element={<NotFoundPage />}/>
         </Routes>
       </Router>
     </>
-  );
 }
 
 export default App;
