@@ -19,6 +19,8 @@ const EditTask = ({ task, btnName = "Save" }) => {
     const closeEdits = useStore(state => state.closeEdits);
     const [isFocused, setIsFocused] = useState(false);
 
+    const isDateMenuOpen = useStore(state => state.isDateMenuOpen);
+
     useEffect(() => {
         if (!task) return
         if (task.description) setTaskInputValue(task.description)
@@ -63,6 +65,16 @@ const EditTask = ({ task, btnName = "Save" }) => {
         resetEditFields();
     }
 
+    const handleEnterClose = e => {
+        if (e.key !== "Enter") return;
+        handleClickClose();
+        e.preventDefault();
+    }
+
+    const handleEnterInput = e => {
+        if (e.key !== "Enter") return;
+    }
+
     return (
         <form className="edittask" onSubmit={handleSubmitTask} id="edittask">
             <div className={`edit-fields ${isFocused ? "focused" : ""}`}>
@@ -76,6 +88,7 @@ const EditTask = ({ task, btnName = "Save" }) => {
                     autoFocus
                     onFocus={() => setIsFocused(true)}
                     onBlur={() => setIsFocused(false)}
+                    onKeyDown={handleEnterInput}
                 />
                 <div className="picker-container">
                     <DTPicker />
@@ -83,8 +96,19 @@ const EditTask = ({ task, btnName = "Save" }) => {
                 </div>
             </div>
             <div className="button-container">
-                <Button tag="button" type="submit" value="Submit" disabled={!taskInputValue}>{btnName}</Button>
-                <Button design="outlined" onClick={handleClickClose}>Close</Button>
+                <Button
+                    tag="button"
+                    type="submit"
+                    value="Submit"
+                    disabled={!taskInputValue}>
+                    {btnName}
+                </Button>
+                <Button
+                    design="outlined"
+                    onClick={handleClickClose}
+                    onKeyDown={handleEnterClose}>
+                    Close
+                </Button>
             </div>
         </form>
     )

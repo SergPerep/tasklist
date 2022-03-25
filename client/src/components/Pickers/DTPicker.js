@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import date from "date-and-time";
 import Icon from "../BasicUI/Icon";
 import Button from "../BasicUI/Button";
@@ -33,7 +33,8 @@ const DTPicker = () => {
 
     const setAnchorDate = useStore(state => state.setAnchorDate);
 
-    const [isDateMenuOpen, setIsDateMenuOpen] = useState(false);
+    const isDateMenuOpen = useStore(state => state.isDateMenuOpen);
+    const setIsDateMenuOpen = useStore(state => state.setIsDateMenuOpen);
 
     const [timeInputValue, setTimeInputValue] = useState("");
 
@@ -64,7 +65,12 @@ const DTPicker = () => {
             setSelectedTimeStr("");
             setTimeInputValue("");
         }
+    }
 
+    const handleEnterDateDisplay = e => {
+        if (e.key !== "Enter") return;
+        handleClickDateDisplay();
+        e.preventDefault();
     }
 
     const domNode = useClickOutside(() => {
@@ -111,13 +117,33 @@ const DTPicker = () => {
         setIsDateMenuOpen(false);
     }
 
+    const handleEnterOk = e => {
+        if (e.key !== "Enter") return;
+        handleClickOk();
+        e.preventDefault();
+    }
+
     const handleClickCancel = () => {
         setIsDateMenuOpen(false);
     }
 
+    const handleEnterCancel = e => {
+        if (e.key !== "Enter") return;
+        handleClickCancel();
+        e.preventDefault();
+    }
+
+    const okBtn = useRef(null);
+
+    const handleEnterTimeInput = e => {
+        if (e.key !== "Enter") return;
+        okBtn.current.focus();
+        e.preventDefault();
+    }
+
     return <div className="dt-picker">
         <div className="date-container" >
-            <div className="date-display" onClick={handleClickDateDisplay}>
+            <div className="date-display" onClick={handleClickDateDisplay} onKeyDown={handleEnterDateDisplay} tabIndex={0}>
                 <Icon name="Today" size="sm" />
                 <div className="date-desc">
                     {formatDateForDisplay()}
@@ -140,11 +166,12 @@ const DTPicker = () => {
                             timeInputValue={timeInputValue}
                             handleChangeTimeInput={handleChangeTimeInput}
                             handleBlurTimeInput={handleBlurTimeInput}
+                            onKeyDown={handleEnterTimeInput}
                         />
                     }
                     <div className="button-group">
-                        <Button design="outlined" onClick={handleClickCancel}>Cancel</Button>
-                        <Button onClick={handleClickOk}>Ok</Button>
+                        <Button design="outlined" onClick={handleClickCancel} onKeyDown={handleEnterCancel}>Cancel</Button>
+                        <Button onClick={handleClickOk} onKeyDown={handleEnterOk} reference={okBtn}>Ok</Button>
                     </div>
                 </div>}
         </div>

@@ -27,6 +27,11 @@ const ProjectPicker = () => {
     const handleClickProjectDisplay = () => {
         setIsProjectMenuOpen(true);
     }
+    const handleEnterProjectDisplay = e => {
+        if (e.key !== "Enter") return;
+        setIsProjectMenuOpen(true);
+        e.preventDefault();
+    }
 
     const domNode = useClickOutside(() => {
         setIsProjectMenuOpen(false);
@@ -34,7 +39,7 @@ const ProjectPicker = () => {
 
     return (
         <div className="project-picker">
-            <div className="project-display" onClick={handleClickProjectDisplay}>
+            <div className="project-display" onClick={handleClickProjectDisplay} onKeyDown={handleEnterProjectDisplay} tabIndex={0}>
                 {!pickedSection?.isAProject && <>
                     <Icon name="Inbox" size="sm" />
                     <div className="project-desc">Inbox</div>

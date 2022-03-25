@@ -1,6 +1,6 @@
 import Icon from "../BasicUI/Icon";
 
-const TimeInput = ({ timeInputValue, handleBlurTimeInput, handleChangeTimeInput }) => {
+const TimeInput = ({ timeInputValue, handleBlurTimeInput, handleChangeTimeInput, onKeyDown }) => {
 
     return <div className="timeinput">
         <Icon size="md" name="Clock" />
@@ -10,6 +10,7 @@ const TimeInput = ({ timeInputValue, handleBlurTimeInput, handleChangeTimeInput 
             value={timeInputValue}
             onBlur={handleBlurTimeInput}
             onChange={handleChangeTimeInput}
+            onKeyDown={onKeyDown}
         />
     </div>
 }

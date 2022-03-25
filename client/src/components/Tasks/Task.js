@@ -34,14 +34,22 @@ const Task = ({ task }) => {
         setIsMenuOpen(!isMenuOpen);
     }
 
+    const handleKeyDownTask = e => {
+        // console.log(e.key);
+        if (e.key === "Enter") {
+            e.preventDefault();
+            setOpenedEdit(task.id)
+        }
+    }
+
     return (
         <div className={"taskitem " + (isTaskOverdue ? "overdue " : "") + (task.isCompleted ? "completed" : "")}>
             {!isThisEditOpened &&
-                <div className="taskitem-container">
+                <div className="taskitem-container" tabIndex={0} onKeyDown={handleKeyDownTask}>
                     <Checkbox id={task.id} isCompleted={task.isCompleted} />
                     <div className="taskitem-content-wrapper">
                         <div className="taskitem-desc"
-                        onClick={() => setOpenedEdit(task.id)}
+                            onClick={() => setOpenedEdit(task.id)}
                         >
                             {task.description}
                         </div>

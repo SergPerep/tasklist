@@ -22,7 +22,10 @@ const createPickerSlice = (set, get) => ({
         if (typeof someDate === "string") someDate = new Date(someDate);
         if (someDate instanceof Date) return { anchorDateObj: new Date(someDate.getFullYear(), someDate.getMonth()) }
         return;
-    })
+    }),
+
+    isDateMenuOpen: false,
+    setIsDateMenuOpen: bool => set({ isDateMenuOpen: bool })
 })
 
 export default createPickerSlice;
