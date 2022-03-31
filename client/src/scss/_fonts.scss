@@ -30,7 +30,7 @@
     line-height: 20px;
 }
 
-@mixin turncatedString {
+@mixin truncatedString  {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

@@ -12,7 +12,7 @@
 @import "./BasicUI/ColorDisplay";
 @import "./Header";
 @import "./BasicUI/CheckBox";
-@import "./Accorion";
+@import "./Accordion";
 @import "./BasicUI/Button";
 @import "./BasicUI/HreflessLink";
 @import "./Pickers/Calendar";
@@ -27,6 +27,7 @@
 @import "./EmptyState";
 @import "./BasicUI/loaders";
 @import "./NotFoundPage";
+@import "./DeveloperBar";
 
 body {
   margin: 0;

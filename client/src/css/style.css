@@ -140,8 +140,8 @@ div {
 
 @font-face {
   font-family: "lineicons";
-  src: url("../fonts/lineicons.eot?f5o6n0");
-  src: url("../fonts/lineicons.eot?f5o6n0#iefix") format("embedded-opentype"), url("../fonts/lineicons.ttf?f5o6n0") format("truetype"), url("../fonts/lineicons.woff?f5o6n0") format("woff"), url("../fonts/lineicons.svg?f5o6n0#lineicons") format("svg");
+  src: url("../fonts/lineicons.eot?b6kygt");
+  src: url("../fonts/lineicons.eot?b6kygt#iefix") format("embedded-opentype"), url("../fonts/lineicons.ttf?b6kygt") format("truetype"), url("../fonts/lineicons.woff?b6kygt") format("woff"), url("../fonts/lineicons.svg?b6kygt#lineicons") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -149,6 +149,7 @@ div {
 [class^=icon-], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: "lineicons" !important;
+  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -157,18 +158,6 @@ div {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-EyeOff-md:before {
-  content: "\e91f";
-}
-
-.icon-EyeOn-md:before {
-  content: "\e920";
-}
-
-.icon-Clock-md:before {
-  content: "\e91e";
 }
 
 .icon-AngleDown-md:before {
@@ -187,11 +176,11 @@ div {
   content: "\e903";
 }
 
-.icon-Today-md:before {
+.icon-Calendar-md:before {
   content: "\e904";
 }
 
-.icon-Calendar-md:before {
+.icon-Check-md:before {
   content: "\e905";
 }
 
@@ -199,96 +188,132 @@ div {
   content: "\e906";
 }
 
-.icon-Folder-md:before {
+.icon-Clock-md:before {
   content: "\e907";
 }
 
-.icon-Inbox-md:before {
+.icon-Close-md:before {
   content: "\e908";
 }
 
-.icon-No-md:before {
+.icon-Delete-md:before {
   content: "\e909";
 }
 
-.icon-Check-md:before {
-  content: "\e91c";
-}
-
-.icon-Delete-md:before {
-  content: "\e919";
-}
-
-.icon-Close-md:before {
-  content: "\e917";
-}
-
-.icon-More-md:before {
+.icon-Edit-md:before {
   content: "\e90a";
 }
 
-.icon-Plus-md:before {
+.icon-EyeOff-md:before {
   content: "\e90b";
 }
 
-.icon-Tomorrow-md:before {
+.icon-EyeOn-md:before {
   content: "\e90c";
 }
 
-.icon-Nav-md:before {
-  content: "\e91b";
-}
-
-.icon-Edit-md:before {
-  content: "\e91a";
-}
-
-.icon-AngleDown-sm:before {
+.icon-Folder-md:before {
   content: "\e90d";
 }
 
-.icon-AngleLeft-sm:before {
+.icon-GitHub-md:before {
   content: "\e90e";
 }
 
-.icon-AngleRight-sm:before {
+.icon-Inbox-md:before {
   content: "\e90f";
 }
 
-.icon-AngleUp-sm:before {
+.icon-LinkedIn-md:before {
   content: "\e910";
 }
 
-.icon-Today-sm:before {
+.icon-More-md:before {
   content: "\e911";
 }
 
-.icon-Checkbox-sm:before {
+.icon-Nav-md:before {
   content: "\e912";
 }
 
-.icon-Folder-sm:before {
+.icon-No-md:before {
   content: "\e913";
 }
 
-.icon-Inbox-sm:before {
+.icon-Plus-md:before {
   content: "\e914";
 }
 
-.icon-No-sm:before {
+.icon-Today-md:before {
   content: "\e915";
 }
 
-.icon-Check-sm:before {
-  content: "\e91d";
-}
-
-.icon-Delete-sm:before {
+.icon-Tomorrow-md:before {
   content: "\e916";
 }
 
-.icon-Close-sm:before {
+.icon-Twitter-md:before {
+  content: "\e917";
+}
+
+.icon-AngleDown-sm:before {
   content: "\e918";
+}
+
+.icon-AngleLeft-sm:before {
+  content: "\e919";
+}
+
+.icon-AngleRight-sm:before {
+  content: "\e91a";
+}
+
+.icon-AngleUp-sm:before {
+  content: "\e91b";
+}
+
+.icon-Check-sm:before {
+  content: "\e91c";
+}
+
+.icon-Checkbox-sm:before {
+  content: "\e91d";
+}
+
+.icon-Close-sm:before {
+  content: "\e91e";
+}
+
+.icon-Delete-sm:before {
+  content: "\e91f";
+}
+
+.icon-Folder-sm:before {
+  content: "\e920";
+}
+
+.icon-GitHub-sm:before {
+  content: "\e921";
+}
+
+.icon-Inbox-sm:before {
+  content: "\e922";
+}
+
+.icon-LinkedIn-sm:before {
+  content: "\e923";
+}
+
+.icon-No-sm:before {
+  content: "\e924";
+}
+
+.icon-Today-sm:before {
+  content: "\e925";
+}
+
+.icon-Twitter-sm:before {
+  content: "\e926";
 }
 
 /* COLORS */
@@ -1429,6 +1454,63 @@ button.hrefless-link:active {
   }
   .not-found-container .content-wrapper h1 {
     margin-top: 24px;
+  }
+}
+/* COLORS */
+/* Font styles */
+.devbar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #080808;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+}
+.devbar .developer {
+  display: flex;
+  align-items: center;
+  padding: 6px 0;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.8);
+}
+.devbar .developer .dev-position {
+  color: rgba(255, 255, 255, 0.4);
+}
+.devbar .avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+.devbar .desc {
+  font-size: 14px;
+  line-height: 24px;
+}
+.devbar .btn-group {
+  display: flex;
+  align-items: center;
+}
+.devbar .social-button {
+  font-size: 14px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.4);
+  transition: color ease-in-out 0.2s;
+}
+.devbar .social-button:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+@media screen and (max-width: 700px) {
+  .devbar .social-button span {
+    display: none;
   }
 }
 body {

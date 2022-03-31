@@ -8,7 +8,7 @@
     min-width: 0;
     .project-desc {
         @include fonts.small-reg;
-        @include fonts.turncatedString;
+        @include fonts.truncatedString;
         // width: 100%;
     }
 
@@ -48,6 +48,6 @@
     background-color: colors.$prime01;
     min-width: 180px;
     .menu-item-title {
-        @include fonts.turncatedString;
+        @include fonts.truncatedString ;
     }
 }

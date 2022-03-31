@@ -6,6 +6,7 @@ import HreflessLink from "../BasicUI/HreflessLink";
 import loginUser from "../../fetch/auth/loginUser";
 import useStore from "../../store/useStore";
 import { ReactComponent as Logo } from "../../img/Logo-transparent.svg";
+import DeveloperBar from "../DeveloperBar/DeveloperBar";
 
 const LoginPage = () => {
     const [inputs, setInputs] = useState({ username: "", password: "" });
@@ -17,7 +18,7 @@ const LoginPage = () => {
         setInputs({ ...inputs, [e.target.name]: e.target.value })
     }
 
-    const handleSumbitForm = (e) => {
+    const handleSubmitForm = (e) => {
         e.preventDefault();
         loginUser(inputs.username, inputs.password).then(result => setIsUserAuthenticated(result));
     }
@@ -28,7 +29,7 @@ const LoginPage = () => {
                     <Logo />
                 </div>
                 <h2>Login</h2>
-                <form onSubmit={handleSumbitForm}>
+                <form onSubmit={handleSubmitForm}>
                     <Input
                         label="Username"
                         name="username"
@@ -55,6 +56,7 @@ const LoginPage = () => {
                     </div>
                 </form>
             </div>
+            <DeveloperBar />
         </div>
     )
 }

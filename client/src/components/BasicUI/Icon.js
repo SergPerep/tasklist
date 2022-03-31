@@ -1,7 +1,6 @@
 // Names for icons are in LineIcons.css
 
-const Icon = props => {
-    const { size, name } = props;
+const Icon = ({ size, name }) => {
     const isTodayMd = name === "Today" && size === "md";
     return (
         <>
