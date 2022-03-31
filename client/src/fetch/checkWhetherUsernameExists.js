@@ -1,7 +1,7 @@
 import { WrongTypeError, EmptyValueError } from "../utils/customErrors";
 import catchError from "../utils/catchError";
 
-const checkWhearherUsernameExists = async (username) => {
+const checkWhetherUsernameExists = async (username) => {
     try {
         if (!username) throw new EmptyValueError(undefined, username, { username });
         if (typeof username !== "string") throw new WrongTypeError("string", username, { username });
@@ -21,4 +21,4 @@ const checkWhearherUsernameExists = async (username) => {
     }
 }
 
-export default checkWhearherUsernameExists;
+export default checkWhetherUsernameExists;

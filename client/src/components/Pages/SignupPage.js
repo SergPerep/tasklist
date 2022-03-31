@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import HreflessLink from "../BasicUI/HreflessLink";
 import signupUser from "../../fetch/auth/signupUser";
 import useStore from "../../store/useStore";
-import checkWhearherUsernameExists from "../../fetch/checkWeatherUsernameExists";
+import checkWhetherUsernameExists from "../../fetch/checkWhetherUsernameExists";
 import validateUsername from "../../utils/validateUsername";
 import Spinner from "../BasicUI/Spinner";
 import Icon from "../BasicUI/Icon";
@@ -30,7 +30,7 @@ const SignupPage = () => {
     // useEffect(async () => {
     //     const userName = inputs.username;
     //     if (!validateUsername(userName)) return setIsUsernameGood(false);
-    //     isUsernameExists = await checkWhearherUsernameExists(userName);
+    //     isUsernameExists = await checkWhetherUsernameExists(userName);
     //     setIsUsernameGood(!isUsernameExists);
     // }, [inputs.username])
 
@@ -50,7 +50,7 @@ const SignupPage = () => {
             if (!validationResult.state) return setIsUsernameCorrect(false);
             setIsUsernameCorrect(true);
 
-            const isExist = await checkWhearherUsernameExists(userName);
+            const isExist = await checkWhetherUsernameExists(userName);
             if (!isExist) return setIsUsernameExists(false);
             setIsUsernameExists(true);
         } catch (error) {
@@ -62,7 +62,7 @@ const SignupPage = () => {
         setInputs({ ...inputs, password: e.target.value });
     }
 
-    const handleSumbitForm = e => {
+    const handleSubmitForm = e => {
         e.preventDefault();
         signupUser(inputs.username, inputs.password).then(result => setIsUserAuthenticated(result));
     }
@@ -72,7 +72,7 @@ const SignupPage = () => {
                 <Logo />
             </div>
             <h2>Sign up</h2>
-            <form onSubmit={handleSumbitForm}>
+            <form onSubmit={handleSubmitForm}>
                 <Input
                     label="Username"
                     name="username"
