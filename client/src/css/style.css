@@ -1513,6 +1513,48 @@ button.hrefless-link:active {
     display: none;
   }
 }
+/* COLORS */
+/* Font styles */
+.landing-top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 8px 30px;
+}
+.landing-top-nav .logo-container {
+  transition: opacity ease-in-out 0.2s;
+}
+.landing-top-nav .logo-container svg {
+  display: block;
+}
+.landing-top-nav .logo-container:hover {
+  opacity: 0.8;
+}
+.landing-top-nav .btn-group {
+  display: flex;
+  gap: 8;
+}
+
+.landing-top-nav-btn {
+  font-size: 16px;
+  line-height: 28px;
+  color: rgba(255, 255, 255, 0.4);
+  padding: 8px;
+  border-bottom: 2px solid transparent;
+  transition: all ease-in-out 0.2s;
+}
+.landing-top-nav-btn:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+.landing-top-nav-btn.active {
+  color: rgba(255, 255, 255, 0.8);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.8);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;

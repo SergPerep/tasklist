@@ -7,6 +7,7 @@ import loginUser from "../../fetch/auth/loginUser";
 import useStore from "../../store/useStore";
 import { ReactComponent as Logo } from "../../img/Logo-transparent.svg";
 import DeveloperBar from "../DeveloperBar/DeveloperBar";
+import LoginTopNav from "../LandingTopNav";
 
 const LoginPage = () => {
     const [inputs, setInputs] = useState({ username: "", password: "" });
@@ -24,6 +25,7 @@ const LoginPage = () => {
     }
     return (
         <div className="canvas">
+            <LoginTopNav />
             <div className="authentication">
                 <div className="logo-container">
                     <Logo />

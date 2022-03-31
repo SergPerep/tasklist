@@ -1,0 +1,41 @@
+@use "./colors";
+@use "./fonts";
+
+.landing-top-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px 30px;
+    .logo-container {
+        svg {
+            display: block;
+        }
+        transition: opacity ease-in-out 0.2s;
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+    .btn-group {
+        display: flex;
+        gap: 8;
+    }
+}
+
+.landing-top-nav-btn {
+    @include fonts.body-reg;
+    color: colors.$white-40;
+    padding: 8px;
+    border-bottom: 2px solid transparent;
+    transition: all ease-in-out 0.2s;
+    &:hover {
+        color: colors.$white-80;
+    }
+    &.active {
+        color: colors.$white-80;
+        border-bottom: 2px solid colors.$white-80;
+    }
+}
