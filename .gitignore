@@ -3,3 +3,5 @@
 .env
 /coverage
 /logs
+/.vscode
+post.md
