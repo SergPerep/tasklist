@@ -80,13 +80,13 @@ UPDATE
 SET
     is_completed = NOT task.is_completed
 WHERE
-    id = 1;
+    id = 1 AND user_id = '2c50eb21-e0dc-4c62-97ed-f593338b748a';
 
 -- Delete task
 DELETE FROM
     task
 WHERE
-    id = 6;
+    id = 6 AND user_id = '2c50eb21-e0dc-4c62-97ed-f593338b748a';
 
 --Edit task
 UPDATE
@@ -98,4 +98,4 @@ SET
     read_time = TRUE,
     folder_id = 1
 WHERE
-    id = 30;
+    id = 30 AND user_id = '2c50eb21-e0dc-4c62-97ed-f593338b748a';
