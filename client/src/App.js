@@ -15,12 +15,16 @@ function App() {
 
   checkWhetherUserIsAuthenticated().then(result => setIsUserAuthenticated(result));
 
-  const renderMainPathEl = () => {
+  const renderRootPathEl = () => {
+    return <HomePage />
+  }
+
+  const renderAppPathEl = () => {
     switch (isUserAuthenticated) {
       case true:
         return <MainPage />
       case false:
-        return <Navigate to="/home" />
+        return <LoginPage />
       default:
         return <LoadingScreen />
     }
@@ -29,7 +33,7 @@ function App() {
   const renderLoginPathEl = () => {
     switch (isUserAuthenticated) {
       case true:
-        return <Navigate to="/" />
+        return <Navigate to="/app" />
       case false:
         return <LoginPage />
       default:
@@ -40,7 +44,7 @@ function App() {
   const renderSignupPathEl = () => {
     switch (isUserAuthenticated) {
       case true:
-        return <Navigate to="/" />
+        return <Navigate to="/app" />
       case false:
         return <SignupPage />
       default:
@@ -49,16 +53,16 @@ function App() {
   }
 
   return <>
-      <Router>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/app" element={renderMainPathEl()} />
-          <Route path="/login" element={renderLoginPathEl()} />
-          <Route path="/signup" element={renderSignupPathEl()} />
-          <Route path="/*" element={<NotFoundPage />}/>
-        </Routes>
-      </Router>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={renderRootPathEl()} />
+        <Route path="/app" element={renderAppPathEl()} />
+        <Route path="/login" element={renderLoginPathEl()} />
+        <Route path="/signup" element={renderSignupPathEl()} />
+        <Route path="/*" element={<NotFoundPage />} />
+      </Routes>
+    </Router>
+  </>
 }
 
 export default App;
