@@ -1,24 +1,26 @@
 @use "./colors";
 @use "./fonts";
+@use "./layout";
 
-.devbar{
-    position: fixed;
-    left: 0;
-    bottom: 0;
+.devbar {
     width: 100%;
+    height: layout.$developerBarHeight;
     background-color: colors.$prime01;
     border-top: 1px solid colors.$white-12;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-between;
     padding: 0 18px;
-    .developer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    .developer {
         display: flex;
         align-items: center;
-        padding: 6px 0;
         gap: 8px;
+        height: 100%;
         color: colors.$white-80;
-        .dev-position{
+        .dev-position {
             color: colors.$white-40;
         }
     }
@@ -27,32 +29,33 @@
         height: 24px;
         border-radius: 50%;
     }
-    .desc{
+    .desc {
         @include fonts.small-reg;
     }
-    .btn-group{
+    .btn-group {
         display: flex;
-        align-items: center;
+        align-items: stretch;
+        height: 100%;
     }
-    .social-button{
+    .social-button {
         @include fonts.small-reg;
         display: flex;
         align-items: center;
         gap: 6px;
-        padding: 6px 8px;
+        padding: 0 8px;
         cursor: pointer;
         color: colors.$white-40;
-        transition: color ease-in-out .2s;
-        &:hover{
+        transition: color ease-in-out 0.2s;
+        &:hover {
             color: colors.$white-80;
         }
     }
 }
 
 @media screen and (max-width: 700px) {
-    .devbar{
-        .social-button{
-            span{
+    .devbar {
+        .social-button {
+            span {
                 display: none;
             }
         }

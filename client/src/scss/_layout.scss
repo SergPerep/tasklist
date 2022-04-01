@@ -2,7 +2,6 @@
 @use "./fonts";
 @use "./scrollbar";
 
-
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap");
 /* Font family */
 
@@ -15,7 +14,7 @@ h2 {
     margin-bottom: 12px;
 }
 
-body{
+body {
     color: colors.$white-80;
 }
 
@@ -23,6 +22,7 @@ body{
 
 $sideNavWidth: 300px;
 $topNavHeight: 44px;
+$developerBarHeight: 36px;
 
 .topnav {
     background-color: colors.$prime01;
@@ -41,7 +41,7 @@ $topNavHeight: 44px;
 }
 
 .taskboard-container {
-    min-height: calc(100% - 44px);
+    height: calc(100% - $topNavHeight - $developerBarHeight);
 
     .taskboard-sidenav {
         width: $sideNavWidth;
@@ -49,7 +49,7 @@ $topNavHeight: 44px;
         @include scrollbar.handsome(colors.$prime02, colors.$white-12);
         position: fixed;
         z-index: 1;
-        height: 100%;
+        height: calc(100% - $topNavHeight - $developerBarHeight);
         left: 0;
         transition: left ease-in-out 0.2s;
     }
@@ -80,6 +80,9 @@ $topNavHeight: 44px;
     &.small-screen {
         .taskboard-display {
             margin-left: 0;
+        }
+        .taskboard-sidenav {
+            height: calc(100% - $topNavHeight);
         }
     }
 }

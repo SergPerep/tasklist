@@ -8,6 +8,7 @@ import getColors from "../../fetch/getColors";
 import useStore from "../../store/useStore";
 import { ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import DeveloperBar from "../DeveloperBar/DeveloperBar";
 
 const AppPage = () => {
     const setTasks = useStore(state => state.setTasks);
@@ -79,6 +80,7 @@ const AppPage = () => {
             pauseOnHover
             theme="dark"
         />
+        <DeveloperBar />
     </div>
 }
 
