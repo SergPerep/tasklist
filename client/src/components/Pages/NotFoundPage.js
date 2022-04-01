@@ -17,7 +17,7 @@ const NotFoundPage = () => {
 
     return (
         <div className="canvas not-found">
-            <HomeTopNav />
+            <HomeTopNav showButtons={false} />
             <div className="not-found-container">
                 <UFOKidnapping />
                 <div className="content-wrapper">

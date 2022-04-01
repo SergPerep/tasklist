@@ -1527,6 +1527,7 @@ button.hrefless-link:active {
 }
 .home-top-nav .logo-container {
   transition: opacity ease-in-out 0.2s;
+  padding: 3px 0;
 }
 .home-top-nav .logo-container svg {
   display: block;

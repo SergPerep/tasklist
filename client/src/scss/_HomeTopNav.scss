@@ -17,6 +17,7 @@
             height: 40px; 
         }
         transition: opacity ease-in-out 0.2s;
+        padding: 3px 0;
         &:hover {
             opacity: 0.8;
         }
