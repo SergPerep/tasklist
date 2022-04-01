@@ -6,6 +6,7 @@ import uiShowcaseDesktop from "../../img/ui-showcase-desktop.png";
 import uiShowcaseMobile from "../../img/ui-showcase-mobile.png";
 import useStore from "../../store/useStore";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
 
@@ -20,14 +21,39 @@ const HomePage = () => {
         return () => window.removeEventListener("resize", updateDimensions);
     }, [])
 
+    const navigate = useNavigate();
+    
+    const handleClickTry = () => navigate("/signup")
+    const handleEnterTry = e => {
+        if (e.key !== "Enter") return;
+        handleClickTry();
+    }
+
+    const handleClickGitHub = () => window.open("https://github.com/sergperep/tasklist", "_blank")
+    const handleEnterGitHub = e => {
+        if (e.key !== "Enter") return;
+        handleClickGitHub();
+    }
+
     return <div className="canvas home-page">
         <HomeTopNav />
         <main>
             <LogoFull className="logo" />
             <p className="app-desc">Todo-list demo project</p>
             <div className="btn-group">
-                <Button design="outlined">Check code on GitHub</ Button>
-                <Button>Try Tasklist</Button>
+                <Button
+                    design="outlined"
+                    onClick={handleClickGitHub}
+                    onKeyDown={handleEnterGitHub}
+                >
+                    Check code on GitHub
+                </ Button>
+                <Button
+                    onClick={handleClickTry}
+                    onKeyDown={handleEnterTry}
+                >
+                    Try Tasklist
+                </Button>
             </div>
             <img
                 className="ui-showcase"
