@@ -23,7 +23,7 @@ const HomePage = () => {
 
     const navigate = useNavigate();
 
-    const handleClickTry = () => navigate("/signup")
+    const handleClickTry = () => navigate("/login")
     const handleEnterTry = e => {
         if (e.key !== "Enter") return;
         handleClickTry();
