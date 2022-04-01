@@ -9,7 +9,7 @@ import useStore from "../../store/useStore";
 import { ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-const MainPage = () => {
+const AppPage = () => {
     const setTasks = useStore(state => state.setTasks);
     const setProjects = useStore(state => state.setProjects);
     const setColors = useStore(state => state.setColors);
@@ -82,4 +82,4 @@ const MainPage = () => {
     </div>
 }
 
-export default MainPage;
+export default AppPage;

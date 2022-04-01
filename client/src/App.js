@@ -1,6 +1,6 @@
 import React from "react"
 import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
-import MainPage from "./components/Pages/MainPage";
+import AppPage from "./components/Pages/AppPage";
 import LoginPage from "./components/Pages/LoginPage";
 import SignupPage from "./components/Pages/SignupPage";
 import checkWhetherUserIsAuthenticated from "./fetch/auth/checkWhetherUserIsAuthenticated";
@@ -22,7 +22,7 @@ function App() {
   const renderAppPathEl = () => {
     switch (isUserAuthenticated) {
       case true:
-        return <MainPage />
+        return <AppPage />
       case false:
         return <LoginPage />
       default:
