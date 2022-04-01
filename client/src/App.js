@@ -7,6 +7,7 @@ import checkWhetherUserIsAuthenticated from "./fetch/auth/checkWhetherUserIsAuth
 import useStore from "./store/useStore";
 import LoadingScreen from "./components/Pages/LoadingScreen";
 import NotFoundPage from "./components/Pages/NotFoundPage";
+import HomePage from "./components/Pages/HomePage";
 
 function App() {
   const isUserAuthenticated = useStore(state => state.isUserAuthenticated);
@@ -19,7 +20,7 @@ function App() {
       case true:
         return <MainPage />
       case false:
-        return <Navigate to="/login" />
+        return <Navigate to="/home" />
       default:
         return <LoadingScreen />
     }
@@ -50,7 +51,8 @@ function App() {
   return <>
       <Router>
         <Routes>
-          <Route path="/" element={renderMainPathEl()} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/app" element={renderMainPathEl()} />
           <Route path="/login" element={renderLoginPathEl()} />
           <Route path="/signup" element={renderSignupPathEl()} />
           <Route path="/*" element={<NotFoundPage />}/>

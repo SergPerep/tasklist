@@ -35,10 +35,10 @@ const MainPage = () => {
     }, [])
 
     useEffect(() => {
-        const updateDimentions = () => setIsScreenSmall(window.innerWidth);
-        updateDimentions();
-        window.addEventListener("resize", updateDimentions);
-        return () => window.removeEventListener("resize", updateDimentions);
+        const updateDimensions = () => setIsScreenSmall(window.innerWidth);
+        updateDimensions();
+        window.addEventListener("resize", updateDimensions);
+        return () => window.removeEventListener("resize", updateDimensions);
     }, [])
 
     useEffect(() => {

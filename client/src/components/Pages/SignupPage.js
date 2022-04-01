@@ -11,6 +11,8 @@ import validateUsername from "../../utils/validateUsername";
 import Spinner from "../BasicUI/Spinner";
 import Icon from "../BasicUI/Icon";
 import { ReactComponent as Logo } from "../../img/Logo-transparent.svg";
+import HomeTopNav from "../HomeTopNav";
+import DeveloperBar from "../DeveloperBar/DeveloperBar";
 
 const SignupPage = () => {
 
@@ -26,17 +28,6 @@ const SignupPage = () => {
     const isUsernameGood = !isUsernameExists && isUsernameCorrect;
 
     const isSignUpActive = isPasswordGood && isUsernameGood;
-    // let isUsernameExists = false;
-    // useEffect(async () => {
-    //     const userName = inputs.username;
-    //     if (!validateUsername(userName)) return setIsUsernameGood(false);
-    //     isUsernameExists = await checkWhetherUsernameExists(userName);
-    //     setIsUsernameGood(!isUsernameExists);
-    // }, [inputs.username])
-
-    // const handleChangeInput = e => {
-    //     setInputs({ ...inputs, [e.target.name]: e.target.value });
-    // }
 
     const handleChangeUsernameInput = async (e) => {
         try {
@@ -67,6 +58,7 @@ const SignupPage = () => {
         signupUser(inputs.username, inputs.password).then(result => setIsUserAuthenticated(result));
     }
     return <div className="canvas">
+        <HomeTopNav />
         <div className="authentication">
             <div className="logo-container">
                 <Logo />
@@ -134,6 +126,7 @@ const SignupPage = () => {
                 </div>
             </form>
         </div>
+        <DeveloperBar />
     </div>
 }
 

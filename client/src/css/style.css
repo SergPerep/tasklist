@@ -1515,7 +1515,7 @@ button.hrefless-link:active {
 }
 /* COLORS */
 /* Font styles */
-.landing-top-nav {
+.home-top-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1525,21 +1525,23 @@ button.hrefless-link:active {
   width: 100%;
   padding: 8px 30px;
 }
-.landing-top-nav .logo-container {
+.home-top-nav .logo-container {
   transition: opacity ease-in-out 0.2s;
 }
-.landing-top-nav .logo-container svg {
+.home-top-nav .logo-container svg {
   display: block;
+  width: 129px;
+  height: 40px;
 }
-.landing-top-nav .logo-container:hover {
+.home-top-nav .logo-container:hover {
   opacity: 0.8;
 }
-.landing-top-nav .btn-group {
+.home-top-nav .btn-group {
   display: flex;
   gap: 8;
 }
 
-.landing-top-nav-btn {
+.home-top-nav-btn {
   font-size: 16px;
   line-height: 28px;
   color: rgba(255, 255, 255, 0.4);
@@ -1547,14 +1549,51 @@ button.hrefless-link:active {
   border-bottom: 2px solid transparent;
   transition: all ease-in-out 0.2s;
 }
-.landing-top-nav-btn:hover {
+.home-top-nav-btn:hover {
   color: rgba(255, 255, 255, 0.8);
 }
-.landing-top-nav-btn.active {
+.home-top-nav-btn.active {
   color: rgba(255, 255, 255, 0.8);
   border-bottom: 2px solid rgba(255, 255, 255, 0.8);
 }
 
+/* COLORS */
+.home-page main {
+  height: 100vh;
+  text-align: center;
+  overflow: hidden;
+  display: block;
+  padding-top: 100px;
+}
+.home-page main .logo {
+  width: 250px;
+  margin-bottom: 8px;
+}
+.home-page main .app-desc {
+  margin-bottom: 24px;
+}
+.home-page main img.ui-showcase {
+  max-width: 90%;
+  border-radius: 6px;
+  outline: 1px solid rgba(255, 255, 255, 0.12);
+}
+.home-page main .btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+@media screen and (max-width: 700px) {
+  .home-page main .btn-group {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .home-page main img.ui-showcase {
+    max-width: 85%;
+  }
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
