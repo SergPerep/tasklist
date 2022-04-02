@@ -1,7 +1,9 @@
 # Tasklist
-[→ Deployed project on heroku](srgprp-tasklist.herokuapp.com/). Heroku needs some time to wake up its server and load the app, so be patient.
 
-Want to try and test this app on your local machine? Follow [this setup guide](./setup/setup-guide.md) then.
+Node.js express todo-list app. Portfolio project.
+
+- Deployed project: https://srgprp-tasklist.herokuapp.com
+- Follow [setup guide](./setup/setup-guide.md) to try and test Tasklist in your local machine
 
 ![index-screen](./readme-media/Cover.png)
 
@@ -14,36 +16,15 @@ Want to try and test this app on your local machine? Follow [this setup guide](.
 - Setting name and color of a project
 - Login and signup
 
+> Video demo soon
+
 ## Data design
-I've chosen postgreSQl since I worked with this database before end I needed relational database to connect tasks with projects and users.
+
+All data stored in postgreSQL database.
 
 ![DB diagram](./readme-media/DBdiagram.png)
 
-### Folder table
-
-- Folder is a customizable collection of tasks. 
-- Folders are called projects in frontend only for the user convenience.
-
-### Color table
-
-- Contains collection of colors, which user can assign to a project (folder).
-- Initially it had 2 additional columns with color-values. But after redesign they became deprecated.
-- User is allowed to select color for a project but not to add new colors or remove any, since they are a part of UI design. 
-
-### Users table
-
-- Contains usernames and hashed passwords of registered users.
-- User-sessions are stored separately in MongoDB.
-
-### Task table
-
-- Contains tasks with description, date and time and status of completion. Required to be connected to a user, and can be assigned to a folder.
-- Initially instead of <code>date: date</code> and <code>time: time</code> were <code>date: timestamp</code> and <code>has_time: boolean </code>. <code>Date</code> stored information about both date and time and <code>has_time</code> indicated whether client should read hours and minutes of <code>date</code> or not. Such entries were hard to understand (by human). And since postgres has special types for days and hours anyway, it was decided to use such instead. Though it required some tweaks of node-postgres configuration to force it to work smoothly.
-- <code>time_of_creation</code> is used only for task sorting.
-- Originally table also had <code>last_time_was_updated</code> column but it was deprecated, since no use was found for it.
-
 ## API
-
 ### Tasks
 
 <details>
