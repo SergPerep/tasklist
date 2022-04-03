@@ -1,4 +1,5 @@
-@use "../colors";
+@use "../../sass-utils/colors";
+@use "../../sass-utils/focus";
 /* Hrefless link */
 
 button.hrefless-link,
@@ -10,5 +11,10 @@ button.hrefless-link:active {
     /*input has OS specific font-family*/
     cursor: pointer;
     color: colors.$active;
-    text-align: left;
+    text-align: left
+}
+
+button.hrefless-link:focus{
+    @include focus.button-focus;
+    border-radius: 2px;
 }

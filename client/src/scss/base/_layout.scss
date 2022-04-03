@@ -1,6 +1,7 @@
-@use "./colors";
-@use "./fonts";
-@use "./scrollbar";
+@use "../sass-utils/colors";
+@use "../sass-utils/fonts";
+@use "../sass-utils/scrollbar";
+@use "../sass-utils/layout-vars";
 
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap");
 /* Font family */
@@ -20,13 +21,9 @@ body {
 
 /* BASIC LAYOUT */
 
-$sideNavWidth: 300px;
-$topNavHeight: 44px;
-$developerBarHeight: 36px;
-
 .topnav {
     background-color: colors.$prime01;
-    height: $topNavHeight;
+    height: layout-vars.$topNavHeight;
 }
 
 .taskboard {
@@ -41,15 +38,15 @@ $developerBarHeight: 36px;
 }
 
 .taskboard-container {
-    height: calc(100% - $topNavHeight - $developerBarHeight);
+    height: calc(100% - layout-vars.$topNavHeight - layout-vars.$developerBarHeight);
 
     .taskboard-sidenav {
-        width: $sideNavWidth;
+        width: layout-vars.$sideNavWidth;
         overflow-y: scroll;
         @include scrollbar.handsome(colors.$prime02, colors.$white-12);
         position: fixed;
         z-index: 1;
-        height: calc(100% - $topNavHeight - $developerBarHeight);
+        height: calc(100% - layout-vars.$topNavHeight - layout-vars.$developerBarHeight);
         left: 0;
         transition: left ease-in-out 0.2s;
     }
@@ -59,7 +56,7 @@ $developerBarHeight: 36px;
         overflow-y: scroll;
         background-color: colors.$prime03;
         @include scrollbar.handsome(colors.$prime03, colors.$white-12);
-        margin-left: $sideNavWidth;
+        margin-left: layout-vars.$sideNavWidth;
         transition: margin-left ease-in-out 0.2s;
         .taskboard-display-container {
             margin: 0 auto;
@@ -70,7 +67,7 @@ $developerBarHeight: 36px;
 
     &.sidenav-is-hidden {
         .taskboard-sidenav {
-            left: -$sideNavWidth;
+            left: - layout-vars.$sideNavWidth;
         }
         .taskboard-display {
             margin-left: 0;
@@ -82,7 +79,7 @@ $developerBarHeight: 36px;
             margin-left: 0;
         }
         .taskboard-sidenav {
-            height: calc(100% - $topNavHeight);
+            height: calc(100% - layout-vars.$topNavHeight);
         }
     }
 }

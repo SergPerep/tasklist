@@ -1,7 +1,6 @@
 /* COLORS */
 /* Font styles */
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap");
 /* Font styles */
 /* COLORS */
 /* Font family */
@@ -850,6 +849,10 @@ div {
   cursor: default;
   border: 1px solid rgba(255, 255, 255, 0.04);
 }
+.button:focus {
+  outline: solid 2px #9b51e0;
+  outline-offset: 2px;
+}
 .button.outlined {
   background-color: transparent;
   border: 1px solid #9b51e0;
@@ -875,6 +878,12 @@ button.hrefless-link:active {
   cursor: pointer;
   color: #9b51e0;
   text-align: left;
+}
+
+button.hrefless-link:focus {
+  outline: solid 2px #9b51e0;
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 /* COLORS */
@@ -1302,6 +1311,10 @@ button.hrefless-link:active {
 .sidenav-btn:hover .sidenav-btn-icon::before, .sidenav-btn:hover .sidenav-btn-icon::after {
   background-color: rgba(255, 255, 255, 0.8);
 }
+.sidenav-btn:focus {
+  outline: solid 2px #9b51e0;
+  outline-offset: 2px;
+}
 .sidenav-btn .sidenav-btn-icon {
   width: 24px;
   height: 24px;
@@ -1462,108 +1475,6 @@ button.hrefless-link:active {
 }
 /* COLORS */
 /* Font styles */
-/* Font family */
-* {
-  font-family: "IBM Plex Sans", sans-serif;
-}
-
-h2 {
-  font-size: 18px;
-  line-height: 28px;
-  margin-bottom: 12px;
-}
-
-body {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-/* BASIC LAYOUT */
-.topnav {
-  background-color: #080808;
-  height: 44px;
-}
-
-.taskboard {
-  display: flex;
-  flex-direction: column;
-  background: white;
-  height: 100%;
-}
-
-.taskboard-header {
-  z-index: 3;
-}
-
-.taskboard-container {
-  height: calc(100% - 44px - 36px);
-}
-
-.taskboard-container .taskboard-sidenav {
-  width: 300px;
-  overflow-y: scroll;
-  position: fixed;
-  z-index: 1;
-  height: calc(100% - 44px - 36px);
-  left: 0;
-  transition: left ease-in-out 0.2s;
-}
-
-.taskboard-container .taskboard-sidenav::-webkit-scrollbar {
-  width: 4px;
-}
-
-.taskboard-container .taskboard-sidenav::-webkit-scrollbar-track {
-  background-color: #202020;
-}
-
-.taskboard-container .taskboard-sidenav::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
-}
-
-.taskboard-container .taskboard-display {
-  height: 100%;
-  overflow-y: scroll;
-  background-color: #292929;
-  margin-left: 300px;
-  transition: margin-left ease-in-out 0.2s;
-}
-
-.taskboard-container .taskboard-display::-webkit-scrollbar {
-  width: 4px;
-}
-
-.taskboard-container .taskboard-display::-webkit-scrollbar-track {
-  background-color: #292929;
-}
-
-.taskboard-container .taskboard-display::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
-}
-
-.taskboard-container .taskboard-display .taskboard-display-container {
-  margin: 0 auto;
-  max-width: 800px;
-  padding: 0 24px;
-}
-
-.taskboard-container.sidenav-is-hidden .taskboard-sidenav {
-  left: -300px;
-}
-
-.taskboard-container.sidenav-is-hidden .taskboard-display {
-  margin-left: 0;
-}
-
-.taskboard-container.small-screen .taskboard-display {
-  margin-left: 0;
-}
-
-.taskboard-container.small-screen .taskboard-sidenav {
-  height: calc(100% - 44px);
-}
-
 .devbar {
   width: 100%;
   height: 36px;
@@ -1611,9 +1522,14 @@ body {
   cursor: pointer;
   color: rgba(255, 255, 255, 0.4);
   transition: color ease-in-out 0.2s;
+  border-radius: 2px;
 }
 .devbar .social-button:hover {
   color: rgba(255, 255, 255, 0.8);
+}
+.devbar .social-button:focus {
+  outline: solid 2px #9b51e0;
+  outline-offset: 2px;
 }
 
 @media screen and (max-width: 700px) {
@@ -1645,6 +1561,11 @@ body {
 .home-top-nav .logo-container:hover {
   opacity: 0.8;
 }
+.home-top-nav .logo-container:focus {
+  outline: solid 2px #9b51e0;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
 .home-top-nav .btn-group {
   display: flex;
   gap: 8;
@@ -1656,7 +1577,7 @@ body {
   color: rgba(255, 255, 255, 0.4);
   padding: 8px;
   border-bottom: 2px solid transparent;
-  transition: all ease-in-out 0.2s;
+  transition: color ease-in-out 0.2s;
 }
 .home-top-nav-btn:hover {
   color: rgba(255, 255, 255, 0.8);
@@ -1664,6 +1585,11 @@ body {
 .home-top-nav-btn.active {
   color: rgba(255, 255, 255, 0.8);
   border-bottom: 2px solid rgba(255, 255, 255, 0.8);
+}
+.home-top-nav-btn:focus {
+  outline: solid 2px #9b51e0;
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 /* COLORS */

@@ -1,5 +1,6 @@
-@use "../colors";
-@use "../fonts";
+@use "../../sass-utils/colors";
+@use "../../sass-utils/fonts";
+@use "../../sass-utils/focus";
 
 .button {
     background-color: colors.$active;
@@ -19,6 +20,10 @@
         color: colors.$white-12;
         cursor: default;
         border: 1px solid colors.$white-04;
+    }
+
+    &:focus{
+        @include focus.button-focus;
     }
 
     &.outlined {

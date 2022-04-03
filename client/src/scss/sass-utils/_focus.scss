@@ -1,0 +1,6 @@
+@use "./colors";
+
+@mixin button-focus {
+    outline: solid 2px colors.$active;
+    outline-offset: 2px;
+}

@@ -1,4 +1,5 @@
-@use "./colors";
+@use "../sass-utils/colors";
+@use "../sass-utils/focus";
 
 .topnav {
     padding: 0 24px;
@@ -24,6 +25,10 @@
             }
         }
     }
+    &:focus{
+        @include focus.button-focus;
+    }
+
     .sidenav-btn-icon {
         width: 24px;
         height: 24px;

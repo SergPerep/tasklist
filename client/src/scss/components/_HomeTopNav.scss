@@ -1,5 +1,6 @@
-@use "./colors";
-@use "./fonts";
+@use "../sass-utils/colors";
+@use "../sass-utils/fonts";
+@use "../sass-utils/focus";
 
 .home-top-nav {
     display: flex;
@@ -21,6 +22,10 @@
         &:hover {
             opacity: 0.8;
         }
+        &:focus{
+            @include focus.button-focus;
+            border-radius: 2px;
+        }
     }
     .btn-group {
         display: flex;
@@ -33,12 +38,16 @@
     color: colors.$white-40;
     padding: 8px;
     border-bottom: 2px solid transparent;
-    transition: all ease-in-out 0.2s;
+    transition: color ease-in-out 0.2s;
     &:hover {
         color: colors.$white-80;
     }
     &.active {
         color: colors.$white-80;
         border-bottom: 2px solid colors.$white-80;
+    }
+    &:focus{
+        @include focus.button-focus;
+        border-radius: 2px;
     }
 }

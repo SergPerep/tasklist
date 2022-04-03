@@ -1,10 +1,11 @@
-@use "./colors";
-@use "./fonts";
-@use "./layout";
+@use "../sass-utils/colors";
+@use "../sass-utils/fonts";
+@use "../sass-utils/layout-vars";
+@use "../sass-utils/focus";
 
 .devbar {
     width: 100%;
-    height: layout.$developerBarHeight;
+    height: layout-vars.$developerBarHeight;
     background-color: colors.$prime01;
     border-top: 1px solid colors.$white-12;
     display: flex;
@@ -46,8 +47,12 @@
         cursor: pointer;
         color: colors.$white-40;
         transition: color ease-in-out 0.2s;
+        border-radius: 2px;
         &:hover {
             color: colors.$white-80;
+        }
+        &:focus{
+            @include focus.button-focus;
         }
     }
 }
