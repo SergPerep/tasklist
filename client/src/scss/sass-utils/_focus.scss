@@ -4,3 +4,7 @@
     outline: solid 2px colors.$active;
     outline-offset: 2px;
 }
+
+@mixin basic-focus {
+    outline: solid 2px colors.$active;
+}

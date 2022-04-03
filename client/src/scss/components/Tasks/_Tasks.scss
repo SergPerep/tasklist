@@ -1,3 +1,7 @@
+@use "../../sass-utils/focus";
+@use "../../sass-utils/fonts";
+@use "../../sass-utils/colors";
+
 .tasklist {
     padding: 8px 0;
 }
@@ -8,6 +12,9 @@
         display: flex;
         align-items: flex-start;
         padding: 16px;
+        &:focus{
+            @include focus.basic-focus;
+        }
     }
 
     .taskitem-content-wrapper {

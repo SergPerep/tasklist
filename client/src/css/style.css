@@ -414,6 +414,8 @@ div {
   background-color: #080808;
 }
 
+/* COLORS */
+/* Font styles */
 .tasklist {
   padding: 8px 0;
 }
@@ -423,6 +425,9 @@ div {
   display: flex;
   align-items: flex-start;
   padding: 16px;
+}
+.taskitem .taskitem-container:focus {
+  outline: solid 2px #9b51e0;
 }
 .taskitem .taskitem-content-wrapper {
   padding-left: 8px;
