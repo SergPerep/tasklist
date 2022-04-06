@@ -1,18 +1,7 @@
 const router = require("express").Router();
-const pool = require("../db");
+const colorController = require("../controllers/colorController");
 
 // Get colors
-
-router.get("/", async (req, res) => {
-    const colors = await pool.query(`
-        SELECT
-            id,
-            name,
-            value
-        FROM 
-            color`);
-    // Feedback to client
-    res.json(colors.rows);
-});
+router.get("/", colorController.color_list);
 
 module.exports = router;
