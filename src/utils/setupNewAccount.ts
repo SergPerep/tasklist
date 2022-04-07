@@ -1,44 +1,54 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const dbConnection_1 = __importDefault(require("../configs/dbConnection"));
-const date_and_time_1 = __importDefault(require("date-and-time"));
-const logger_1 = __importDefault(require("./logger"));
+import pool from "../configs/dbConnection";
+import date from "date-and-time";
+import logger from "./logger";
+
 const today = new Date();
-const yesterday = date_and_time_1.default.addDays(today, -1);
-const addTasks = async (tasks, userId) => {
+const yesterday = date.addDays(today, -1);
+
+type Tasks = {
+    description: string,
+    isCompleted: boolean,
+    date: string | null,
+    time: string | null,
+    folderId: number | null
+}[]
+
+const addTasks = async (tasks: Tasks, userId: string) => {
     for (const task of tasks) {
-        await dbConnection_1.default.query(`
+        await pool.query(`
             INSERT INTO
                 task (description, is_completed, date, time, folder_id, user_id)
             VALUES
                 ($1, $2, $3, $4, $5, $6);
             `, [task.description, task.isCompleted, task.date, task.time, task.folderId, userId]);
-        logger_1.default.info("Task has been created: " + task.description);
+        logger.info("Task has been created: " + task.description);
     }
-};
-const addFolderTasks = async (params, tasks = [], userId) => {
+}
+
+const addFolderTasks = async (params: { folderName: string, colorId: number }, tasks: Tasks = [], userId: string) => {
     const { folderName, colorId } = params;
-    const addFolder = await dbConnection_1.default.query(`
+    const addFolder = await pool.query(`
                 INSERT INTO
                     folder (name, color_id, user_id)
                 VALUES
                     ($1, $2, $3)
                 RETURNING 
                     id;
-                `, [folderName, colorId, userId]);
+                `,
+        [folderName, colorId, userId]);
     const folderId = addFolder.rows[0].id;
+
     for (const task of tasks) {
         task.folderId = folderId;
     }
+
     await addTasks(tasks, userId);
-};
-const setupNewAccount = async (userId) => {
+}
+
+const setupNewAccount = async (userId: string) => {
     try {
-        if (!userId)
-            return logger_1.default.error("Missing credentials: userId");
+        if (!userId) return logger.error("Missing credentials: userId");
+
         await addFolderTasks({ folderName: "Showcase", colorId: 4 }, [
             {
                 description: 'Tasks which are not related to any project go to "Inbox"',
@@ -54,30 +64,32 @@ const setupNewAccount = async (userId) => {
                 time: null,
                 folderId: null
             }
-        ], userId);
+        ], userId)
+
         await addFolderTasks({ folderName: "Time travel", colorId: 2 }, [
             {
                 description: "Tasks with red dates are overdue",
                 isCompleted: false,
-                date: date_and_time_1.default.format(yesterday, "YYYY-MM-DD"),
+                date: date.format(yesterday, "YYYY-MM-DD"),
                 time: "13:30",
                 folderId: null
             },
             {
                 description: "You can also specify time",
                 isCompleted: false,
-                date: date_and_time_1.default.format(today, "YYYY-MM-DD"),
+                date: date.format(today, "YYYY-MM-DD"),
                 time: "23:17",
                 folderId: null
             },
             {
                 description: "Tasks can have dates",
                 isCompleted: false,
-                date: date_and_time_1.default.format(today, "YYYY-MM-DD"),
+                date: date.format(today, "YYYY-MM-DD"),
                 time: null,
                 folderId: null
             }
-        ], userId);
+        ], userId)
+
         await addTasks([
             {
                 description: "Create new project: push “New project” button in side-navigation.",
@@ -100,10 +112,11 @@ const setupNewAccount = async (userId) => {
                 time: null,
                 folderId: null
             }
-        ], userId);
-    }
-    catch (error) {
+        ], userId)
+
+    } catch (error: any) {
         console.error(error.message);
     }
-};
-exports.default = setupNewAccount;
+}
+
+export default setupNewAccount;

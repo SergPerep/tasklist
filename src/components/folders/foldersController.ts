@@ -1,13 +1,10 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const dbConnection_1 = __importDefault(require("../../configs/dbConnection"));
-const folder_list = async (req, res) => {
+import pool from "../../configs/dbConnection";
+import { Request, Response } from "express";
+
+const folder_list = async (req: Request, res: Response) => {
     try {
         const userId = req.session?.user?.userId;
-        const allFolders = await dbConnection_1.default.query(`
+        const allFolders = await pool.query(`
         SELECT
             id,
             name,
@@ -19,73 +16,76 @@ const folder_list = async (req, res) => {
         `, [userId]);
         // Feedback to client
         res.json(allFolders.rows);
-    }
-    catch (error) {
+    } catch (error: any) {
         console.error(error.message);
     }
-};
-const folder_create_post = async (req, res) => {
+}
+
+const folder_create_post = async (req: Request, res: Response) => {
     try {
         const { folderName, colorId } = req.body;
         const userId = req.session?.user?.userId;
-        const addFolder = await dbConnection_1.default.query(`
+        const addFolder = await pool.query(`
         INSERT INTO
             folder (name, color_id, user_id)
         VALUES
             ($1, $2, $3)
         RETURNING 
             id;
-        `, [folderName, colorId, userId]);
+        `,
+            [folderName, colorId, userId]);
         const folderId = await addFolder.rows[0].id;
         res.json({ folderId });
-    }
-    catch (error) {
+    } catch (error: any) {
         console.error(error.message);
     }
-};
-const folder_update_put = async (req, res) => {
+}
+
+const folder_update_put = async (req: Request, res: Response) => {
     try {
         const id = req.params.id;
         const userId = req.session?.user?.userId;
         const { folderName, colorId } = req.body;
         console.log(req.body);
-        const updateFolder = await dbConnection_1.default.query(`
+        const updateFolder = await pool.query(`
             UPDATE
                 folder
             SET
                 name = $3,
                 color_id = $4
             WHERE
-                id = $1 AND user_id = $2;`, [id, userId, folderName, colorId]);
+                id = $1 AND user_id = $2;`
+            , [id, userId, folderName, colorId]);
         const isUpdateSuccessful = updateFolder.rowCount > 0;
-        if (!isUpdateSuccessful)
-            return res.status(404).json({ messageToUser: "No such folder related to this user" });
+        if (!isUpdateSuccessful) return res.status(404).json({ messageToUser: "No such folder related to this user" });
         // Feedback to client
         res.json({ messageToUser: "Project has been updated" });
-    }
-    catch (error) {
+    } catch (error: any) {
         console.error(error.message);
     }
-};
-const folder_delete = async (req, res) => {
+}
+
+const folder_delete = async (req: Request, res: Response) => {
     try {
         const id = req.params.id;
         const userId = req.session?.user?.userId;
-        await dbConnection_1.default.query(`DELETE FROM task WHERE folder_id = $1 AND user_id = $2;`, [id, userId]);
-        const deleteFolder = await dbConnection_1.default.query(`DELETE FROM folder WHERE id = $1 AND user_id = $2;`, [id, userId]);
+
+        await pool.query(`DELETE FROM task WHERE folder_id = $1 AND user_id = $2;`, [id, userId]);
+
+        const deleteFolder = await pool.query(`DELETE FROM folder WHERE id = $1 AND user_id = $2;`, [id, userId]);
         const isUpdateSuccessful = deleteFolder.rowCount > 0;
-        if (!isUpdateSuccessful)
-            return res.status(404).json({ messageToUser: "No such folder related to this user" });
+        if (!isUpdateSuccessful) return res.status(404).json({ messageToUser: "No such folder related to this user" });
+
         // Feedback to client
-        res.json({ messageToUser: "Folder has been deleted" });
-    }
-    catch (error) {
+        res.json({ messageToUser: "Folder has been deleted" })
+    } catch (error: any) {
         console.error(error.message);
     }
-};
-exports.default = {
+}
+
+export default {
     folder_list,
     folder_create_post,
     folder_update_put,
     folder_delete
-};
+}
