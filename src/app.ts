@@ -50,7 +50,7 @@ app.use(express.json()); // parse req.body as json
 
 // Static content when production
 if (NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "client/build")));
+    app.use(express.static(path.join(__dirname, "../client/build")));
 }
 
 // ROUTES //
