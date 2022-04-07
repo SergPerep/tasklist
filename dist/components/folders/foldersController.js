@@ -1,4 +1,4 @@
-const pool = require("../db");
+const pool = require("../../configs/dbConnection");
 
 const folder_list = async (req, res) => {
     try {

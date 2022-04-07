@@ -1,4 +1,4 @@
-const pool = require("../db");
+const pool = require("../configs/dbConnection");
 const date = require("date-and-time");
 const logger = require("./logger");
 

@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/app.js",
   "engines": {
     "node": "14.16.0",
     "npm": "8.3.1"
@@ -10,10 +10,10 @@
   "scripts": {
     "test-server": "jest --verbose --testPathIgnorePatterns=/client/ --watchAll",
     "test-client": "npm test --prefix client",
-    "nodemon": "nodemon index.js",
+    "nodemon": "nodemon .",
     "heroku-postbuild": "cd client && npm install && npm run build",
-    "start": "node index.js",
-    "server": "nodemon index",
+    "start": "node .",
+    "server": "nodemon .",
     "client": "npm start --prefix client",
     "sass": "sass --watch client/src/scss:client/src/css"
   },

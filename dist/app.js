@@ -4,7 +4,7 @@ const app = express();
 const path = require("path");
 const session = require("express-session");
 const pgStorage = require("connect-pg-simple")(session);
-const pool = require("./db");
+const pool = require("./configs/dbConnection");
 const handleErrors = require("./middlewares/handleErrors");
 const requireAuth = require("./middlewares/requireAuth");
 const logger = require("./utils/logger");
@@ -51,11 +51,11 @@ app.get("/session", (req, res) => {
     res.json(req.session);
 })
 
-app.use("/auth", require("./routes/auth"));
-app.use("/tasks", requireAuth, require("./routes/tasks"));
-app.use("/folders", requireAuth, require("./routes/folders"));
-app.use("/colors", require("./routes/colors"));
-app.use("/users", require("./routes/users"));
+app.use("/auth", require("./components/auth/authAPI"));
+app.use("/tasks", requireAuth, require("./components/tasks/tasksAPI"));
+app.use("/folders", requireAuth, require("./components/folders/foldersAPI"));
+app.use("/colors", require("./components/colors/colorsAPI"));
+app.use("/users", require("./components/users/usersAPI"));
 
 app.get('/*', (req, res) => {
     logger.info(path.join(__dirname, '/client/build/index.html'));

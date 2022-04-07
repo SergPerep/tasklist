@@ -1,4 +1,4 @@
-const pool = require("../db");
+const pool = require("../../configs/dbConnection");
 
 const color_list = async (req, res) => {
     const colors = await pool.query(`

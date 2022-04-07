@@ -1,4 +1,4 @@
-const pool = require("../db");
+const pool = require("../configs/dbConnection");
 
 module.exports = async (username) => {
     try {

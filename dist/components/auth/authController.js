@@ -1,13 +1,13 @@
-const pool = require("../db");
+const pool = require("../../configs/dbConnection");
 const bcrypt = require("bcryptjs");
 
 // Utils
-const genHash = require("../utils/genHash");
-const checkWhetherUserAlreadyExists = require("../utils/checkWhetherUserAlreadyExists");
-const validateUsername = require("../utils/validateUsername");
-const validatePassword = require("../utils/validatePassword");
-const { ForbiddenError, MissingCredentialsError } = require("../utils/customErrors");
-const setupNewAccount = require("../utils/setupNewAccount");
+const genHash = require("../../utils/genHash");
+const checkWhetherUserAlreadyExists = require("../../utils/checkWhetherUserAlreadyExists");
+const validateUsername = require("../../utils/validateUsername");
+const validatePassword = require("../../utils/validatePassword");
+const { ForbiddenError, MissingCredentialsError } = require("../../utils/customErrors");
+const setupNewAccount = require("../../utils/setupNewAccount");
 
 const auth_register_post = async (req, res, next) => {
     try {

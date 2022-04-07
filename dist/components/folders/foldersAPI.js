@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const folderController = require("../controllers/folderController");
+const folderController = require("./foldersController");
 
 // Get all folders
 router.get("/", folderController.folder_list);

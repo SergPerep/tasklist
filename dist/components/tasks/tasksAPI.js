@@ -1,6 +1,5 @@
 const router = require("express").Router();
-const taskController = require("../controllers/taskController");
-const pool = require("../db");
+const taskController = require("./tasksController");
 
 // Get all tasks
 router.get("/", taskController.task_list);

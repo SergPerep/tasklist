@@ -1,8 +1,8 @@
-const pool = require("../db");
-const logger = require("../utils/logger");
-const { MissingCredentialsError } = require("../utils/customErrors");
+const pool = require("../../configs/dbConnection");
+const logger = require("../../utils/logger");
+const { MissingCredentialsError } = require("../../utils/customErrors");
 const bcrypt = require("bcryptjs");
-const validatePassword = require("../utils/validatePassword");
+const validatePassword = require("../../utils/validatePassword");
 
 const user_checkName_post = async (req, res) => {
     try {
