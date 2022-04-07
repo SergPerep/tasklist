@@ -22,6 +22,7 @@ specifiers:
   normalize-port: ^1.0.0
   password-validator: ^5.2.1
   pg: ^8.7.1
+  typescript: ^4.6.3
   winston: ^3.5.1
 
 dependencies:
@@ -36,6 +37,7 @@ dependencies:
   normalize-port: 1.0.0
   password-validator: 5.2.1
   pg: 8.7.3
+  typescript: 4.6.3
   winston: 3.7.2
 
 devDependencies:
@@ -3640,6 +3642,12 @@ packages:
     dependencies:
       is-typedarray: 1.0.0
     dev: true
+
+  /typescript/4.6.3:
+    resolution: {integrity: sha512-yNIatDa5iaofVozS/uQJEl3JRWLKKGJKh6Yaiv0GLGSuhpFJe7P3SbHZ8/yjAHRQwKRoA6YZqlfjXWmVzoVSMw==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
+    dev: false
 
   /uid-safe/2.1.5:
     resolution: {integrity: sha512-KPHm4VL5dDXKz01UuEd88Df+KzynaohSL9fBh096KWAxSKZQDI2uBrVqtvRM4rwrIrRRKsdLNML/lnaaVSRioA==}
