@@ -32,17 +32,18 @@ if (NODE_ENV === "production") {
 }
 
 app.use(morgan("tiny"));
-
+app.set("trust proxy", 1)
 app.use(session({
     store: new pgStorage({
         pool: pool
     }),
+    proxy: true,
     resave: false,
     saveUninitialized: true,
     secret: SESS_SECRET,
     cookie: {
-        maxAge: 1000 * 60 * 60 * 2 // 2 hours
-        // secure: NODE_ENV === "production"
+        maxAge: 1000 * 60 * 60 * 2, // 2 hours
+        secure: NODE_ENV !== "development"
     }
 }));
 
