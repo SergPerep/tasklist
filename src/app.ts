@@ -32,7 +32,7 @@ if (NODE_ENV === "production") {
 }
 
 app.use(morgan("tiny"));
-app.set("trust proxy", 1)
+// app.set("trust proxy", 1)
 app.use(session({
     store: new pgStorage({
         pool: pool
