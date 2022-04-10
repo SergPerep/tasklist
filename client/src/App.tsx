@@ -1,4 +1,3 @@
-import React from "react"
 import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 import AppPage from "./components/Pages/AppPage";
 import LoginPage from "./components/Pages/LoginPage";
@@ -8,6 +7,7 @@ import useStore from "./store/useStore";
 import LoadingScreen from "./components/Pages/LoadingScreen";
 import NotFoundPage from "./components/Pages/NotFoundPage";
 import HomePage from "./components/Pages/HomePage";
+import React from "react";
 
 function App() {
   const isUserAuthenticated = useStore(state => state.isUserAuthenticated);

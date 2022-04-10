@@ -8,3 +8,10 @@
 @mixin basic-focus {
     outline: solid 2px colors.$active;
 }
+
+// @mixin no-focus {
+//     &:focus {
+//         outline: none;
+//         outline-offset: 0;
+//     }
+// }

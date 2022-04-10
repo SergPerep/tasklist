@@ -15,7 +15,7 @@
     line-height: 24px;
     cursor: pointer;
 
-    &[disabled] {
+    &[disabled], &.disabled {
         background-color: colors.$white-04;
         color: colors.$white-12;
         cursor: default;
