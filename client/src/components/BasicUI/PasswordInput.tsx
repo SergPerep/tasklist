@@ -1,6 +1,23 @@
 import { useEffect, useState } from "react";
 import Icon from "./Icon";
 import zxcvbn from "zxcvbn";
+import React from "react";
+
+type PasswordInputArgs = {
+    label: string,
+    name: string,
+    value: string,
+    placeholder: string,
+    onChange: () => void,
+    autoFocus: boolean,
+    minLength: number,
+    maxLength: number,
+    inputId: string,
+    hasStrengthBar: boolean,
+    hasShowPassword: boolean,
+    setIsPasswordGood: (isIt: boolean) => void,
+    goodScore: number
+}
 
 const PasswordInput = ({
     label,
@@ -16,7 +33,7 @@ const PasswordInput = ({
     hasShowPassword = true,
     setIsPasswordGood = () => { },
     goodScore = 3
-}) => {
+}: PasswordInputArgs) => {
     const [isPasswordShown, setIsPasswordShown] = useState(false);
     const result = hasStrengthBar ? zxcvbn(value || "") : null;
     const strengthNamesObj = {
@@ -26,11 +43,23 @@ const PasswordInput = ({
         3: "Good",
         4: "Strong"
     }
-    const feedbackTitleStr = strengthNamesObj[result?.score];
+
+    const passScore = result ? result?.score : null;
+
+    const feedbackTitleStr = passScore ? strengthNamesObj[passScore] : "";
 
     useEffect(() => {
-        setIsPasswordGood(result.score >= goodScore);
+        if (passScore) setIsPasswordGood(passScore >= goodScore);
     }, [result])
+
+    const renderIcon = () => {
+        if (!passScore) return
+        if (passScore < 3) {
+            return <Icon size="sm" name="Close" />
+        } else {
+            return <Icon size="sm" name="Check" />
+        }
+    }
 
     return <div className="input-field password-input-field">
         <label htmlFor={inputId}>{label}</label>
@@ -57,11 +86,8 @@ const PasswordInput = ({
                 {value &&
                     <div className="hint">
                         <div className="title">
-                            <div className="icon-container" score={result?.score}>
-                                {result.score < 3 &&
-                                    <Icon size="sm" name="Close" />}
-                                {result.score >= 3 &&
-                                    <Icon size="sm" name="Check" />}
+                            <div className={`icon-container ${passScore ? "score-" + passScore : ""}`}>
+                                {renderIcon()}
                             </div>
                             <span>{feedbackTitleStr}</span>
                         </div>

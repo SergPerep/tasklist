@@ -1229,10 +1229,10 @@ button.hrefless-link:focus {
 .password-input-field .input-container .hint .title {
   display: flex;
 }
-.password-input-field .input-container .hint .icon-container[score="0"], .password-input-field .input-container .hint .icon-container[score="1"], .password-input-field .input-container .hint .icon-container[score="2"] {
+.password-input-field .input-container .hint .icon-container.score-0, .password-input-field .input-container .hint .icon-container.score-1, .password-input-field .input-container .hint .icon-container.score-2 {
   color: #eb5757;
 }
-.password-input-field .input-container .hint .icon-container[score="3"], .password-input-field .input-container .hint .icon-container[score="4"] {
+.password-input-field .input-container .hint .icon-container.score-3, .password-input-field .input-container .hint .icon-container.score-4 {
   color: #0DAD70;
 }
 

@@ -1,4 +1,10 @@
-const Spinner = ({ size = "md" }) => {
+import React from "react";
+
+type SpinnerArgs = {
+    size: "md" | "sm"
+}
+
+const Spinner = ({ size = "md" }: SpinnerArgs) => {
     return <svg className={`spinner ${size}`} version="1.1" xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 48 48">
         <g className="spinner-group">

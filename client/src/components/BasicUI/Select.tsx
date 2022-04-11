@@ -1,13 +1,19 @@
+import React from "react";
 import { useState } from "react";
 import Menu from "../Menus/Menu";
 
-const Select = props => {
-    const { selectList, label } = props;
+type SelectArgs = {
+    selectList: [], 
+    label: string, 
+    children: any
+}
+
+const Select = ({ selectList, label, children }: SelectArgs) => {
     const [openSelect, setOpenSelect] = useState(false);
     return <div className="select">
         <div className="select-label">{label}</div>
         <div className="select-field" onClick={() => setOpenSelect(!openSelect)}>
-            <div className="select-display">{props.children}</div>
+            <div className="select-display">{children}</div>
             {openSelect &&
                 <div className="select-content">
                     <Menu menuList={selectList} onClickOutside={() => setOpenSelect(false)} />
