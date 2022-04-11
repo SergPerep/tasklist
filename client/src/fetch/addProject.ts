@@ -2,7 +2,8 @@ import catchError from "../utils/catchError";
 import { EmptyValueError, WrongTypeError } from "../utils/customErrors";
 import getFolders from "./getFolders";
 
-const addProject = async (folderName, colorId = null, callback) => {
+
+const addProject = async (folderName: string, colorId: number | null = null, callback: CallableFunction) => {
     try {
         if (!folderName) throw new EmptyValueError(undefined, { folderName });
         if (typeof folderName !== "string") throw new WrongTypeError("string", folderName, { folderName })

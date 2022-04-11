@@ -3,10 +3,18 @@ import { useState } from "react";
 import Menu from "../Menus/Menu";
 
 type SelectArgs = {
-    selectList: [], 
+    selectList: SelectList, 
     label: string, 
     children: any
 }
+
+type SelectList = {
+    title: string,
+    iconName?: string,
+    color?: string,
+    selected: boolean,
+    onClick: () => void
+}[]
 
 const Select = ({ selectList, label, children }: SelectArgs) => {
     const [openSelect, setOpenSelect] = useState(false);

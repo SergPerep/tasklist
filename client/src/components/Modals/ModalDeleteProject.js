@@ -1,6 +1,12 @@
 import Modal from "./Modal";
 import deleteProject from "../../fetch/deleteProject";
 import useStore from "../../store/useStore";
+import React from "react";
+
+// type ModalDeleteProjectArgs = {
+//     setIsModalOpen: boolean, 
+//     projectId: number
+// }
 
 const ModalDeleteProject = ({ setIsModalOpen, projectId }) => {
     const sections = useStore(state => state.sections);

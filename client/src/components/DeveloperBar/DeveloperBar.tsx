@@ -1,3 +1,4 @@
+import React from "react";
 import SocialButton from "./SocialButton";
 import avatar from "../../img/avatar.jpg";
 

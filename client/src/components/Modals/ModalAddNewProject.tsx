@@ -3,22 +3,27 @@ import Select from "../BasicUI/Select";
 import Modal from "./Modal";
 import ColorDisplay from "../BasicUI/ColorDisplay";
 import Icon from "../BasicUI/Icon";
-import { useState } from "react";
+import { ChangeEventHandler, useState } from "react";
 import useStore from "../../store/useStore";
 import addProject from "../../fetch/addProject";
+import React from "react";
 
-const ModalAddNewProject = ({ setIsModalOpen }) => {
+type ModalAddNewProjectArgs = {
+    setIsModalOpen: (bl: boolean) => void
+}
+
+const ModalAddNewProject = ({ setIsModalOpen }: ModalAddNewProjectArgs) => {
     const [inputAddProjectValue, setInputAddProjectValue] = useState("");
     const setSelectedSectionId = useStore(state => state.setSelectedSectionId);
     const colors = useStore(state => state.colors);
     const getColor = useStore(state => state.getColor);
-    const [selectedColorId, setSelectedColorId] = useState(null);
+    const [selectedColorId, setSelectedColorId] = useState<number | null>(null);
 
     const isScreenSmall = useStore(state => state.isScreenSmall);
     const setIsSideNavOpened = useStore(state => state.setIsSideNavOpened);
 
     const handleClickAdd = () => {
-        addProject(inputAddProjectValue, selectedColorId, (folderId) => {
+        addProject(inputAddProjectValue, selectedColorId, (folderId: number) => {
             setInputAddProjectValue("");
             setSelectedColorId(null);
             setSelectedSectionId(folderId);
@@ -32,11 +37,16 @@ const ModalAddNewProject = ({ setIsModalOpen }) => {
         setSelectedColorId(null);
     }
     
+    const handleChangeInput: ChangeEventHandler<HTMLInputElement> = e => {
+        setInputAddProjectValue(e.target.value)
+    }
+
     return (
         <Modal buttonList={[{
             title: "Close",
             design: "outlined",
-            onClick: handleClickClose
+            onClick: handleClickClose,
+            disabled: false
         }, {
             title: "Add",
             disabled: inputAddProjectValue.trim() ? false : true,
@@ -47,10 +57,9 @@ const ModalAddNewProject = ({ setIsModalOpen }) => {
                 label="Name"
                 value={inputAddProjectValue}
                 autoFocus
-                maxLength="100"
-                onChange={e => { setInputAddProjectValue(e.target.value) }} />
+                maxLength={100}
+                onChange={handleChangeInput} />
             <Select
-                placeholder="New select"
                 label="Color"
                 selectList={colors.map(color => {
                     return {
@@ -58,12 +67,12 @@ const ModalAddNewProject = ({ setIsModalOpen }) => {
                         color: color.value,
                         selected: selectedColorId === color.id,
                         onClick: () => {
-                            setSelectedColorId(color.id);
+                            if (color.id) setSelectedColorId(color.id);
                         }
                     }
                 })}>
                 <div className="select-display-color">
-                    <ColorDisplay color={getColor(selectedColorId).value} />
+                    <ColorDisplay color={getColor(selectedColorId).value} size="md"/>
                     <div className="select-display-color-name">{getColor(selectedColorId).name}</div>
                     <Icon name="AngleDown" size="sm" />
                 </div>

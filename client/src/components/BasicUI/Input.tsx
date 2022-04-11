@@ -1,15 +1,15 @@
-import React from "react";
+import React, { ChangeEventHandler } from "react";
 
 type InputArgs = {
     label: string,
-    name: string,
+    name?: string,
     value: string,
-    placeholder: string,
-    onChange: () => void,
-    autoFocus: boolean, 
-    type: string,
-    maxLength: number,
-    minLength: number
+    placeholder?: string,
+    onChange?: ChangeEventHandler,
+    autoFocus?: boolean, 
+    type?: string,
+    maxLength?: number,
+    minLength?: number
 }
 
 const Input = ({

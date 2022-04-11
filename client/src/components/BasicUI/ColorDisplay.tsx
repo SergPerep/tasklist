@@ -2,7 +2,7 @@ import React from "react";
 
 type ColorDisplayArgs = {
     color: string,
-    size: string
+    size: "md" | "sm"
 }
 const ColorDisplay = ({ color, size }: ColorDisplayArgs) => {
     return <div className={`color-display ${size}`}>

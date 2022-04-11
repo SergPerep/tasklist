@@ -1,11 +1,27 @@
+import React from "react";
 import Button from "../BasicUI/Button";
-const Modal = props => {
-    const buttonList = props.buttonList;
+
+type ModalArgs = {
+    buttonList: buttonList,
+    children: any
+}
+
+type buttonList = {
+    disabled: boolean,
+    type?: "submit" | "button" | "reset" | undefined,
+    form?: string,
+    value?: string,
+    onClick: () => void,
+    design?: string,
+    title: string
+}[]
+
+const Modal = ({buttonList, children}: ModalArgs) => {
     return (
         <div className="overlay">
             <div className="modal">
                 <div className="modal-content">
-                    {props.children}
+                    {children}
                 </div>
                 {buttonList &&
                     <div className="modal-button-group">

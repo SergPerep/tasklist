@@ -1,18 +1,18 @@
 import clsx from "clsx";
 import React from "react";
 
-type Args = {
+type ButtonArgs = {
     children: any,
-    tag: string,
-    design: string,
-    type: "button" | "submit" | "reset" | undefined,
-    value: string,
-    form: string,
+    tag?: string,
+    design?: string,
+    type?: "button" | "submit" | "reset" | undefined,
+    value?: string,
+    form?: string,
     disabled: boolean,
-    name: string,
+    name?: string,
     onClick: () => void,
-    onKeyDown: () => void,
-    reference: any
+    onKeyDown?: () => void,
+    reference?: any
 }
 
 const Button = ({
@@ -27,7 +27,7 @@ const Button = ({
     onClick,
     onKeyDown,
     reference
-}: Args) => {
+}: ButtonArgs) => {
     const isFormButton = tag === "button";
     const btnCls = clsx({
         "button": true,

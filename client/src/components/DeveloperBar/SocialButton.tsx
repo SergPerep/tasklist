@@ -1,9 +1,16 @@
+import React, { KeyboardEventHandler } from "react";
 import Icon from "../BasicUI/Icon";
-const SocialButton = ({ iconName, title, url }) => {
+type SocialButtonArgs = {
+    iconName: string,
+    title: string,
+    url: string
+}
+
+const SocialButton = ({ iconName, title, url }: SocialButtonArgs) => {
     const handleClickButton = () => {
         window.open(url, "_blank");
     }
-    const handleEnterButton = e => {
+    const handleEnterButton: KeyboardEventHandler = (e) => {
         if (e.key !== "Enter") return;
         handleClickButton();
         e.preventDefault();

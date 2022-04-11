@@ -1,8 +1,21 @@
+import React from "react";
 import { useClickOutside } from "../CustomHooks";
 import MenuItem from "./MenuItem";
 
-const Menu = props => {
-    const {menuList, onClickOutside} = props; // array
+type MenuArgs = {
+    menuList: MenuList,
+    onClickOutside: () => void
+}
+
+type MenuList = {
+    title: string,
+    iconName?: string,
+    color?: string,
+    selected: boolean,
+    onClick: () => void
+}[]
+
+const Menu = ({ menuList, onClickOutside }: MenuArgs) => {
     const domNode = useClickOutside(onClickOutside);
     return (
         <div className="menu" ref={domNode}>

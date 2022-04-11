@@ -1,9 +1,16 @@
+import React from "react";
 import ColorDisplay from "../BasicUI/ColorDisplay";
 import Icon from "../BasicUI/Icon";
 
-const MenuItem = props => {
-    const { iconName, color, selected } = props;
-    const onClick = props.onClick;
+type MenuItemArgs = {
+    iconName?: string, 
+    color?: string, 
+    selected: boolean, 
+    children: any,
+    onClick: () => void
+}
+
+const MenuItem = ({ iconName, color, selected, children, onClick }: MenuItemArgs) => {
     return (
         <div className={`menu-item ${selected ? "selected" : ""}`} onClick={onClick}>
 
@@ -11,8 +18,8 @@ const MenuItem = props => {
                 <Icon name={iconName} size="md" />
             </div>}
 
-            {color && <ColorDisplay color={color} />}
-            <div className="menu-item-title">{props.children}</div>
+            {color && <ColorDisplay color={color} size="md" />}
+            <div className="menu-item-title">{children}</div>
             {selected && <div className="menu-icon-right">
                 <Icon name="Check" size="md" />
             </div>}
