@@ -4,13 +4,13 @@ import Icon from "../BasicUI/Icon";
 
 type MenuItemArgs = {
     iconName?: string, 
-    color?: string, 
-    selected: boolean, 
+    colorStr?: string, 
+    selected?: boolean, 
     children: any,
     onClick: () => void
 }
 
-const MenuItem = ({ iconName, color, selected, children, onClick }: MenuItemArgs) => {
+const MenuItem = ({ iconName, colorStr, selected, children, onClick }: MenuItemArgs) => {
     return (
         <div className={`menu-item ${selected ? "selected" : ""}`} onClick={onClick}>
 
@@ -18,7 +18,7 @@ const MenuItem = ({ iconName, color, selected, children, onClick }: MenuItemArgs
                 <Icon name={iconName} size="md" />
             </div>}
 
-            {color && <ColorDisplay color={color} size="md" />}
+            {colorStr && <ColorDisplay colorStr={colorStr} size="md" />}
             <div className="menu-item-title">{children}</div>
             {selected && <div className="menu-icon-right">
                 <Icon name="Check" size="md" />

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 
 type HreflessLinkArgs = {
-    onClick: () => void,
+    onClick: MouseEventHandler,
     children: any
 }
 

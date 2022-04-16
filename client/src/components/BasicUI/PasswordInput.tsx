@@ -1,18 +1,19 @@
-import { useEffect, useState } from "react";
+import { ChangeEventHandler, useEffect, useState } from "react";
 import Icon from "./Icon";
 import zxcvbn from "zxcvbn";
 import React from "react";
 
 type PasswordInputArgs = {
+    id: string,
     label: string,
     name: string,
     value: string,
     placeholder: string,
-    onChange: () => void,
-    autoFocus: boolean,
-    minLength: number,
-    maxLength: number,
-    inputId: string,
+    onChange: ChangeEventHandler,
+    autoFocus?: boolean,
+    minLength?: number,
+    maxLength?: number,
+    inputId?: string,
     hasStrengthBar: boolean,
     hasShowPassword: boolean,
     setIsPasswordGood: (isIt: boolean) => void,

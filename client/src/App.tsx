@@ -3,7 +3,7 @@ import AppPage from "./components/Pages/AppPage";
 import LoginPage from "./components/Pages/LoginPage";
 import SignupPage from "./components/Pages/SignupPage";
 import checkWhetherUserIsAuthenticated from "./fetch/auth/checkWhetherUserIsAuthenticated";
-import useStore from "./store/useStore";
+import { useStore, useActions } from "./store";
 import LoadingScreen from "./components/Pages/LoadingScreen";
 import NotFoundPage from "./components/Pages/NotFoundPage";
 import HomePage from "./components/Pages/HomePage";
@@ -11,7 +11,7 @@ import React from "react";
 
 function App() {
   const isUserAuthenticated = useStore(state => state.isUserAuthenticated);
-  const setIsUserAuthenticated = useStore(state => state.setIsUserAuthenticated);
+  const setIsUserAuthenticated = useActions(state => state.setIsUserAuthenticated);
 
   checkWhetherUserIsAuthenticated().then(result => setIsUserAuthenticated(result));
 

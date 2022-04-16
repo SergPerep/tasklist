@@ -1,19 +1,12 @@
 import React from "react";
 import { useClickOutside } from "../CustomHooks";
 import MenuItem from "./MenuItem";
+import { MenuList } from "../../types";
 
 type MenuArgs = {
     menuList: MenuList,
-    onClickOutside: () => void
+    onClickOutside?: () => void
 }
-
-type MenuList = {
-    title: string,
-    iconName?: string,
-    color?: string,
-    selected: boolean,
-    onClick: () => void
-}[]
 
 const Menu = ({ menuList, onClickOutside }: MenuArgs) => {
     const domNode = useClickOutside(onClickOutside);
@@ -21,7 +14,7 @@ const Menu = ({ menuList, onClickOutside }: MenuArgs) => {
         <div className="menu" ref={domNode}>
             {menuList.map((item, index) => <MenuItem
                 iconName={item.iconName}
-                color={item.color}
+                colorStr={item.colorStr}
                 selected={item.selected}
                 onClick={item.onClick}
                 key={index}>

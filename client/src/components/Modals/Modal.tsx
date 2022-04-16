@@ -7,7 +7,7 @@ type ModalArgs = {
 }
 
 type buttonList = {
-    disabled: boolean,
+    disabled?: boolean,
     type?: "submit" | "button" | "reset" | undefined,
     form?: string,
     value?: string,

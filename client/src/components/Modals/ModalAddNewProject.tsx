@@ -4,7 +4,7 @@ import Modal from "./Modal";
 import ColorDisplay from "../BasicUI/ColorDisplay";
 import Icon from "../BasicUI/Icon";
 import { ChangeEventHandler, useState } from "react";
-import useStore from "../../store/useStore";
+import { useStore, useActions } from "../../store";
 import addProject from "../../fetch/addProject";
 import React from "react";
 
@@ -14,13 +14,13 @@ type ModalAddNewProjectArgs = {
 
 const ModalAddNewProject = ({ setIsModalOpen }: ModalAddNewProjectArgs) => {
     const [inputAddProjectValue, setInputAddProjectValue] = useState("");
-    const setSelectedSectionId = useStore(state => state.setSelectedSectionId);
+    const setSelectedSectionId = useActions(state => state.setSelectedSectionId);
     const colors = useStore(state => state.colors);
     const getColor = useStore(state => state.getColor);
     const [selectedColorId, setSelectedColorId] = useState<number | null>(null);
 
     const isScreenSmall = useStore(state => state.isScreenSmall);
-    const setIsSideNavOpened = useStore(state => state.setIsSideNavOpened);
+    const setIsSideNavOpened = useActions(state => state.setIsSideNavOpened);
 
     const handleClickAdd = () => {
         addProject(inputAddProjectValue, selectedColorId, (folderId: number) => {
@@ -36,7 +36,7 @@ const ModalAddNewProject = ({ setIsModalOpen }: ModalAddNewProjectArgs) => {
         setInputAddProjectValue("");
         setSelectedColorId(null);
     }
-    
+
     const handleChangeInput: ChangeEventHandler<HTMLInputElement> = e => {
         setInputAddProjectValue(e.target.value)
     }
@@ -67,13 +67,13 @@ const ModalAddNewProject = ({ setIsModalOpen }: ModalAddNewProjectArgs) => {
                         color: color.value,
                         selected: selectedColorId === color.id,
                         onClick: () => {
-                            if (color.id) setSelectedColorId(color.id);
+                            setSelectedColorId(color.id);
                         }
                     }
                 })}>
                 <div className="select-display-color">
-                    <ColorDisplay color={getColor(selectedColorId).value} size="md"/>
-                    <div className="select-display-color-name">{getColor(selectedColorId).name}</div>
+                    <ColorDisplay colorStr={getColor(colors, selectedColorId).value} size="md" />
+                    <div className="select-display-color-name">{getColor(colors, selectedColorId).name}</div>
                     <Icon name="AngleDown" size="sm" />
                 </div>
             </Select>

@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React from "react";
+import React, { KeyboardEventHandler } from "react";
 
 type ButtonArgs = {
     children: any,
@@ -8,10 +8,10 @@ type ButtonArgs = {
     type?: "button" | "submit" | "reset" | undefined,
     value?: string,
     form?: string,
-    disabled: boolean,
+    disabled?: boolean,
     name?: string,
-    onClick: () => void,
-    onKeyDown?: () => void,
+    onClick?: () => void,
+    onKeyDown?: KeyboardEventHandler,
     reference?: any
 }
 

@@ -1,7 +1,7 @@
 import React from "react";
 
 type SpinnerArgs = {
-    size: "md" | "sm"
+    size?: "md" | "sm" | "lg"
 }
 
 const Spinner = ({ size = "md" }: SpinnerArgs) => {
