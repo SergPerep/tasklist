@@ -1,12 +1,12 @@
 import React from "react";
-import CHARCOAL_COLOR from "src/utils/CHARCOAL_COLOR";
+import COAL_COLOR from "src/utils/COAL_COLOR";
 
 type ColorDisplayArgs = {
     colorStr: string | undefined,
     size: "md" | "sm"
 }
 const ColorDisplay = ({ colorStr, size }: ColorDisplayArgs) => {
-    colorStr = colorStr || CHARCOAL_COLOR.value;
+    colorStr = colorStr || COAL_COLOR.value;
     return <div className={`color-display ${size}`}>
         <div className="color-spot" style={{backgroundColor: colorStr}}></div>
     </div>

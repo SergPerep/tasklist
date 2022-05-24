@@ -1,10 +1,10 @@
 import { Color } from "src/types";
-import CHARCOAL_COLOR from "./CHARCOAL_COLOR";
+import COAL_COLOR from "./COAL_COLOR";
 
 const getColor = (colors: Color[], colorId: number | null) => {
     const selectedColor = colors
         .find(color => color.id === colorId)
-    return selectedColor ? selectedColor : CHARCOAL_COLOR;
+    return selectedColor ? selectedColor : COAL_COLOR;
 }
 
 export default getColor;

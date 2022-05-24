@@ -1,6 +1,6 @@
 import { action, Action } from "easy-peasy";
 import { Color } from "src/types";
-import CHARCOAL_COLOR from "src/utils/CHARCOAL_COLOR";
+import COAL_COLOR from "src/utils/COAL_COLOR";
 
 export type ColorModel = {
     colors: Color[],
@@ -12,17 +12,17 @@ const colorModel: ColorModel = {
     colors: [/*
             {
                 id: null,
-                name: "Charcoal",
+                name: "Coal",
                 value: "#808080"
             },...
         */],
     getColor: (colors, colorId) => {
         const selectedColor = colors
             .find(color => color.id === colorId)
-        return selectedColor ? selectedColor : CHARCOAL_COLOR;
+        return selectedColor ? selectedColor : COAL_COLOR;
     },
     setColors: action((state, rawColors) => {
-        state.colors = [CHARCOAL_COLOR, ...rawColors];
+        state.colors = [COAL_COLOR, ...rawColors];
     })
 };
 
