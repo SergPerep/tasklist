@@ -41,6 +41,7 @@ PG_USER=postgres
 PG_HOST=localhost
 PG_PORT=5432
 PG_DATABASE=tasklist
+PG_DATABASE_URL=
 ```
 
 ### Sessions variable
