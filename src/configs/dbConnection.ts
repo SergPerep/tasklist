@@ -30,9 +30,9 @@ const devConfig = {
 // Configuration for production build
 const proConfig = {
   connectionString: process.env.PG_DATABASE_URL, // from heroku addons
-  //   ssl: {
-  //     rejectUnauthorized: false,
-  //   },
+  ssl: {
+    rejectUnauthorized: false,
+  },
 };
 
 const NODE_ENV = process.env.NODE_ENV;
