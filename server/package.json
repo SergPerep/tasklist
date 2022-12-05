@@ -13,8 +13,7 @@
     "nodemon": "nodemon .",
     "render-postbuild": "tsc && npm install --prefix client && npm run build --prefix client",
     "start": "node .",
-    "server": "concurrently \"tsc --watch\" \"nodemon .\"",
-    "client": "npm start --prefix client",
+    "dev": "concurrently \"tsc --watch\" \"nodemon .\"",
     "sass": "sass --watch client/src/scss:client/src/css"
   },
   "author": "Sergei Perepelkin",
