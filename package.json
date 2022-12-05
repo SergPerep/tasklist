@@ -4,14 +4,14 @@
   "description": "",
   "main": "dist/app.js",
   "engines": {
-    "node": "14.16.0",
-    "npm": "8.3.1"
+    "node": "16.18.1",
+    "npm": "8.19.2"
   },
   "scripts": {
     "test-server": "jest --verbose --testPathIgnorePatterns=/client/ --watchAll",
     "test-client": "npm test --prefix client",
     "nodemon": "nodemon .",
-    "heroku-postbuild": "tsc && npm install --prefix client && npm run build --prefix client",
+    "render-postbuild": "tsc && npm install --prefix client && npm run build --prefix client",
     "start": "node .",
     "server": "concurrently \"tsc --watch\" \"nodemon .\"",
     "client": "npm start --prefix client",
