@@ -11,7 +11,8 @@
     "nodemon": "nodemon .",
     "dev": "concurrently \"tsc --watch\" \"nodemon .\"",
     "start": "node .",
-    "build": "tsc",
+    "build": "pnpm i",
+    "render-postbuild": "tsc",
     "test-server": "jest --verbose --testPathIgnorePatterns=/client/ --watchAll",
     "test-client": "npm test --prefix client"
   },
