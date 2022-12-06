@@ -1,18 +1,18 @@
 @font-face {
-  font-family: 'lineicons';
-  src:  url('../fonts/lineicons.eot?f5o6n0');
-  src:  url('../fonts/lineicons.eot?f5o6n0#iefix') format('embedded-opentype'),
-    url('../fonts/lineicons.ttf?f5o6n0') format('truetype'),
-    url('../fonts/lineicons.woff?f5o6n0') format('woff'),
-    url('../fonts/lineicons.svg?f5o6n0#lineicons') format('svg');
+  font-family: "lineicons";
+  src: url("../../fonts/lineicons.eot?f5o6n0");
+  src: url("../../fonts/lineicons.eot?f5o6n0#iefix") format("embedded-opentype"),
+    url("../../fonts/lineicons.ttf?f5o6n0") format("truetype"), url("../../fonts/lineicons.woff?f5o6n0") format("woff"),
+    url("../../fonts/lineicons.svg?f5o6n0#lineicons") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+[class^="icon-"],
+[class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'lineicons' !important;
+  font-family: "lineicons" !important;
   // speak: never;
   font-style: normal;
   font-weight: normal;
