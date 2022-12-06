@@ -51,7 +51,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000",
   "devDependencies": {
     "@tsconfig/create-react-app": "^1.0.2",
     "jest": "^27.5.1",
