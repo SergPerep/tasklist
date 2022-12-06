@@ -1,7 +1,7 @@
 .env
-/logs
+logs/
 /.vscode
-/dist
+dist/
 
 # dependencies
 node_modules/
