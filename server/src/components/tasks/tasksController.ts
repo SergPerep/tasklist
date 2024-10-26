@@ -48,7 +48,7 @@ const task_update_put = async (req: Request, res: Response) => {
             `,
                 [id, userId]
             );
-            const isUpdateSuccessful = changeTaskStatus.rowCount > 0;
+            const isUpdateSuccessful = changeTaskStatus.rowCount ? changeTaskStatus.rowCount > 0 : false;
             if (!isUpdateSuccessful) return res.status(404).json({ messageToUser: "No such task related to this user" });
         } else {
             const editTask = await pool.query(`
@@ -63,7 +63,7 @@ const task_update_put = async (req: Request, res: Response) => {
                 id = $1 AND user_id = $6;
             `,
                 [id, description, date, time, folder_id, userId]);
-            const isUpdateSuccessful = editTask.rowCount > 0;
+            const isUpdateSuccessful = editTask.rowCount ? editTask.rowCount > 0 : false;
             if (!isUpdateSuccessful) return res.status(404).json({ messageToUser: "No such task related to this user" });
         }
         res.json({ messageToUser: "Task has been successfully updated!" });
