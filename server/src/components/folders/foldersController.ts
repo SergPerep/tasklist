@@ -56,7 +56,7 @@ const folder_update_put = async (req: Request, res: Response) => {
             WHERE
                 id = $1 AND user_id = $2;`
             , [id, userId, folderName, colorId]);
-        const isUpdateSuccessful = updateFolder.rowCount > 0;
+        const isUpdateSuccessful = updateFolder.rowCount != null ? updateFolder.rowCount > 0 : false;
         if (!isUpdateSuccessful) return res.status(404).json({ messageToUser: "No such folder related to this user" });
         // Feedback to client
         res.json({ messageToUser: "Project has been updated" });
@@ -73,7 +73,7 @@ const folder_delete = async (req: Request, res: Response) => {
         await pool.query(`DELETE FROM task WHERE folder_id = $1 AND user_id = $2;`, [id, userId]);
 
         const deleteFolder = await pool.query(`DELETE FROM folder WHERE id = $1 AND user_id = $2;`, [id, userId]);
-        const isUpdateSuccessful = deleteFolder.rowCount > 0;
+        const isUpdateSuccessful = deleteFolder.rowCount != null ? deleteFolder.rowCount > 0 : false;
         if (!isUpdateSuccessful) return res.status(404).json({ messageToUser: "No such folder related to this user" });
 
         // Feedback to client
