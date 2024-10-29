@@ -1,0 +1,39 @@
+
+services:
+
+  client:
+    build: ./client
+    ports:
+      - 3000:80
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000
+    networks:
+      - tasklist-net
+  
+  server:
+    build: ./server
+    environment:
+      - PG_USER=postgres
+      - PG_HOST=postgres # name of the container
+      - PG_PORT=5432
+      - PG_DATABASE=tasklist
+      - SESS_SECRET=your_session_secret
+    ports:
+      - 5000:5000
+    networks:
+      - tasklist-net
+
+  postgres:
+    build: ./db
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+    networks:
+      - tasklist-net
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
+
+networks:
+  tasklist-net:

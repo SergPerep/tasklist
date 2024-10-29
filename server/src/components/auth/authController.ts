@@ -25,7 +25,7 @@ const auth_register_post = async (req: Request, res: Response, next: NextFunctio
         const hash = genHash(password);
         const dbData = await pool.query(`INSERT INTO users (username, password) VALUES ($1, $2) RETURNING id`, [username, hash]);
         const userId = dbData.rows[0].id;
-
+        console.log({userId});
         req.session.user = { userId };
 
         await setupNewAccount(userId);

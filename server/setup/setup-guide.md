@@ -55,6 +55,11 @@ For more information about sessions read [express-session documentation](https:/
 
 ## Run the app
 ### Run server
+
+```bash
+tsc --watch
+```
+
 Run from root directory:
 ```bash
 npm run server

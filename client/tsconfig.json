@@ -22,7 +22,6 @@
         "strictNullChecks": true,
         "suppressImplicitAnyIndexErrors": true,
         "noUnusedLocals": true,
-        "useUnknownInCatchVariables": true
     },
     "exclude": [
         "node_modules",

@@ -22,6 +22,7 @@ const Pool = pg.Pool;
 // Configuration for development build
 const devConfig = {
   user: process.env.PG_USER,
+  password: "mysecretpassword",
   host: process.env.PG_HOST,
   port: normalizePort(process.env.PG_PORT),
   database: process.env.PG_DATABASE,

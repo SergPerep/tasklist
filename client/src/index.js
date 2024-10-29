@@ -5,8 +5,6 @@ import App from "./App";
 import { StoreProvider } from 'easy-peasy';
 import store from "./store";
 
-
-
 ReactDOM.render(
   <React.StrictMode>
     <StoreProvider store={store} >
