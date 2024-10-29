@@ -9,7 +9,7 @@ services:
       - REACT_APP_API_URL=http://localhost:5000
     networks:
       - tasklist-net
-  
+      
   server:
     build: ./server
     environment:
