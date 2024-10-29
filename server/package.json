@@ -4,8 +4,7 @@
   "description": "",
   "main": "dist/app.js",
   "engines": {
-    "node":"v20.18.0",
-    "pnpm":"9.12.2"
+    "node":"v20.18.0"
   },
   "scripts": {
     "nodemon": "nodemon .",
