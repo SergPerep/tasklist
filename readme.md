@@ -2,7 +2,7 @@
 
 Node.js express todo-list app. Portfolio project.
 
-- Deployed project: https://srgprp-tasklist.herokuapp.com
+- Deployed project: https://srgprp-tasklist.onrender.com
 - Follow [setup guide](./setup/setup-guide.md) to try and test Tasklist in your local machine
 
 ![index-screen](./readme-media/Cover.png)
