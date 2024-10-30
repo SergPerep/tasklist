@@ -4,12 +4,12 @@ This guide will help you to install Tasklist on your local machine.
 
 The application consists of three services:
 
-- The React fontend
-- The Node.js Express web-app
-- PostgreSQL database
+- [The React fontend](#the-react-frontend)
+- [The Node.js Express web-app](#the-nodejs-express-web-app)
+- [PostgreSQL database](#postgresql-database)
 
 ```plain text
-# Structure of the app
+# The structure of the app
 ┌─────────────┐     ┌─────────────┐     ┌────────────────┐
 │  Frontend   ├─────▶   Web app   ├─────▶    Database    │
 │  - React -  ◀─────┐ - Express - ◀─────┐ - PostgreSQL - │
@@ -65,7 +65,7 @@ pnpm run dev
 ```
 `SESS_SECRET` is used to sign the sessionID cookie, which enables a use of user accounts. For more information about sessions refer to [express-session documentation](https://github.com/expressjs/session).
 
-The web-app should be accessible at http://localhost:5000. Concrete endpoint http://localhost:5000/auth/check-auth should repond with `{"isAuthenticated":false}`.
+The web-app should be accessible at http://localhost:5000. The concrete endpoint http://localhost:5000/auth/check-auth should repond with `{"isAuthenticated":false}`.
 
 ## PostgreSQL database
 

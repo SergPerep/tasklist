@@ -1,22 +1,14 @@
 # Tasklist
 
 Node.js express todo-list app. Portfolio project. Deployed on https://srgprp-tasklist.onrender.com
-- Follow [setup guide](./setup/setup-guide.md) to try and test Tasklist in your local machine
 
 ![index-screen](./docs/readme-media/Cover.png)
 
 ## Developer  guides
 
-```plain text
-# Structure of the app
-┌─────────────┐     ┌─────────────┐     ┌────────────────┐
-│  Frontend   ├─────▶   Web app   ├─────▶    Database    │
-│  - React -  ◀─────┐ - Express - ◀─────┐ - PostgreSQL - │
-└─────────────┘     └─────────────┘     └────────────────┘
-```
 - [How to run Tasklist locally](./docs/basic-setup-guide.md)
 - [How to run Tasklist locally with Docker](./docs/docker-setup-gude.md)
-- How to deploy Tasklist on Render.com (soon)
+- How to deploy Tasklist on Render.com (maybe someday)
 
 ## Features
 
