@@ -13,13 +13,13 @@ npm install --prefix client
 ## Set up postgres database
 First, install postgreSQL on your local machine. [PostgreSQL documentation](https://www.postgresql.org/download/) should help you with that.
 
-After that run code of [postgres-db-setup.sql](./postgres-db-setup.sql) file. 
+After that run [01_tasklist-setup.sql](../db/init-scripts/01_tasklist-setup.sql) script:
 
-Use this command:
 ```bash
-psql -a -f setup/postgres-db-setup.sql
+psql -a -f db/01_tasklist-setup.sql
 ```
 It creates database and relevant tables inside it.
+
 ## Setup sessions
 
 To create tables for sessions run this command:

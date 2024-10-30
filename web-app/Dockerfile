@@ -1,3 +1,4 @@
+# STAGE #1: Generate the React build
 FROM node:20.18-alpine3.19 AS build
 
 WORKDIR /server
@@ -8,12 +9,13 @@ COPY ./src ./src
 # Copy configs to container workdir
 COPY package.json pnpm-lock.yaml ./tsconfig.json ./
 
-# Install dependencies and compile js
+# Install dependencies and compile js from ts
 RUN npm -g install pnpm
 RUN pnpm install
 
 RUN pnpm run build
 
+# STAGE #2: Serve the React build
 FROM node:20.18-alpine3.19 AS prod
 
 WORKDIR /server
