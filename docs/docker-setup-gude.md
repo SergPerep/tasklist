@@ -4,7 +4,7 @@ This is a guide and a brief explanation of how to run Tasklist locally using Doc
 
 ## Run containers
 
-To run containers use `docker-compose.yaml`:
+To run containers use [`docker-compose.yaml`](../docker-compose.yaml):
 
 ```bash
 docker compose -f docker-compose.yaml up -d
@@ -15,7 +15,7 @@ For production and deployment, consider creating your own `SESS_SECRET` and `POS
 
 ## How containers are built
 
-1. `docker-compose.yaml` points to three Docker files: in the `./frontend`, `./web-app/` and `./db` folders
+1. [`docker-compose.yaml`](../docker-compose.yaml) points to three Docker files: in the `./frontend`, `./web-app/` and `./db` folders
 1. Each dockerfile is used to build an image
 1. Each image is used to run a container
 1. Running containers share the same Docker network
@@ -55,9 +55,9 @@ frontend:
 ```
 - **Building the frontend image** occurs in two stages (check [the fronted Dockerfile](../frontend/Dockerfile)). First, the React build is generated, and then the Nginx server is set up to serve the content of the generated build.
 
-- **ENV variables in Dockerfile**. Note that the ENV variable (base URL) for the client is set up in [the frontend Dockerfile](../frontend/Dockerfile) instead of in `docker-compose.yaml`. This is because environment variables become embedded as constants during the React build process, making it troublesome to change them later.
+- **ENV variables in Dockerfile**. Note that the ENV variable (base URL) for the client is set up in [the frontend Dockerfile](../frontend/Dockerfile) instead of in [`docker-compose.yaml`](../docker-compose.yaml). This is because environment variables become embedded as constants during the React build process, making it troublesome to change them later.
 
-- **Port mappings**. The frontend is the main point of interaction with the user/host. Therefore, the post is exposed to the host. 
+- **Port mappings**. The frontend is the main point of interaction with the user/host. Therefore, the port is exposed to the host. 
 
 ### Web-app image/container
 
