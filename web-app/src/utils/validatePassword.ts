@@ -10,6 +10,5 @@ export default (password: string) => {
         .has().not(/[а-я]/gi) // Has no cyrillic symbols
 
     const isValid = schema.validate(password)
-    // if (!isValid) console.log(schema.validate(password));
     return isValid;
 }

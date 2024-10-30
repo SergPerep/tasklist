@@ -27,7 +27,7 @@ const {
   CLIENT_ORIGIN = "http://localhost:3000",
 } = process.env;
 
-// Redirect to https on heroku
+
 if (NODE_ENV === "production") {
   app.use(enforce.HTTPS({ trustProtoHeader: true }));
 }
@@ -35,7 +35,7 @@ if (NODE_ENV === "production") {
 app.use(cors({ origin: CLIENT_ORIGIN, credentials: true }));
 
 app.use(morgan("tiny"));
-// app.set("trust proxy", 1)
+
 app.use(
   session({
     store: new pgStorage({
