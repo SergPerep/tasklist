@@ -1,10 +1,12 @@
 # Tasklist
 
-Node.js express todo-list app. Portfolio project. Deployed on https://srgprp-tasklist.onrender.com
+Node.js express todo-list app. Deployed on https://srgprp-tasklist.onrender.com
+
+I use this pet project to practice deployment, CI/CD, containerization, and writing documentation. Want to try it out? Check out the [developer guides](#developer-guides)!
 
 ![index-screen](./docs/readme-media/Cover.png)
 
-## Developer  guides
+## Developer guides
 
 - [How to run Tasklist locally](./docs/basic-setup-guide.md)
 - [How to run Tasklist locally with Docker](./docs/docker-setup-gude.md)
