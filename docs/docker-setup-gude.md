@@ -1,4 +1,4 @@
-# Docker guide
+# Run Tasklist locally with Docker
 
 This is a guide and a brief explanation of how to run Tasklist locally using Docker. Needless to say, Docker should already be installed on your machine.
 

@@ -22,7 +22,7 @@ const Pool = pg.Pool;
 // Configuration for development build
 const devConfig = {
   user: process.env.PG_USER,
-  password: "mysecretpassword",
+  password: process.env.PG_PASSWORD,
   host: process.env.PG_HOST,
   port: normalizePort(process.env.PG_PORT),
   database: process.env.PG_DATABASE,
@@ -30,7 +30,7 @@ const devConfig = {
 
 // Configuration for production build
 const proConfig = {
-  connectionString: process.env.PG_DATABASE_URL, // from heroku addons
+  connectionString: process.env.PG_DATABASE_URL,
   ssl: {
     rejectUnauthorized: false,
   },
