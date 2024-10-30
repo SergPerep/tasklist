@@ -1,4 +1,7 @@
-# STAGE #1: Generate the React build
+# =======================================
+# STAGE #1: Generate the build (ts -> js)
+# =======================================
+
 FROM node:20.18-alpine3.19 AS build
 
 WORKDIR /server
@@ -15,7 +18,10 @@ RUN pnpm install
 
 RUN pnpm run build
 
-# STAGE #2: Serve the React build
+# ======================================
+# STAGE #2: Start the server
+# ======================================
+
 FROM node:20.18-alpine3.19 AS prod
 
 WORKDIR /server
