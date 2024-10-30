@@ -4,8 +4,7 @@
   "description": "",
   "main": "dist/app.js",
   "engines": {
-    "node": "20.18.0",
-    "npm": "10.8.2"
+    "node": "20.18.0"
   },
   "scripts": {
     "nodemon": "nodemon .",
