@@ -30,10 +30,7 @@ jobs:
           pnpm run build
 
       - name: Zip artifact for deployment
-        run: |
-          cd web-app/
-          zip -r ../release.zip . -x "dist/*"
-          cd ..
+        run: zip -r release.zip web-app -x "web-app/dist/*"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -72,5 +69,5 @@ jobs:
         with:
           app-name: 'taslist-web-app'
           slot-name: 'Production'
-          package: .
+          package: web-app/
           
