@@ -68,6 +68,5 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'taslist-web-app'
-          slot-name: 'Production'
           package: web-app/
           
