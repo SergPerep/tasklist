@@ -24,6 +24,7 @@ jobs:
       - name: Make a build
         run: |
           cd web-app/
+          pwd
           npm install pnpm
           pnpm install
           pnpm run build
