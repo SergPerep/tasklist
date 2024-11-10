@@ -35,7 +35,7 @@ Choose `frontend` as root directory. Set `frontend/build` as publish directory.
 pnpm run build
 ```
 
-### Emvironmental variables
+### Environmental variables
 
 ```bash
 # Node version should match verion in package.json
@@ -61,7 +61,7 @@ pnpm run start
 
 ### Environmental variables
 
-```yaml
+```bash
 # Should be the URL to your static sites service that you've set up previously
 CLIENT_ORIGIN=https://...onrender.com 
 

@@ -9,7 +9,7 @@ I use this pet project to practice deployment, CI/CD, containerization, and writ
 ## Developer guides
 
 - [How to run Tasklist locally](./docs/basic-setup-guide.md)
-- [How to run Tasklist as local Docker containers](./docs/docker-setup-gude.md)
+- [How to run Tasklist as local docker containers](./docs/docker-setup-gude.md)
 - [How to deploy Tasklist to Render.com](./docs/deploy-to-render-guide.md)
 - How to deploy Tasklist as docker containers to Azure (soon)
 
