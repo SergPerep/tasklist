@@ -1,9 +1,11 @@
-name: Azure Static Web Apps CI/CD
+name: Deploy frontend to Azure
 
 on:
   push:
     branches:
       - master
+    paths:
+      - "frontend/**"
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
