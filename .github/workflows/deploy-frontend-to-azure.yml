@@ -24,6 +24,7 @@ jobs:
       - name: Build And Deploy
         env:
           CI: false
+          REACT_APP_API_URL: https://tasklist-web-app-fnb6cxf4aremdcft.westeurope-01.azurewebsites.net
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
