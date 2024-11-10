@@ -15,22 +15,20 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
+
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
           node-version: '20.x'
 
-      - name: Make a build
+      - name: npm install, build, and test
         run: |
-          cd web-app/
-          pnpm install
-          pnpm run build
+          npm install
+          npm run build --if-present
+          npm run test --if-present
 
       - name: Zip artifact for deployment
-        run: zip -r release.zip web-app -x "web-app/src/*" -x "web-app/Dockerfile" -x "web-app/tsconfig.json"
+        run: zip release.zip ./* -r
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -59,9 +57,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_B4AC9454B9614E92AC03021B3ABCACC0 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_66AEEC504DAC44CD97DA7EF170C39CDE }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_E8367A7277484404B3C10E3154D5499B }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_AAF70780CF2F466CBB8FDD997644805D }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_7607824774AE43639C68502BE3D2F21F }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_01EC18DB131340ADA9F6F5E8CCFFFA40 }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
@@ -69,5 +67,5 @@ jobs:
         with:
           app-name: 'tasklist-web-app'
           slot-name: 'Production'
-          package: web-app/
+          package: .
           
