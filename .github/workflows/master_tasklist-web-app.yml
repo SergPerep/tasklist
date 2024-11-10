@@ -30,7 +30,7 @@ jobs:
           pnpm run build
 
       - name: Zip artifact for deployment
-        run: zip -r release.zip web-app -x "web-app/src/*" -x "web-app/Dockerfile" -x "web-app/tsconfig.json"
+        run: zip -r release.zip web-app/dist/ web-app/package.json web-app/pnpm-lock.yaml
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
