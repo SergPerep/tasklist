@@ -4,7 +4,7 @@ import {Request, Response, NextFunction} from "express";
 const handleErrors = (err: any, req: Request, res: Response, next: NextFunction) => {
     console.log("--> handleErrors");
     if (!err) return;
-    if (err instanceof ForbiddenError || MissingCredentialsError || AuthenticationError) res.status(err.statusCode).json({ messageToUser: err.message });
+    if (err instanceof ForbiddenError || MissingCredentialsError || AuthenticationError) res.status(err.statusCode || 500).json({ messageToUser: err.message });
     console.log(err.stack);
 }
 
