@@ -20,20 +20,23 @@ pg.types.setTypeParser(DATE_OID, (str: String) => {
 const Pool = pg.Pool;
 
 // Configuration for development build
-const devConfig = {
+let devConfig = {
   user: process.env.PG_USER,
   password: process.env.PG_PASSWORD,
   host: process.env.PG_HOST,
   port: normalizePort(process.env.PG_PORT),
   database: process.env.PG_DATABASE,
+  ssl: process.env.PG_SSL_ENABLE == "true" ? { rejectUnauthorized: true } : false
 };
+
+
 
 // Configuration for production build
 const proConfig = {
   connectionString: process.env.PG_DATABASE_URL,
-  // ssl: {
-  //   rejectUnauthorized: false,
-  // },
+  ssl: {
+    rejectUnauthorized: false,
+  },
 };
 
 const NODE_ENV = process.env.NODE_ENV;
